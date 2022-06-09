@@ -1,0 +1,52 @@
+/*  https://github.com/Ryanmufasa/awesomePlace/issues/9 | 작성자 이명진 */
+@charset "UTF-8";
+	.header{
+		position:relative;
+		height:140px;
+		max-width:1280px;
+		min-width:640px;
+		width:90%;
+		margin:auto;
+	}
+	#btns{
+		position:absolute;
+		top:5px; right:1%;
+	}
+	#managerBtn{
+		position:absolute;
+		top:40px; right:1%;
+	}
+	#img1 {
+		position:absolute;
+		top:5px; left:1%;
+	}
+	#title{
+		position:absolute;
+		top:5px;
+		left:40%;
+		margin-left:-80px;
+		font-size:25px;
+	}
+	#searchBar{
+		position:absolute;
+		bottom:1%;
+		left:50%;
+		margin-left:-220px;
+	}
+	#hr1{
+		position:relative;
+		width:90%;
+		max-width:1280px;
+		min-width:640px;
+	}
+	
+	.footer{
+		position:absolute;
+		bottom:5px;
+		left:5%;
+		right:5%;
+		max-width:1280px;
+		min-width:640px;
+		width:90%;
+		margin:auto;
+	}
