@@ -1,4 +1,4 @@
---DB ¼¼ÆÃ ÀÛ¾÷--
+--DB ì„¸íŒ… ì‘ì—…--
 alter session set"_ORACLE_SCRIPT"=true;
 
 create user awesomeplace identified by awesomeplace;
@@ -9,7 +9,7 @@ alter user awesomeplace default tablespace users quota unlimited on users;
 
 
 
---È¸¿ø Å×ÀÌºí »ı¼º
+--íšŒì› í…Œì´ë¸” ìƒì„±
 drop table member CASCADE CONSTRAINTS;
 drop table member; 
 drop sequence seq_member;
