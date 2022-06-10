@@ -1,3 +1,4 @@
+// https://github.com/Ryanmufasa/awesomePlace/issues/17 프론트컨트롤러(case는 별도) 작성자 이명진
 package com.frontcontroller.AP;
 
 import java.io.IOException;
@@ -8,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.distributor.AP.DistributorImpl;
 
@@ -33,6 +35,7 @@ public class APfrontcontroller extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		HttpSession ss1 = request.getSession(false);
 		
 		String departurePoint = request.getRequestURI().substring(request.getContextPath().length());
 		
@@ -40,8 +43,13 @@ public class APfrontcontroller extends HttpServlet {
 		DistributorImpl d1 = null;
 		
 		switch(departurePoint) {
-		case "/hosting.do" :
+		case "/hosting.do" : 
 			System.out.println("성공");
+			break;
+		case "/logout.do" : //작성자 이명진
+			ss1.invalidate(); //로그아웃 요청으로 인한 세션초기화
+			destination = "main.jsp"; //
+			break;
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(destination);

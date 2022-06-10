@@ -7,6 +7,7 @@
 		min-width:640px;
 		width:90%;
 		margin:auto;
+		display:block;
 	}
 	#btns{
 		position:absolute;
@@ -39,14 +40,41 @@
 		max-width:1280px;
 		min-width:640px;
 	}
-	
-	.footer{
+	.mainDiv{
+		position:relative;
+		width:90%;
+		height:800px;
+		max-width:1280px;
+		min-width:640px;
+		margin:auto;
+		overflow:hidden;
+	}
+	.mainDiv-child{
+		text-align:center;
 		position:absolute;
-		bottom:5px;
-		left:5%;
-		right:5%;
+		top: 0;
+		right: -200%;
+		bottom: 0;
+		left: -200%;
+	}
+	#mainImg{
+		display:block;
+		margin: 0 auto;
+		max-width:1280px;;
+	}
+	.footer{
+		position:relative;
 		max-width:1280px;
 		min-width:640px;
 		width:90%;
 		margin:auto;
+		display:block;
 	}
+/*		일정화면크기에서 정렬방식을 변경하는코드, 실제 사용하진 않는다. 	
+		@media screen and (max-width: 1000px) {
+	 	 .mainDiv-child {
+	    text-align: left;
+	    left: -255px;
+	  }
+	}
+  */
