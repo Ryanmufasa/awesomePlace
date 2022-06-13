@@ -1,9 +1,9 @@
---°í°´¼¾ÅÍ ¹®ÀÇ°Ô½ÃÆÇ
+--ê³ ê°ì„¼í„° ë¬¸ì˜ê²Œì‹œíŒ
 
 create table QNA(
 qna_num number not null primary key,
 mem_num number not null,
-constraint mem_num_fk foreign key (mem_num) references member(mem_num),
+constraint q_mem_num_fk foreign key (mem_num) references member(mem_num),
 mem_id varchar2(20) not null,
 qna_title varchar2(40) not null,
 qna_content varchar2(1000) not null,
@@ -14,7 +14,7 @@ qna_answer varchar2(1000)
 
 create sequence QNA_seq nocache;
 
-insert into QNA values(QNA_seq.nextval, 1, 'test01', '¹®ÀÇ±Û Á¦¸ñ', '¹®ÀÇ±Û ³»¾Ö¾Ö¾Ö¾Ö¾Ö¿ä¿ë¿ä¿ä¿ë', sysdate, 'Wait', '');
+insert into QNA values(QNA_seq.nextval, 1, 'test01', 'ë¬¸ì˜ê¸€ ì œëª©', 'ë¬¸ì˜ê¸€ ë‚´ì• ì• ì• ì• ì• ìš”ìš©ìš”ìš”ìš©', sysdate, 'Wait', '');
 
 commit;
 
