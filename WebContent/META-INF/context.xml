@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+<ResourceLink global="jdbc/oracle" name="jdbc/oracle" type="javax.sql.DataSource" />
+	<Resource
+		name ="jdbc/oraclel"
+		auth = "Container"
+		type="javax.sql.DataSource"
+		driverClassName = "oracle.jdbc.OracleDriver"
+		url = "jdbc:oracle:thin:@localhost:1521:xe"
+		username = "awesomeplace"
+		password = "awesomeplace"
+		maxTotal = "10"
+		maxIdle = "10"
+		maxWaitMillis = "-1"
+	/>
+</Context>
+<!-- 
+Resource 태그 각 속성 의미
+name : JDNI 로 호출될 이름. context.xml 과 web.xml의 name 이 동일해야 함
+auth : DBCP 를 관리할 관리자. 설정을 잡는 위치.  Container 혹은 Application
+type : 이 설정을 사용하는 클래스 타입
+driverClassName : JDBC 를 이용하기 위한 드라이버 클래스.
+				사용할 DB 종류에 따라 다름. 
+	참고) oracle 의 경우 oracle.jdbc.driver.OracleDirver, oracle.jdbc.OracleDirver 
+		 이 두가지 사용 가능하나 전자는 오라클에서 없애는 중이라고 함. 후자 사용 권장
+maxTotal : 생성할 connection 객체의 수 (최대 DB 접속 허용 개수)
+maxIdle : 커넥션 풀의 최대 커넥션 개수 
+maxWaitMillis : 남아있는 커넥션 객체가 없을때 커넥션 객체 할당을 기다리는 최대 시간(ms 단위), -1 은 무한대기
+ -->
