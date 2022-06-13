@@ -38,18 +38,17 @@ public class APController extends HttpServlet {
     	String path = requestURL.substring(start);
     	System.out.println("path : " + path);
     	
-
-    	String path2 = request.getRequestURL().substring(request.getContextPath().length());
-    	System.out.println("path2 : " + path2);
-
+    	//String path2 = request.getRequestURL().substring(request.getContextPath().length());
+    	//System.out.println("path2 : " + path2);
     	    	
     	switch(path) {
     	case "/joinForm.do":
     		page = new NextPage("/awesomePlace/join/joinForm.jsp", true);
     		break;
-		/*
-		 * case "/join.do" : serv = new JoinService(); page = new NextPage("#", true);
-		 */
+	 case "/join.do" : 
+		serv = new JoinService(); 
+		page = new NextPage("/join/result.jsp", false);
+		break;
     	}
     	
     	if(serv != null) {
