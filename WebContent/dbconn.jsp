@@ -21,7 +21,6 @@
 %>
 
 <% 
-
 	try{
 		Context iniCtx = new InitialContext();
 		Context ctx = (Context) iniCtx.lookup("java:comp/env/");
@@ -40,8 +39,6 @@
 			e.printStackTrace();
 		}
 	}
-
-
 %>
 
 
