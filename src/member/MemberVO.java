@@ -1,6 +1,6 @@
 package member;
 
-public class memberVO {
+public class MemberVO {
 	
 	private int mem_num;
 	private String mem_name;
@@ -10,12 +10,21 @@ public class memberVO {
 	private String mem_email;
 	
 	
-	public memberVO() {}
+	public MemberVO() {}
 	
 	
-	public memberVO(int mem_num, String mem_name, String mem_id, String mem_pw, String mem_tel, String mem_email) {
+	public MemberVO(int mem_num, String mem_name, String mem_id, String mem_pw, String mem_tel, String mem_email) {
 		super();
 		this.mem_num=mem_num;
+		this.mem_name=mem_name;
+		this.mem_id=mem_id;
+		this.mem_pw=mem_pw;
+		this.mem_tel=mem_tel;
+		this.mem_email=mem_email;
+	}
+	
+	public MemberVO(String mem_name, String mem_id, String mem_pw, String mem_tel, String mem_email) {
+		super();
 		this.mem_name=mem_name;
 		this.mem_id=mem_id;
 		this.mem_pw=mem_pw;
