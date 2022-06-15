@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>즐거운 한국여행 어썸플레이스입니다.</title>
 	<link href="./css/Header.css" rel="stylesheet">
+	<c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 	<script>
 	// 목적지, 로그인여부(세션 아이디 존재여부), 마이페이지 비밀번호 재확인 여부 를 받아 각 상황에 맞게 페이지 분배하는 함수
 		function sessionCheck(url, id, doubleCheck){  
@@ -61,7 +62,6 @@
 					사용자 페이지</button>
 			</div>
 		<% }
-			
 		}else if(id != null){%>
 				<div id="btns"> <!-- 일반사용자 로그인 후버튼 블록 -->
 					<button class="btn1" onclick="sessionCheck('hosting.jsp',id,doubleCheck);">

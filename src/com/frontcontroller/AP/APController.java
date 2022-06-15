@@ -1,4 +1,4 @@
-// 참고용
+// https://github.com/Ryanmufasa/awesomePlace/issues/17 -- 프론트컨트롤러(case는 별도) 작성자 이명진, doGet 부분수정 정다영
 package com.frontcontroller.AP;
 
 import java.io.IOException;
@@ -42,12 +42,16 @@ public class APController extends HttpServlet {
     	//System.out.println("path2 : " + path2);
     	    	
     	switch(path) {
-    	case "/joinForm.do":
+    	case "/joinForm.do":  // https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
     		page = new NextPage("/awesomePlace/join/joinForm.jsp", true);
     		break;
-	 case "/join.do" : 
+	 case "/join.do" :  //  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
 		serv = new JoinService(); 
 		page = new NextPage("/join/result.jsp", false);
+		break;
+	case "/search.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/25 -- 작성자 정다영
+		serv = new SearchService();
+		page = new NextPage("/search/search.jsp", false);
 		break;
     	}
     	

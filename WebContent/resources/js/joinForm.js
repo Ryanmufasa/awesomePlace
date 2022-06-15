@@ -1,6 +1,3 @@
-/**
- * 
- */
 //https://github.com/Ryanmufasa/awesomePlace/issues/7 -- 작성자 정다영
 // /WebContent/join/joinForm.jsp 에 적용되는 스크립트입니다.
 
