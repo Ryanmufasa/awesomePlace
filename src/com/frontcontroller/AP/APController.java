@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import memberService.IDfoundService;
 import memberService.JoinService;
 import memberService.LoginService;
+import memberService.MyPagePWService;
 import service.NextPage;
 import service.ServiceInterface;
 
@@ -55,34 +57,35 @@ public class APController extends HttpServlet {
 		serv = new JoinService(); 
 		page = new NextPage("/join/result.jsp", false);
 		break;
-    	}
-    	
-    	if(serv != null) {
-    		try {
-				serv.execute(request, response);
-			} catch (ClassNotFoundException | IOException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-    	}
-    	
-    	if(page.isRedirect()) {
-    		response.sendRedirect(page.getNextPath());
-    	}else {
-    		request.getRequestDispatcher(page.getNextPath()).forward(request, response);
-    	}
-    	
-    	
-    	// 로그인
-    	switch(path) {
-    	case "/loginform.do":
-    		page = new NextPage("/awesomePlace/login/loginform.jsp", true);
-    		break;
+		
+		// 로그인
+		case "/loginform.do":
+			page = new NextPage("/awesomePlace/login/loginform.jsp", true);
+			break;
 	case "/login.do" : 
 		serv = new LoginService(); 
 		page = new NextPage("/login/result.jsp", false);
 		break;
-    	}
+		
+		// 아이디 찾기
+		case "/IDfoundform.do":
+			page = new NextPage("/awesomePlace/idfound/IDfoundform.jsp", true);
+			break;
+	case "/idfound.do" :
+		serv = new IDfoundService();
+		page = new NextPage("/idfound/result.jsp", false);
+		break;
+		
+		// 마이페이지 접속시 로그인 재확인 
+		case "/MyPage.do":
+			page = new NextPage("/awesomePlace/mypage/MyPage.jsp", true);
+			break;
+	case "/mypagePW.do":
+		serv = new MyPagePWService();
+		page = new NextPage("/mypage/result.jsp", false);
+		break;
+	    } 
+    	
     	
     	if(serv != null) {
     		try {
@@ -98,7 +101,9 @@ public class APController extends HttpServlet {
     	}else {
     		request.getRequestDispatcher(page.getNextPath()).forward(request, response);
     	}
-		
+    	
+    	
+    	
     	
 	}
 

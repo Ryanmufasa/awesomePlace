@@ -11,14 +11,14 @@
 
 <c:if test="${selectResult == 1}">
 	<script>
-		alert("로그인 완료.")
-		location.href = "${pageContext.request.contextPath }/Main.jsp";
+		alert("비밀번호 확인 완료")
+		location.href = "${pageContext.request.contextPath }/mypage/MyPage.jsp";
 	</script>
 </c:if>
 <c:if test="${selectResult == -1}">
 	<script>
-		alert("로그인 정보가 일치하지 않습니다.")
-		location.href = "loginform.jsp";
+		alert("비밀번호가 일치하지 않습니다.")
+		location.href = "${pageContext.request.contextPath }/mypage/MyPage.jsp";
 	</script>
 </c:if>
 

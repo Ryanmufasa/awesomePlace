@@ -70,6 +70,7 @@ public class memberDAO{
 		return list;
 	} 
 	
+	
 	//로그인
 	public int selectID(String mem_id, String mem_pw) throws ClassNotFoundException {
 		
@@ -86,6 +87,60 @@ public class memberDAO{
 			    if (mem_pw.equals(rs.getString("mem_pw"))) {
 					result = 1; 	
 					 
+				} else
+					result = -1;
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	//아이디 찾기 회원정보 일치 여부 (수정중)
+	public int IDfound(String mem_name, String mem_tel, String mem_email) throws ClassNotFoundException{
+		
+		int result = 0 ;
+		
+		try {
+			con = new memberDBConn().getConnection();
+			pstmt = con.prepareStatement("SELECT * FROM member WHERE mem_name = ? AND mem_tel = ? AND mem_email = ?");
+			pstmt.setString(1, mem_name);
+			pstmt.setString(2, mem_tel);
+			pstmt.setString(3, mem_email);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				
+				if (mem_email.equals(rs.getString("mem_email"))) {
+					result = 1;
+					
+				} else
+					result = -1;
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
+	//마이페이지 접속시 비밀번호 재확인 
+	public int MyPagePWck(String mem_pw, String mem_id) throws ClassNotFoundException {
+		
+		int result = 0 ;
+		
+		try {
+			con = new memberDBConn().getConnection();
+			pstmt = con.prepareStatement("SELECT mem_pw, mem_id FROM member WHERE mem_id = ?");
+			pstmt.setString(1, mem_id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				
+				if (mem_pw.equals(rs.getString("mem_pw"))) {
+					result = 1;
+					
 				} else
 					result = -1;
 			}

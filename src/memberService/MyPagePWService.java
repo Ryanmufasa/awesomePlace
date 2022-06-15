@@ -10,23 +10,24 @@ import javax.servlet.http.HttpSession;
 import member.memberDAO;
 import service.ServiceInterface;
 
-public class LoginService implements ServiceInterface{
+public class MyPagePWService implements ServiceInterface{
 	
 	@Override
 	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException {
 		
+		HttpSession session = request.getSession();
+		
 		request.setCharacterEncoding("UTF-8");
 		
-		String mem_id = request.getParameter("mem_id");
-		String mem_pw = request.getParameter("mem_pw");
-		HttpSession session = request.getSession();
+		String mem_pw = request.getParameter("mem_pw");		
+		String mem_id = (String)session.getAttribute("mem_id");
 		
 		memberDAO dao = memberDAO.getInstance();
 		
-		int selectResult = dao.selectID(mem_id, mem_pw);
+		int selectResult = dao.MyPagePWck(mem_pw, mem_id);
 		
 		if(selectResult == 1) {
-			session.setAttribute("mem_id", mem_id);
+			session.setAttribute("mem_pw", mem_pw);
 			
 		} 
 		

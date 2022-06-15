@@ -76,7 +76,7 @@
 			<div id="btns"> <!-- 일반사용자 로그인 전 버튼 블록 -->
 				<button class="btn1" onclick="sessionCheck('hosting.jsp',id,doubleCheck)">
 					마이호스팅</button>
-				<button class="btn2" onclick="location.assign('login.jsp')">
+				<button class="btn2" onclick="location.assign('loginform.do')">
 					로그인</button>
 				<button class="btn3" onclick="location.assign('join.jsp')">
 					회원가입</button>

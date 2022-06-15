@@ -32,3 +32,10 @@ WebContent/META-INF/MANIFEST.MF
 .classpath
 src/memberService/JoinService.java
 WebContent/join/result.jsp
+src/memberService/IDfoundService.java
+WebContent/idfound/IDfoundform.jsp
+WebContent/idfound/result.jsp
+WebContent/index.jsp
+WebContent/META-INF/context.xml
+WebContent/index.jsp
+WebContent/META-INF/context.xml

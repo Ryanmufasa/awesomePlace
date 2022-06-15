@@ -49,7 +49,7 @@
                         아이디&nbsp;&nbsp;
                     </td>
                     <td onmouseover="this.style.backgroundColor='#9c9898FF'" onmouseout="this.style.backgroundColor=''">
-                    	<input type="text" name="mem_id" id="mem_id" style="width:205px;height:30px;" placeholder="아이디" required>
+                    	<input type="text" name="mem_id" style="width:205px;height:30px;" placeholder="아이디" required>
                     </td>
                 </tr>
 
@@ -61,7 +61,7 @@
                         비밀번호&nbsp;&nbsp;
                     </td>
                     <td onmouseover="this.style.backgroundColor='#9c9898FF'" onmouseout="this.style.backgroundColor=''">
-                    	<input autocomplete="false" type="password" name="mem_pw" id="mem_pw" style="width:205px;height:30px;" placeholder="비밀번호" required>
+                    	<input autocomplete="false" type="password" name="mem_pw" style="width:205px;height:30px;" placeholder="비밀번호" required>
                     </td>
                 </tr>
 
@@ -73,7 +73,7 @@
             <input type="button" value="회원가입" onclick="location.href='${pageContext.request.contextPath }/join/joinForm.jsp'" style="width:130px;height:40px;background-color:#5e5e5e;color:white;border:none;cursor:pointer;"> <br><br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-            <a href="${pageContext.request.contextPath }/IDfoundform.jsp" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;">아이디 찾기</a>
+            <a href="${pageContext.request.contextPath }/IDfoundform.do" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;">아이디 찾기</a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="${pageContext.request.contextPath }/PWfoundform.jsp" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;">비밀번호 찾기</a>
 
