@@ -29,7 +29,8 @@
                 <td>
                     이름&nbsp;&nbsp;
                 </td>
-                <td><input type="text" name="irum" style="width:205px;height:30px;"></td>
+                <td>
+                	<input type="text" name="irum" style="width:205px;height:30px;"></td>
             </tr>
 
             <tr>

@@ -29,3 +29,6 @@ WebContent/META-INF/MANIFEST.MF
 .project
 .classpath
 .classpath
+.classpath
+src/memberService/JoinService.java
+WebContent/join/result.jsp

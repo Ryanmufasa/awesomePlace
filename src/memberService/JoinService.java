@@ -1,5 +1,7 @@
 package memberService;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,7 +12,7 @@ import service.ServiceInterface;
 public class JoinService implements ServiceInterface {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response)  {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException  {
 		
 		String name = request.getParameter("name");
 		String id = request.getParameter("id");
@@ -24,7 +26,7 @@ public class JoinService implements ServiceInterface {
 		System.out.println(tel);
 		System.out.println(email);
 		
-		memberVO vo = new memberVO(name, id, pw, tel, email);
+		memberVO vo = new memberVO(0, name, id, pw, tel, email);
 		
 		memberDAO dao = memberDAO.getInstance();
 				
@@ -32,7 +34,7 @@ public class JoinService implements ServiceInterface {
 		String msg = null;
 		
 		if(check) {
-			msg="회원가입 성공!";
+			msg= "회원가입 성공!";
 		}else{
 			msg = "회원가입실패";
 			System.out.println("회원가입실패");

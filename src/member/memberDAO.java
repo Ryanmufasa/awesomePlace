@@ -6,6 +6,7 @@ import java.util.*;
 import javax.sql.DataSource;
 
 import member.memberDBConn;
+import service.ServiceInterface;
 
 
 public class memberDAO{
