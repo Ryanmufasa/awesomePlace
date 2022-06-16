@@ -18,29 +18,36 @@ public class SearchService implements ServiceInterface {
 		String category = request.getParameter("category");
 		String search = request.getParameter("search");
 		
-		
-		System.out.println(category);
-		System.out.println(search);
+		System.out.println("category : " + category);
+		System.out.println("검색내용: " + search);
 		
 		
 		ArrayList<HostVO> hostli = null;
+		System.out.println("----");
 		
-		
-		if(category.equals("region")) {
-			// 미구현
+		if(!category.equals("none")) { // select value 없는경우 none 
+			System.out.println("0");
+			switch(category) {
+			case "region":
+				System.out.println( "1");
+				break;
+			case "keyword" :
+				System.out.println( "2");
+				break;
+			}
 			
-		}else if(category.equals("keyword")){
-			// 미구현
+		}else if(!search.equals("")){ // 입력값 없는경우 "" 
+			System.out.println( "search");
 			
-		}else { // 카테고리 선택 안한 경우 전체 호스트 내역 출력 
-			
+		}else {// 카테고리 선택 안한 경우 전체 호스트 내역 출력 
+			System.out.println("전체출력");
 			hostli = HostDAO.getInstance().getAllHost();
-			
 		}
+		
+
 		
 		request.setAttribute("hostli", hostli);
 		
-
 	}
 
 }

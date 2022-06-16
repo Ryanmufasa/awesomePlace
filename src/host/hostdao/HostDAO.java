@@ -30,7 +30,7 @@ public class HostDAO {
 		
 		ArrayList<HostVO> hostli = new ArrayList<HostVO>();
 		
-		String sql = "select * from host";
+		String sql = "select * from host order by host_num desc";
 		HostVO vo = null;
 		
 		try {

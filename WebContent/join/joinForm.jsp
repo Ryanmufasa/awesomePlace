@@ -1,11 +1,13 @@
 <%-- https://github.com/Ryanmufasa/awesomePlace/issues/7 -- 작성자 정다영 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/layout/header.jsp" %> 
-<script src="${pageContext.request.contextPath }/resources/js/joinForm.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ include file="/layout/Header.jsp" %> 
+<%-- <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/tag.css">  --%>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/joinForm.js?v=<%=System.currentTimeMillis()%>"></script>
 
-<div align="center">
-<form action="${pageContext.request.contextPath }/join/join.do" method="post" >
+<div id="loginForm" class="mainDiv" align="center">
+<form action="${pageContext.request.contextPath }/join/join.do" method="post" name="loginForm">
 	<table border="1">
 		<tr>
 			<td>이름</td>
@@ -13,16 +15,17 @@
 		</tr>
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" name="id" required></td>
-			<td><button id="idCheck">중복확인</button></td>
+			<td><input type="text" name="id" id="id" required></td>
+			<td><span id="result"><input type="button" value="중복확인" id="idCheck"></span>
+			</td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td colspan="2"><input type="password" name="pw" id="pw1" required></td>
+			<td colspan="2"><input type="password" name="pw" id="pw1" class="pw" required></td>
 		</tr>
 		<tr>
 			<td>비밀번호 확인</td>
-			<td colspan="2"><input type="password" id="pw2" required>
+			<td colspan="2"><input type="password" id="pw2" class="pw" required>
 				<span id="pwCheck"></span>
 			</td>
 		</tr>
@@ -49,11 +52,12 @@
 	</table>
 	<table>
 		<tr>
-			<td><input type="submit" value="회원가입하기"></td>
+			<td><input type="submit" value="회원가입하기" id="submit"></td>
 			<td><input type="reset" value="취소"></td>
 		</tr>
 		</table>
 </form>
 </div>
 
-<%@ include file="/layout/footer.jsp" %> 
+<%-- <jsp:include page="/layout/footer.jsp"/> --%>
+<%@ include file="/layout/Footer.jsp" %> 
