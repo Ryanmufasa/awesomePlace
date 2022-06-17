@@ -1,6 +1,6 @@
 /*  https://github.com/Ryanmufasa/awesomePlace/issues/9 | 작성자 이명진 */
 @charset "UTF-8";
-	.header{
+	header{
 		position:relative;
 		height:140px;
 		max-width:1280px;
@@ -9,11 +9,11 @@
 		margin:auto;
 		display:block;
 	}
-	#btns{
+	.btns{
 		position:absolute;
 		top:5px; right:1%;
 	}
-	#managerBtn{
+	.adBtns{
 		position:absolute;
 		top:40px; right:1%;
 	}
@@ -30,9 +30,13 @@
 	}
 	#searchBar{
 		position:absolute;
+		height:30px;
 		bottom:1%;
 		left:50%;
 		margin-left:-220px;
+	}
+	#optionInput{
+		ime-mode:disabled; /* 해당 입력란에 한글 입력 불가하게하는 코드 (크롬에선 작동하지않음) */
 	}
 	#hr1{
 		position:relative;
@@ -49,7 +53,7 @@
 		margin:auto;
 		overflow:hidden;
 	}
-	.mainDiv-child{
+	.mainDiv-image{
 		text-align:center;
 		position:absolute;
 		top: 0;
@@ -57,12 +61,18 @@
 		bottom: 0;
 		left: -200%;
 	}
+	.mainDiv-child{
+		text-align:center;
+		position:relative;
+		top: 0;
+		bottom:0;
+	}
 	#imgIdx{
 		display:block;
 		margin: 0 auto;
 		max-width:1280px;;
 	}
-	.footer{
+	footer{
 		position:relative;
 		max-width:1280px;
 		min-width:640px;
