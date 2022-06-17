@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import hostService.SearchService;
+import memberService.EmailCheckService;
 import memberService.IdCheckService;
 import memberService.JoinService;
 import memberService.LoginService;
@@ -55,16 +56,21 @@ public class APController extends HttpServlet {
 			page = new NextPage("/join/result.jsp", false);
 			break;
 			
-		case "/idcheck.do" :
+		case "/idCheck.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
 			 serv = new IdCheckService();
-			 page = new NextPage("/join/joinForm.jsp",false);
+			 page = new NextPage("/join/idCheck.jsp",false);
 			 break;
 		
-		case "/login.do" :
+		case "/emailCheck.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
+			serv = new EmailCheckService();
+			page = new NextPage("/join/emailCheck.jsp", false);
+			break;
+		
+		case "/login.do" : // 테스트를 위한 임시 작성 
 			 page = new NextPage("/awesomePlace/login/login.jsp", true);
 			 break;
 		
-		case "/loginck.do" :
+		case "/loginck.do" :  // 테스트를 위한 임시 작성 
 			 serv = new LoginService();
 			 page = new NextPage("/login/result.jsp", false);
 			 break;

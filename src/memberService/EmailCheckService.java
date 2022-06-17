@@ -9,25 +9,24 @@ import javax.servlet.http.HttpServletResponse;
 import member.MemberDAO;
 import service.ServiceInterface;
 
-public class IdCheckService implements ServiceInterface {
+public class EmailCheckService implements ServiceInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
-		String id = request.getParameter("id");
-		System.out.println("id : " + id);
-		
-		int id1 = MemberDAO.getInstance().searchId(id);
-		
-		if(id1 == 0) {
-			System.out.println("아이디 사용 가능");
 
-		}else {
-			System.out.println("아이디 중복 ");
+		String email = request.getParameter("email");
+		System.out.println("email : " + email);
+		
+		int email1 = MemberDAO.getInstance().searchEmail(email);
+		
+		if (email1 == 0 ){
+			System.out.println("이메일 사용 가능 ");
+		} else {
+			System.out.println("이메일 중복");
 		}
-		request.setAttribute("id1", id1); // 0 또는 1 
-
-
+		
+		request.setAttribute("email1", email1);
+		
 	}
 
 }

@@ -26,10 +26,10 @@ public class JoinService implements ServiceInterface {
 		System.out.println(email);
 		
 		MemberVO vo = new MemberVO(name, id, pw, tel, email);
-		
-		MemberDAO dao = MemberDAO.getInstance();
 				
-		boolean check = dao.join(vo);
+		boolean check = MemberDAO.getInstance().join(vo);
+		
+		
 		String msg = null;
 		
 		if(check) {
