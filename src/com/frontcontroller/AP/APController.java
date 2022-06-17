@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import memberService.AdminOutService;
+import memberService.AdminService;
+import memberService.LogoutService;
 import service.NextPage;
 import service.ServiceInterface;
 
@@ -42,13 +45,21 @@ public class APController extends HttpServlet {
     	//System.out.println("path2 : " + path2);
     	    	
     	switch(path) {
-    	case "/joinForm.do":
-    		page = new NextPage("/awesomePlace/join/joinForm.jsp", true);
-    		break;
-	 case "/join.do" : 
-		serv = new JoinService(); 
-		page = new NextPage("/join/result.jsp", false);
-		break;
+	    	case "/joinForm.do":
+	    		page = new NextPage("/awesomePlace/join/joinForm.jsp", true);
+	    		break;
+			case "/logout.do" :
+				serv = new LogoutService();
+				page = new NextPage("/Index.jsp", false);
+				break;
+			case "/admin.do" :
+				serv = new AdminService();
+				page = new NextPage("/Index.jsp", false);
+				break;
+			case "/adminOut.do" :
+				serv = new AdminOutService();
+				page = new NextPage("/Index.jsp", false);
+				break;
     	}
     	
     	if(serv != null) {
