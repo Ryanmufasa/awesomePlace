@@ -12,13 +12,33 @@
 
 	<table border="1">
 		<tr>
-			<th>호스트명</th>
+			<th>번호</th> <!-- DB PK 아님 출력 인덱스 번호 -->
+			<th>호스트 명</th>
+			<th>우편번호</th>
+			<th>주소</th>
+			<th>연락처</th>
+			<th>방 종류</th>
+			<th>방 이름</th>
+			<th>방 개수</th>
+			<th>숙박 가능 인원 </th>
+			<th>평일 숙박 가격</th>
+			<th>공휴일 숙박 가격</th>
 		</tr>
-	<c:forEach var="host" items="${hostli }">
+		<c:forEach var="host" items="${hostli }" varStatus="status">
 		<tr>
+			<td><c:out value="${status.count }"/></td>
 			<td><a href="moreinfo.do=?name=${host.host_name }">${host.host_name }</a></td>
+			<td>${host.host_post_num }</td> 
+			<td>${host.host_addr }</td>
+			<td>${host.host_tel }</td>
+			<td>${host.room_type }</td>
+			<td>${host.room_name }</td>
+			<td>${host.room_cnt }</td>
+			<td>${host.guest_cnt }</td>
+			<td>${host.weekday_amt }</td>
+			<td>${host.weekend_amt }</td>
 		</tr>
-	</c:forEach>
+		</c:forEach>
 	</table>
 </div>
 
