@@ -14,7 +14,7 @@
 <!-- UI 임시 디자인 -->
 <div class="mainDiv" align="center">
 <fieldset>
-<form action="${contextPath }/myhosting/addNewCheck.do" method="post" name="addHostForm" enctype="multipart/form-data">
+<form action="${contextPath }/myhosting/addNewCheck.do" method="post" name="addHostForm">
 	<table class="addHostForm">
 		<tr>
 			<td>호스트 이름</td>
@@ -41,9 +41,9 @@
 		<tr>
 			<td>방 종류</td>
 			<td><div class="btns">
-					<input type="radio" name="room_type" value="all"/>집 전체
-					<input type="radio" name="room_type" value="private"/>개인실
-					<input type="radio" name="room_type" value="share"/>다인실
+					<input type="radio" name="room_type" value="A"/>집 전체(All)
+					<input type="radio" name="room_type" value="P"/>개인실(Private)
+					<input type="radio" name="room_type" value="S"/>다인실(Share)
 				</div>
 			</td>
 		</tr>
@@ -93,10 +93,10 @@
 				<p><textarea name="host_content" cols="50" rows="10" required placeholder="호스트에 대한 설명을 입력해주세요"></textarea></p>
 			</td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td>사진 첨부</td>
 			<td><input type="file" name="file[]" multiple></td>
-		</tr>
+		</tr> -->
 	</table>
 	<br>
 	<button type="button" onclick="check(addHostForm)">등록신청</button>

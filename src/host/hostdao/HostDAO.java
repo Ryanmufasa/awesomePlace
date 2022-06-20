@@ -17,6 +17,8 @@ public class HostDAO {
 	
 	private static HostDAO instance;
 	
+	public HostDAO() {}
+	
 	public static HostDAO getInstance() {
 		if(instance == null) {
 			instance = new HostDAO();
@@ -42,7 +44,7 @@ public class HostDAO {
 				vo.setMem_num(rs.getInt("mem_num"));
 				vo.setHost_name(rs.getString("host_name"));
 				vo.setHost_addr(rs.getString("host_addr"));
-				vo.setHost_post_num(rs.getInt("host_post_num"));
+				vo.setHost_post_num(rs.getString("host_post_num"));
 				vo.setHost_tel(rs.getString("host_tel"));
 				vo.setRoom_type(rs.getString("room_type"));
 				vo.setRoom_name(rs.getString("room_name"));
@@ -51,7 +53,6 @@ public class HostDAO {
 				vo.setWeekday_amt(rs.getInt("weekday_amt"));
 				vo.setWeekend_amt(rs.getInt("weekend_amt"));
 				vo.setHost_content(rs.getString("host_content"));
-				vo.setHost_file(rs.getString("host_file"));
 				vo.setHost_date(rs.getDate("host_date"));
 				
 				hostli.add(vo);
@@ -86,7 +87,7 @@ public class HostDAO {
 				vo.setMem_num(rs.getInt("mem_num"));
 				vo.setHost_name(rs.getString("host_name"));
 				vo.setHost_addr(rs.getString("host_addr"));
-				vo.setHost_post_num(rs.getInt("host_post_num"));
+				vo.setHost_post_num(rs.getString("host_post_num"));
 				vo.setHost_tel(rs.getString("host_tel"));
 				vo.setRoom_type(rs.getString("room_type"));
 				vo.setRoom_name(rs.getString("room_name"));
@@ -95,7 +96,6 @@ public class HostDAO {
 				vo.setWeekday_amt(rs.getInt("weekday_amt"));
 				vo.setWeekend_amt(rs.getInt("weekend_amt"));
 				vo.setHost_content(rs.getString("host_content"));
-				vo.setHost_file(rs.getString("host_file"));
 				vo.setHost_date(rs.getDate("host_date"));
 			}
 				
@@ -115,14 +115,14 @@ public class HostDAO {
 		String sql = "insert into host values("
 				+ "host_seq.nextval, "
 				+ "?,?,?,?,?,?,?, "
-				+ "?,?,?,?,?,?,sysdate)";
+				+ "?,?,?,?,?,sysdate)";
 		
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, vo.getMem_num());
 			ps.setString(2, vo.getHost_name());
 			ps.setString(3, vo.getHost_addr());
-			ps.setInt(4, vo.getHost_post_num());
+			ps.setString(4, vo.getHost_post_num());
 			ps.setString(5, vo.getHost_tel());
 			ps.setString(6, vo.getRoom_type());
 			ps.setString(7, vo.getRoom_name());
@@ -132,7 +132,6 @@ public class HostDAO {
 			ps.setInt(10, vo.getWeekday_amt());
 			ps.setInt(11, vo.getWeekend_amt());
 			ps.setString(12, vo.getHost_content());
-			ps.setString(13, vo.getHost_file());
 			
 			if(ps.executeUpdate() != 0) {
 				check = true;
@@ -153,7 +152,7 @@ public class HostDAO {
 				+ "host_name=?, host_addr=?, host_post_num=?, "
 				+ "host_tel=?, room_type=?, room_name=?, room_cnt=? "
 				+ "guest_cnt=?, weekday_amt=?, weekend_amt=?, "
-				+ "host_content=?, host_file=? where host_num=?";
+				+ "host_content=? where host_num=?";
 		
 		try {
 			
@@ -161,7 +160,7 @@ public class HostDAO {
 			
 			ps.setString(1, vo.getHost_name());
 			ps.setString(2, vo.getHost_addr());
-			ps.setInt(3, vo.getHost_post_num());
+			ps.setString(3, vo.getHost_post_num());
 			
 			ps.setString(4, vo.getHost_tel());
 			ps.setString(5, vo.getRoom_type());
@@ -173,8 +172,7 @@ public class HostDAO {
 			ps.setInt(10, vo.getWeekend_amt());
 			
 			ps.setString(11, vo.getHost_content());
-			ps.setString(12, vo.getHost_file());
-			ps.setInt(13, vo.getHost_num());	
+			ps.setInt(12, vo.getHost_num());	
 			if(ps.executeUpdate() != 0) {
 				check = true;
 			}

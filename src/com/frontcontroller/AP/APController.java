@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import hostService.AddNewHostService;
 import hostService.SearchService;
 import memberService.EmailCheckService;
 import memberService.IdCheckService;
@@ -77,7 +78,20 @@ public class APController extends HttpServlet {
 		
 		case "/search.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/25 -- 작성자 정다영
 			serv = new SearchService();
-			page = new NextPage("/search/search.jsp", false);
+			page =new NextPage("/search/search.jsp", false);
+			break;
+			
+		case "/myhosting.do" : // 테스트를 위한 임시 작성 
+			page = new NextPage("/awesomePlace/myhosting/myboard.jsp", true);
+			break;
+			
+		case "/addNewHostForm.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/36 -- 작성자 정다영
+			page = new NextPage("/awesomePlace/myhosting/addNewHostForm.jsp", true);
+			break;
+			
+		case "/addNewCheck.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/36 -- 작성자 정다영
+			serv = new AddNewHostService();
+			page = new NextPage("/myhosting/result.jsp", false);
 			break;
     	}
     	

@@ -24,7 +24,7 @@ $(function(){
 	
 });
 
-// 우편번호 검색시
+// 우편번호 검색시 // 다음 우편번호 서비스 api 
 function sample6_execDaumPostcode(){
 	new daum.Postcode({
 		oncomplete : function(data){
@@ -86,9 +86,10 @@ function changeRoomCnt(){
 	
 	var selVal = $('#room_cnt_1').val();
 	
-	if(selVal == 0 ){
-		//alert(selVal);
+	if(selVal == 0 ){ // 직접입력 선택시 
 		document.getElementById('room_cnt_2').style.visibility='visible';
+	}else{
+		document.getElementById('room_cnt_2').style.visibility='hidden';
 	}
 	
 }
