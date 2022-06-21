@@ -10,29 +10,33 @@ import javax.servlet.http.HttpSession;
 import member.memberDAO;
 import service.ServiceInterface;
 
-public class LoginService implements ServiceInterface{
+public class PWfoundService implements ServiceInterface{
 	
 	@Override
 	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		String mem_id = request.getParameter("mem_id");
-		String mem_pw = request.getParameter("mem_pw");
 		HttpSession session = request.getSession();
+		
+		String mem_name = request.getParameter("mem_name");
+		String mem_id = request.getParameter("mem_id");
+		String mem_tel = request.getParameter("mem_tel1")+"-"+request.getParameter("mem_tel2")+"-"+request.getParameter("mem_tel3");
+		String mem_email = request.getParameter("mem_email1")+"@"+request.getParameter("mem_email2");
 		
 		memberDAO dao = memberDAO.getInstance();
 		
-		int selectResult = dao.selectID(mem_id, mem_pw);
+		int selectResult = dao.PWfound(mem_name, mem_id, mem_tel, mem_email);
 		
 		if(selectResult == 1) {
+			session.setAttribute("mem_name", mem_name);
 			session.setAttribute("mem_id", mem_id);
-			session.setAttribute("mem_pw", mem_pw);
 			
 		} 
 		
 		request.setAttribute("selectResult", selectResult);
 		
 	}
+		
 
 }

@@ -27,7 +27,7 @@ public class MyPagePWService implements ServiceInterface{
 		int selectResult = dao.MyPagePWck(mem_pw, mem_id);
 		
 		if(selectResult == 1) {
-			session.setAttribute("mem_pw", mem_pw);
+			session.setAttribute("mem_id", mem_id);
 			
 		} 
 		

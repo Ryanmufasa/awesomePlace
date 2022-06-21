@@ -3,10 +3,8 @@ package member;
 import java.sql.*;
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
-
-import member.memberDBConn;
-import service.ServiceInterface;
 
 
 public class memberDAO{
@@ -78,18 +76,16 @@ public class memberDAO{
 		
 		try {
 			con = new memberDBConn().getConnection();
-			pstmt = con.prepareStatement("SELECT mem_id, mem_pw FROM member WHERE mem_id = ?");
+			pstmt = con.prepareStatement("SELECT mem_id, mem_pw FROM member WHERE mem_id = ? AND mem_pw = ?");
 			pstmt.setString(1, mem_id);
+			pstmt.setString(2, mem_pw);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-			 	
-			    if (mem_pw.equals(rs.getString("mem_pw"))) {
-					result = 1; 	
+					result = 1; 
+					return result;
 					 
-				} else
-					result = -1;
-			}
+				} 
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -97,32 +93,69 @@ public class memberDAO{
 	}
 	
 	
-	//아이디 찾기 회원정보 일치 여부 (수정중)
-	public int IDfound(String mem_name, String mem_tel, String mem_email) throws ClassNotFoundException{
+	//아이디 찾기 (회원정보 일치 여부)
+	public int IDfound(String mem_name, String mem_id, String mem_tel, String mem_email) throws ClassNotFoundException {
 		
 		int result = 0 ;
 		
 		try {
 			con = new memberDBConn().getConnection();
-			pstmt = con.prepareStatement("SELECT * FROM member WHERE mem_name = ? AND mem_tel = ? AND mem_email = ?");
+			pstmt = con.prepareStatement("SELECT mem_name, mem_id, mem_tel, mem_email FROM member "
+					+ "WHERE mem_name = ?  AND mem_tel = ? AND mem_email = ?");
 			pstmt.setString(1, mem_name);
 			pstmt.setString(2, mem_tel);
 			pstmt.setString(3, mem_email);
 			rs = pstmt.executeQuery();
 			
-			if (rs.next()) {
-				
-				if (mem_email.equals(rs.getString("mem_email"))) {
+			if (rs.next()) {				
 					result = 1;
-					
-				} else
-					result = -1;
+					return result;
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
+	
+	
+	//비밀번호 찾기 (회원정보 일치 여부) 
+	public int PWfound(String mem_name, String mem_id, String mem_tel, String mem_email) throws ClassNotFoundException {
+	
+		int result = 0 ;
+		
+		try {
+			con = new memberDBConn().getConnection();
+			pstmt = con.prepareStatement("SELECT mem_name, mem_id, mem_tel, mem_email FROM member "
+					+ "WHERE mem_name = ? AND mem_id = ? AND mem_tel = ? AND mem_email = ?");
+			pstmt.setString(1, mem_name);
+			pstmt.setString(2, mem_id);
+			pstmt.setString(3, mem_tel);
+			pstmt.setString(4, mem_email);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {				
+					result = 1;
+					return result;
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	//비밀번호 찾기 (비밀번호 수정)
+	 public boolean PWupdate(String mem_id, String mem_pw) throws SQLException {
+		 
+		 	String sql = "update member set mem_pw = ? where mem_id = ?";
+		 
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mem_pw);
+			pstmt.setString(2, mem_id);
+			pstmt.executeUpdate();		 
+			
+			return true;
+
+	 }      
 	
 	
 	//마이페이지 접속시 비밀번호 재확인 

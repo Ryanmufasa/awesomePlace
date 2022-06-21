@@ -39,3 +39,9 @@ WebContent/index.jsp
 WebContent/META-INF/context.xml
 WebContent/index.jsp
 WebContent/META-INF/context.xml
+.classpath
+src/util/Mail.java
+src/memberService/EmailService.java
+WebContent/emailconfig/emailform.jsp
+WebContent/emailconfig/result.jsp
+WebContent/WEB-INF/web.xml
