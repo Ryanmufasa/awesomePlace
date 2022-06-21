@@ -37,11 +37,13 @@
 				}
 			}));
 			$("#btnMyHosting").on("click",(function(){
-				if(ssDoubleCheck){
+				if(ssId != nul && ssDoubleCheck){
 					location.assign('myHosting.do');
 					sessionStorage.setItem("ssHostingPage", true);
-				}else{
+				}else if(ssId != null){
 					location.assign('doubleCheck.do');
+				}else{
+					location.assign('loginForm.do');
 				}
 			}));
 			$("#btnMyPage").on("click",(function(){
@@ -69,45 +71,55 @@
 				}
 			}));
 			
-			if(!ssAdminPage && !ssMyPage && !ssHostingPage){ // 내비게이션 노출여부 결정
-				$("#adminNav").hide();
-				$("#adminNav").hide();
-			}else if(ssAdminPage){
-				$("#adminNav").hide();
-			}else if(ssMyPage){
-				$("#adminNav").hide();
-			}else if(ssHostingPage){
-				$("#adminNav").hide();
-			}
+			$("#toTop").on("click",(function(){
+				$(window).scrollTop(0);
+			}));
 			
 			if(ssId != null && ssId == "admin"){ //버튼 노출여부 결정
-				$("#btnLogin").hide();
-				$("#btnJoin").hide();
-				$("#btnMyPage").hide();
-				$("#btnMyHosting").hide();
-				$("#btnLogout").show();
-				$("#btnAdminIn").show();
+				$("#btnLogin").attr("hidden", true);
+				$("#btnJoin").attr("hidden", true);
+				$("#btnMyPage").attr("hidden", true);
+				$("#btnMyHosting").attr("hidden", true);
+				$("#btnLogout").attr("hidden", false);
+				$("#btnAdminIn").attr("hidden", false);
 				if(!ssAdminPage){
 					$("#btnAdmin").text("관리자페이지");
-					$("#searchBar").show();
+					$("#searchBar").attr("hidden", false);
 				}else{
 					$("#btnAdmin").text("사용자페이지");
-					$("#searchBar").hide();
+					$("#searchBar").attr("hidden", true);
 				}
 			}else if(ssId != null){
-				$("#btnAdmin").hide();
-				$("#btnLogin").hide();
-				$("#btnJoin").hide();
-				$("#btnMyHosting").show();
-				$("#btnMyPage").show();
-				$("#btnLogout").show();
+				$("#btnAdmin").attr("hidden", true);
+				$("#btnLogin").attr("hidden", true);
+				$("#btnJoin").attr("hidden", true);
+				$("#btnMyHosting").attr("hidden", false);
+				$("#btnMyPage").attr("hidden", false);
+				$("#btnLogout").attr("hidden", false);
 			}else if(ssId == null){
-				$("#btnAdmin").hide();
-				$("#btnLogin").show();
-				$("#btnJoin").show();
-				$("#btnMyHosting").show();
-				$("#btnMyPage").hide();
-				$("#btnLogout").hide();
+				$("#btnAdmin").attr("hidden", true);
+				$("#btnLogin").attr("hidden", false);
+				$("#btnJoin").attr("hidden", false);
+				$("#btnMyHosting").attr("hidden", false);
+				$("#btnMyPage").attr("hidden", true);
+				$("#btnLogout").attr("hidden", true);
+			}
+			
+			var mainBottom = $("#counter").offset().top; //메인 div 높이 반응형설정
+			$(".mainDiv, .mainDiv-image, .nav").css("height",mainBottom-140);
+			$(".navLine").css("height",mainBottom-140);
+			
+			
+			
+		});
+		$(window).on("scroll", function (){ //네비게이션바가 스크롤을 따라다니도록 설정
+			var ySC = $(window).scrollTop();
+			console.log(ySC);
+			var mainDivTop = $(".mainDiv").offset().top;
+			if(mainDivTop<=ySC){
+				$(".upperNav").css("position", "fixed");
+			}else{
+				$(".upperNav").css("position", "absolute");
 			}
 		});
 

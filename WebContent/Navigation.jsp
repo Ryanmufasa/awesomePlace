@@ -1,38 +1,50 @@
+<!-- https://github.com/Ryanmufasa/awesomePlace/issues/27 작성자: 이명진 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	<style>
-    	.nav{
-			position:relative;
-			width:100px;
-			height:100%;
-			background-color:gray;
-		}
-		a {
-			left:50%;
-			top:50%;
-			margin:0;
-		}
-    	#adminNav{
-    		position:fixed;
-    	}
-   	#adminNav>div{
-			position:relative;
-			text-align:center;
-			height:80px;
-			width:100px;
-		}
-	</style>
-<nav>
-	<div id="adminNav">
-		<div style="background-color:red;">
+    <script src="${contextPath }/resources/js/Nav.js?v=<%=System.currentTimeMillis() %>"></script>
+<div class="nav">	<div class="navLine"></div>
+
+	<div id="adminNav" hidden="true">
+		<div id="navCap">
 			<a href="*">문의목록</a>
 		</div>
-		<div style="background-color:orange;">
+		<div id="navCap">
 			<a href="*">회원목록</a>
 		</div>
-		<div style="background-color:yellow;">
+		<div id="navCap">
 			<a href="*">호스팅목록</a>
 		</div>
 	</div>
-</nav>
+	
+	<div id="myPageNav" hidden="true">
+		<div id="navCap">
+			<a href="*">정보수정</a>
+		</div>
+		<div id="navCap">
+			<a href="*">찜 목록</a>
+		</div>
+		<div id="navCap">
+			<a href="*">예약 내역</a>
+		</div>
+		<div id="navCap">
+			<a href="*">마이호스팅</a>
+		</div>
+		<div id="navCap">
+			<a href="*">내 문의 확인</a>
+		</div>
+	</div>
+	
+	<div id="hostingPageNav" hidden="true">
+		<div id="navCap">
+			<a href="*">호스트 목록</a>
+		</div>
+		<div id="navCap">
+			<a href="*">호스트 관리</a>
+		</div>
+		<div id="navCap">
+			<a href="*">호스트 등록</a>
+		</div>
+	</div>
+	
+</div>
 
