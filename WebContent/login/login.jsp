@@ -28,9 +28,12 @@
 <script>
 
 	function gologinck(){
-		location.href="loginck.jsp"
+		location.href="loginck.do"
 	}
 	
+	function goJoinForm(){
+		location.href="/awesomePlace/join/joinForm.do"
+	}
 </script>
 
 </head>
@@ -38,7 +41,7 @@
 
 <div id="login1">
 
-<form action="loginck.jsp" method="post">
+<form action="loginck.do" method="post">
 
 <table>
 
@@ -63,12 +66,12 @@
 		<button class="submit" onclick="gologinck()" style="width:130px;height:40px;background-color:#5e5e5e;color:white;">로그인</button>
 		<!-- <input type="submit" value="로그인" onclick="gologinck()" style="width:130px;height:40px;background-color:#5e5e5e;color:white;"> --> 
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="button" value="회원가입" onclick="location.href='joinform.jsp'" style="width:130px;height:40px;background-color:#5e5e5e;color:white;"> <br><br>	 
+		<input type="button" value="회원가입" onclick="goJoinForm()" style="width:130px;height:40px;background-color:#5e5e5e;color:white;"> <br><br>	 
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	
-		<a href="IDfound.jsp" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;">아이디 찾기</a>
+		<a href="IDfound.do" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;">아이디 찾기</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="PWfound.jsp" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;">비밀번호 찾기</a>
+		<a href="PWfound.do" onclick="window.open(this.href, '_blank', 'width=800, height=600'); return false;">비밀번호 찾기</a>
 	
 </form>
 

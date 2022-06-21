@@ -1,10 +1,11 @@
+//https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영
 package memberService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.memberDAO;
-import member.memberVO;
+import member.MemberDAO;
+import member.MemberVO;
 import service.ServiceInterface;
 
 public class JoinService implements ServiceInterface {
@@ -24,11 +25,11 @@ public class JoinService implements ServiceInterface {
 		System.out.println(tel);
 		System.out.println(email);
 		
-		memberVO vo = new memberVO(name, id, pw, tel, email);
-		
-		memberDAO dao = memberDAO.getInstance();
+		MemberVO vo = new MemberVO(name, id, pw, tel, email);
 				
-		boolean check = dao.join(vo);
+		boolean check = MemberDAO.getInstance().join(vo);
+		
+		
 		String msg = null;
 		
 		if(check) {

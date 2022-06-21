@@ -21,12 +21,19 @@ host_date	date	not null
 
 create sequence host_seq nocache;
 
-alter table host rename column weekdend_amt to weekend_amt;
-alter table host modify host_post_num varchar2(10);
-
 insert into host values(host_seq.nextval, 1, 'cozy house', '서울 동작구 장승배기로 171', '06928', '02-866-9357', 'R', '201호',
 1, 10, 100000, 200000, '테스트','none' ,sysdate);
 
-commit;
+delete from host;
 
+alter table host drop column host_file;
+
+alter table host add sign varchar2(10) default 'false' not null;
+
+alter table host add constraint host_check check (sign in('false', 'true'));
+
+alter table host add constraint room_check check (room_type in('A','P','S'));
+
+
+commit;
 
