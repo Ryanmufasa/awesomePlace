@@ -60,14 +60,8 @@
 			$("#btnAdminIn").on("click",(function(){
 				if(!ssAdminPage){
 					location.assign("Admin.do");
-					sessionStorage.setItem("ssAdminPage", true);
-					sessionStorage.removeItem("ssMyPage");
-					sessionStorage.removeItem("ssHostingPage");
 				}else{
 					location.assign("Main.do");
-					sessionStorage.removeItem("ssAdminPage");
-					sessionStorage.removeItem("ssMyPage");
-					sessionStorage.removeItem("ssHostingPage");
 				}
 			}));
 			$("#btnMyHosting").on("click",(function(){

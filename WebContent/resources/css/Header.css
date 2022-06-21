@@ -127,7 +127,7 @@
    		min-width:96px;
    		max-width:192px;
    		    	}
-  	#navCap{
+  	#adminNav>div,#myPageNav>div,#hostingPageNav>div{
 		position:relative;
 		text-align:center;
 		height:80px;
@@ -135,7 +135,7 @@
 		margin-left:0px;
 		margin-top:0px;
 	}
-	#navCap>a {
+	.nav>div>div>a {
 		text-align:center;
 		line-height:80px;
 		margin:auto;

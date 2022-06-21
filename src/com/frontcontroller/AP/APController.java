@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import memberService.AdminOutService;
+import memberService.AdminQnAListService;
 import memberService.AdminService;
 import memberService.LogoutService;
 import service.NextPage;
@@ -54,11 +55,15 @@ public class APController extends HttpServlet {
 				break;
 			case "/admin.do" :
 				serv = new AdminService();
-				page = new NextPage("/Index.jsp", false);
+				page = new NextPage("/QnAList.jsp", false);
 				break;
 			case "/adminOut.do" :
 				serv = new AdminOutService();
 				page = new NextPage("/Index.jsp", false);
+				break;
+			case "/QnAList.do" :
+				serv = new AdminQnAListService();
+				page = new NextPage("/admin/QnAList.jsp", false); 
 				break;
     	}
     	

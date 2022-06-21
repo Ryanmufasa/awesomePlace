@@ -1,7 +1,7 @@
 <!-- https://github.com/Ryanmufasa/awesomePlace/issues/9 | 작성자 이명진 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	<span id="counter" ></span>
+	</div>
 	<hr>
  	<footer>
  		<div><button id=toTop>맨 위로</button>

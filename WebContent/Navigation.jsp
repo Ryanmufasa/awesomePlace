@@ -5,44 +5,44 @@
 <div class="nav">	<div class="navLine"></div>
 
 	<div id="adminNav" hidden="true">
-		<div id="navCap">
-			<a href="*">문의목록</a>
+		<div>
+			<a href="QnAList.do">문의목록</a>
 		</div>
-		<div id="navCap">
-			<a href="*">회원목록</a>
+		<div>
+			<a href="memberList.do">회원목록</a>
 		</div>
-		<div id="navCap">
-			<a href="*">호스팅목록</a>
+		<div>
+			<a href="hostingList.do">호스팅목록</a>
 		</div>
 	</div>
 	
 	<div id="myPageNav" hidden="true">
-		<div id="navCap">
-			<a href="*">정보수정</a>
+		<div>
+			<a href="memberUpdate.do">정보수정</a>
 		</div>
-		<div id="navCap">
-			<a href="*">찜 목록</a>
+		<div>
+			<a href="memberLikeList.do">찜 목록</a>
 		</div>
-		<div id="navCap">
-			<a href="*">예약 내역</a>
+		<div>
+			<a href="memberResList.do">예약 내역</a>
 		</div>
-		<div id="navCap">
-			<a href="*">마이호스팅</a>
+		<div>
+			<a href="memberMyHosting.do">마이호스팅</a>
 		</div>
-		<div id="navCap">
-			<a href="*">내 문의 확인</a>
+		<div>
+			<a href="memberQnAList.do">내 문의 확인</a>
 		</div>
 	</div>
 	
 	<div id="hostingPageNav" hidden="true">
-		<div id="navCap">
-			<a href="*">호스트 목록</a>
+		<div>
+			<a href="memberHostList.do">호스트 목록</a>
 		</div>
-		<div id="navCap">
-			<a href="*">호스트 관리</a>
+		<div>
+			<a href="memberHostMng.do">호스트 관리</a>
 		</div>
-		<div id="navCap">
-			<a href="*">호스트 등록</a>
+		<div>
+			<a href="memberHostUpdate.do">호스트 등록</a>
 		</div>
 	</div>
 	

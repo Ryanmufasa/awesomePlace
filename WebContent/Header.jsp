@@ -76,3 +76,5 @@
 	
 </header>
 	<hr>
+<div class="mainDiv">
+<%@include file ="Navigation.jsp" %>
