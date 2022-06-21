@@ -26,22 +26,22 @@
 			
 			 <!-- 관리자 로그인 후 버튼 -->
 			 		<!-- 로그아웃 버튼 -->
-					<button id="btnAdmin">
+					<button id="btnAdmin" hidden="true">
 						관리자 페이지</button>
 			
 				<!-- 일반사용자 로그인 후버튼 블록 -->
 					<!-- 마이호스팅 버튼 -->
-					<button id="btnMyPage">
+					<button id="btnMyPage" hidden="true">
 						마이페이지</button>
-					<button id="btnLogout">
+					<button id="btnLogout" hidden="true">
 						로그아웃</button>
 				
 			<!-- 일반사용자 로그인 전 버튼 블록 -->
-				<button id="btnMyHosting">
+				<button id="btnMyHosting" hidden="true">
 					마이호스팅</button>
-				<button id="btnLogin">
+				<button id="btnLogin" hidden="true">
 					로그인</button>
-				<button id="btnJoin">
+				<button id="btnJoin" hidden="true">
 					회원가입</button>
 			</div>
 				
@@ -75,4 +75,6 @@
 	</div>
 	
 </header>
-	<hr id="hr1">
+	<hr>
+<div class="mainDiv">
+<%@include file ="Navigation.jsp" %>
