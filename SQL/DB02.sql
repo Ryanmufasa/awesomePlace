@@ -1,4 +1,4 @@
--- host Å×ÀÌºí »ı¼º 
+-- host í…Œì´ë¸” ìƒì„± 
 
 create table host(
 host_num number not null primary key,
@@ -21,8 +21,19 @@ host_date	date	not null
 
 create sequence host_seq nocache;
 
-insert into host values(host_seq.nextval, 1, 'cozy house', '¼­¿ï µ¿ÀÛ±¸ Àå½Â¹è±â·Î 171', '06928', '02-866-9357', 'R', '201È£',
-1, 10, 100000, 200000, 'Å×½ºÆ®','none' ,sysdate);
+insert into host values(host_seq.nextval, 1, 'cozy house', 'ì„œìš¸ ë™ì‘êµ¬ ì¥ìŠ¹ë°°ê¸°ë¡œ 171', '06928', '02-866-9357', 'R', '201í˜¸',
+1, 10, 100000, 200000, 'í…ŒìŠ¤íŠ¸','none' ,sysdate);
+
+delete from host;
+
+alter table host drop column host_file;
+
+alter table host add sign varchar2(10) default 'false' not null;
+
+alter table host add constraint host_check check (sign in('false', 'true'));
+
+alter table host add constraint room_check check (room_type in('A','P','S'));
+
 
 commit;
 
