@@ -5,8 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import java.util.ArrayList;
+
 import awesomePlace.dbConn.DBConn;
+
 import host.hostvo.HostVO;
 
 public class HostDAO {
@@ -27,7 +30,7 @@ public class HostDAO {
 	}
 	
 	
-	// 전체 호스트 목록 가져오기
+	// 전체 호스트 목록 가져오기 - 관리자만
 	public ArrayList<HostVO> getAllHost(){
 		
 		ArrayList<HostVO> hostli = new ArrayList<HostVO>();
@@ -54,6 +57,7 @@ public class HostDAO {
 				vo.setWeekend_amt(rs.getInt("weekend_amt"));
 				vo.setHost_content(rs.getString("host_content"));
 				vo.setHost_date(rs.getDate("host_date"));
+				vo.setSign(rs.getString("sign"));
 				
 				hostli.add(vo);
 			}
@@ -69,6 +73,53 @@ public class HostDAO {
 		}
 		
 		return hostli;
+	}
+	
+
+	// 전체 호스트 목록 가져오기 - sign컬럼 값이 true인 데이터만 (검색 화면)
+	public ArrayList<HostVO> AllTrueHost(){
+		
+		ArrayList<HostVO> hostli = new ArrayList<HostVO>();
+		
+		String sql = "select * from host where sign='true'";
+		HostVO vo = null;
+		
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				vo = new HostVO(); 
+				vo.setHost_num(rs.getInt("host_num"));
+				vo.setMem_num(rs.getInt("mem_num"));
+				vo.setHost_name(rs.getString("host_name"));
+				vo.setHost_addr(rs.getString("host_addr"));
+				vo.setHost_post_num(rs.getString("host_post_num"));
+				vo.setHost_tel(rs.getString("host_tel"));
+				vo.setRoom_type(rs.getString("room_type"));
+				vo.setRoom_name(rs.getString("room_name"));
+				vo.setRoom_cnt(rs.getInt("room_cnt"));
+				vo.setGuest_cnt(rs.getInt("guest_cnt"));
+				vo.setWeekday_amt(rs.getInt("weekday_amt"));
+				vo.setWeekend_amt(rs.getInt("weekend_amt"));
+				vo.setHost_content(rs.getString("host_content"));
+				vo.setHost_date(rs.getDate("host_date"));
+				vo.setSign(rs.getString("sign"));
+				
+				hostli.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		if(hostli.isEmpty()) {
+			hostli = null;
+			System.out.println("불러올 True 호스트 목록 없음.");
+		}else {
+			hostli.trimToSize();
+		}
+		
+		return hostli;
+		
 	}
 	
 	// DB 에 있는 하나의 호스트 정보 가져오기 (PK)
@@ -97,6 +148,7 @@ public class HostDAO {
 				vo.setWeekend_amt(rs.getInt("weekend_amt"));
 				vo.setHost_content(rs.getString("host_content"));
 				vo.setHost_date(rs.getDate("host_date"));
+				vo.setSign(rs.getString("sign"));
 			}
 				
 		}catch(SQLException e) {
@@ -111,11 +163,13 @@ public class HostDAO {
 	public boolean insertHost(HostVO vo) {
 		
 		boolean check = false;
-		
+
 		String sql = "insert into host values("
 				+ "host_seq.nextval, "
-				+ "?,?,?,?,?,?,?, "
-				+ "?,?,?,?,?,sysdate)";
+				+ "?,?,?,?,"
+				+ "?,?,?, "
+				+ "?,?,?,?,"
+				+ "?,sysdate)";
 		
 		try {
 			ps = con.prepareStatement(sql);
@@ -123,6 +177,7 @@ public class HostDAO {
 			ps.setString(2, vo.getHost_name());
 			ps.setString(3, vo.getHost_addr());
 			ps.setString(4, vo.getHost_post_num());
+			
 			ps.setString(5, vo.getHost_tel());
 			ps.setString(6, vo.getRoom_type());
 			ps.setString(7, vo.getRoom_name());
@@ -131,6 +186,7 @@ public class HostDAO {
 			ps.setInt(9, vo.getGuest_cnt());
 			ps.setInt(10, vo.getWeekday_amt());
 			ps.setInt(11, vo.getWeekend_amt());
+			
 			ps.setString(12, vo.getHost_content());
 			
 			if(ps.executeUpdate() != 0) {
@@ -139,6 +195,12 @@ public class HostDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 			System.out.println("호스트 DB 등록 실패");
+		}finally {
+			try {
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return check; 
@@ -179,6 +241,12 @@ public class HostDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 			System.out.println("정보 수정 실패");
+		}finally {
+			try {
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return check;
@@ -203,6 +271,12 @@ public class HostDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 			System.out.println("가격 수정 실패");
+		}finally {
+			try {
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return check;
@@ -227,6 +301,12 @@ public class HostDAO {
 			e.printStackTrace();
 			System.out.println("호스트 삭제 실패");
 			System.out.println("hnh 테이블 데이터를 먼저 삭제 했는지 확인");
+		}finally {
+			try {
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return check;

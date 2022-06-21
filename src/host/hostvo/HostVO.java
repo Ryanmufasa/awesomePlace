@@ -18,8 +18,8 @@ public class HostVO {
 	private int weekday_amt;	// 평일 가격
 	private int weekend_amt;	// 주말, 공휴일 가격
 	private String host_content;
-	//private String host_file;	// 홍보 용 사진  -> 삭제
 	private Date host_date;		// 호스트 등록 일자 
+	private String sign; // 호스트 승인 여부 ( default 값 false ) 
 	
 	// 디폴트 생성자
 	public HostVO() {}
@@ -46,7 +46,7 @@ public class HostVO {
 	// DB에 있는 호스트 정보를 가져올때 생성자 
 	public HostVO(int host_num, int mem_num, String host_name, String host_addr, String host_post_num, String host_tel,
 			String room_type, String room_name, int room_cnt, int guest_cnt, int weekday_amt, int weekend_amt,
-			String host_content, Date host_date) {
+			String host_content, Date host_date, String sign) {
 		super();
 		this.host_num = host_num;
 		this.mem_num = mem_num;
@@ -61,8 +61,8 @@ public class HostVO {
 		this.weekday_amt = weekday_amt;
 		this.weekend_amt = weekend_amt;
 		this.host_content = host_content;
-		
 		this.host_date = host_date;
+		this.sign = sign;
 	}
 	
 	public int getHost_num() {
@@ -152,5 +152,12 @@ public class HostVO {
 		this.host_date = host_date;
 	}
 	
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
 
 }
