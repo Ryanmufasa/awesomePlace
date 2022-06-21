@@ -6,6 +6,7 @@
 <script type="text/javascript" src="${contextPath }/resources/js/joinForm.js?v=<%=System.currentTimeMillis()%>"></script>
 
 <div id="loginForm" class="mainDiv-child" align="center">
+<div align="center">
 <form action="${contextPath }/join/join.do" method="post" name="loginForm">
 	<table border="1">
 		<tr>
@@ -65,6 +66,7 @@
 	<br><br>
 	<span id="msg"></span>
 </form>
+</div>
 </div>
 
 <%-- <jsp:include page="/layout/footer.jsp"/> --%>

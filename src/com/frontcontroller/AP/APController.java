@@ -81,8 +81,8 @@ public class APController extends HttpServlet {
 				break;
 			
 	// 로그인  ===============================================================
-			case "/loginform.do":
-				page = new NextPage("/awesomePlace/login/loginform.jsp", true);
+			case "/loginForm.do":
+				page = new NextPage("/awesomePlace/login/loginForm.jsp", true);
 				break;
 			case "/login.do" : 
 				serv = new LoginService(); 

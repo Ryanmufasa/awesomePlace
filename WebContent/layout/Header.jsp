@@ -9,6 +9,12 @@
 	<link href="${contextPath }/resources/css/Header.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
 	<script src="${contextPath }/resources/js/jquery-3.6.0.js?v=<%=System.currentTimeMillis() %>" ></script>
 	<script src ="${contextPath }/resources/js/Header.js?v=<%=System.currentTimeMillis() %>"></script>
+	
+	<%-- 스크립트 추가 --- 작성자 정다영  --%>
+	<script src ="${contextPath }/resources/js/Search.js?v=<%=System.currentTimeMillis() %>" ></script>
+	<script src ="${contextPath }/resources/js/LoginNout.js?v=<%=System.currentTimeMillis() %>"></script>
+	<%-- --------------------------- --%>
+	
 <meta charset="UTF-8">
 <title>즐거운 한국여행 어썸플레이스입니다.</title>
 </head>
@@ -17,13 +23,13 @@
 	<img id="img1" src="${contextPath }/resources/image/temp.png" width="150" >
 	
 	<div id="title"> <!-- 타이틀 블록 -->
-	the AwesomePlace
+	<a href="/awesomePlace/">the AwesomePlace</a>
 	</div>
 	
 	<!-- 로그인 상태에 따라 헤더, 내비게이션 버튼 노출여부 결정 -->
 		
 			<div class="btns"> 
-			
+		<%--
 			 <!-- 관리자 로그인 후 버튼 -->
 			 		<!-- 로그아웃 버튼 -->
 					<button id="btnAdmin" hidden="true">
@@ -43,14 +49,40 @@
 					로그인</button>
 				<button id="btnJoin" hidden="true">
 					회원가입</button>
+					
+			 --%>	
+	<c:choose> <%-- Header.js 대신 임시처리 위해 적용....  --%>
+		<c:when test="${login != null  }">
+			<c:choose>
+				<c:when test="${admin != null }">
+					<button onclick="location.href='/awesomePlace/#/admin.do'">관리자 페이지</button> 
+					<!--  -->
+				</c:when>
+				<c:otherwise>
+					<button  onclick="location.href='/awesomePlace/myhosting/myhosting.do'">마이 호스팅</button>
+					<button  onclick="location.href='/awesomePlace/mypage/mypage.do'">마이 페이지</button>
+				</c:otherwise>
+			</c:choose>
+			<button  onclick="checkLogout();">로그아웃</button>
+		</c:when>
+		<c:otherwise>
+			<button onclick="checkLogin();">마이 호스팅</button>
+			<button  onclick="location.href='/awesomePlace/login/loginForm.do'">로그인</button> 
+			<button   onclick="location.href='/awesomePlace/join/joinForm.do'">회원가입</button>
+			<!-- <button class="btn3"><a href="/awesomePlace/join/joinForm.do">회원가입</a></button>
+			 <a href="/awesomePlace/join/joinForm.do">회원가입</a>  -->
+		</c:otherwise>
+	</c:choose>			 
+			 
+			 
 			</div>
 				
 	<div id="searchBar"> <!-- 검색창 블록 -->
 		<form action="search.do" method="post">
-			지역명<input type="search" name="search" size="6" placeholder="모든 지역" >
-			<input type="date" min="2022-06-05" name="checkIn" id="checkIn">
-			<input type="date" min="2022-06-05" name="checkOut" id="checkOut" disabled>
-				<select id="guestCnt" onchange="flip();">
+			어디를 갈까?  <input type="search" name="search" size="6" placeholder="모든 지역" >
+			체크인  <input type="date" min="2022-06-05" name="checkIn" id="checkIn">
+			체크아웃 <input type="date" min="2022-06-05" name="checkOut" id="checkOut" disabled>
+			숙박인원 선택 	<select id="guestCnt" name="guestCnt" onchange="flip();">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -77,4 +109,4 @@
 </header>
 	<hr>
 <div class="mainDiv">
-<%@include file ="Navigation.jsp" %>
+<%-- <%@include file ="Navigation.jsp" %> --%>
