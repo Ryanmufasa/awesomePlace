@@ -27,3 +27,5 @@ hs_err_pid*
 WebContent/META-INF/MANIFEST.MF
 .classpath
 .project
+.classpath
+.settings/org.eclipse.wst.common.component

@@ -32,7 +32,7 @@ tag_num number not null,
     constraint hh_tag_num_fk foreign key (tag_num) references hashtag(tag_num),
 host_num number not null,
     constraint hh_host_num_fk foreign key (host_num) references host (host_num)
-)
+);
 
 insert into hnh values(1,1);
 insert into hnh values(2,1);
