@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file ="Header.jsp" %>
+<%@include file ="/layout/Header.jsp" %>
 <script src="${contextPath }/resources/js/Main.js?v=<%=System.currentTimeMillis() %>"></script>
 
 <%	
@@ -16,33 +16,13 @@
 	}
 	%>
 	
-<%@include file ="upperNavigation.jsp" %>
+<%-- <%@include file ="/layout/upperNavigation.jsp" %> --%>
 <div class="mainDiv-child">
 	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	으아아아!!!
-<span id="counter"></span> 	<!-- 메인 컨텐츠 바닥위치값 확인용 -->
-</div>
-	<div class="mainDiv-image" hidden="true">
+
+
+
+	<div class="mainDiv-image" hidden="false">
 			<img id="imgIdx" src="${contextPath }/resources/image/main/<%=imgList[0] %>.jpg" height="800px">
 			<img id="imgIdx" src="${contextPath }/resources/image/main/<%=imgList[1] %>.jpg" height="800px">
 			<img id="imgIdx" src="${contextPath }/resources/image/main/<%=imgList[2] %>.jpg" height="800px">
@@ -56,4 +36,6 @@
 			<img id="imgIdx" src="${contextPath }/resources/image/main/<%=imgList[10] %>.jpg" height="800px">
 	</div>
 
-<%@include file ="Footer.jsp" %>
+<span id="counter"></span> 	<!-- 메인 컨텐츠 바닥위치값 확인용 -->
+</div>
+<%@include file ="/layout/Footer.jsp" %>
