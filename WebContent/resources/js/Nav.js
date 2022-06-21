@@ -9,8 +9,8 @@
 $("document").ready(function(){
 				if(!ssAdminPage && !ssMyPage && !ssHostingPage){ // 내비게이션 노출여부 결정
 				$(".navLine").attr("hidden", false);
-				$("#adminNav").attr("hidden", true);
-				$("#myPageNav").attr("hidden", false);
+				$("#adminNav").attr("hidden", false);
+				$("#myPageNav").attr("hidden", true);
 				$("#hostingPageNav").attr("hidden", true);
 			}else if(ssAdminPage){
 				$("#adminNav").attr("hidden", false);
@@ -25,6 +25,9 @@ $("document").ready(function(){
 				$("#myPageNav").attr("hidden", true);
 				$("#hostingPageNav").attr("hidden", false);
 			}
+			
+			
+			
 });
 
 $(window).on("scroll", function (){ //네비게이션바가 스크롤을 따라다니도록 설정

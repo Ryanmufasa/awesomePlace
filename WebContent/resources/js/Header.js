@@ -23,58 +23,6 @@
 			$("#checkOut").attr("disabled",false);
 		});
 			
-			// 버튼 onclick 결과 결정
-			$("#btnLogout").on("click",(function(){
-				location.assign('logout.do');
-			}));
-			$("#btnAdminIn").on("click",(function(){
-				if(!ssAdminPage){
-					location.assign('Admin.do');
-					sessionStorage.setItem("ssAdminPage", true);	
-				}else{
-					location.assign('Main.do');
-					sessionStorage.removeItem("ssAdminPage");
-				}
-			}));
-			$("#btnMyHosting").on("click",(function(){
-				if(ssId != nul && ssDoubleCheck){
-					location.assign('myHosting.do');
-					sessionStorage.setItem("ssHostingPage", true);
-				}else if(ssId != null){
-					location.assign('doubleCheck.do');
-				}else{
-					location.assign('loginForm.do');
-				}
-			}));
-			$("#btnMyPage").on("click",(function(){
-				if(ssDoubleCheck){
-					location.assign('myPage.do');
-					sessionStorage.setItem("ssMyPage", true);
-				}else{
-					location.assign('doubleCheck.do');
-				}
-			}));
-			$("#btnLogin").on("click",(function(){
-				location.assign('loginForm.do');
-			}));
-			$("#btnJoin").on("click",(function(){
-				location.assign('joinForm.do');
-			}));
-			$("#img1").on("click",(function(){
-				if(ssAdminPage){
-					location.assign('Admin.do');
-				}else{
-					location.assign('Main.do');
-					sessionStorage.removeItem("ssAdminPage");
-					sessionStorage.removeItem("ssMyPage");
-					sessionStorage.removeItem("ssHostingPage");
-				}
-			}));
-			
-			$("#toTop").on("click",(function(){
-				$(window).scrollTop(0);
-			}));
-			
 			if(ssId != null && ssId == "admin"){ //버튼 노출여부 결정
 				$("#btnLogin").attr("hidden", true);
 				$("#btnJoin").attr("hidden", true);
@@ -105,6 +53,90 @@
 				$("#btnLogout").attr("hidden", true);
 			}
 			
+			// 버튼 onclick 결과 결정
+			$("#btnLogout").on("click",(function(){
+				location.assign("logout.do");
+			}));
+			$("#btnAdminIn").on("click",(function(){
+				if(!ssAdminPage){
+					location.assign("Admin.do");
+					sessionStorage.setItem("ssAdminPage", true);
+					sessionStorage.removeItem("ssMyPage");
+					sessionStorage.removeItem("ssHostingPage");
+				}else{
+					location.assign("Main.do");
+					sessionStorage.removeItem("ssAdminPage");
+					sessionStorage.removeItem("ssMyPage");
+					sessionStorage.removeItem("ssHostingPage");
+				}
+			}));
+			$("#btnMyHosting").on("click",(function(){
+				if(ssId != null && ssDoubleCheck){
+					location.assign("myHosting.do");
+					sessionStorage.setItem("ssHostingPage", true);
+					sessionStorage.removeItem("ssAdminPage");
+					sessionStorage.removeItem("ssMyPage");
+				}else if(ssId != null){
+					location.assign("doubleCheck.do");
+				}else{
+					location.assign("loginForm.do");
+				}
+			}));
+			$("#btnMyPage").on("click",(function(){
+				if(ssDoubleCheck){
+					location.assign("myPage.do");
+					sessionStorage.setItem("ssMyPage", true);
+					sessionStorage.removeItem("ssAdminPage");
+					sessionStorage.removeItem("ssHostingPage");
+				}else{
+					location.assign("doubleCheck.do");
+				}
+			}));
+			$("#btnLogin").on("click",(function(){
+				location.assign("loginForm.do");
+			}));
+			$("#btnJoin").on("click",(function(){
+				location.assign("joinForm.do");
+			}));
+			$("#img1").on("click",(function(){
+				if(ssAdminPage){
+					location.assign("Admin.do");
+				}else{
+					location.assign("Main.do");
+					sessionStorage.removeItem("ssAdminPage");
+					sessionStorage.removeItem("ssMyPage");
+					sessionStorage.removeItem("ssHostingPage");
+				}
+			}));
+			
+			/* 아래는 footer 버튼*/
+			
+			$("#toTop").on("click",(function(){
+				$(window).scrollTop(0);
+			}));
+			
+			if(ssId != null && ssDoubleCheck){ // 조건에 따른 버튼 목적지 설정
+					$("#csCenter").attr("href", "csCenter.do");
+				}else if(ssId != null){
+					$("#csCenter").attr("href", "doubleCheck.do");
+				}else{
+					$("#csCenter").attr("href", "loginForm.do");
+				}
+			
+			$("#csCenter").on("click",(function(){
+				if(ssId != null && ssDoubleCheck){
+					sessionStorage.setItem("ssMyPage", true);
+					sessionStorage.removeItem("ssAdminPage");
+					sessionStorage.removeItem("ssHostingPage");
+				}else if(ssId != null){
+					location.assign("doubleCheck.do");
+				}else{
+					location.assign("loginForm.do");
+				}
+			}));
+			
+			
+			
 			var mainBottom = $("#counter").offset().top; //메인 div 높이 반응형설정
 			$(".mainDiv, .mainDiv-image, .nav").css("height",mainBottom-140);
 			$(".navLine").css("height",mainBottom-140);
@@ -112,6 +144,7 @@
 			
 			
 		});
+		
 		$(window).on("scroll", function (){ //네비게이션바가 스크롤을 따라다니도록 설정
 			var ySC = $(window).scrollTop();
 			console.log(ySC);
