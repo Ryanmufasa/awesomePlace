@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%-- 다음 우편번호 서비스 api (카카오맵 연동 가능) --%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<%@include file ="/layout/Header.jsp" %>
+<%@include file ="/Header.jsp" %>
 <script type="text/javascript" src="${contextPath }/resources/js/addNewHostForm.js?v=<%=System.currentTimeMillis()%>"></script>
 <style>
 .addHostForm {
@@ -107,4 +107,4 @@
 </div>
 
 
-<%@ include file="/layout/Footer.jsp" %> 
+<%@ include file="/Footer.jsp" %> 

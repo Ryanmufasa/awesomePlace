@@ -23,7 +23,8 @@ public class MemberVO {
 		this.mem_email=mem_email;
 	}
 	
-	public MemberVO (String mem_name, String mem_id, String mem_pw, String mem_tel, String mem_email) {
+	public MemberVO(String mem_name, String mem_id, String mem_pw, String mem_tel, String mem_email) {
+		super();
 		this.mem_name=mem_name;
 		this.mem_id=mem_id;
 		this.mem_pw=mem_pw;

@@ -8,6 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import hostService.AddNewHostService;
+import hostService.SearchService;
+import memberService.AdminOutService;
+import memberService.AdminQnAListService;
+import memberService.AdminService;
+import memberService.EmailCheckService;
+import memberService.IDfoundService;
+import memberService.IdCheckService;
+import memberService.JoinService;
+import memberService.LoginService;
+import memberService.MyPagePWService;
+import memberService.PWfoundService;
+import memberService.PWupdateService;
 import service.NextPage;
 import service.ServiceInterface;
 
@@ -42,17 +55,95 @@ public class APController extends HttpServlet {
     	//System.out.println("path2 : " + path2);
     	    	
     	switch(path) {
-    	case "/joinForm.do":  // https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
-    		page = new NextPage("/awesomePlace/join/joinForm.jsp", true);
-    		break;
-	 case "/join.do" :  //  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
-		serv = new JoinService(); 
-		page = new NextPage("/join/result.jsp", false);
-		break;
-	case "/search.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/25 -- 작성자 정다영
-		serv = new SearchService();
-		page = new NextPage("/search/search.jsp", false);
-		break;
+	    	case "/joinForm.do":  // https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
+	    		page = new NextPage("/awesomePlace/join/joinForm.jsp", true);
+	    		break;
+			case "/join.do" :  //  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
+				serv = new JoinService(); 
+				page = new NextPage("/join/result.jsp", false);
+				break;
+			case "/search.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/25 -- 작성자 정다영
+				serv = new SearchService();
+				page = new NextPage("/search/search.jsp", false);
+				break;
+			case "/loginform.do":
+				page = new NextPage("/awesomePlace/login/loginform.jsp", true);
+				break;
+			case "/login.do" : 
+				serv = new LoginService(); 
+				page = new NextPage("/login/result.jsp", false);
+				break;
+			
+			// 아이디 찾기 작성자:양준모
+			case "/IDfoundform.do":
+				page = new NextPage("/awesomePlace/idfound/IDfoundform.jsp", true);
+				break;
+			case "/idfound.do" :
+				serv = new IDfoundService();
+				page = new NextPage("/idfound/result.jsp", false);
+				break;
+			
+			// 비밀번호 찾기 작성자:양준모
+			case "/PWfoundform.do":
+				page = new NextPage("/awesomePlace/pwfound/PWfoundform.jsp", true);
+				break;
+			case "/pwfound.do":
+				serv = new PWfoundService();
+				page = new NextPage("/pwfound/result.jsp", false);
+				break;
+			
+			// 비밀번호 찾기 (비밀번호 수정) 작성자:양준모
+			case "/PWupdate.do":
+				page = new NextPage("/awesomePlace/pwfound/PWupdate.jsp", true);
+				break;
+			case "/pwupdate.do":
+				serv = new PWupdateService();
+				page = new NextPage("/pwfound/result1.jsp", false);
+				break;
+			
+			// 마이페이지 접속시 로그인 재확인 작성자:양준모
+			case "/MyPage.do":
+				page = new NextPage("/awesomePlace/mypage/MyPage.jsp", true);
+				break;
+			case "/mypagePW.do":
+				serv = new MyPagePWService();
+				page = new NextPage("/mypage/result.jsp", false);
+				break;
+				
+			case "/idCheck.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
+				 serv = new IdCheckService();
+				 page = new NextPage("/join/idCheck.jsp",false);
+				 break;
+			
+			case "/emailCheck.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
+				serv = new EmailCheckService();
+				page = new NextPage("/join/emailCheck.jsp", false);
+				break;
+			
+			case "/myhosting.do" : // 테스트를 위한 임시 작성 
+				page = new NextPage("/awesomePlace/myhosting/myboard.jsp", true);
+				break;
+				
+			case "/addNewHostForm.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/36 -- 작성자 정다영
+				page = new NextPage("/awesomePlace/myhosting/addNewHostForm.jsp", true);
+				break;
+				
+			case "/addNewCheck.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/36 -- 작성자 정다영
+				serv = new AddNewHostService();
+				page = new NextPage("/myhosting/result.jsp", false);
+				break;
+			case "/admin.do" :
+				serv = new AdminService();
+				page = new NextPage("/QnAList.jsp", false);
+				break;
+			case "/adminOut.do" :
+				serv = new AdminOutService();
+				page = new NextPage("/Index.jsp", false);
+				break;
+			case "/QnAList.do" :
+				serv = new AdminQnAListService();
+				page = new NextPage("/admin/QnAList.jsp", false); 
+				break;
     	}
     	
     	if(serv != null) {

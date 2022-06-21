@@ -16,7 +16,6 @@
 	}
 	%>
 	
-<%-- <%@include file ="Navigation.jsp" %> --%>
 <%@include file ="upperNavigation.jsp" %>
 <div class="mainDiv-child">
 	<h1>메인페이지</h1>

@@ -274,8 +274,155 @@ public class MemberDAO{
 		return check;
 	}
 
+	
+//  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
+	//이메일 중복체크
+	public int searchEmail(String email) {
+		int cnt = 0;
+		
+		String sql = "select count(*) from member where mem_email=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				cnt = rs.getInt(1); // 0 이면 없음, 1 이상이면 중복 
+				return cnt;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
 
+//  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
+	// 아이디 중복체크
+	public int searchId(String id) {
+		int cnt = 0;
+		String sql = "select count(*) from member where mem_id=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				cnt = rs.getInt(1); // 0 이면 없음, 1 이상이면 중복 
+				return cnt;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
+	
+	//마이페이지 접속시 비밀번호 재확인 
+		public int MyPagePWck(String mem_pw, String mem_id) {
+			
+			int result = 0 ;
+			
+				try {
+					pstmt = con.prepareStatement("SELECT mem_pw, mem_id FROM member WHERE mem_id = ?");
+				pstmt.setString(1, mem_id);
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()) {
+					
+					if (mem_pw.equals(rs.getString("mem_pw"))) {
+						result = 1;
+						
+					} else
+						result = -1;
+				}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			return result;
+		}
+	
+	//로그인
+		public int selectID(String mem_id, String mem_pw) {
+			
+			int result = 0 ;
+			
+			try {
+				pstmt = con.prepareStatement("SELECT mem_id, mem_pw FROM member WHERE mem_id = ? AND mem_pw = ?");
+				pstmt.setString(1, mem_id);
+				pstmt.setString(2, mem_pw);
+				rs = pstmt.executeQuery();
 
+				if (rs.next()) {
+						result = 1; 
+						return result;
+						 
+					} 
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
+		
+		//비밀번호 찾기 (회원정보 일치 여부) 
+		public int PWfound(String mem_name, String mem_id, String mem_tel, String mem_email) {
+		
+			int result = 0 ;
+			
+			try {
+				pstmt = con.prepareStatement("SELECT mem_name, mem_id, mem_tel, mem_email FROM member "
+						+ "WHERE mem_name = ? AND mem_id = ? AND mem_tel = ? AND mem_email = ?");
+				pstmt.setString(1, mem_name);
+				pstmt.setString(2, mem_id);
+				pstmt.setString(3, mem_tel);
+				pstmt.setString(4, mem_email);
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()) {				
+						result = 1;
+						return result;
+				}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
+		
+		//아이디 찾기 (회원정보 일치 여부) 작성자:양준모
+		public int IDfound(String mem_name, String mem_id, String mem_tel, String mem_email) {
+			
+			int result = 0 ;
+			
+			try {
+				pstmt = con.prepareStatement("SELECT mem_name, mem_id, mem_tel, mem_email FROM member "
+						+ "WHERE mem_name = ?  AND mem_tel = ? AND mem_email = ?");
+				pstmt.setString(1, mem_name);
+				pstmt.setString(2, mem_tel);
+				pstmt.setString(3, mem_email);
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()) {				
+						result = 1;
+						return result;
+				}
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
 }
 
 

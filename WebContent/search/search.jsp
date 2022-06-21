@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix = "fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix = "fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ include file="/layout/Header.jsp" %>
+<%@ include file="/Header.jsp" %>
 <!-- 테스트 위해 임시로 구현한 내용입니다. UI 변경 예정 -->
 <fmt:setLocale value="ko_KR"/>
 
@@ -38,4 +38,4 @@
 	</table>
 </div>
 
-<%@ include file="/layout/Footer.jsp" %>
+<%@ include file="/Footer.jsp" %>

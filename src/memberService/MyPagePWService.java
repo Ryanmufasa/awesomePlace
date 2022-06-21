@@ -1,19 +1,18 @@
 package memberService;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.memberDAO;
+import member.MemberDAO;
 import service.ServiceInterface;
 
 public class MyPagePWService implements ServiceInterface{
 	
 	@Override
-	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException {
+	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		HttpSession session = request.getSession();
 		
@@ -22,7 +21,7 @@ public class MyPagePWService implements ServiceInterface{
 		String mem_pw = request.getParameter("mem_pw");		
 		String mem_id = (String)session.getAttribute("mem_id");
 		
-		memberDAO dao = memberDAO.getInstance();
+		MemberDAO dao = MemberDAO.getInstance();
 		
 		int selectResult = dao.MyPagePWck(mem_pw, mem_id);
 		
