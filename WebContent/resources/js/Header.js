@@ -61,7 +61,7 @@
 				if(!ssAdminPage){
 					location.assign("Admin.do");
 				}else{
-					location.assign("Main.do");
+					location.assign("/awesomePlace/");
 				}
 			}));
 			$("#btnMyHosting").on("click",(function(){
@@ -96,7 +96,7 @@
 				if(ssAdminPage){
 					location.assign("Admin.do");
 				}else{
-					location.assign("Main.do");
+					location.assign("/awesomePlace/");
 					sessionStorage.removeItem("ssAdminPage");
 					sessionStorage.removeItem("ssMyPage");
 					sessionStorage.removeItem("ssHostingPage");

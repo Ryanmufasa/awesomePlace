@@ -1,4 +1,4 @@
-package memberService;
+package memberLoginService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package memberService;
+package memberLoginService;
 
 import java.io.IOException;
 

@@ -1,12 +1,12 @@
 <%-- https://github.com/Ryanmufasa/awesomePlace/issues/7 -- 작성자 정다영 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/Header.jsp" %> 
-<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/joinForm.css?v=<%=System.currentTimeMillis()%>">
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/joinForm.js?v=<%=System.currentTimeMillis()%>"></script>
+<%@ include file="/layout/Header.jsp" %> 
+<link type="text/css" rel="stylesheet" href="${contextPath }/resources/css/joinForm.css?v=<%=System.currentTimeMillis()%>">
+<script type="text/javascript" src="${contextPath }/resources/js/joinForm.js?v=<%=System.currentTimeMillis()%>"></script>
 
-<div id="loginForm" class="mainDiv" align="center">
-<form action="${pageContext.request.contextPath }/join/join.do" method="post" name="loginForm">
+<div id="loginForm" class="mainDiv-child" align="center">
+<form action="${contextPath }/join/join.do" method="post" name="loginForm">
 	<table border="1">
 		<tr>
 			<td>이름</td>
@@ -59,7 +59,7 @@
 		<tr>
 			<td><button type="button" onclick="allCheck(loginForm);">회원가입하기</button></td>
 			<td><button type="reset">초기화</button></td>
-			<td><button type="button" id="back">돌아가기</button></td>
+			<td><button type="button" onclick="history.back();">돌아가기</button></td>
 		</tr>
 		</table>
 	<br><br>
@@ -68,4 +68,4 @@
 </div>
 
 <%-- <jsp:include page="/layout/footer.jsp"/> --%>
-<%@ include file="/Footer.jsp" %> 
+<%@ include file="/layout/Footer.jsp" %> 

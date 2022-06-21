@@ -42,7 +42,7 @@
 </head>
 <body>
 
-<%@ include file="/layout/header.jsp" %>
+<%@ include file="/layout/Header.jsp" %>
 
 <div class="mainDiv">
 

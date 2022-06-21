@@ -1,7 +1,7 @@
-package memberService;
+// 작성자 양준모
+package memberLoginService;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

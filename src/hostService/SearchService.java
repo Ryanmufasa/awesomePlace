@@ -72,7 +72,7 @@ public class SearchService implements ServiceInterface {
 			
 		}else if(search.trim().equals("")){ // 공백제외 입력값 없는경우 "" 
 			System.out.println("search 입력 없으므로 지역 전체로 조회");
-			hostli = HostDAO.getInstance().getAllHost();
+			hostli = HostDAO.getInstance().AllTrueHost();
 			
 		}
 //			else {// 

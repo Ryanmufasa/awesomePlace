@@ -38,7 +38,7 @@ public class AddNewHostService implements ServiceInterface {
 		String host_tel = request.getParameter("host_tel");
 		System.out.println("host_tel : " + host_tel);
 		
-		String room_type = request.getParameter("room_type");
+		String room_type = request.getParameter("room_type"); // A 전체, P 개인실, S 다인실
 		System.out.println("room_type : " + room_type);
 		
 		String room_name = request.getParameter("room_name");
