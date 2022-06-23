@@ -1,3 +1,4 @@
+//https://github.com/Ryanmufasa/awesomePlace/issues/16 = 작성자 고유주
 package member;
 
 import java.sql.*;
@@ -13,6 +14,7 @@ public class MemberDAO{
 	Connection con = new DBConn().getConnection();
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
+	private int cnt;
 
 	private static MemberDAO instance;
 
@@ -60,29 +62,42 @@ public class MemberDAO{
 	
 	
 
-	//회원1명 불러올때
-	public MemberVO selectById (String id1) throws SQLException {
-		MemberVO vo = null;
-		String sql = "select * from member where mem_id = ?";
-
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, id1);
-		rs = pstmt.executeQuery();
-
-
-		if(rs.next()) {
-			int mem_num=rs.getInt(1);
-			String mem_name = rs.getString(2);
-			String mem_id = rs.getString(3);
-			String mem_pw = rs.getString(4);
-			String mem_tel = rs.getString(5);
-			String mem_email = rs.getString(6);
-			vo = new MemberVO(mem_num, mem_name, mem_id, mem_pw, mem_tel, mem_email);
-		}else{
-			vo = null;}		
-		return vo;
+	//회원 불러오기
+	public MemberVO getMember(String mem_id) {
+		MemberVO mb=new MemberVO(); 
+		String sql="select * from member where mem_id=?";
+		try {
+			pstmt=con.prepareStatement(sql); 
+			pstmt.setString(1, mem_id); 
+			
+			rs = pstmt.executeQuery(); 
+			if(rs.next()) { 
+				mb=new MemberVO();
+				mb.setMem_name(rs.getString("mem_name"));
+				mb.setMem_id(rs.getString("mem_id"));
+				mb.setMem_pw(rs.getString("mem_pw"));
+				mb.setMem_tel(rs.getString("mem_tel"));
+				mb.setMem_email(rs.getString("mem_email"));
+				
+//				System.out.println("name" + mb.getMem_name());
+//				System.out.println("id" + mb.getMem_id());
+//				System.out.println("pw" + mb.getMem_pw());
+//				System.out.println("tel" + mb.getMem_tel());
+//				System.out.println("email" + mb.getMem_email());
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(mb);
+		return mb;
 	}
-
 
 
 	//회원가입
@@ -215,25 +230,17 @@ public class MemberDAO{
 
 
 	//회원 수정
-	public boolean update(String mem_pw, String mem_tel, String mem_email, int mem_num) throws SQLException {
-		boolean check=false;
-		String sql ="update member set mem_pw=?, mem_tel?, mem_email?" + " where mem_num=?";
-
+	public int update(MemberVO vo) throws SQLException {
 		try {
+			String sql ="update member set mem_tel=?, mem_email=? WHERE mem_pw=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mem_pw);
-			pstmt.setString(2, mem_tel);
-			pstmt.setString(3, mem_email);
-			pstmt.setInt(4, mem_num);
-			pstmt.executeUpdate();
-
-			if(pstmt.executeUpdate() != 0) {
-				check = true;
-			}
+			pstmt.setString(1, vo.getMem_pw());
+			pstmt.setString(2, vo.getMem_tel());
+			pstmt.setString(3, vo.getMem_email());
+			cnt = pstmt.executeUpdate();
 		}catch(Exception e){
 			System.out.println(e);
 		}finally{
-
 			try {
 				if(rs != null) rs.close();
 				if(con != null) con.close();
@@ -241,7 +248,7 @@ public class MemberDAO{
 				e.printStackTrace();
 			}
 		}
-		return check;
+		return cnt;
 	}
 
 
@@ -346,7 +353,7 @@ public class MemberDAO{
 						result = 1;
 						
 					} else
-						result = -1;
+						result = 0;
 				}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
