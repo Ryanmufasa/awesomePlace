@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ include file="/layout/Header.jsp" %> 
+<%@ include file="/layout/header.jsp" %> 
 </head>
 <body>
 <script src="${pageContext.request.contextPath }/resources/js/Mypage_hostmov.js"></script>
@@ -13,12 +13,11 @@
 <div id="hostadd" style="text-align : center;">
 <h2><b>등록된 호스트하우스가 없습니다ㅠㅠ<br>
 호스트를 시작하고 수입을 창출해보세요~:)</b></h2>
-<a href="#">등록하러 가기</a>
+<a href="/awesomePlace/myhosting/addNewHostForm.jsp"">등록하러 가기</a>
 </div>
 </form>
 
-<br><br><br><br><br><br><br><br>    
-<hr> 
-<%@ include file="/layout/Footer.jsp" %> 
+
+<%@ include file="/layout/footer.jsp" %> 
 </body>
 </html>
