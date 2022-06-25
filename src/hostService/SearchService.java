@@ -54,13 +54,36 @@ public class SearchService implements ServiceInterface {
 			System.out.println("-------------------");
 		}
 
-		
-		ArrayList<HostVO> hostli = null;
-		
-		
-		if(!search.trim().equals("")) { // 공백 제외 search 입력값이 있는지 
-			System.out.println("search 검색어 있음");
+		// checkIn 날짜 값이 있을 때 checkOut 값은 "" 일 수 있지만
+			// checkOut 날짜 값이 있을 때 checkIn 값이 "" 일 수 없다. 
 			
+			if(checkIn.equals("")) { // checkOut 의 값은 null 로 넘어오므로
+				checkOut = ""; 
+			}
+			
+			// 검색이 진행될 때 조회될 host 테이블의 데이터는 sign 컬럼 값이 true 여야만 한다.
+			
+			ArrayList<HostVO> hostli = null;
+			
+			String[] search1 = search.split(" ");
+			String keyword = "%";
+			for(int i = 0; i < search1.length; i ++) {
+				keyword  +=  search1[i];
+				keyword  +=  "%";
+			}
+			
+			if(search.equals("") && checkIn.equals("") && checkOut.equals("") && guestCnt == 1) {
+				System.out.println("입력값 없이 전체 목록 조회");
+				hostli = HostDAO.getInstance().AllTrueHost();
+			}else {
+				System.out.println("입력값에 따른 호스트 목록 조회");
+				System.out.println("keyword : " + keyword);
+				hostli = HostDAO.getInstance().searchHost(keyword, checkIn, checkOut, guestCnt);
+			}
+		
+		
+//		if(!search.trim().equals("")) { // 공백 제외 search 입력값이 있는지 
+//			System.out.println("search 검색어 있음");
 //			switch(category) {
 //			case "region":
 //				System.out.println( "1");
@@ -69,12 +92,10 @@ public class SearchService implements ServiceInterface {
 //				System.out.println( "2");
 //				break;
 //			}
-			
-		}else if(search.trim().equals("")){ // 공백제외 입력값 없는경우 "" 
-			System.out.println("search 입력 없으므로 지역 전체로 조회");
-			hostli = HostDAO.getInstance().AllTrueHost();
-			
-		}
+//		}else if(search.trim().equals("")){ // 공백제외 입력값 없는경우 "" 
+//			System.out.println("search 입력 없으므로 지역 전체로 조회");
+//			hostli = HostDAO.getInstance().AllTrueHost();
+//		}
 //			else {// 
 //			System.out.println("전체출력");
 //			hostli = HostDAO.getInstance().getAllHost();

@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import hostService.AddNewHostService;
+import hostService.GetHostInfoService;
+import hostService.GetMyHostListService;
+import hostService.HostOrderService;
 import hostService.SearchService;
 
 import adminService.AdminOutService;
@@ -22,7 +25,8 @@ import memberLoginService.LoginService;
 import memberJoinService.EmailCheckService;
 import memberJoinService.IdCheckService;
 import memberJoinService.JoinService;
-
+import memberService.LoginServiceDY;
+import memberService.LogoutServiceDY;
 import memberService.MyPagePWService;
 import memberService.PWupdateService;
 
@@ -81,13 +85,13 @@ public class APController extends HttpServlet {
 				break;
 			
 	// 로그인  ===============================================================
-			case "/loginForm.do":
-				page = new NextPage("/awesomePlace/login/loginForm.jsp", true);
-				break;
-			case "/login.do" : 
-				serv = new LoginService(); 
-				page = new NextPage("/login/result.jsp", false);
-				break;
+//			case "/loginForm.do":
+//				page = new NextPage("/awesomePlace/login/loginForm.jsp", true);
+//				break;
+//			case "/login.do" : 
+//				serv = new LoginService(); 
+//				page = new NextPage("/login/result.jsp", false);
+//				break;
 			
 			// 아이디 찾기 작성자:양준모
 			case "/IDfoundform.do":
@@ -126,6 +130,9 @@ public class APController extends HttpServlet {
 				page = new NextPage("/mypage/result.jsp", false);
 				break;
 				
+			case "/mypage.do" : 
+				page = new NextPage("/awesomePlace/mypage/mypagememinfo.jsp", true);
+				break;
 			
 	// 검색   ===============================================================
 			case "/search.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/25 -- 작성자 정다영
@@ -133,6 +140,17 @@ public class APController extends HttpServlet {
 				page = new NextPage("/search/search.jsp", false);
 				break;
 				
+			case "/moreinfo.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/43 -- 작성자 정다영
+				serv = new GetHostInfoService();
+				page = new NextPage("/search/hostInfo.jsp", false);
+				break;
+				
+			case "/hostOrder.do" :
+				serv = new HostOrderService();
+				page = new NextPage("/search/hostOrder.jsp", false);
+				break;
+				
+	// 마이 호스팅 ================================================================			
 			case "/myhosting.do" : // 테스트를 위한 임시 작성 
 				page = new NextPage("/awesomePlace/myhosting/myboard.jsp", true);
 				break;
@@ -145,7 +163,11 @@ public class APController extends HttpServlet {
 				serv = new AddNewHostService();
 				page = new NextPage("/myhosting/result.jsp", false);
 				break;
-				
+
+			case "/myHostList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 -- 작성자 정다영
+				serv = new GetMyHostListService();
+				page = new NextPage("/myhosting/myHostList.jsp", false);
+				break;
 				
 	// 관리자  ===============================================================		
 			case "/admin.do" :
@@ -160,6 +182,24 @@ public class APController extends HttpServlet {
 				serv = new AdminQnAListService();
 				page = new NextPage("/admin/QnAList.jsp", false); 
 				break;
+				
+	// 개인 테스트 =======================================================================
+				
+			case "/loginForm.do" : // 테스트를 위한 임시 작성 
+				 page = new NextPage("/awesomePlace/login/loginForm.jsp", true);
+				 break;
+			
+			case "/login.do" :  // 테스트를 위한 임시 작성 
+				 serv = new LoginServiceDY();
+				 page = new NextPage("/login/result.jsp", false);
+				 break;
+			 
+			case "/logout.do" : // 테스트를 위한 임시 작성 
+				serv = new LogoutServiceDY();
+				page = new NextPage("/awesomePlace/", true);
+				break;
+				
+				
     	}
     	
     	if(serv != null) {

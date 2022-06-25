@@ -104,6 +104,8 @@
 
 </form>
 </fieldset>
+
+<span id="counter"></span> 	<!-- 메인 컨텐츠 바닥위치값 확인용 -->
 </div>
 
 

@@ -1,0 +1,66 @@
+/* https://github.com/Ryanmufasa/awesomePlace/issues/23 -- 작성자 정다영  
+*/
+@charset "UTF-8";
+.box{
+  width: 250px;
+  height: 200px;
+  padding:0;
+  margin: 5%;
+  display:inline-block;
+  background-color:#FFFFAA
+}
+.boxing:hover{
+	box-shadow : 3px 3px 10px;
+	cursor : pointer;
+}
+
+.boxing{
+	border: 1px solid black;
+	cursor:pointer;
+	width:250px;
+	height:200px;
+	margin:auto 0;
+	padding:10px;
+}
+
+a:link{
+	color:black;
+	text-decoration:none;
+}
+a:visited{
+	color:black;
+	text-decoration:none;
+	
+}
+
+button#A{
+	background-color:#FFFFEE
+}
+
+#hostForm{
+	display:inline-block;
+}
+
+.location{
+	text-align:left;
+	width:90%;
+}
+
+.info{
+	position : relative;
+	text-align:left;
+	width:30%;
+	background-color:#AAFFEE;
+	display:inline-block;
+}
+
+.inBox{
+	position : relative;
+	left:30px;
+	width: 250px;
+	height: 200px;
+	padding:0;
+	margin: 5px 5% 5px 10px;
+	display:inline-block;
+	background-color:#FAFAAF
+}
