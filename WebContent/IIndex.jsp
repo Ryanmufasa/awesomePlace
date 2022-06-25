@@ -2,9 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file ="/layout/SearchHeader.jsp" %>
+<%@include file ="/layout/Header.jsp" %>
 <script src="${contextPath }/resources/js/Main.js?v=<%=System.currentTimeMillis() %>"></script>
-<!-- 개인 테스트를 위해 일부 수정 사용중 -->
+
 <%	
 	String[] imgList = {"1","2","3","4","5","6","7","8","9","10","11"}; // 이미지파일 이름 배열화
 	String temp="";
@@ -16,18 +16,13 @@
 	}
 	%>
 	
-	
 <%-- <%@include file ="/layout/upperNavigation.jsp" %> --%>
+<div class="mainDiv-child">
+	<h1>메인페이지</h1>
 
-<div class="mainDiv">
-<!-- 	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1>
-	<h1>메인페이지</h1> -->
-	
-	<div class="mainDiv-image">
+
+
+	<div class="mainDiv-image" hidden="false">
 			<img id="imgIdx" src="${contextPath }/resources/image/main/<%=imgList[0] %>.jpg" height="800px">
 			<img id="imgIdx" src="${contextPath }/resources/image/main/<%=imgList[1] %>.jpg" height="800px">
 			<img id="imgIdx" src="${contextPath }/resources/image/main/<%=imgList[2] %>.jpg" height="800px">
@@ -40,7 +35,7 @@
 			<img id="imgIdx" src="${contextPath }/resources/image/main/<%=imgList[9] %>.jpg" height="800px">
 			<img id="imgIdx" src="${contextPath }/resources/image/main/<%=imgList[10] %>.jpg" height="800px">
 	</div>
-<!-- <span id="counter"></span> --> 	<!-- 메인 컨텐츠 바닥위치값 확인용 -->
-</div>
 
-<%@include file ="/layout/SearchFooter.jsp" %>
+<span id="counter"></span> 	<!-- 메인 컨텐츠 바닥위치값 확인용 -->
+</div>
+<%@include file ="/layout/Footer.jsp" %>

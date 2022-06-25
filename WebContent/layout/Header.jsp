@@ -20,7 +20,7 @@
 </head>
 <body>
 <header> <!-- 헤더 블록 -->
-	<img id="img1" src="${contextPath }/resources/image/temp.png" width="150" >
+	<a href="/awesomePlace/" id="img1"><img src="${contextPath }/resources/image/temp.png" width="150" ></a>
 	
 	<div id="title"> <!-- 타이틀 블록 -->
 	<a href="/awesomePlace/">the AwesomePlace</a>
@@ -78,7 +78,7 @@
 			</div>
 				
 	<div id="searchBar"> <!-- 검색창 블록 -->
-		<form action="search.do" method="post">
+		<form action="/awesomePlace/search/search.do" method="post" name="searchForm">
 			어디를 갈까?  <input type="search" name="search" size="6" placeholder="모든 지역" >
 			체크인  <input type="date" min="2022-06-05" name="checkIn" id="checkIn">
 			체크아웃 <input type="date" min="2022-06-05" name="checkOut" id="checkOut" disabled>
@@ -109,4 +109,4 @@
 </header>
 	<hr>
 <div class="mainDiv">
-<%-- <%@include file ="Navigation.jsp" %> --%>
+<%@include file ="Navigation.jsp" %> 

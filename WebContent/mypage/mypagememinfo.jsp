@@ -32,15 +32,18 @@ color : #fff;
 
 
 </head>
+<%@include file ="/layout/Header.jsp" %>
 <body>
 <ul>
 <li><a href="#">정보수정</a></li>
 <li><a href="#">찜목록</a></li>
 <li><a href="#">예약 내역</a></li>
-<li><a href="#">마이호스팅</a></li>
+<li><a href="/awesomePlace/myhosting/myhosting.do">마이호스팅</a></li>
 <li><a href="#">내 문의 확인</a></li>
 </ul>
 
+<%@include file ="/layout/upperNavigation.jsp" %>
+<div class="mainDiv-child">
 <form>
 <div class="container" style="text-align: center;">
 <div class="form-group">
@@ -63,5 +66,7 @@ color : #fff;
 </form> 
 	
 
-</body>
-</html>
+<span id="counter"></span> 	<!-- 메인 컨텐츠 바닥위치값 확인용 -->
+</div>
+
+<%@include file ="/layout/Footer.jsp" %>

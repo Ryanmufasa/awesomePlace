@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<c:if test="${selectResult == 1}">
+<%-- <c:if test="${selectResult == 1}">
 	<script>
 		alert("로그인 완료.")
 		location.href = "/awesomePlace/";
@@ -20,7 +20,23 @@
 		alert("로그인 정보가 일치하지 않습니다.")
 		location.href = "/awesomePlace/login/loginForm.do";
 	</script>
+</c:if> --%>
+
+
+<c:if test="${check }">
+	<script>
+		alert("${msg}");
+		location.href="/awesomePlace/";
+		//location.href=document.referrer;
+	</script>
 </c:if>
+<c:if test="${!check }">
+	<script>
+		alert("${msg}");
+		location.href="/awesomePlace/loginForm.do";
+	</script>
+</c:if> 
+
 
 </body>
 </html>

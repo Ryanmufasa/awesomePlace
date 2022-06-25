@@ -116,30 +116,36 @@ public class MemberDAO{
 
 
 
-	//로그인 확인
-	public MemberVO loginck (String mem_id1, String mem_pw2){
-		MemberVO vo=null;
-		boolean check=false;
+	//로그인 확인   // 개인 테스트 위해 수정함
+	public MemberVO loginck (MemberVO vo1) {
+		
+		MemberVO vo = null;
 		String sql="select * from member where mem_id=? and mem_pw=?";
-		try{
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, mem_id1);
-		pstmt.setString(2, mem_pw2);
-		rs=pstmt.executeQuery();
-	
-			if(rs.next()) { 
-					System.out.println("로그인 성공");
-					check = true;
-				} else {
-					System.out.println("로그인 실패");
-				}
-		}catch(SQLException e){
-			System.out.println(e);
-		}finally{
 
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, vo1.getMem_id()); 
+			pstmt.setString(2, vo1.getMem_pw());
+			rs = pstmt.executeQuery();
+			if(rs.next()) { 
+				vo = new MemberVO();
+				vo.setMem_num(rs.getInt("mem_num"));
+				vo.setMem_id(rs.getString("mem_id"));
+				vo.setMem_name(rs.getString("mem_name"));
+				vo.setMem_pw(rs.getString("mem_pw"));
+				vo.setMem_tel(rs.getString("mem_tel"));
+				vo.setMem_email(rs.getString("mem_email"));
+				System.out.println("로그인 성공");
+			} else {
+				System.out.println("로그인 실패"); // 다를 경우 실패 리턴
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
 			try {
 				if(rs != null) rs.close();
 				if(pstmt != null) pstmt.close();
+				//if(con != null) con.close();
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
