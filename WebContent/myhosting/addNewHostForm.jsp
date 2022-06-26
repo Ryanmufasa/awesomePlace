@@ -12,7 +12,7 @@
 
 </style>
 <!-- UI 임시 디자인 -->
-<div class="mainDiv" align="center">
+<div class="mainDiv-child" align="center">
 <fieldset>
 <form action="${contextPath }/myhosting/addNewCheck.do" method="post" name="addHostForm">
 	<table class="addHostForm">
@@ -40,11 +40,11 @@
 		</tr>
 		<tr>
 			<td>방 종류</td>
-			<td><div class="btns">
+			<td>
 					<input type="radio" name="room_type" value="A"/>집 전체(All)
 					<input type="radio" name="room_type" value="P"/>개인실(Private)
 					<input type="radio" name="room_type" value="S"/>다인실(Share)
-				</div>
+				
 			</td>
 		</tr>
 		<tr>

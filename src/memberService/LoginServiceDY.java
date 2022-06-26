@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import host.hostdao.HostDAO;
 import member.MemberDAO;
 import member.MemberVO;
 import service.ServiceInterface;
@@ -33,7 +34,14 @@ public class LoginServiceDY implements ServiceInterface {
 		if(vo != null) {
 			msg ="로그인성공";
 			session.setAttribute("login", vo);
+			//session.setAttribute("id", vo);
 			check = true;
+
+			boolean a = HostDAO.getInstance().checkHost(vo.getMem_num());
+			if(a) {
+				session.setAttribute("hostMember", a);
+			}
+			
 		}else {
 			msg="로그인실패";
 			check = false;

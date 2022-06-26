@@ -26,8 +26,8 @@
 			${host.host_name }<br>
 			${host.host_date}<br>
 			${host.sign }<br>
-			<button>예약 관리</button>
-			<button>호스팅 중지</button>
+			<button onclick="location.href='/awesomePlace/myhosting/myHostOrderManage.do?host_num=${host.host_num}'">예약 관리</button>
+			<button onclick="warning()">호스팅 중지</button>
 		</section>
 		
 	</c:forEach>
@@ -45,7 +45,13 @@
 
 </div>
 
-
+<script>
+function warning(){
+	if(confirm("정말 호스팅을 중지하시겠습니까?") == true){
+		
+	}
+}
+</script>
 
 
 <span id="counter"></span>

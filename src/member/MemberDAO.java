@@ -86,12 +86,11 @@ public class MemberDAO{
 
 
 	//회원가입
-	//private static DataSource ds;
 	public boolean join(MemberVO vo) {
 		boolean check=false;
-		String sql="insert into member "+" values(seq_member.nextval(),?,?,?,?,?)";
+		String sql="insert into member "+" values(seq_member.nextval,?,?,?,?,?)";
 		try {
-			//			con=ds.getConnection();
+			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getMem_name());
 			pstmt.setString(2, vo.getMem_id());

@@ -1,3 +1,4 @@
+// 개인 작업을 위한 작성  -- 작성자 정다영
 package orderinfo.orderinfodao;
 
 import java.sql.Connection;
@@ -26,6 +27,7 @@ public class OrderInfoDAO {
 	}
 	
 	
+	// 전체 예약 내역 조회 - 관리자용
 	public ArrayList<OrderInfoVO> getOrderInfoList(){
 		
 		ArrayList<OrderInfoVO> orderli = new ArrayList<OrderInfoVO>();
@@ -63,6 +65,7 @@ public class OrderInfoDAO {
 		
 	}
 
+	// vo 생성시 
 	private OrderInfoVO getInfo(ResultSet rs2) {
 		
 		OrderInfoVO vo = null;
@@ -117,6 +120,44 @@ public class OrderInfoDAO {
 		return check;
 	}
 	
+	
+	// 예약 정보 조회시
+	public ArrayList<OrderInfoVO> selectOrder(int host_num) {
+		
+		ArrayList<OrderInfoVO> oili = new ArrayList<OrderInfoVO>();
+		
+		OrderInfoVO vo = null;
+		
+		String sql ="select * from orderinfo where host_num=?";
+		
+		try {
+			ps= con.prepareStatement(sql);
+			ps.setInt(1, host_num);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				vo = getInfo(rs);
+				oili.add(vo);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(oili.isEmpty()) {
+			oili = null;
+			System.out.println("해당 호스트의 예약 정보 없음");
+		}else {
+			oili.trimToSize();
+		}
+		
+		return oili;
+	}
 	
 	
 	

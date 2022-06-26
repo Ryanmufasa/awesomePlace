@@ -16,6 +16,7 @@ public class LogoutServiceDY implements ServiceInterface {
 		HttpSession session = request.getSession();
 		
 		session.removeAttribute("login");
+		//session.removeAttribute("id");
 
 	}
 

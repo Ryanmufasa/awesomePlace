@@ -59,6 +59,7 @@
 				}else if(ssId != null){
 					location.assign("doubleCheck.do");
 				}else{
+					alert("로그인이 필요한 서비스 입니다");
 					location.assign("/awesomePlace/login/loginForm.do");
 				}
 			}));

@@ -12,6 +12,7 @@ import hostService.AddNewHostService;
 import hostService.GetHostInfoService;
 import hostService.GetMyHostListService;
 import hostService.HostOrderService;
+import hostService.ManageMyHostOrderService;
 import hostService.SearchService;
 
 import adminService.AdminOutService;
@@ -151,7 +152,7 @@ public class APController extends HttpServlet {
 				break;
 				
 	// 마이 호스팅 ================================================================			
-			case "/myhosting.do" : // 테스트를 위한 임시 작성 
+			case "/memberMyHosting.do" : // 테스트를 위한 임시 작성 
 				page = new NextPage("/awesomePlace/myhosting/myboard.jsp", true);
 				break;
 				
@@ -167,6 +168,11 @@ public class APController extends HttpServlet {
 			case "/myHostList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 -- 작성자 정다영
 				serv = new GetMyHostListService();
 				page = new NextPage("/myhosting/myHostList.jsp", false);
+				break;
+				
+			case "/myHostOrderManage.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				serv = new ManageMyHostOrderService();
+				page = new NextPage("/myhosting/myHostOrderManage.jsp", false);
 				break;
 				
 	// 관리자  ===============================================================		

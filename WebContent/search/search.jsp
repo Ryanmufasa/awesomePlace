@@ -26,7 +26,9 @@
 		</button>
 		</div>
 	</c:forEach>
-
+	<c:if test="${hostli == null}">
+		<p>검색 결과가 없습니다!</p>
+	</c:if>
 </div>
 
 <%@ include file="/layout/SearchFooter.jsp" %>

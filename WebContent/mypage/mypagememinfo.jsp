@@ -34,26 +34,28 @@ color : #fff;
 </head>
 <%@include file ="/layout/Header.jsp" %>
 <body>
-<ul>
+<%-- <%@include file ="/layout/upperNavigation.jsp" %>  --%>
+
+<!-- <ul>
 <li><a href="#">정보수정</a></li>
 <li><a href="#">찜목록</a></li>
 <li><a href="#">예약 내역</a></li>
 <li><a href="/awesomePlace/myhosting/myhosting.do">마이호스팅</a></li>
 <li><a href="#">내 문의 확인</a></li>
 </ul>
-
-<%@include file ="/layout/upperNavigation.jsp" %>
+ -->
 <div class="mainDiv-child">
+
 <form>
 <div class="container" style="text-align: center;">
 <div class="form-group">
 
-이름 <input type="text" class="form-control" value=${login.name } name="mem_name" maxlength="20" readonly><br>
-아이디 <input type="text" class="form-control" value=${login.id } name="mem_id" maxlength="20" readonly><br>
-비밀번호 <input type="text" class="form-control" value=${login.pw } name="mem_pw" maxlength="20"><br>
-비밀번호 확인 <input type="text" class="form-control" value=${login.pw } name="mem_pwck" maxlength="20"><br>
-연락처 <input type="text" class="form-control" value=${login.tel } name="mem_tel" maxlength="20"><br>
-이메일<input type="text" class="form-control" value=${login.email } maxlength="20" required><br>
+이름 <input type="text" class="form-control" value=${login.mem_name } name="mem_name" maxlength="20" readonly><br>
+아이디 <input type="text" class="form-control" value=${login.mem_id } name="mem_id" maxlength="20" readonly><br>
+비밀번호 <input type="text" class="form-control" value=${login.mem_pw } name="mem_pw" maxlength="20"><br>
+<%-- 비밀번호 확인 <input type="text" class="form-control" value=${login.pw } name="mem_pwck" maxlength="20"><br> --%>
+연락처 <input type="text" class="form-control" value=${login.mem_tel } name="mem_tel" maxlength="20"><br>
+이메일<input type="text" class="form-control" value=${login.mem_email } maxlength="20" required><br>
 
 </div>
 

@@ -192,6 +192,13 @@ public class HostDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		if(hostli.isEmpty()) {
@@ -201,8 +208,32 @@ public class HostDAO {
 			hostli.trimToSize();
 		}
 		
-		
 		return hostli;
+	}
+	
+	// 회원이 호스트회원인지 확인...
+	
+	public boolean checkHost(int mem_num) {
+		boolean check =false;
+		String sql = "select * from host where mem_num=?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, mem_num);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				check = true;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return check;
 	}
 	
 	// 호스트 등록
@@ -318,6 +349,7 @@ public class HostDAO {
 		
 		if(hostli.isEmpty()) {
 			hostli = null;
+			System.out.println("해당 조건에 맞는 호스트 또는 등록된 호스트 정보가 없음");
 		}else {
 			hostli.trimToSize();
 		}
@@ -435,5 +467,6 @@ public class HostDAO {
 		
 		return check;
 	}
+
 
 }

@@ -29,29 +29,10 @@
 	<!-- 로그인 상태에 따라 헤더, 내비게이션 버튼 노출여부 결정 -->
 		
 			<div class="btns"> 
-		<%--
-			 <!-- 관리자 로그인 후 버튼 -->
-			 		<!-- 로그아웃 버튼 -->
-					<button id="btnAdmin" hidden="true">
-						관리자 페이지</button>
-			
-				<!-- 일반사용자 로그인 후버튼 블록 -->
-					<!-- 마이호스팅 버튼 -->
-					<button id="btnMyPage" hidden="true">
-						마이페이지</button>
-					<button id="btnLogout" hidden="true">
-						로그아웃</button>
-				
-			<!-- 일반사용자 로그인 전 버튼 블록 -->
-				<button id="btnMyHosting" hidden="true">
-					마이호스팅</button>
-				<button id="btnLogin" hidden="true">
-					로그인</button>
-				<button id="btnJoin" hidden="true">
-					회원가입</button>
-					
-			 --%>	
-	<c:choose> <%-- Header.js 대신 임시처리 위해 적용....  --%>
+
+			 
+			 <%-- Header.js 대신 임시처리 위해 적용....  --%>
+ 	<c:choose> 
 		<c:when test="${login != null  }">
 			<c:choose>
 				<c:when test="${admin != null }">
@@ -59,7 +40,7 @@
 					<!--  -->
 				</c:when>
 				<c:otherwise>
-					<button  onclick="location.href='/awesomePlace/myhosting/myhosting.do'">마이 호스팅</button>
+					<button  onclick="location.href='/awesomePlace/myhosting/memberMyHosting.do'">마이 호스팅</button>
 					<button  onclick="location.href='/awesomePlace/mypage/mypage.do'">마이 페이지</button>
 				</c:otherwise>
 			</c:choose>
@@ -72,7 +53,7 @@
 			<!-- <button class="btn3"><a href="/awesomePlace/join/joinForm.do">회원가입</a></button>
 			 <a href="/awesomePlace/join/joinForm.do">회원가입</a>  -->
 		</c:otherwise>
-	</c:choose>			 
+	</c:choose>		
 			 
 			 
 			</div>
