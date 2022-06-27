@@ -8,11 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import HnNService.MainPageService;
+import adminService.AdminMemberAvailableService;
+import adminService.AdminMemberHostListService;
+import adminService.AdminMemberInfoService;
+import adminService.AdminMemberListService;
+import adminService.AdminMemberUnavailableService;
+import adminService.AdminOutService;
+import adminService.AdminQnAAnswerFormService;
+import adminService.AdminQnAListService;
+import adminService.AdminService;
 import hostService.AddNewHostService;
 import hostService.SearchService;
-import memberService.AdminOutService;
-import memberService.AdminQnAListService;
-import memberService.AdminService;
 import memberService.EmailCheckService;
 import memberService.IDfoundService;
 import memberService.IdCheckService;
@@ -132,17 +139,45 @@ public class APController extends HttpServlet {
 				serv = new AddNewHostService();
 				page = new NextPage("/myhosting/result.jsp", false);
 				break;
-			case "/admin.do" :
+			case "/admin.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/9 작성자: 이명진
 				serv = new AdminService();
 				page = new NextPage("/QnAList.jsp", false);
 				break;
-			case "/adminOut.do" :
+			case "/adminOut.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/9 작성자: 이명진
 				serv = new AdminOutService();
-				page = new NextPage("/Index.jsp", false);
+				page = new NextPage("/index.jsp", false);
 				break;
-			case "/QnAList.do" :
+			case "/main.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/9 작성자: 이명진
+				serv = new MainPageService();
+				page = new NextPage("/index.jsp", false);
+				break;
+			case "/QnAList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/39 작성자: 이명진
 				serv = new AdminQnAListService();
 				page = new NextPage("/admin/QnAList.jsp", false); 
+				break;
+			case "/QnAAnswerForm.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/39 작성자: 이명진
+				serv = new AdminQnAAnswerFormService();
+				page = new NextPage("/admin/QnAAnswerForm.jsp", false); 
+				break;
+			case "/memberList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberListService();
+				page = new NextPage("/admin/memberList.jsp", false); 
+				break;
+			case "/memberInfo.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberInfoService();
+				page = new NextPage("/admin/memberInfo.jsp", false); 
+				break;
+			case "/memberHostList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberHostListService();
+				page = new NextPage("/admin/memberHostList.jsp", false); 
+				break;
+			case "/memUnavailable.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberUnavailableService();
+				page = new NextPage("memberList.do", false); 
+				break;
+			case "/memAvailable.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberAvailableService();
+				page = new NextPage("memberList.do", false); 
 				break;
     	}
     	

@@ -8,12 +8,28 @@ public class MemberVO {
 	private String mem_pw;
 	private String mem_tel;
 	private String mem_email;
+	private String mem_available;
+	private int mem_hostingcnt;
 	
 	
 	public MemberVO() {}
 	
 	
-	public MemberVO(int mem_num, String mem_name, String mem_id, String mem_pw, String mem_tel, String mem_email) {
+	public MemberVO(int mem_num, String mem_name, String mem_id, String mem_pw, String mem_tel, 
+			String mem_email, String mem_available, int mem_hostingcnt) {
+		super();
+		this.mem_num=mem_num;
+		this.mem_name=mem_name;
+		this.mem_id=mem_id;
+		this.mem_pw=mem_pw;
+		this.mem_tel=mem_tel;
+		this.mem_email=mem_email;
+		this.mem_available=mem_available;
+		this.mem_hostingcnt=mem_hostingcnt;
+	}
+
+	public MemberVO(int mem_num, String mem_name, String mem_id, String mem_pw, String mem_tel, 
+			String mem_email) {
 		super();
 		this.mem_num=mem_num;
 		this.mem_name=mem_name;
@@ -68,5 +84,17 @@ public class MemberVO {
 	}
 	public void setMem_email(String mem_email) {
 		this.mem_email = mem_email;
+	}
+	public String getMem_available() {
+		return mem_available;
+	}
+	public void setMem_available(String mem_available) {
+		this.mem_available = mem_available;
+	}
+	public int getMem_hostingcnt() {
+		return mem_hostingcnt;
+	}
+	public void setMem_hostingcnt(int mem_hostingcnt) {
+		this.mem_hostingcnt = mem_hostingcnt;
 	}
 }

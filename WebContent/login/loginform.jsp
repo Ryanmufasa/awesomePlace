@@ -34,7 +34,7 @@
 
 <body>
 
-<%@ include file="/layout/header.jsp" %> 
+<%@ include file="/Header.jsp" %> 
 
 	<br><br><br><br><br><br><br><br><br><br>
 
@@ -85,7 +85,7 @@
     
     <hr>
     
-<%@ include file="/layout/footer.jsp" %> 
+<%@ include file="/Footer.jsp" %> 
 
 </body>
 

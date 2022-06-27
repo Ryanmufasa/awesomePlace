@@ -9,11 +9,13 @@
 		
  		var today = year + "-" + month + "-" + day;
  		
-		var ssId = sessionStorage.getItem("id");
-		var ssDoubleCheck = (sessionStorage.getItem("doubleCheck"))==null ? false : true;
-		var ssAdminPage = (sessionStorage.getItem("adminPage"))==null ? false : true;
-		var ssMyPage = (sessionStorage.getItem("myPage"))==null ? false : true;
-		var ssHostingPage = (sessionStorage.getItem("hostingPage"))==null ? false : true;
+		var ssId = sessionStorage.getItem("mem_id");
+		if(ssId=="null")
+			ssId = null;
+		var ssDoubleCheck = (sessionStorage.getItem("doubleCheck")=="null") ? false : true;
+		var ssAdminPage = (sessionStorage.getItem("adminPage")=="null") ? false : true;
+		var ssMyPage = (sessionStorage.getItem("myPage")=="null") ? false : true;
+		var ssHostingPage = (sessionStorage.getItem("hostingPage")=="null") ? false : true;
 		
 		$("#checkIn").attr("min",today);
 		
@@ -29,13 +31,11 @@
 				$("#btnMyPage").attr("hidden", true);
 				$("#btnMyHosting").attr("hidden", true);
 				$("#btnLogout").attr("hidden", false);
-				$("#btnAdminIn").attr("hidden", false);
+				$("#btnAdmin").attr("hidden", false);
 				if(!ssAdminPage){
 					$("#btnAdmin").text("관리자페이지");
-					$("#searchBar").attr("hidden", false);
 				}else{
 					$("#btnAdmin").text("사용자페이지");
-					$("#searchBar").attr("hidden", true);
 				}
 			}else if(ssId != null){
 				$("#btnAdmin").attr("hidden", true);
@@ -59,17 +59,14 @@
 			}));
 			$("#btnAdminIn").on("click",(function(){
 				if(!ssAdminPage){
-					location.assign("Admin.do");
+					location.assign("admin.do");
 				}else{
-					location.assign("Main.do");
+					location.assign("main.do");
 				}
 			}));
 			$("#btnMyHosting").on("click",(function(){
 				if(ssId != null && ssDoubleCheck){
 					location.assign("myHosting.do");
-					sessionStorage.setItem("ssHostingPage", true);
-					sessionStorage.removeItem("ssAdminPage");
-					sessionStorage.removeItem("ssMyPage");
 				}else if(ssId != null){
 					location.assign("doubleCheck.do");
 				}else{
@@ -79,9 +76,6 @@
 			$("#btnMyPage").on("click",(function(){
 				if(ssDoubleCheck){
 					location.assign("myPage.do");
-					sessionStorage.setItem("ssMyPage", true);
-					sessionStorage.removeItem("ssAdminPage");
-					sessionStorage.removeItem("ssHostingPage");
 				}else{
 					location.assign("doubleCheck.do");
 				}
@@ -94,14 +88,15 @@
 			}));
 			$("#img1").on("click",(function(){
 				if(ssAdminPage){
-					location.assign("Admin.do");
+					location.assign("admin.do");
 				}else{
-					location.assign("Main.do");
-					sessionStorage.removeItem("ssAdminPage");
-					sessionStorage.removeItem("ssMyPage");
-					sessionStorage.removeItem("ssHostingPage");
+					location.assign("main.do");
 				}
 			}));
+			$("#list").on("click",(function (){
+				location.assign("QnAList.do");
+			}));
+			
 			
 			/* 아래는 footer 버튼*/
 			
@@ -119,9 +114,7 @@
 			
 			$("#csCenter").on("click",(function(){
 				if(ssId != null && ssDoubleCheck){
-					sessionStorage.setItem("ssMyPage", true);
-					sessionStorage.removeItem("ssAdminPage");
-					sessionStorage.removeItem("ssHostingPage");
+					location.assign("MyAskForm.do");
 				}else if(ssId != null){
 					location.assign("doubleCheck.do");
 				}else{
@@ -130,18 +123,15 @@
 			}));
 			
 			
-			
 			var mainBottom = $("#counter").offset().top; //메인 div 높이 반응형설정
 			$(".mainDiv, .mainDiv-image, .nav").css("height",mainBottom-140);
 			$(".navLine").css("height",mainBottom-140);
-			
 			
 			
 		});
 		
 		$(window).on("scroll", function (){ //네비게이션바가 스크롤을 따라다니도록 설정
 			var ySC = $(window).scrollTop();
-			console.log(ySC);
 			var mainDivTop = $(".mainDiv").offset().top;
 			if(mainDivTop<=ySC){
 				$(".upperNav").css("position", "fixed");

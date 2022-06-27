@@ -1,4 +1,4 @@
-package memberService;
+package adminService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

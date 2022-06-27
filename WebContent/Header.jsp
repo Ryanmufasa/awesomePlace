@@ -11,10 +11,25 @@
 	<script src ="${contextPath }/resources/js/Header.js?v=<%=System.currentTimeMillis() %>"></script>
 <meta charset="UTF-8">
 <title>즐거운 한국여행 어썸플레이스입니다.</title>
+	<script>
+		<% 
+			HttpSession ss1 = request.getSession();
+			String mem_id = (String)ss1.getAttribute("mem_id");
+			String doubleCheck = (String)ss1.getAttribute("doubleCheck");
+			String adminPage = (String)ss1.getAttribute("adminPage");
+			String myPage = (String)ss1.getAttribute("myPage");
+			String hostingPage = (String)ss1.getAttribute("hostingPage");
+		%>
+			sessionStorage.setItem("mem_id", "<%=mem_id%>");
+			sessionStorage.setItem("doubleCheck", "<%=doubleCheck%>");
+			sessionStorage.setItem("adminPage", "<%=adminPage%>");
+			sessionStorage.setItem("myPage", "<%=myPage%>");
+			sessionStorage.setItem("hostingPage", "<%=hostingPage%>");
+	</script>
 </head>
 <body>
 <header> <!-- 헤더 블록 -->
-	<img id="img1" src="${contextPath }/resources/image/temp.png" width="150" >
+	<a href="#"><img id="img1" src="${contextPath }/resources/image/temp.png" width="150" ></a>
 	
 	<div id="title"> <!-- 타이틀 블록 -->
 	the AwesomePlace
@@ -26,8 +41,6 @@
 			
 			 <!-- 관리자 로그인 후 버튼 -->
 			 		<!-- 로그아웃 버튼 -->
-					<button id="btnAdmin" hidden="true">
-						관리자 페이지</button>
 			
 				<!-- 일반사용자 로그인 후버튼 블록 -->
 					<!-- 마이호스팅 버튼 -->
@@ -43,6 +56,11 @@
 					로그인</button>
 				<button id="btnJoin" hidden="true">
 					회원가입</button>
+			</div>
+			
+			<div class="adBtns">
+					<button id="btnAdmin" hidden="true">
+						관리자 페이지</button>
 			</div>
 				
 	<div id="searchBar"> <!-- 검색창 블록 -->
