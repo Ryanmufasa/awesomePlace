@@ -1,3 +1,4 @@
+//https://github.com/Ryanmufasa/awesomePlace/issues/15 = 작성자 고유주
 package member;
 
 public class MemberVO {

@@ -14,7 +14,6 @@ public class MemberDAO{
 	Connection con = new DBConn().getConnection();
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	private int cnt;
 
 	private static MemberDAO instance;
 
@@ -62,43 +61,93 @@ public class MemberDAO{
 	
 	
 
-	//회원 불러오기
-	public MemberVO getMember(String mem_id) {
-		MemberVO mb=new MemberVO(); 
-		String sql="select * from member where mem_id=?";
-		try {
-			pstmt=con.prepareStatement(sql); 
-			pstmt.setString(1, mem_id); 
+	//회원1명 불러올때
+	public MemberVO getMember (String memid) {
+		MemberVO mb=new MemberVO();
+		String sql = "select * from member where mem_id = ?";
+try {
+	
+
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, memid);
+		rs = pstmt.executeQuery();
+
+
+		if(rs.next()) {
 			
-			rs = pstmt.executeQuery(); 
-			if(rs.next()) { 
-				mb=new MemberVO();
-				mb.setMem_name(rs.getString("mem_name"));
-				mb.setMem_id(rs.getString("mem_id"));
-				mb.setMem_pw(rs.getString("mem_pw"));
-				mb.setMem_tel(rs.getString("mem_tel"));
-				mb.setMem_email(rs.getString("mem_email"));
-				
-//				System.out.println("name" + mb.getMem_name());
-//				System.out.println("id" + mb.getMem_id());
-//				System.out.println("pw" + mb.getMem_pw());
-//				System.out.println("tel" + mb.getMem_tel());
-//				System.out.println("email" + mb.getMem_email());
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
+			mb.setMem_name(rs.getString("mem_name"));
+			mb.setMem_id(rs.getString("mem_id"));
+			mb.setMem_pw(rs.getString("mem_pw"));
+			mb.setMem_tel(rs.getString("mem_tel"));
+			mb.setMem_email(rs.getString("mem_email"));
+			
+		}
+		}catch(SQLException e){
+			System.out.println(e);
+		}finally{
+
 			try {
+				if(rs != null) rs.close();
 				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(mb);
 		return mb;
 	}
 
+
+	
+	
+	
+
+//	public MemberVO getMember (String memid) {
+//		MemberVO mb=new MemberVO();
+//		String sql = "select * from member where mem_id = ?";
+//try {
+//	
+//
+//		pstmt = con.prepareStatement(sql);
+//		pstmt.setString(1, memid);
+//		rs = pstmt.executeQuery();
+//
+//
+//		if(rs.next()) {
+//			
+//		memid = rs.getString("id");
+//		String mem_name = rs.getString("name");
+//		String mem_id = rs.getString("id");
+//		String mem_pw = rs.getString("pw");
+//		String mem_tel = rs.getString("tel");
+//		String mem_email = rs.getString("email");
+//		
+//		request.setAttribute("name", mem_name);
+//		request.setAttribute("id", mem_id);
+//		request.setAttribute("pw", mem_pw);
+//		request.setAttribute("tel", mem_tel);
+//		request.setAttribute("email", mem_email);
+//		
+//		request.getRequestDispatcher("mp_meminfo.jsp").forward(request, response);
+//		}else {
+//			response.sendRedirect("MyPage.jsp");
+//		}
+//		}catch(SQLException e){
+//			e.printStackTrace();
+//		}finally{
+//
+//			try {
+//				if(rs != null) rs.close();
+//				if(pstmt != null) pstmt.close();
+//			}catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	
+//	}
+
+	
+	
+	
 
 	//회원가입
 	//private static DataSource ds;
@@ -230,17 +279,27 @@ public class MemberDAO{
 
 
 	//회원 수정
-	public int update(MemberVO vo) throws SQLException {
+	public int update(String memPw, String memTel, String memEmail, String memId) {
+		int result = 0;
+		String sql ="update member set mem_pw=?, mem_tel=?, mem_email=?" + " where mem_id=?";
+
 		try {
-			String sql ="update member set mem_tel=?, mem_email=? WHERE mem_pw=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, vo.getMem_pw());
-			pstmt.setString(2, vo.getMem_tel());
-			pstmt.setString(3, vo.getMem_email());
-			cnt = pstmt.executeUpdate();
-		}catch(Exception e){
-			System.out.println(e);
+			pstmt.setString(1, memPw);
+			pstmt.setString(2, memTel);
+			pstmt.setString(3, memEmail);
+			pstmt.setString(4, memId);
+			pstmt.executeUpdate();
+			
+			if(pstmt.executeUpdate() > 0) {
+				result = 1;
+			}
+
+		
+		}catch(SQLException e){
+
 		}finally{
+
 			try {
 				if(rs != null) rs.close();
 				if(con != null) con.close();
@@ -248,7 +307,7 @@ public class MemberDAO{
 				e.printStackTrace();
 			}
 		}
-		return cnt;
+		return result;
 	}
 
 
@@ -353,7 +412,7 @@ public class MemberDAO{
 						result = 1;
 						
 					} else
-						result = 0;
+						result = -1;
 				}
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
