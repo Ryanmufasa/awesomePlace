@@ -14,11 +14,16 @@ function memHostList(idx) {
 		window.open(url, name, opt);
 }
 
-function unavailable(idx) {
-		var url = "memUnavailable.do?idx="+idx;
-		var flag = window.confirm("회원 비활성화를 진행하십니까?");
-		if(flag){
-			location.href=url;
+function switchAvailable(idx, flag) {
+		var url = "switchAvailable.do?idx="+idx+"&flag="+flag;
+		if(flag == "Y"){
+			var queue = window.confirm("회원 비활성화를 진행하십니까?");
+			if(queue)
+				location.href=url;
+		}else if(flag == "N"){
+			var queue = window.confirm("회원을 다시 활성화 하십니까?");
+			if(queue)
+				location.href=url;
 		}
 //		$.ajax({
 //				type:"GET",
@@ -27,12 +32,4 @@ function unavailable(idx) {
 //				success: alert("회원 비활성화 성공"),
 //				error: (log)=>{alert("실패"+log)}
 //			})
-}
-
-function available(idx) {
-		var url = "memAvailable.do?idx="+idx;
-		var flag = window.confirm("회원을 다시 활성화 하십니까?");
-		if(flag){
-			location.href=url;
-		}
 }

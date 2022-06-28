@@ -11,7 +11,7 @@
 <body>
 	<table border="1" style="width:700px;, left:calc(50% - 150px); margin:auto;">
 		<tr><th>호스트번호</th><th>호스트명</th><th>호스트주소</th><th>전화번호</th><th>활성화여부</th></tr>
-		<c:forEach var="memHL" items="${memHostList }">
+		<c:forEach var="memHL" items="${memHostList }" varStatus="idx">
 			<tr>
 				<td>${memHL.host_num }</td>
 				<td>${memHL.host_name }</td>

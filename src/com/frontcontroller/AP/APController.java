@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import HnNService.MainPageService;
-import adminService.AdminMemberAvailableService;
+import adminService.AdminHostingListService;
 import adminService.AdminMemberHostListService;
 import adminService.AdminMemberInfoService;
 import adminService.AdminMemberListService;
-import adminService.AdminMemberUnavailableService;
+import adminService.AdminMemberSwitchAvailableService;
 import adminService.AdminOutService;
 import adminService.AdminQnAAnswerFormService;
 import adminService.AdminQnAListService;
@@ -171,13 +171,13 @@ public class APController extends HttpServlet {
 				serv = new AdminMemberHostListService();
 				page = new NextPage("/admin/memberHostList.jsp", false); 
 				break;
-			case "/memUnavailable.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
-				serv = new AdminMemberUnavailableService();
+			case "/switchAvailable.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberSwitchAvailableService();
 				page = new NextPage("memberList.do", false); 
 				break;
-			case "/memAvailable.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
-				serv = new AdminMemberAvailableService();
-				page = new NextPage("memberList.do", false); 
+			case "/hostingList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/50 작성자: 이명진
+				serv = new AdminHostingListService();
+				page = new NextPage("/admin/hostingList.jsp", false); 
 				break;
     	}
     	

@@ -1,28 +1,26 @@
 package adminService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import host.hostvo.HostVO;
 import member.MemberDAO;
 import service.ServiceInterface;
 
-public class AdminMemberUnavailableService implements ServiceInterface {
+public class AdminHostingListService implements ServiceInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.setCharacterEncoding("UTF-8");
 		MemberDAO dao = MemberDAO.getInstance();
-		int idx=0;
-		String temp = request.getParameter("idx");
 		
-		if(temp!=null) {
-			idx = Integer.parseInt(temp);
-		}
-		boolean res = dao.memUnavailable(idx);
+		ArrayList<HostVO> hostList = dao.getAllHosting();
 		
-		request.setAttribute("memUnACheck", res);
+		
+		request.setAttribute("hostList", hostList);
 	}
 
 }

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import member.MemberDAO;
 import service.ServiceInterface;
 
-public class AdminMemberAvailableService implements ServiceInterface {
+public class AdminMemberSwitchAvailableService implements ServiceInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -16,13 +16,20 @@ public class AdminMemberAvailableService implements ServiceInterface {
 		MemberDAO dao = MemberDAO.getInstance();
 		int idx=0;
 		String temp = request.getParameter("idx");
+		String flag = request.getParameter("flag");
 		
 		if(temp!=null) {
 			idx = Integer.parseInt(temp);
 		}
-		boolean res = dao.memAvailable(idx);
+		boolean result = dao.memSwitchAvailable(idx,flag);
+		String res=null;
 		
-		request.setAttribute("memACheck", res);
+		if(result) 
+			res = "T";
+		else
+			res = "F";
+		
+		request.setAttribute("switchRes", res);
 	}
 
 }

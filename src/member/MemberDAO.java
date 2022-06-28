@@ -698,7 +698,14 @@ public class MemberDAO{
 				temp = rs.getString("count(*)");
 				
 			} catch (SQLException e) {
-				e.printStackTrace();
+				try {
+					if(pstmt != null) {
+						pstmt.close();
+					}else if(con!=null)
+						con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 			
 			if(temp!=null) {
@@ -713,35 +720,93 @@ public class MemberDAO{
 			
 		}
 		
-		public boolean memUnavailable(int idx) {
-			String sql = "UPDATE member SET mem_available='N' WHERE mem_num=?";
+		//https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+		public boolean memSwitchAvailable(int idx, String flag) {
+			String sql = null;
+			if(flag.equals("Y"))
+				sql = "UPDATE member SET mem_available='N' WHERE mem_num=?";
+			else if(flag.equals("N"))
+				sql = "UPDATE member SET mem_available='Y' WHERE mem_num=?";
 			System.out.println("메서드 실행");
 			try {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, idx);
 				pstmt.executeUpdate();
 			} catch (SQLException e) {
-				e.printStackTrace();
-				return false;
+				try {
+					if(pstmt != null) {
+						pstmt.close();
+					}else if(con!=null)
+						con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			return true;
+		}
+
+
+		//https://github.com/Ryanmufasa/awesomePlace/issues/50 작성자: 이명진
+		public ArrayList<HostVO> getAllHosting() {
+			String sql = "SELECT * FROM host";
+			ArrayList<HostVO> hostList = new ArrayList<HostVO>();
+			
+			try {
+				pstmt=con.prepareStatement(sql);
+				rs=pstmt.executeQuery();
+				
+				int host_num;
+				int mem_num;
+				String host_name;
+				String host_addr;
+				String host_post_num;
+				String host_tel;
+				String room_type;
+				String room_name;
+				int room_cnt;
+				int guest_cnt;
+				int weekday_amt;
+				int weekdend_amt;
+				String host_content;
+				String host_date;
+				String sign;
+				
+				while(rs.next()) {
+					host_num = Integer.parseInt(rs.getString("host_num"));
+					mem_num = Integer.parseInt(rs.getString("mem_num"));
+					host_name = rs.getString("host_name");
+					host_addr = rs.getString("host_addr");
+					host_post_num = rs.getString("host_post_num");
+					host_tel = rs.getString("host_tel");
+					room_type = rs.getString("room_type");
+					room_name = rs.getString("room_name");
+					room_cnt = Integer.parseInt(rs.getString("room_cnt"));
+					guest_cnt = Integer.parseInt(rs.getString("guest_cnt"));
+					weekday_amt = Integer.parseInt(rs.getString("weekday_amt"));
+					weekdend_amt = Integer.parseInt(rs.getString("weekdend_amt"));
+					host_content = rs.getString("host_content");
+					host_date = rs.getString("host_date");
+					sign = rs.getString("sign");
+					
+					HostVO hostInfo = new HostVO(host_num,mem_num,host_name,host_addr,host_post_num,host_tel,room_type,
+							room_name,room_cnt,guest_cnt,weekday_amt,weekdend_amt,host_content,host_date,sign);
+					hostList.add(hostInfo); 
+				}
+			
+			} catch (SQLException e) {
+				try {
+					if(pstmt != null) {
+						pstmt.close();
+					}else if(con!=null)
+						con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 			
-			return true;
+			return hostList;
 		}
 		
-		public boolean memAvailable(int idx) {
-			String sql = "UPDATE member SET mem_available='Y' WHERE mem_num=?";
-			System.out.println("메서드 실행");
-			try {
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, idx);
-				pstmt.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return false;
-			}
-			
-			return true;
-		}
 }
 
 
