@@ -6,9 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import host.hostdao.HostDAO;
-import host.hostorderdao.HostOrderDAO;
-import host.hostordervo.HostOrderVO;
 import host.hostvo.HostVO;
+import orderinfo.orderinfodao.OrderInfoDAO;
+import orderinfo.orderinfovo.OrderInfoVO;
 import service.ServiceInterface;
 
 public class HostOrderService implements ServiceInterface {
@@ -29,8 +29,8 @@ public class HostOrderService implements ServiceInterface {
 		// 예약할 호스트 정보 가져오기 
 		HostVO vo = HostDAO.getInstance().selectHost(host_num);
 		
-		// OrderInfo , HostOrder 테이블에 예약 입력 
-		HostOrderVO hvo = new HostOrderVO();
+		// OrderInfo 테이블에 예약 입력 
+		//OrderInfoVO oivo = OrderInfoDAO.getInstance().memberOrder()
 		
 		
 		request.setAttribute("host", vo);

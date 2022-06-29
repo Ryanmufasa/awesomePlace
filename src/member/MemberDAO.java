@@ -42,16 +42,18 @@ public class MemberDAO{
 					vo.setMem_pw(rs.getString("mem_pw"));
 					vo.setMem_tel(rs.getString("mem_tel"));
 					vo.setMem_email(rs.getString("mem_email"));
+					vo.setMem_sign(rs.getString("mem_sign"));
+					vo.setMem_hostCnt(rs.getInt("mem_hostCnt"));
 					memlist.add(vo);
 				}
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}finally {
-				if(con!=null) {
-					try {
-						con.close();
-						}catch(SQLException e) {						
-					}
+				try {
+					if(rs != null) rs.close();
+					if(pstmt != null) pstmt.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
 				}
 			}
 			return memlist;
@@ -61,25 +63,36 @@ public class MemberDAO{
 	
 
 	//회원1명 불러올때
-	public MemberVO selectById (String id1) throws SQLException {
+	public MemberVO selectById (String id1) {
 		MemberVO vo = null;
 		String sql = "select * from member where mem_id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id1);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				int mem_num=rs.getInt(1);
+				String mem_name = rs.getString(2);
+				String mem_id = rs.getString(3);
+				String mem_pw = rs.getString(4);
+				String mem_tel = rs.getString(5);
+				String mem_email = rs.getString(6);
+				String mem_sign = rs.getString(7);
+				int mem_hostCnt = rs.getInt(8);
+				vo = new MemberVO(mem_num, mem_name, mem_id, mem_pw, mem_tel, mem_email, mem_sign, mem_hostCnt);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
 
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, id1);
-		rs = pstmt.executeQuery();
-
-
-		if(rs.next()) {
-			int mem_num=rs.getInt(1);
-			String mem_name = rs.getString(2);
-			String mem_id = rs.getString(3);
-			String mem_pw = rs.getString(4);
-			String mem_tel = rs.getString(5);
-			String mem_email = rs.getString(6);
-			vo = new MemberVO(mem_num, mem_name, mem_id, mem_pw, mem_tel, mem_email);
-		}else{
-			vo = null;}		
 		return vo;
 	}
 
@@ -88,7 +101,7 @@ public class MemberDAO{
 	//회원가입
 	public boolean join(MemberVO vo) {
 		boolean check=false;
-		String sql="insert into member "+" values(seq_member.nextval,?,?,?,?,?)";
+		String sql="insert into member "+" values(seq_member.nextval,?,?,?,?,?,'Y',0)";
 		try {
 			
 			pstmt = con.prepareStatement(sql);
@@ -134,6 +147,8 @@ public class MemberDAO{
 				vo.setMem_pw(rs.getString("mem_pw"));
 				vo.setMem_tel(rs.getString("mem_tel"));
 				vo.setMem_email(rs.getString("mem_email"));
+				vo.setMem_sign(rs.getString("mem_sign"));
+				vo.setMem_hostCnt(rs.getInt("mem_hostCnt"));
 				System.out.println("로그인 성공");
 			} else {
 				System.out.println("로그인 실패"); // 다를 경우 실패 리턴
@@ -144,7 +159,6 @@ public class MemberDAO{
 			try {
 				if(rs != null) rs.close();
 				if(pstmt != null) pstmt.close();
-				//if(con != null) con.close();
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -164,8 +178,6 @@ public class MemberDAO{
 			pstmt.setString(1, mem_name); 
 			pstmt.setString(2, mem_tel); 
 			pstmt.setString(3, mem_email); 
-
-
 			rs=pstmt.executeQuery(); 
 			while(rs.next()){
 				mem_id=rs.getString("mem_id"); 
@@ -175,7 +187,7 @@ public class MemberDAO{
 		}finally{
 			try {
 				if(rs != null) rs.close();
-				if(con != null) con.close();
+				if(pstmt != null) pstmt.close();
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -196,8 +208,6 @@ public class MemberDAO{
 			pstmt.setString(2, mem_id);
 			pstmt.setString(3, mem_tel); 
 			pstmt.setString(4, mem_email); 
-
-
 			rs=pstmt.executeQuery(); 
 			while(rs.next()){
 				mem_pw=rs.getString("mem_pw"); 
@@ -209,7 +219,7 @@ public class MemberDAO{
 		}finally{
 			try {
 				if(rs != null) rs.close();
-				if(con != null) con.close();
+				if(pstmt != null) pstmt.close();
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -241,7 +251,7 @@ public class MemberDAO{
 
 			try {
 				if(rs != null) rs.close();
-				if(con != null) con.close();
+				if(pstmt != null) pstmt.close();
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -253,7 +263,7 @@ public class MemberDAO{
 
 
 	//회원 탈퇴	
-	public boolean delete(String mem_id) throws SQLException {
+	public boolean delete(String mem_id) {
 		boolean check=false;
 		String sql = "delete from member where mem_id=?;";
 
@@ -268,7 +278,6 @@ public class MemberDAO{
 		}catch(Exception e){
 			System.out.println(e);
 		}finally{
-
 			try {
 				if(rs != null) rs.close();
 				if(con != null) con.close();
@@ -336,98 +345,91 @@ public class MemberDAO{
 	}
 	
 	//마이페이지 접속시 비밀번호 재확인 
-		public int MyPagePWck(String mem_pw, String mem_id) {
-			
-			int result = 0 ;
-			
-				try {
-					pstmt = con.prepareStatement("SELECT mem_pw, mem_id FROM member WHERE mem_id = ?");
-				pstmt.setString(1, mem_id);
-				rs = pstmt.executeQuery();
-				
-				if (rs.next()) {
-					
-					if (mem_pw.equals(rs.getString("mem_pw"))) {
-						result = 1;
-						
-					} else
-						result = -1;
-				}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			return result;
+	public int MyPagePWck(String mem_pw, String mem_id) {
+		
+		int result = 0 ;
+		
+		try {
+			pstmt = con.prepareStatement("SELECT mem_pw, mem_id FROM member WHERE mem_id = ?");
+			pstmt.setString(1, mem_id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				if (mem_pw.equals(rs.getString("mem_pw"))) {
+					result = 1;
+				} else
+					result = -1;
+			}
+		} catch (SQLException e) {
+				e.printStackTrace();
 		}
+		return result;
+	}
 	
 	//로그인
-		public int selectID(String mem_id, String mem_pw) {
-			
-			int result = 0 ;
-			
-			try {
-				pstmt = con.prepareStatement("SELECT mem_id, mem_pw FROM member WHERE mem_id = ? AND mem_pw = ?");
-				pstmt.setString(1, mem_id);
-				pstmt.setString(2, mem_pw);
-				rs = pstmt.executeQuery();
-
-				if (rs.next()) {
-						result = 1; 
-						return result;
-						 
-					} 
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return result;
-		}
+	public int selectID(String mem_id, String mem_pw) {
 		
-		//비밀번호 찾기 (회원정보 일치 여부) 
-		public int PWfound(String mem_name, String mem_id, String mem_tel, String mem_email) {
+		int result = 0 ;
 		
-			int result = 0 ;
-			
-			try {
-				pstmt = con.prepareStatement("SELECT mem_name, mem_id, mem_tel, mem_email FROM member "
-						+ "WHERE mem_name = ? AND mem_id = ? AND mem_tel = ? AND mem_email = ?");
-				pstmt.setString(1, mem_name);
-				pstmt.setString(2, mem_id);
-				pstmt.setString(3, mem_tel);
-				pstmt.setString(4, mem_email);
-				rs = pstmt.executeQuery();
-				
-				if (rs.next()) {				
-						result = 1;
-						return result;
-				}
-			}catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return result;
+		try {
+			pstmt = con.prepareStatement("SELECT mem_id, mem_pw FROM member WHERE mem_id = ? AND mem_pw = ?");
+			pstmt.setString(1, mem_id);
+			pstmt.setString(2, mem_pw);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+					result = 1; 
+					return result;
+				} 
+		}catch (SQLException e) {
+			e.printStackTrace();
 		}
+		return result;
+	}
 		
-		//아이디 찾기 (회원정보 일치 여부) 작성자:양준모
-		public int IDfound(String mem_name, String mem_id, String mem_tel, String mem_email) {
-			
-			int result = 0 ;
-			
-			try {
-				pstmt = con.prepareStatement("SELECT mem_name, mem_id, mem_tel, mem_email FROM member "
-						+ "WHERE mem_name = ?  AND mem_tel = ? AND mem_email = ?");
-				pstmt.setString(1, mem_name);
-				pstmt.setString(2, mem_tel);
-				pstmt.setString(3, mem_email);
-				rs = pstmt.executeQuery();
-				
-				if (rs.next()) {				
-						result = 1;
-						return result;
-				}
-			}catch (SQLException e) {
-				e.printStackTrace();
+	//비밀번호 찾기 (회원정보 일치 여부) 
+	public int PWfound(String mem_name, String mem_id, String mem_tel, String mem_email) {
+	
+		int result = 0 ;
+		
+		try {
+			pstmt = con.prepareStatement("SELECT mem_name, mem_id, mem_tel, mem_email FROM member "
+					+ "WHERE mem_name = ? AND mem_id = ? AND mem_tel = ? AND mem_email = ?");
+			pstmt.setString(1, mem_name);
+			pstmt.setString(2, mem_id);
+			pstmt.setString(3, mem_tel);
+			pstmt.setString(4, mem_email);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {				
+					result = 1;
+					return result;
 			}
-			return result;
+		}catch (SQLException e) {
+			e.printStackTrace();
 		}
+		return result;
+	}
+		
+	//아이디 찾기 (회원정보 일치 여부) 작성자:양준모
+	public int IDfound(String mem_name, String mem_id, String mem_tel, String mem_email) {
+		
+		int result = 0 ;
+		
+		try {
+			pstmt = con.prepareStatement("SELECT mem_name, mem_id, mem_tel, mem_email FROM member "
+					+ "WHERE mem_name = ?  AND mem_tel = ? AND mem_email = ?");
+			pstmt.setString(1, mem_name);
+			pstmt.setString(2, mem_tel);
+			pstmt.setString(3, mem_email);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {				
+					result = 1;
+					return result;
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
 
 

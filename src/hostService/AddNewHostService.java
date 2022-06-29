@@ -20,8 +20,11 @@ public class AddNewHostService implements ServiceInterface {
 		// 현재 로그인 세션에 저장된 계정 정보 가져오기
 		HttpSession session = request.getSession();
 		MemberVO memvo = (MemberVO)session.getAttribute("login");
+		
 		int mem_num = memvo.getMem_num();
+		String mem_id = memvo.getMem_id();
 		System.out.println("mem_num : " + mem_num);
+		System.out.println("mem_id : " + mem_id);
 		
 		// Form 에서 입력된 값 받기 
 		String host_name = request.getParameter("host_name");
@@ -41,8 +44,8 @@ public class AddNewHostService implements ServiceInterface {
 		String room_type = request.getParameter("room_type"); // A 전체, P 개인실, S 다인실
 		System.out.println("room_type : " + room_type);
 		
-		String room_name = request.getParameter("room_name");
-		System.out.println("room_name : " + room_name);
+//		String room_name = request.getParameter("room_name");
+//		System.out.println("room_name : " + room_name);
 		
 		int room_cnt = Integer.parseInt(request.getParameter("room_cnt_1"));
 		if(room_cnt == 0) {
@@ -66,8 +69,8 @@ public class AddNewHostService implements ServiceInterface {
 		// 사진파일 다중 업로드 제외. 
 		//String host_file = "제외"; // Multipart 관련 DB 생성 여부 판단필요... 
 		
-		HostVO vo = new HostVO(mem_num, host_name, host_addr, host_post_num, host_tel, room_type,
-				room_name, room_cnt, guest_cnt, weekday_amt, weekend_amt, host_content);
+		HostVO vo = new HostVO(host_name, host_addr, host_post_num, host_tel, room_type,
+				room_cnt, guest_cnt, weekday_amt, weekend_amt, host_content, mem_num, mem_id);
 		
 		boolean check = HostDAO.getInstance().insertHost(vo);
 		String msg = null;

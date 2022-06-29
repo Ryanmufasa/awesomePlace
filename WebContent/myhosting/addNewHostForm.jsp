@@ -47,10 +47,10 @@
 				
 			</td>
 		</tr>
-		<tr>
+		<!-- <tr>
 			<td>방 이름</td>
 			<td><input type="text" name="room_name" placeholder="ex) 201호 " required></td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td>방 개수 </td>
 			<td>

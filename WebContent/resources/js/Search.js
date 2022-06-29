@@ -15,6 +15,15 @@ $(document).ready(function(){
 		$("#checkOut").attr("min",checkInDay);
 		$("#checkOut").attr("disabled",false);
 	});
+	
+	// 예약 화면에서 입력시
+	$('#checkIn1').attr('min',today); 
+	
+	$('#checkIn1').on('change',function(){
+		var checkIn1 = $('#checkIn1').val();
+		$('#checkOut1').attr('min', checkIn1);
+		$('#checkOut1').attr('disabled', false);
+	});
 
 });
 

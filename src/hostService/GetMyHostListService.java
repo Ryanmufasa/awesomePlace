@@ -35,6 +35,7 @@ public class GetMyHostListService implements ServiceInterface {
 			msg = "호스트 정보를 불러옵니다.";
 			check = true;
 			session.setAttribute("myHostList", myHostList);
+			//request.setAttribute("myHostlost", myHostList);
 		}else {
 			msg = "등록된 호스트 정보가 업습니다";
 		}

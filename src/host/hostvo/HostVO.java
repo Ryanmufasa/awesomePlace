@@ -6,13 +6,11 @@ import java.util.Date;
 public class HostVO {
 	
 	private int host_num;  		// PK 
-	private int mem_num; 		// member 테이블 참조 FK
 	private String host_name;	// 호스트 이름 
 	private String host_addr;	// 호스트 주소 
 	private String host_post_num;	// 호스트 우편번호
 	private String host_tel;	// 호스트 연락처
 	private String room_type;	// 방 타입 ( A(All), P(Private room), S(Share house/room)
-	private String room_name;	// 방 호실 
 	private int room_cnt;		// 방 개수 
 	private int guest_cnt;		// 숙박 인원
 	private int weekday_amt;	// 평일 가격
@@ -20,42 +18,42 @@ public class HostVO {
 	private String host_content;
 	private Date host_date;		// 호스트 등록 일자 
 	private String sign; // 호스트 승인 여부 ( default 값 false ) 
+	private int mem_num; 		// member 테이블 참조 FK
+	private String mem_id;
 	
 	// 디폴트 생성자
 	public HostVO() {}
 	
 	// 호스트 처음 등록시 
-	public HostVO(int mem_num, String host_name, String host_addr, String host_post_num, String host_tel,
-			String room_type, String room_name, int room_cnt, int guest_cnt, int weekday_amt, int weekend_amt,
-			String host_content) {
-		this.mem_num = mem_num;
+	public HostVO(String host_name, String host_addr, String host_post_num, String host_tel,
+			String room_type, int room_cnt, int guest_cnt, int weekday_amt, int weekend_amt,
+			String host_content, int mem_num, String mem_id) {
 		this.host_name = host_name;
 		this.host_addr = host_addr;
 		this.host_post_num = host_post_num;
 		this.host_tel = host_tel;
 		this.room_type = room_type;
-		this.room_name = room_name;
 		this.room_cnt = room_cnt;
 		this.guest_cnt = guest_cnt;
 		this.weekday_amt = weekday_amt;
 		this.weekend_amt = weekend_amt;
 		this.host_content = host_content;
+		this.mem_num = mem_num;
+		this.mem_id=mem_id;
 		
 	}
 	
 	// DB에 있는 호스트 정보를 가져올때 생성자 
-	public HostVO(int host_num, int mem_num, String host_name, String host_addr, String host_post_num, String host_tel,
-			String room_type, String room_name, int room_cnt, int guest_cnt, int weekday_amt, int weekend_amt,
-			String host_content, Date host_date, String sign) {
+	public HostVO(int host_num, String host_name, String host_addr, String host_post_num, String host_tel,
+			String room_type, int room_cnt, int guest_cnt, int weekday_amt, int weekend_amt,
+			String host_content, Date host_date, String sign, int mem_num, String mem_id) {
 		super();
 		this.host_num = host_num;
-		this.mem_num = mem_num;
 		this.host_name = host_name;
 		this.host_addr = host_addr;
 		this.host_post_num = host_post_num;
 		this.host_tel = host_tel;
 		this.room_type = room_type;
-		this.room_name = room_name;
 		this.room_cnt = room_cnt;
 		this.guest_cnt = guest_cnt;
 		this.weekday_amt = weekday_amt;
@@ -63,6 +61,8 @@ public class HostVO {
 		this.host_content = host_content;
 		this.host_date = host_date;
 		this.sign = sign;
+		this.mem_num = mem_num;
+		this.mem_id = mem_id;
 	}
 	
 	public int getHost_num() {
@@ -85,9 +85,6 @@ public class HostVO {
 	}
 	public String getRoom_type() {
 		return room_type;
-	}
-	public String getRoom_name() {
-		return room_name;
 	}
 	public int getRoom_cnt() {
 		return room_cnt;
@@ -125,9 +122,6 @@ public class HostVO {
 	public void setRoom_type(String room_type) {
 		this.room_type = room_type;
 	}
-	public void setRoom_name(String room_name) {
-		this.room_name = room_name;
-	}
 	public void setRoom_cnt(int room_cnt) {
 		this.room_cnt = room_cnt;
 	}
@@ -158,6 +152,14 @@ public class HostVO {
 
 	public void setSign(String sign) {
 		this.sign = sign;
+	}
+
+	public String getMem_id() {
+		return mem_id;
+	}
+
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
 	}
 
 }

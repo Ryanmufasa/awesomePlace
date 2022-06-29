@@ -8,19 +8,34 @@ public class MemberVO {
 	private String mem_pw;
 	private String mem_tel;
 	private String mem_email;
-	
+	private String mem_sign;
+	private int mem_hostCnt;
 	
 	public MemberVO() {}
 	
-	
-	public MemberVO(int mem_num, String mem_name, String mem_id, String mem_pw, String mem_tel, String mem_email) {
+	public MemberVO(int mem_num, String mem_name, String mem_id, String mem_pw, String mem_tel, String mem_email,
+			String mem_sign, int mem_hostCnt) {
 		super();
-		this.mem_num=mem_num;
-		this.mem_name=mem_name;
-		this.mem_id=mem_id;
-		this.mem_pw=mem_pw;
-		this.mem_tel=mem_tel;
-		this.mem_email=mem_email;
+		this.mem_num = mem_num;
+		this.mem_name = mem_name;
+		this.mem_id = mem_id;
+		this.mem_pw = mem_pw;
+		this.mem_tel = mem_tel;
+		this.mem_email = mem_email;
+		this.mem_sign = mem_sign;
+		this.mem_hostCnt = mem_hostCnt;
+	}
+	
+	public MemberVO(String mem_name, String mem_id, String mem_pw, String mem_tel, String mem_email,
+			String mem_sign, int mem_hostCnt) {
+		super();
+		this.mem_name = mem_name;
+		this.mem_id = mem_id;
+		this.mem_pw = mem_pw;
+		this.mem_tel = mem_tel;
+		this.mem_email = mem_email;
+		this.mem_sign = mem_sign;
+		this.mem_hostCnt = mem_hostCnt;
 	}
 	
 	public MemberVO(String mem_name, String mem_id, String mem_pw, String mem_tel, String mem_email) {
@@ -68,5 +83,25 @@ public class MemberVO {
 	}
 	public void setMem_email(String mem_email) {
 		this.mem_email = mem_email;
+	}
+
+
+	public String getMem_sign() {
+		return mem_sign;
+	}
+
+
+	public void setMem_sign(String mem_sign) {
+		this.mem_sign = mem_sign;
+	}
+
+
+	public int getMem_hostCnt() {
+		return mem_hostCnt;
+	}
+
+
+	public void setMem_hostCnt(int mem_hostCnt) {
+		this.mem_hostCnt = mem_hostCnt;
 	}
 }

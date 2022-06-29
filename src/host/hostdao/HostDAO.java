@@ -44,13 +44,11 @@ public class HostDAO {
 			while(rs.next()) {
 				vo = new HostVO(); 
 				vo.setHost_num(rs.getInt("host_num"));
-				vo.setMem_num(rs.getInt("mem_num"));
 				vo.setHost_name(rs.getString("host_name"));
 				vo.setHost_addr(rs.getString("host_addr"));
 				vo.setHost_post_num(rs.getString("host_post_num"));
 				vo.setHost_tel(rs.getString("host_tel"));
 				vo.setRoom_type(rs.getString("room_type"));
-				vo.setRoom_name(rs.getString("room_name"));
 				vo.setRoom_cnt(rs.getInt("room_cnt"));
 				vo.setGuest_cnt(rs.getInt("guest_cnt"));
 				vo.setWeekday_amt(rs.getInt("weekday_amt"));
@@ -58,13 +56,15 @@ public class HostDAO {
 				vo.setHost_content(rs.getString("host_content"));
 				vo.setHost_date(rs.getDate("host_date"));
 				vo.setSign(rs.getString("sign"));
+				vo.setMem_num(rs.getInt("mem_num"));
+				vo.setMem_id(rs.getString("mem_id"));
 				
 				hostli.add(vo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		if(hostli.isEmpty()) {
 			hostli = null;
 			System.out.println("불러올 호스트 목록 없음.");
@@ -90,13 +90,11 @@ public class HostDAO {
 			while(rs.next()) {
 				vo = new HostVO(); 
 				vo.setHost_num(rs.getInt("host_num"));
-				vo.setMem_num(rs.getInt("mem_num"));
 				vo.setHost_name(rs.getString("host_name"));
 				vo.setHost_addr(rs.getString("host_addr"));
 				vo.setHost_post_num(rs.getString("host_post_num"));
 				vo.setHost_tel(rs.getString("host_tel"));
 				vo.setRoom_type(rs.getString("room_type"));
-				vo.setRoom_name(rs.getString("room_name"));
 				vo.setRoom_cnt(rs.getInt("room_cnt"));
 				vo.setGuest_cnt(rs.getInt("guest_cnt"));
 				vo.setWeekday_amt(rs.getInt("weekday_amt"));
@@ -104,6 +102,8 @@ public class HostDAO {
 				vo.setHost_content(rs.getString("host_content"));
 				vo.setHost_date(rs.getDate("host_date"));
 				vo.setSign(rs.getString("sign"));
+				vo.setMem_num(rs.getInt("mem_num"));
+				vo.setMem_id(rs.getString("mem_id"));
 				
 				hostli.add(vo);
 			}
@@ -135,13 +135,11 @@ public class HostDAO {
 			if(rs.next()) {
 				vo = new HostVO(); 
 				vo.setHost_num(rs.getInt("host_num"));
-				vo.setMem_num(rs.getInt("mem_num"));
 				vo.setHost_name(rs.getString("host_name"));
 				vo.setHost_addr(rs.getString("host_addr"));
 				vo.setHost_post_num(rs.getString("host_post_num"));
 				vo.setHost_tel(rs.getString("host_tel"));
 				vo.setRoom_type(rs.getString("room_type"));
-				vo.setRoom_name(rs.getString("room_name"));
 				vo.setRoom_cnt(rs.getInt("room_cnt"));
 				vo.setGuest_cnt(rs.getInt("guest_cnt"));
 				vo.setWeekday_amt(rs.getInt("weekday_amt"));
@@ -149,6 +147,8 @@ public class HostDAO {
 				vo.setHost_content(rs.getString("host_content"));
 				vo.setHost_date(rs.getDate("host_date"));
 				vo.setSign(rs.getString("sign"));
+				vo.setMem_num(rs.getInt("mem_num"));
+				vo.setMem_id(rs.getString("mem_id"));
 			}
 				
 		}catch(SQLException e) {
@@ -173,13 +173,11 @@ public class HostDAO {
 			while(rs.next()) {
 				vo = new HostVO(); 
 				vo.setHost_num(rs.getInt("host_num"));
-				vo.setMem_num(rs.getInt("mem_num"));
 				vo.setHost_name(rs.getString("host_name"));
 				vo.setHost_addr(rs.getString("host_addr"));
 				vo.setHost_post_num(rs.getString("host_post_num"));
 				vo.setHost_tel(rs.getString("host_tel"));
 				vo.setRoom_type(rs.getString("room_type"));
-				vo.setRoom_name(rs.getString("room_name"));
 				vo.setRoom_cnt(rs.getInt("room_cnt"));
 				vo.setGuest_cnt(rs.getInt("guest_cnt"));
 				vo.setWeekday_amt(rs.getInt("weekday_amt"));
@@ -187,6 +185,8 @@ public class HostDAO {
 				vo.setHost_content(rs.getString("host_content"));
 				vo.setHost_date(rs.getDate("host_date"));
 				vo.setSign(rs.getString("sign"));
+				vo.setMem_num(rs.getInt("mem_num"));
+				vo.setMem_id(rs.getString("mem_id"));
 				
 				hostli.add(vo);
 			}
@@ -241,26 +241,26 @@ public class HostDAO {
 		
 		boolean check = false;
 
-		String sql = "insert into host values(host_seq.nextval,?,?,?,?,?,?,?,"
-				+ "?,?,?,?,?,sysdate, 'false')";
+		String sql = "insert into host values(host_seq.nextval,?,?,?,?,?,"
+				+ "?,?,?,?,"
+				+ "?, sysdate, 'false',?,?)";
 		
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, vo.getMem_num());
-			ps.setString(2, vo.getHost_name());
-			ps.setString(3, vo.getHost_addr());
-			ps.setString(4, vo.getHost_post_num());
+			ps.setString(1, vo.getHost_name());
+			ps.setString(2, vo.getHost_addr());
+			ps.setString(3, vo.getHost_post_num());
+			ps.setString(4, vo.getHost_tel());
+			ps.setString(5, vo.getRoom_type());
 			
-			ps.setString(5, vo.getHost_tel());
-			ps.setString(6, vo.getRoom_type());
-			ps.setString(7, vo.getRoom_name());
+			ps.setInt(6, vo.getRoom_cnt());
+			ps.setInt(7, vo.getGuest_cnt());
+			ps.setInt(8, vo.getWeekday_amt());
+			ps.setInt(9, vo.getWeekend_amt());
 			
-			ps.setInt(8, vo.getRoom_cnt());
-			ps.setInt(9, vo.getGuest_cnt());
-			ps.setInt(10, vo.getWeekday_amt());
-			ps.setInt(11, vo.getWeekend_amt());
-			
-			ps.setString(12, vo.getHost_content());
+			ps.setString(10, vo.getHost_content());
+			ps.setInt(11, vo.getMem_num());
+			ps.setString(12, vo.getMem_id());
 
 			if(ps.executeUpdate() != 0) {
 				check = true;
@@ -319,13 +319,11 @@ public class HostDAO {
 			while(rs.next()) {
 				vo = new HostVO(); 
 				vo.setHost_num(rs.getInt("host_num"));
-				vo.setMem_num(rs.getInt("mem_num"));
 				vo.setHost_name(rs.getString("host_name"));
 				vo.setHost_addr(rs.getString("host_addr"));
 				vo.setHost_post_num(rs.getString("host_post_num"));
 				vo.setHost_tel(rs.getString("host_tel"));
 				vo.setRoom_type(rs.getString("room_type"));
-				vo.setRoom_name(rs.getString("room_name"));
 				vo.setRoom_cnt(rs.getInt("room_cnt"));
 				vo.setGuest_cnt(rs.getInt("guest_cnt"));
 				vo.setWeekday_amt(rs.getInt("weekday_amt"));
@@ -333,6 +331,8 @@ public class HostDAO {
 				vo.setHost_content(rs.getString("host_content"));
 				vo.setHost_date(rs.getDate("host_date"));
 				vo.setSign(rs.getString("sign"));
+				vo.setMem_num(rs.getInt("mem_num"));
+				vo.setMem_id(rs.getString("mem_id"));
 				
 				hostli.add(vo);
 			}
@@ -368,7 +368,7 @@ public class HostDAO {
 		
 		String sql = "update host set "
 				+ "host_name=?, host_addr=?, host_post_num=?, "
-				+ "host_tel=?, room_type=?, room_name=?, room_cnt=? "
+				+ "host_tel=?, room_type=?, room_cnt=? "
 				+ "guest_cnt=?, weekday_amt=?, weekend_amt=?, "
 				+ "host_content=? where host_num=?";
 		
@@ -382,15 +382,14 @@ public class HostDAO {
 			
 			ps.setString(4, vo.getHost_tel());
 			ps.setString(5, vo.getRoom_type());
-			ps.setString(6, vo.getRoom_name());
-			ps.setInt(7, vo.getRoom_cnt());
+			ps.setInt(6, vo.getRoom_cnt());
 			
-			ps.setInt(8, vo.getGuest_cnt());
-			ps.setInt(9, vo.getWeekday_amt());
-			ps.setInt(10, vo.getWeekend_amt());
+			ps.setInt(7, vo.getGuest_cnt());
+			ps.setInt(8, vo.getWeekday_amt());
+			ps.setInt(9, vo.getWeekend_amt());
 			
-			ps.setString(11, vo.getHost_content());
-			ps.setInt(12, vo.getHost_num());	
+			ps.setString(10, vo.getHost_content());
+			ps.setInt(11, vo.getHost_num());
 			if(ps.executeUpdate() != 0) {
 				check = true;
 			}
