@@ -4,9 +4,9 @@ import java.sql.*;
 import java.sql.Date;
 import java.util.*;
 
-
-
+import admin.QnAVO;
 import awesomePlace.dbConn.DBConn;
+import host.hostvo.HostVO;
 import member.MemberVO;
 
 public class MemberDAO{
@@ -423,6 +423,430 @@ public class MemberDAO{
 			}
 			return result;
 		}
+
+
+		//https://github.com/Ryanmufasa/awesomePlace/issues/39 작성자: 이명진
+		public ArrayList<QnAVO> getAllQnAList() {
+			ArrayList<QnAVO> qnaList = new ArrayList<>();
+			
+			String sql = "SELECT * FROM qna";
+			try {
+				pstmt=con.prepareStatement(sql);
+				rs=pstmt.executeQuery();
+			
+				int qna_num;
+				String mem_id;
+				String qna_title;
+				String qna_Content;
+				String qna_date;
+				String qna_sign;
+				String qna_answer;
+				while(rs.next()) {
+					qna_num = Integer.parseInt(rs.getString("qna_num"));
+					mem_id = rs.getString("mem_id");
+					qna_title = rs.getString("qna_title");
+					qna_Content = rs.getString("qna_Content");
+					qna_date = rs.getString("qna_date");
+					qna_sign = rs.getString("qna_sign");
+					qna_answer = rs.getString("qna_answer");
+					
+					QnAVO qna = new QnAVO(qna_num,mem_id,qna_title,qna_Content,qna_date,qna_sign,qna_answer);
+					qnaList.add(qna);
+				}
+			
+			}  catch (SQLException e) {
+					
+				try {
+					if(pstmt != null) {
+						pstmt.close();
+					}else if(con!=null)
+						con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+			return qnaList;
+		}
+		
+		
+		//https://github.com/Ryanmufasa/awesomePlace/issues/39 작성자: 이명진
+		public ArrayList<QnAVO> getQnAContent(int idx) {
+			ArrayList<QnAVO> qnaCon= new ArrayList<>();
+			String sql = "SELECT * FROM qna WHERE qna_num=?";
+			try {
+				
+				
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, idx);
+				rs=pstmt.executeQuery();
+				
+				int qna_num;
+				String mem_id;
+				String qna_title;
+				String qna_content;
+				String qna_date;
+				String qna_sign;
+				String qna_answer;
+				while(rs.next()) {
+					qna_num = Integer.parseInt(rs.getString("qna_num"));
+					mem_id = rs.getString("mem_id");
+					qna_title = rs.getString("qna_title");
+					qna_content = rs.getString("qna_content");
+					qna_date = rs.getString("qna_date");
+					qna_sign = rs.getString("qna_sign");
+					qna_answer = rs.getString("qna_answer");
+					
+					QnAVO qna = new QnAVO(qna_num,mem_id,qna_title,qna_date,qna_content,qna_sign,qna_answer);
+					qnaCon.add(qna);
+				}
+				}  catch (SQLException e) {
+						
+					try {
+						if(pstmt != null) {
+							pstmt.close();
+						}else if(con!=null)
+							con.close();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				}
+				return qnaCon;
+			}
+
+
+		//https://github.com/Ryanmufasa/awesomePlace/issues/39 작성자: 이명진
+		public boolean setQnAAnswer(int qnaNum, String answer) {
+			String sql = "UPDATE qna SET qna_answer=?, qna_sign='Done' WHERE qna_num=?";
+			
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, answer);
+				pstmt.setInt(2, qnaNum);
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+			return true;
+		}
+
+
+		//https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+		public ArrayList<MemberVO> getAllMember() { 
+			ArrayList<MemberVO> memList = new ArrayList<>();
+			
+			String sql = "SELECT * FROM member";
+			try {
+				pstmt=con.prepareStatement(sql);
+				rs=pstmt.executeQuery();
+			
+				int mem_num;
+				String mem_name;
+				String mem_id;
+				String mem_pw;
+				String mem_tel;
+				String mem_email;
+				String mem_available;
+				int mem_hostingcnt;
+				
+				while(rs.next()) {
+					mem_num = Integer.parseInt(rs.getString("mem_num"));
+					mem_name = rs.getString("mem_name");
+					mem_id = rs.getString("mem_id");
+					mem_pw = rs.getString("mem_pw");
+					mem_tel = rs.getString("mem_tel");
+					mem_email = rs.getString("mem_email");
+					mem_available = rs.getString("mem_available");
+					mem_hostingcnt = Integer.parseInt(rs.getString("mem_hostingcnt"));
+					
+					MemberVO mem = new MemberVO(mem_num,mem_name,mem_id,mem_pw,mem_tel,mem_email,mem_available,mem_hostingcnt);
+					memList.add(mem);
+				}
+			
+			}  catch (SQLException e) {
+					
+				try {
+					if(pstmt != null) {
+						pstmt.close();
+					}else if(con!=null)
+						con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+			return memList;
+		}
+
+		//https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+		public MemberVO getMember(int idx) { 
+			MemberVO memInfo=null;
+			String sql = "SELECT * FROM member WHERE mem_num=?";
+			try {
+				System.out.println("여기 오긴 하니?");
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, idx);
+				rs = pstmt.executeQuery();
+				
+				int mem_num;
+				String mem_name;
+				String mem_id;
+				String mem_pw;
+				String mem_tel;
+				String mem_email;
+				String mem_available;
+				int mem_hostingcnt;
+				
+				if(rs.next()) {
+					mem_num = Integer.parseInt(rs.getString("mem_num"));
+					mem_name = rs.getString("mem_name");
+					mem_id = rs.getString("mem_id");
+					mem_pw = rs.getString("mem_pw");
+					mem_tel = rs.getString("mem_tel");
+					mem_email = rs.getString("mem_email");
+					mem_available = rs.getString("mem_available");
+					mem_hostingcnt = Integer.parseInt(rs.getString("mem_hostingcnt"));
+					
+					memInfo = new MemberVO(mem_num,mem_name,mem_id,mem_pw,mem_tel,mem_email,mem_available,mem_hostingcnt);
+				}
+			} catch (SQLException e) {
+				try {
+					if(pstmt != null) {
+						pstmt.close();
+					}else if(con!=null)
+						con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+			return memInfo;
+		}
+		
+		//https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+		public ArrayList<HostVO> getMemberHostList(int idx) { 
+			ArrayList<HostVO> memHostList= new ArrayList<>();
+			String sql = "SELECT * FROM host WHERE mem_num=?";
+			try {
+				System.out.println("여기 오긴 하니?");
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, idx);
+				rs = pstmt.executeQuery();
+				
+				int host_num;
+				int mem_num;
+				String host_name;
+				String host_addr;
+				String host_post_num;
+				String host_tel;
+				String room_type;
+				String room_name;
+				int room_cnt;
+				int guest_cnt;
+				int weekday_amt;
+				int weekdend_amt;
+				String host_content;
+				String host_date;
+				String sign;
+				
+				while(rs.next()) {
+					host_num = Integer.parseInt(rs.getString("host_num"));
+					mem_num = Integer.parseInt(rs.getString("mem_num"));
+					host_name = rs.getString("host_name");
+					host_addr = rs.getString("host_addr");
+					host_post_num = rs.getString("host_post_num");
+					host_tel = rs.getString("host_tel");
+					room_type = rs.getString("room_type");
+					room_name = rs.getString("room_name");
+					room_cnt = Integer.parseInt(rs.getString("room_cnt"));
+					guest_cnt = Integer.parseInt(rs.getString("guest_cnt"));
+					weekday_amt = Integer.parseInt(rs.getString("weekday_amt"));
+					weekdend_amt = Integer.parseInt(rs.getString("weekdend_amt"));
+					host_content = rs.getString("host_content");
+					host_date = rs.getString("host_date");
+					sign = rs.getString("sign");
+					
+					HostVO hostInfo = new HostVO(host_num,mem_num,host_name,host_addr,host_post_num,host_tel,room_type,
+							room_name,room_cnt,guest_cnt,weekday_amt,weekdend_amt,host_content,host_date,sign);
+					memHostList.add(hostInfo);
+				}
+			} catch (SQLException e) {
+				try {
+					if(pstmt != null) {
+						pstmt.close();
+					}else if(con!=null)
+						con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+			return memHostList;
+		}
+		
+		//https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+		public boolean HostingCheck(int idx) {
+			String sql = "select count(*) from host where mem_num=?";
+			String temp= null;
+			int cnt=0;
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, idx);
+				rs = pstmt.executeQuery();
+				
+				temp = rs.getString("count(*)");
+				
+			} catch (SQLException e) {
+				try {
+					if(pstmt != null) {
+						pstmt.close();
+					}else if(con!=null)
+						con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+			if(temp!=null) {
+				cnt = Integer.parseInt(temp);
+			}
+			
+			if(cnt == 0) {
+				return false;
+			}else {
+				return true;
+			}
+			
+		}
+		
+		//https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+		public boolean memSwitchAvailable(int idx, String flag) {
+			String sql = null;
+			if(flag.equals("Y"))
+				sql = "UPDATE member SET mem_available='N' WHERE mem_num=?";
+			else if(flag.equals("N"))
+				sql = "UPDATE member SET mem_available='Y' WHERE mem_num=?";
+			System.out.println("메서드 실행");
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, idx);
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				try {
+					if(pstmt != null) {
+						pstmt.close();
+					}else if(con!=null)
+						con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			return true;
+		}
+
+
+		//https://github.com/Ryanmufasa/awesomePlace/issues/50 작성자: 이명진
+		public ArrayList<HostVO> getAllHosting() {
+			String sql = "SELECT * FROM host";
+			ArrayList<HostVO> hostList = new ArrayList<HostVO>();
+			
+			try {
+				pstmt=con.prepareStatement(sql);
+				rs=pstmt.executeQuery();
+				
+				int host_num;
+				int mem_num;
+				String host_name;
+				String host_addr;
+				String host_post_num;
+				String host_tel;
+				String room_type;
+				String room_name;
+				int room_cnt;
+				int guest_cnt;
+				int weekday_amt;
+				int weekdend_amt;
+				String host_content;
+				String host_date;
+				String sign;
+				
+				
+				
+				while(rs.next()) {
+					host_num = Integer.parseInt(rs.getString("host_num"));
+					mem_num = Integer.parseInt(rs.getString("mem_num"));
+					host_name = rs.getString("host_name");
+					host_addr = rs.getString("host_addr");
+					host_post_num = rs.getString("host_post_num");
+					host_tel = rs.getString("host_tel");
+					room_type = rs.getString("room_type");
+					room_name = rs.getString("room_name");
+					room_cnt = Integer.parseInt(rs.getString("room_cnt"));
+					guest_cnt = Integer.parseInt(rs.getString("guest_cnt"));
+					weekday_amt = Integer.parseInt(rs.getString("weekday_amt"));
+					weekdend_amt = Integer.parseInt(rs.getString("weekdend_amt"));
+					host_content = rs.getString("host_content");
+					String temp = (rs.getString("host_date"));
+					sign = rs.getString("sign");
+					
+					host_date = temp.substring(0, 10);
+					
+					System.out.println("이것은 : " + host_date);
+					
+					HostVO hostInfo = new HostVO(host_num,mem_num,host_name,host_addr,host_post_num,host_tel,room_type,
+							room_name,room_cnt,guest_cnt,weekday_amt,weekdend_amt,host_content,host_date,sign);
+					hostList.add(hostInfo);
+				}
+			
+			} catch (SQLException e) {
+				try {
+					if(pstmt != null) {
+						pstmt.close();
+					}else if(con!=null)
+						con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			System.out.println(hostList.get(0).gethost_dateS());
+			
+			return hostList;
+		}
+		
+		//https://github.com/Ryanmufasa/awesomePlace/issues/50 작성자: 이명진
+		public ArrayList<MemberVO> getAllMemId() {
+			String sql = "SELECT mem_id, mem_num FROM member";
+			ArrayList<MemberVO> memInfo= new ArrayList<MemberVO>();
+			
+			try {
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+				int mem_num;
+				String mem_id;
+				
+				while(rs.next()) {
+					mem_num = Integer.parseInt(rs.getString("mem_num"));
+					mem_id = rs.getString("mem_id");
+					
+					MemberVO temp = new MemberVO(mem_num, mem_id);
+					memInfo.add(temp);
+				}
+			
+			} catch (SQLException e) {
+				try {
+					if(pstmt != null) {
+						pstmt.close();
+					}else if(con!=null)
+						con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			return memInfo;
+		}
+		
 }
 
 

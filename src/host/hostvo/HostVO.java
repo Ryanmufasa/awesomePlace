@@ -20,7 +20,9 @@ public class HostVO {
 	private String host_content;
 	//private String host_file;	// 홍보 용 사진  -> 삭제
 	private Date host_date;		// 호스트 등록 일자 
+	private String sign;
 	
+	private String host_dateS; //호스트리스트 출력 생성자용 작성자:이명진
 	// 디폴트 생성자
 	public HostVO() {}
 	
@@ -47,7 +49,6 @@ public class HostVO {
 	public HostVO(int host_num, int mem_num, String host_name, String host_addr, String host_post_num, String host_tel,
 			String room_type, String room_name, int room_cnt, int guest_cnt, int weekday_amt, int weekend_amt,
 			String host_content, Date host_date) {
-		super();
 		this.host_num = host_num;
 		this.mem_num = mem_num;
 		this.host_name = host_name;
@@ -61,8 +62,28 @@ public class HostVO {
 		this.weekday_amt = weekday_amt;
 		this.weekend_amt = weekend_amt;
 		this.host_content = host_content;
-		
 		this.host_date = host_date;
+	}
+	
+	//호스트리스트 출력용 생성자 작성자:이명진
+	public HostVO(int host_num, int mem_num, String host_name, String host_addr, String host_post_num, String host_tel,
+			String room_type, String room_name, int room_cnt, int guest_cnt, int weekday_amt, int weekend_amt,
+			String host_content, String host_dateS, String sign) {
+		this.host_num = host_num;
+		this.mem_num = mem_num;
+		this.host_name = host_name;
+		this.host_addr = host_addr;
+		this.host_post_num = host_post_num;
+		this.host_tel = host_tel;
+		this.room_type = room_type;
+		this.room_name = room_name;
+		this.room_cnt = room_cnt;
+		this.guest_cnt = guest_cnt;
+		this.weekday_amt = weekday_amt;
+		this.weekend_amt = weekend_amt;
+		this.host_content = host_content;
+		this.host_dateS = host_dateS;
+		this.sign = sign;
 	}
 	
 	public int getHost_num() {
@@ -152,5 +173,20 @@ public class HostVO {
 		this.host_date = host_date;
 	}
 	
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+	
+	public String getSign() {
+		return sign;
+	}
+	
+	public void setHost_dateS(String host_dateS) {
+		this.host_dateS = host_dateS;
+	}
+	
+	public String gethost_dateS() {
+		return host_dateS;
+	}
 
 }
