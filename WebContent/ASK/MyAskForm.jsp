@@ -1,4 +1,4 @@
-<%@page import="member.memberVO"%>
+<%@page import="member.MemberVO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -85,7 +85,7 @@ body{
 				문의자
 			</th>
 			<td style="border-top: none; border-left: none;border-right: none;">
-				<% memberVO vo = (memberVO) session.getAttribute("mem");  %>
+				<% MemberVO vo = (MemberVO) session.getAttribute("mem");  %>
 				&nbsp;&nbsp;&nbsp;<%=vo.getMem_id() %> 님
 			</td>
 		</tr>

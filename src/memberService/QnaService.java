@@ -8,27 +8,27 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import admin.QnAVO;
-import member.memberDAO;
-import member.memberVO;
+import member.MemberDAO;
+import member.MemberVO;
 import service.ServiceInterface;
 
 public class QnaService implements ServiceInterface { // 작성자: 양준모
 	
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, UnsupportedEncodingException  {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException  {
 		
 		HttpSession session = request.getSession();
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		memberVO vo = (memberVO) session.getAttribute("mem");
+		MemberVO vo = (MemberVO) session.getAttribute("mem");
 
 		String mem_id = vo.getMem_id();
 		int mem_num = vo.getMem_num();
 		String qna_title = request.getParameter("qna_title");
 		String qna_content = request.getParameter("qna_content");
 		
-		memberDAO dao = memberDAO.getInstance();
+		MemberDAO dao = MemberDAO.getInstance();
 		
 		QnAVO qvo = new QnAVO();
 		qvo.setMem_id(mem_id);

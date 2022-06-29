@@ -6,25 +6,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.memberDAO;
-import member.memberVO;
+import member.MemberDAO;
+import member.MemberVO;
 import service.ServiceInterface;
 
 public class MyPagePWService implements ServiceInterface{
 	
 	@Override
-	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException {
+	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		HttpSession session = request.getSession();
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		memberVO vo = (memberVO) session.getAttribute("mem");
+		MemberVO vo = (MemberVO) session.getAttribute("mem");
 		
 		String mem_pw = request.getParameter("mem_pw");		
 		String mem_id = vo.getMem_id();
 		
-		memberDAO dao = memberDAO.getInstance();
+		MemberDAO dao = MemberDAO.getInstance();
 		
 		int selectResult = dao.MyPagePWck(mem_pw, mem_id);
 		

@@ -1,19 +1,18 @@
 package memberService; /*https://github.com/Ryanmufasa/awesomePlace/issues/8  //작성자: 양준모 */
 
 import java.io.IOException;   
-import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.memberDAO;
+import member.MemberDAO;
 import service.ServiceInterface;
 
 public class IDfoundService implements ServiceInterface{
 	
 	@Override
-	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException {
+	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		request.setCharacterEncoding("UTF-8");
 		
@@ -24,7 +23,7 @@ public class IDfoundService implements ServiceInterface{
 		
 		HttpSession session = request.getSession();
 		
-		memberDAO dao = memberDAO.getInstance();
+		MemberDAO dao = MemberDAO.getInstance();
 		
 		int selectResult = dao.IDfound(mem_name, mem_id, mem_tel, mem_email);
 		

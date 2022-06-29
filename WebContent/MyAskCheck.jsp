@@ -1,11 +1,10 @@
+<%@page import="member.MemberDAO"%>
 <%@page import="admin.QnaPaging"%>
-<%@page import="member.memberDAO"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="member.memberVO"%>
 <%@ page import="admin.QnAVO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -109,7 +108,7 @@ td.textOverDefault {
 <body>
 
 <%
-	memberDAO dao = new memberDAO();
+	MemberDAO dao = new MemberDAO();
 
 	String pageNum = request.getParameter("page");
 	int current_page = 1;
