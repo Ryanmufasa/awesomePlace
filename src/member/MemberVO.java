@@ -48,6 +48,10 @@ public class MemberVO {
 		this.mem_email=mem_email;
 	}
 	
+	public MemberVO(int mem_num, String mem_id) {
+		this.mem_num=mem_num;
+		this.mem_id=mem_id;
+	}
 	
 	public int getMem_num() {
 		return mem_num;

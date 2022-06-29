@@ -1,4 +1,6 @@
 <!-- https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진 -->
+<%@page import="member.MemberVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,14 +14,20 @@
 		<c:forEach var="hostList" items="${hostList }">
 			<tr> 
 				<td><a href="#" onclick="hostInfo(${hostList.host_num}); return false;">${hostList.host_name}</a></td>
-				<td>${hostList.mem_id}</td>
-				<td>${hostList.host_date}</td>
-				<td>${hostList.host_sign }</td>
 				<td>
-				<button onclick="switchHostAvailable(${hostList.host_num},'${hostList.host_sign }');">
-					<c:if test="${hostList.host_sign eq 'true' }">호스트 비활성화</c:if>
-					<c:if test="${hostList.host_sign eq 'false' }">호스트 활성화</c:if>
-				</button>
+					<c:forEach var="memInfo" items="${memInfo }">
+						<c:if test="${hostList.mem_num eq memInfo.mem_num }">
+							${memInfo.mem_id }
+						</c:if>
+					</c:forEach>
+				</td>
+				<td>${hostList.host_dateS}</td>
+				<td>${hostList.sign }</td>
+				<td>
+					<button onclick="switchHostAvailable(${hostList.host_num},'${hostList.sign }');">
+						<c:if test="${hostList.sign eq 'true' }">호스트 비활성화</c:if>
+						<c:if test="${hostList.sign eq 'false' }">호스트 활성화</c:if>
+					</button>
 				</td>
 			</tr>
 		</c:forEach>	

@@ -179,6 +179,9 @@ public class APController extends HttpServlet {
 				serv = new AdminHostingListService();
 				page = new NextPage("/admin/hostingList.jsp", false); 
 				break;
+			case "/siteMap.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/51 작성자: 이명진
+				page = new NextPage("/admin/siteMap.jsp", true); 
+				break;
     	}
     	
     	if(serv != null) {

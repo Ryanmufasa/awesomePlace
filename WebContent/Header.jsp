@@ -14,13 +14,15 @@
 	<script>
 		<% 
 			HttpSession ss1 = request.getSession();
-			String mem_id = (String)ss1.getAttribute("mem_id");
-			String doubleCheck = (String)ss1.getAttribute("doubleCheck");
-			String adminPage = (String)ss1.getAttribute("adminPage");
-			String myPage = (String)ss1.getAttribute("myPage");
-			String hostingPage = (String)ss1.getAttribute("hostingPage");
+			String mem_id = (String)ss1.getAttribute("mem_id"); //memverVO 포함 세션
+			String showAdmin = (String)ss1.getAttribute("showAdmin"); // admin로그인 확인 세션
+			String doubleCheck = (String)ss1.getAttribute("doubleCheck");// 비번 더블체크 확인 세션
+			String adminPage = (String)ss1.getAttribute("adminPage");// adminPage 진입 확인 세션
+			String myPage = (String)ss1.getAttribute("myPage");// myPage진입 확인세션 확인 세션
+			String hostingPage = (String)ss1.getAttribute("hostingPage");// hostingPage 진입 확인 세션
 		%>
 			sessionStorage.setItem("mem_id", "<%=mem_id%>");
+			sessionStorage.setItem("showAdmin", "<%=showAdmin%>");
 			sessionStorage.setItem("doubleCheck", "<%=doubleCheck%>");
 			sessionStorage.setItem("adminPage", "<%=adminPage%>");
 			sessionStorage.setItem("myPage", "<%=myPage%>");

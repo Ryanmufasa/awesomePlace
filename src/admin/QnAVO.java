@@ -24,7 +24,7 @@ public class QnAVO {
 		this.qna_answer = qna_answer;
 	}
 	
-	public QnAVO(int qna_num, String mem_id, String qna_title, String qna_date, String qna_content, 
+	public QnAVO(int qna_num, String mem_id, String qna_title, String qna_content, String qna_date, 
 			String qna_sign, String qna_answer) { // QnAList, Content 호출용
 		this.qna_num = qna_num;
 		this.mem_id = mem_id;

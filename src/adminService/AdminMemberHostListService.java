@@ -1,3 +1,4 @@
+//https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
 package adminService;
 
 import java.io.IOException;

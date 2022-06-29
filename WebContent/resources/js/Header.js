@@ -9,9 +9,8 @@
 		
  		var today = year + "-" + month + "-" + day;
  		
-		var ssId = sessionStorage.getItem("mem_id");
-		if(ssId=="null")
-			ssId = null;
+		var ssId = (sessionStorage.getItem("mem_id")=="null") ? false : true;
+		var ssShowAdmin = (sessionStorage.getItem("showAdmin")=="null") ? false : true;
 		var ssDoubleCheck = (sessionStorage.getItem("doubleCheck")=="null") ? false : true;
 		var ssAdminPage = (sessionStorage.getItem("adminPage")=="null") ? false : true;
 		var ssMyPage = (sessionStorage.getItem("myPage")=="null") ? false : true;
@@ -25,7 +24,7 @@
 			$("#checkOut").attr("disabled",false);
 		});
 			
-			if(ssId != null && ssId == "admin"){ //버튼 노출여부 결정
+			if(ssId != null && ssShowAdmin != null){ //버튼 노출여부 결정
 				$("#btnLogin").attr("hidden", true);
 				$("#btnJoin").attr("hidden", true);
 				$("#btnMyPage").attr("hidden", true);
