@@ -24,7 +24,7 @@
 			$("#checkOut").attr("disabled",false);
 		});
 			
-			if(ssId != null && ssShowAdmin != null){ //버튼 노출여부 결정
+			if(ssId && ssShowAdmin){ //버튼 노출여부 결정
 				$("#btnLogin").attr("hidden", true);
 				$("#btnJoin").attr("hidden", true);
 				$("#btnMyPage").attr("hidden", true);
@@ -36,14 +36,14 @@
 				}else{
 					$("#btnAdmin").text("사용자페이지");
 				}
-			}else if(ssId != null){
+			}else if(ssId){
 				$("#btnAdmin").attr("hidden", true);
 				$("#btnLogin").attr("hidden", true);
 				$("#btnJoin").attr("hidden", true);
 				$("#btnMyHosting").attr("hidden", false);
 				$("#btnMyPage").attr("hidden", false);
 				$("#btnLogout").attr("hidden", false);
-			}else if(ssId == null){
+			}else if(!ssId){
 				$("#btnAdmin").attr("hidden", true);
 				$("#btnLogin").attr("hidden", false);
 				$("#btnJoin").attr("hidden", false);
@@ -64,9 +64,9 @@
 				}
 			}));
 			$("#btnMyHosting").on("click",(function(){
-				if(ssId != null && ssDoubleCheck){
+				if(ssId && ssDoubleCheck){
 					location.assign("myHosting.do");
-				}else if(ssId != null){
+				}else if(ssId){
 					location.assign("doubleCheck.do");
 				}else{
 					location.assign("loginForm.do");
@@ -103,18 +103,18 @@
 				$(window).scrollTop(0);
 			}));
 			
-			if(ssId != null && ssDoubleCheck){ // 조건에 따른 버튼 목적지 설정
+			if(ssId && ssDoubleCheck){ // 조건에 따른 버튼 목적지 설정
 					$("#csCenter").attr("href", "csCenter.do");
-				}else if(ssId != null){
+				}else if(ssId){
 					$("#csCenter").attr("href", "doubleCheck.do");
 				}else{
 					$("#csCenter").attr("href", "loginForm.do");
 				}
 			
 			$("#csCenter").on("click",(function(){
-				if(ssId != null && ssDoubleCheck){
+				if(ssId && ssDoubleCheck){
 					location.assign("MyAskForm.do");
-				}else if(ssId != null){
+				}else if(ssId){
 					location.assign("doubleCheck.do");
 				}else{
 					location.assign("loginForm.do");
