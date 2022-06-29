@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.memberDAO;
-import member.memberVO;
+import member.MemberDAO;
+import member.MemberVO;
 import service.ServiceInterface;
 
 public class JoinService implements ServiceInterface {
@@ -26,9 +26,9 @@ public class JoinService implements ServiceInterface {
 		System.out.println(tel);
 		System.out.println(email);
 		
-		memberVO vo = new memberVO(0, name, id, pw, tel, email);
+		MemberVO vo = new MemberVO(0, name, id, pw, tel, email);
 		
-		memberDAO dao = memberDAO.getInstance();
+		MemberDAO dao = MemberDAO.getInstance();
 				
 		boolean check = dao.join(vo);
 		String msg = null;

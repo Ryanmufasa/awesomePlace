@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import admin.QnaVO;
-import member.memberDAO;
-import member.memberVO;
+import admin.QnAVO;
+import member.MemberDAO;
+import member.MemberVO;
 import service.ServiceInterface;
 
-public class QnaShowService implements ServiceInterface {
+public class QnAShowService implements ServiceInterface {
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, UnsupportedEncodingException  {
@@ -22,13 +22,13 @@ public class QnaShowService implements ServiceInterface {
 		
 		HttpSession session = request.getSession();
 		
-		memberVO vo = (memberVO) session.getAttribute("mem");
+		MemberVO vo = (MemberVO) session.getAttribute("mem");
 		
 		String mem_id = vo.getMem_id();
 		
-		memberDAO dao = memberDAO.getInstance();
+		MemberDAO dao = MemberDAO.getInstance();
 		
-		ArrayList<QnaVO> list = null;
+		ArrayList<QnAVO> list = null;
 		
 		list = dao.qnalist(mem_id);
 		request.setAttribute("list", list);

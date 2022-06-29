@@ -9,25 +9,25 @@ import java.util.Date;
 
 import javax.sql.DataSource;
 
-import admin.QnaVO;
+import admin.QnAVO;
 
 
-public class memberDAO{
+public class MemberDAO{
 	
-	private static memberDAO instance;
+	private static MemberDAO instance;
 	private Connection con;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 
 	
-	public static memberDAO getInstance() throws ClassNotFoundException, SQLException {
+	public static MemberDAO getInstance() throws ClassNotFoundException, SQLException {
 		if (instance == null)
-			instance = new memberDAO();
+			instance = new MemberDAO();
 		return instance;
 	}
 	
-	public memberDAO() throws ClassNotFoundException, SQLException {
-		con = new memberDBConn().getConnection();
+	public MemberDAO() throws ClassNotFoundException, SQLException {
+		con = new MemberDBConn().getConnection();
 	}
 	
 	public void pstmtClose() throws SQLException {
@@ -50,8 +50,8 @@ public class memberDAO{
 
 	
 	//회원 목록
-	public ArrayList<memberVO> getAllInfo() throws SQLException{
-		ArrayList<memberVO> list = new ArrayList<memberVO>();
+	public ArrayList<MemberVO> getAllInfo() throws SQLException{
+		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
 		String sql = "select * from member";
 		
 		pstmt = con.prepareStatement(sql);
@@ -65,7 +65,7 @@ public class memberDAO{
 			String mem_tel = rs.getString("mem_tel");
 			String mem_email = rs.getString("mem_email");
 			
-			memberVO mbv = new memberVO(mem_num, mem_name, mem_id, mem_pw, mem_tel, mem_email);
+			MemberVO mbv = new MemberVO(mem_num, mem_name, mem_id, mem_pw, mem_tel, mem_email);
 			
 			list.add(mbv);
 		}
@@ -75,19 +75,19 @@ public class memberDAO{
 	
 	
 	//로그인 //https://github.com/Ryanmufasa/awesomePlace/issues/5 작성자: 양준모
-	public memberVO selectID(String mem_id, String mem_pw) throws ClassNotFoundException {
+	public MemberVO selectID(String mem_id, String mem_pw) throws ClassNotFoundException {
 		
-		memberVO vo = null;
+		MemberVO vo = null;
 		
 		try {
-		con = new memberDBConn().getConnection();
+		con = new MemberDBConn().getConnection();
 			pstmt = con.prepareStatement("SELECT * FROM member WHERE mem_id = ? AND mem_pw = ?");
 			pstmt.setString(1, mem_id);
 			pstmt.setString(2, mem_pw);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-					vo = new memberVO(); 
+					vo = new MemberVO(); 
 					vo.setMem_id(mem_id);
 					vo.setMem_pw(mem_pw);
 					vo.setMem_num(rs.getInt("mem_num"));
@@ -104,7 +104,7 @@ public class memberDAO{
 	
 	
 	//내 문의 목록에서 내문의 자세히 보기 //https://github.com/Ryanmufasa/awesomePlace/issues/49 작성자: 양준모
-	public QnaVO viewqna(int qna_num) {
+	public QnAVO viewqna(int qna_num) {
 		
 		try {
 			pstmt = con.prepareStatement("select * from QNA where qna_num = ?");
@@ -112,7 +112,7 @@ public class memberDAO{
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				QnaVO qo = new QnaVO();
+				QnAVO qo = new QnAVO();
 				qo.setQna_num(qna_num);
 				qo.setMem_num(rs.getInt("mem_num"));
 				qo.setMem_id(rs.getString("mem_id"));
@@ -137,7 +137,7 @@ public class memberDAO{
 		int result = 0 ;
 		
 		try {
-			con = new memberDBConn().getConnection();
+			con = new MemberDBConn().getConnection();
 			pstmt = con.prepareStatement("SELECT mem_name, mem_id, mem_tel, mem_email FROM member "
 					+ "WHERE mem_name = ?  AND mem_tel = ? AND mem_email = ?");
 			pstmt.setString(1, mem_name);
@@ -162,7 +162,7 @@ public class memberDAO{
 		int result = 0 ;
 		
 		try {
-			con = new memberDBConn().getConnection();
+			con = new MemberDBConn().getConnection();
 			pstmt = con.prepareStatement("SELECT mem_name, mem_id, mem_tel, mem_email FROM member "
 					+ "WHERE mem_name = ? AND mem_id = ? AND mem_tel = ? AND mem_email = ?");
 			pstmt.setString(1, mem_name);
@@ -235,7 +235,7 @@ public class memberDAO{
 	
 	
 	//고객 문의글 작성 //https://github.com/Ryanmufasa/awesomePlace/issues/40 작성자: 양준모
-	public int write(QnaVO qvo) {
+	public int write(QnAVO qvo) {
 		//insert into QNA values(qna_seq.nextval, :1 , :2 , :3 , :4 , sysdate, :5 , :6 )
 		//insert into QNA values(qna_seq.nextval, ?, ?, ?, ?, sysdate, ?, ?)
 		int check = 0;
@@ -268,8 +268,8 @@ public class memberDAO{
 	
 	
 	//문의글 목록 불러오기 //https://github.com/Ryanmufasa/awesomePlace/issues/46 작성자: 양준모 
-	public ArrayList<QnaVO> qnalist(String mem_id) throws SQLException {
-			ArrayList<QnaVO> qarray = new ArrayList<QnaVO>();
+	public ArrayList<QnAVO> qnalist(String mem_id) throws SQLException {
+			ArrayList<QnAVO> qarray = new ArrayList<QnAVO>();
 			String sql = "SELECT * FROM QNA WHERE mem_id = ? ORDER BY qna_num DESC";
 					
 			pstmt = con.prepareStatement(sql);
@@ -286,7 +286,7 @@ public class memberDAO{
 					String qna_sign = rs.getString("qna_sign");
 					String qna_answer = rs.getString("qna_answer");
 					
-					QnaVO qvo = new QnaVO(qna_num, mem_num, qmem_id, qna_title, qna_content, qna_date, qna_sign, qna_answer);
+					QnAVO qvo = new QnAVO(qna_num, mem_num, qmem_id, qna_title, qna_content, qna_date, qna_sign, qna_answer);
 					
 					qarray.add(qvo);
 				} 
@@ -296,7 +296,7 @@ public class memberDAO{
 		
 	//회원가입
 	private static DataSource ds;
-	public boolean join(memberVO vo) {
+	public boolean join(MemberVO vo) {
 		boolean check=false;
 		String sql="insert into member"+"values(?,?,?,?,?)";
 		try {

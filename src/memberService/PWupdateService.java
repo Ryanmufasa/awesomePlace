@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.memberDAO;
+import member.MemberDAO;
 import service.ServiceInterface;
 
 
@@ -25,7 +25,7 @@ public class PWupdateService implements ServiceInterface{
 	String mem_id = (String)session.getAttribute("mem_id");
 	String mem_pw = request.getParameter("mem_pw");
 	
-	memberDAO dao = new memberDAO();
+	MemberDAO dao = new MemberDAO();
 	
 	dao.PWupdate(mem_id, mem_pw);
 	

@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
-public class memberDBConn {
+public class MemberDBConn {
 
 
     private Connection con;
@@ -14,7 +14,7 @@ public class memberDBConn {
         return con;
     }
 
-    public memberDBConn() throws ClassNotFoundException, SQLException {
+    public MemberDBConn() throws ClassNotFoundException, SQLException {
 
         Class.forName("oracle.jdbc.driver.OracleDriver");
         con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.1.140:1521:xe", "awesomeplace",

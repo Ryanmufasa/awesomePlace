@@ -2,7 +2,7 @@ package admin;
 
 import java.util.Date;
 
-public class QnaVO { /* https://github.com/Ryanmufasa/awesomePlace/issues/46 //작성자: 양준모 */	
+public class QnAVO { /* https://github.com/Ryanmufasa/awesomePlace/issues/46 //작성자: 양준모 */	
 	private int qna_num;
 	private int mem_num;
 	private String mem_id;
@@ -12,9 +12,9 @@ public class QnaVO { /* https://github.com/Ryanmufasa/awesomePlace/issues/46 //�
 	private String qna_sign;
 	private String qna_answer;
 	
-	public QnaVO() {}
+	public QnAVO() {}
 	
-	public QnaVO(int qna_num, int mem_num, String mem_id, String qna_title, String qna_content, Date qna_date, String qna_sign, String qna_answer) {
+	public QnAVO(int qna_num, int mem_num, String mem_id, String qna_title, String qna_content, Date qna_date, String qna_sign, String qna_answer) {
 		super();
 		this.qna_num = qna_num;
 		this.mem_num = mem_num;

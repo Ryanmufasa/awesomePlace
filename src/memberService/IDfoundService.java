@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.memberDAO;
+import member.MemberDAO;
 import service.ServiceInterface;
 
 public class IDfoundService implements ServiceInterface{
@@ -24,7 +24,7 @@ public class IDfoundService implements ServiceInterface{
 		
 		HttpSession session = request.getSession();
 		
-		memberDAO dao = memberDAO.getInstance();
+		MemberDAO dao = MemberDAO.getInstance();
 		
 		int selectResult = dao.IDfound(mem_name, mem_id, mem_tel, mem_email);
 		

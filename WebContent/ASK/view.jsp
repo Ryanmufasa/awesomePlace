@@ -1,7 +1,7 @@
-<%@page import="member.memberDAO"%>
-<%@page import="admin.QnaVO"%>
+<%@page import="member.MemberDAO"%>
+<%@page import="admin.QnAVO"%>
 <%@page import="java.io.PrintWriter"%>
-<%@page import="member.memberVO"%>
+<%@page import="member.MemberVO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -78,7 +78,7 @@ body{
 		qna_num = Integer.parseInt(request.getParameter("qna_num"));
 	}
 	
-	QnaVO qo = new memberDAO().viewqna(qna_num);
+	QnAVO qo = new member.MemberDAO().viewqna(qna_num);
 %>
 
 <button onclick="history.back()" style="cursor:pointer;"><img src="${pageContext.request.contextPath }/image/qna/back.png"></button>

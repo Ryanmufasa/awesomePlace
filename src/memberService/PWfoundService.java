@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import member.memberDAO;
+import member.MemberDAO;
 import service.ServiceInterface;
 
 public class PWfoundService implements ServiceInterface{
@@ -24,7 +24,7 @@ public class PWfoundService implements ServiceInterface{
 		String mem_tel = request.getParameter("mem_tel1")+"-"+request.getParameter("mem_tel2")+"-"+request.getParameter("mem_tel3");
 		String mem_email = request.getParameter("mem_email1")+"@"+request.getParameter("mem_email2");
 		
-		memberDAO dao = memberDAO.getInstance();
+		MemberDAO dao = MemberDAO.getInstance();
 		
 		int selectResult = dao.PWfound(mem_name, mem_id, mem_tel, mem_email);
 		

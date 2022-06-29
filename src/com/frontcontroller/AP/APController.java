@@ -16,8 +16,8 @@ import memberService.LoginService;
 import memberService.MyPagePWService;
 import memberService.PWfoundService;
 import memberService.PWupdateService;
-import memberService.QnaService;
-import memberService.QnaShowService;
+import memberService.QnAService;
+import memberService.QnAShowService;
 import service.NextPage;
 import service.ServiceInterface;
 
@@ -112,7 +112,7 @@ public class APController extends HttpServlet {
 		page = new NextPage("/awesomePlace/ASK/MyAskForm.jsp", true);
 		break;
     case "/askqna.do":
-    	serv = new QnaService();
+    	serv = new QnAService();
     	page = new NextPage("/ASK/result.jsp", false);
     	break;
     	
@@ -121,7 +121,7 @@ public class APController extends HttpServlet {
     		page = new NextPage("/awesomePlace/qna.jsp", true);
     		break;
     case "/qna1.do":
-    	serv = new QnaShowService();
+    	serv = new QnAShowService();
     	page = new NextPage("MyAskCheck.jsp", false);
     	break;
     	

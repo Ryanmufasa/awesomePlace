@@ -1,6 +1,6 @@
 package admin; /* https://github.com/Ryanmufasa/awesomePlace/issues/46  //작성자: 양준모 */
 
-public class QnaPaging {
+public class QnAPaging {
 	
 	public int pageCount(int rows, int dataCount) {
 		
