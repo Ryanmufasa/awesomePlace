@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import admin.QnaVO;
+import admin.QnAVO;
 import member.memberDAO;
 import member.memberVO;
 import service.ServiceInterface;
@@ -28,7 +28,7 @@ public class QnaShowService implements ServiceInterface {
 		
 		memberDAO dao = memberDAO.getInstance();
 		
-		ArrayList<QnaVO> list = null;
+		ArrayList<QnAVO> list = null;
 		
 		list = dao.qnalist(mem_id);
 		request.setAttribute("list", list);
