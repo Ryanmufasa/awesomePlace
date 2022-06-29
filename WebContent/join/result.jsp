@@ -8,7 +8,7 @@
 		location.href="/awesomePlace/";
 	</script>
 </c:if>
-<c:if test="${check }">
+<c:if test="${!check }">
 	<script>
 		alert("${msg}");
 		location.href="/awesomePlace/join/joinForm.do";

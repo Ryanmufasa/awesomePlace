@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import memberService.EmailService;
 import memberService.IDfoundService;
 import memberService.JoinService;
 import memberService.LoginService;
 import memberService.MyPagePWService;
 import memberService.PWfoundService;
 import memberService.PWupdateService;
+import memberService.QnaService;
+import memberService.QnaShowService;
 import service.NextPage;
 import service.ServiceInterface;
 
@@ -94,7 +95,7 @@ public class APController extends HttpServlet {
 			break;
 	case "/pwupdate.do":
 		serv = new PWupdateService();
-		page = new NextPage("/pwfound/result1.jsp", false);
+		page = new NextPage("/pwfound/result2.jsp", false);
 		break;
 		
 		// 마이페이지 접속시 로그인 재확인 
@@ -106,6 +107,24 @@ public class APController extends HttpServlet {
 		page = new NextPage("/mypage/result.jsp", false);
 		break;
 		
+		// 문의글 쓰기  // 작성자: 양준모
+		case "/MyAskForm.do":
+		page = new NextPage("/awesomePlace/ASK/MyAskForm.jsp", true);
+		break;
+    case "/askqna.do":
+    	serv = new QnaService();
+    	page = new NextPage("/ASK/result.jsp", false);
+    	break;
+    	
+    	// 문의글 보는 페이지 // 작성자: 양준모
+    	case "/qna.do":
+    		page = new NextPage("/awesomePlace/qna.jsp", true);
+    		break;
+    case "/qna1.do":
+    	serv = new QnaShowService();
+    	page = new NextPage("MyAskCheck.jsp", false);
+    	break;
+    	
 	/*
 	 * //인증번호 발송 case "/emailform.do": page = new
 	 * NextPage("/awesomePlace/emailconfig/emailform.jsp", true); break; case

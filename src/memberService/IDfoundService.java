@@ -1,6 +1,6 @@
-package memberService;
+package memberService; /*https://github.com/Ryanmufasa/awesomePlace/issues/8  //작성자: 양준모 */
 
-import java.io.IOException;
+import java.io.IOException;   
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;

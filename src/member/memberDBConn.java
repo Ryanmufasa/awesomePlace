@@ -17,8 +17,8 @@ public class memberDBConn {
     public memberDBConn() throws ClassNotFoundException, SQLException {
 
         Class.forName("oracle.jdbc.driver.OracleDriver");
-        con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.1.140:1521:xe", "hr",
-            "hr");
+        con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.1.140:1521:xe", "awesomeplace",
+            "awesomeplace");
 
     }
 }

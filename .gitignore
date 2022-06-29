@@ -45,3 +45,5 @@ src/memberService/EmailService.java
 WebContent/emailconfig/emailform.jsp
 WebContent/emailconfig/result.jsp
 WebContent/WEB-INF/web.xml
+src/member/memberDBConn.java
+src/member/memberDBConn.java
