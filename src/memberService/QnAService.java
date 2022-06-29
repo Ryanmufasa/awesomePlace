@@ -15,7 +15,7 @@ import service.ServiceInterface;
 public class QnAService implements ServiceInterface { // 작성자: 양준모
 	
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, UnsupportedEncodingException  {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException  {
 		
 		HttpSession session = request.getSession();
 		

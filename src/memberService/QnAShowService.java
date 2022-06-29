@@ -16,7 +16,7 @@ import service.ServiceInterface;
 public class QnAShowService implements ServiceInterface {
 	
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, UnsupportedEncodingException  {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException  {
 		
 		request.setCharacterEncoding("UTF-8");
 		

@@ -1,5 +1,5 @@
+<%@page import="admin.QnAPaging"%>
 <%@page import="member.MemberDAO"%>
-<%@page import="admin.QnaPaging"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -116,7 +116,7 @@ td.textOverDefault {
 		current_page = Integer.parseInt(pageNum);
 	}
 	
-	QnaPaging admin = new QnaPaging();
+	QnAPaging admin = new QnAPaging();
 	
 	int dataCount = dao.getCount();
 	int rows = 4;
