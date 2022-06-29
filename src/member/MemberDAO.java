@@ -7,7 +7,6 @@ import java.util.*;
 import admin.QnAVO;
 import awesomePlace.dbConn.DBConn;
 import host.hostvo.HostVO;
-import member.MemberVO;
 
 public class MemberDAO{
 	Connection con = new DBConn().getConnection();
@@ -759,6 +758,7 @@ public class MemberDAO{
 				
 				int host_num;
 				int mem_num;
+				String mem_id;
 				String host_name;
 				String host_addr;
 				String host_post_num;
@@ -776,6 +776,7 @@ public class MemberDAO{
 				while(rs.next()) {
 					host_num = Integer.parseInt(rs.getString("host_num"));
 					mem_num = Integer.parseInt(rs.getString("mem_num"));
+					mem_id = rs.getString("mem_id");
 					host_name = rs.getString("host_name");
 					host_addr = rs.getString("host_addr");
 					host_post_num = rs.getString("host_post_num");
@@ -790,7 +791,7 @@ public class MemberDAO{
 					host_date = rs.getString("host_date");
 					sign = rs.getString("sign");
 					
-					HostVO hostInfo = new HostVO(host_num,mem_num,host_name,host_addr,host_post_num,host_tel,room_type,
+					HostVO hostInfo = new HostVO(host_num,mem_num,mem_id,host_name,host_addr,host_post_num,host_tel,room_type,
 							room_name,room_cnt,guest_cnt,weekday_amt,weekdend_amt,host_content,host_date,sign);
 					memHostList.add(hostInfo);
 				}
@@ -880,6 +881,7 @@ public class MemberDAO{
 				
 				int host_num;
 				int mem_num;
+				String mem_id;
 				String host_name;
 				String host_addr;
 				String host_post_num;
@@ -899,6 +901,7 @@ public class MemberDAO{
 				while(rs.next()) {
 					host_num = Integer.parseInt(rs.getString("host_num"));
 					mem_num = Integer.parseInt(rs.getString("mem_num"));
+					mem_id = rs.getString("mem_id");
 					host_name = rs.getString("host_name");
 					host_addr = rs.getString("host_addr");
 					host_post_num = rs.getString("host_post_num");
@@ -917,7 +920,7 @@ public class MemberDAO{
 					
 					System.out.println("이것은 : " + host_date);
 					
-					HostVO hostInfo = new HostVO(host_num,mem_num,host_name,host_addr,host_post_num,host_tel,room_type,
+					HostVO hostInfo = new HostVO(host_num,mem_num,mem_id,host_name,host_addr,host_post_num,host_tel,room_type,
 							room_name,room_cnt,guest_cnt,weekday_amt,weekdend_amt,host_content,host_date,sign);
 					hostList.add(hostInfo);
 				}
@@ -932,43 +935,10 @@ public class MemberDAO{
 					e1.printStackTrace();
 				}
 			}
-			System.out.println(hostList.get(0).gethost_dateS());
 			
 			return hostList;
 		}
 		
-		//https://github.com/Ryanmufasa/awesomePlace/issues/50 작성자: 이명진
-		public ArrayList<MemberVO> getAllMemId() {
-			String sql = "SELECT mem_id, mem_num FROM member";
-			ArrayList<MemberVO> memInfo= new ArrayList<MemberVO>();
-			
-			try {
-				pstmt = con.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				
-				int mem_num;
-				String mem_id;
-				
-				while(rs.next()) {
-					mem_num = Integer.parseInt(rs.getString("mem_num"));
-					mem_id = rs.getString("mem_id");
-					
-					MemberVO temp = new MemberVO(mem_num, mem_id);
-					memInfo.add(temp);
-				}
-			
-			} catch (SQLException e) {
-				try {
-					if(pstmt != null) {
-						pstmt.close();
-					}else if(con!=null)
-						con.close();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-			}
-			return memInfo;
-		}
 		
 }
 

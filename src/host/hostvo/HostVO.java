@@ -7,6 +7,7 @@ public class HostVO {
 	
 	private int host_num;  		// PK 
 	private int mem_num; 		// member 테이블 참조 FK
+	private String mem_id;
 	private String host_name;	// 호스트 이름 
 	private String host_addr;	// 호스트 주소 
 	private String host_post_num;	// 호스트 우편번호
@@ -66,11 +67,12 @@ public class HostVO {
 	}
 	
 	//호스트리스트 출력용 생성자 작성자:이명진
-	public HostVO(int host_num, int mem_num, String host_name, String host_addr, String host_post_num, String host_tel,
+	public HostVO(int host_num, int mem_num, String mem_id, String host_name, String host_addr, String host_post_num, String host_tel,
 			String room_type, String room_name, int room_cnt, int guest_cnt, int weekday_amt, int weekend_amt,
 			String host_content, String host_dateS, String sign) {
 		this.host_num = host_num;
 		this.mem_num = mem_num;
+		this.mem_id = mem_id;
 		this.host_name = host_name;
 		this.host_addr = host_addr;
 		this.host_post_num = host_post_num;
@@ -187,6 +189,14 @@ public class HostVO {
 	
 	public String gethost_dateS() {
 		return host_dateS;
+	}
+	
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
+	
+	public String getMem_id() {
+		return mem_id;
 	}
 
 }

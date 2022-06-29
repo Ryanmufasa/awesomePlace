@@ -20,9 +20,7 @@ public class AdminHostingListService implements ServiceInterface {
 		MemberDAO dao = MemberDAO.getInstance();
 		
 		ArrayList<HostVO> hostList = dao.getAllHosting();
-		ArrayList<MemberVO> memList = dao.getAllMemId();
 		
-		request.setAttribute("memList", memList);
 		request.setAttribute("hostList", hostList);
 	}
 

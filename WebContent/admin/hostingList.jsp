@@ -14,13 +14,7 @@
 		<c:forEach var="hostList" items="${hostList }">
 			<tr> 
 				<td><a href="#" onclick="hostInfo(${hostList.host_num}); return false;">${hostList.host_name}</a></td>
-				<td>
-					<c:forEach var="memInfo" items="${memInfo }">
-						<c:if test="${hostList.mem_num eq memInfo.mem_num }">
-							${memInfo.mem_id }
-						</c:if>
-					</c:forEach>
-				</td>
+				<td>${hostList.mem_id }</td>
 				<td>${hostList.host_dateS}</td>
 				<td>${hostList.sign }</td>
 				<td>
