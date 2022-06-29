@@ -78,7 +78,7 @@ body{
 		qna_num = Integer.parseInt(request.getParameter("qna_num"));
 	}
 	
-	QnAVO qo = new member.MemberDAO().viewqna(qna_num);
+	QnAVO qo = new MemberDAO().viewqna(qna_num);
 %>
 
 <button onclick="history.back()" style="cursor:pointer;"><img src="${pageContext.request.contextPath }/image/qna/back.png"></button>

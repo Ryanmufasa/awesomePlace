@@ -52,13 +52,15 @@ body{
 </head>
 <body>
 
-<c:set var="now" value="<%=new java.util.Date()%>"/> <!-- 오늘 요일 출력 --> 
+<c:set var="now" value="<%=new java.util.Date() %>"/> <!-- 오늘 요일 출력 --> 
 <fmt:formatDate value="${now}" pattern="E" var="today" />
 
 <%
 	Date date = new Date(); /* 오늘 날짜 출력 */
 	SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
 	String strdate = simpleDate.format(date);
+
+
 %>
 
 <div align="center">
@@ -83,9 +85,7 @@ body{
 				문의자
 			</th>
 			<td style="border-top: none; border-left: none;border-right: none;">
-				<%
-					member.MemberVO vo = (member.MemberVO) session.getAttribute("mem");
-				%>
+				<% MemberVO vo = (MemberVO) session.getAttribute("mem");  %>
 				&nbsp;&nbsp;&nbsp;<%=vo.getMem_id() %> 님
 			</td>
 		</tr>

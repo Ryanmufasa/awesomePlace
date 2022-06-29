@@ -9,6 +9,7 @@ public class QnAVO { /* https://github.com/Ryanmufasa/awesomePlace/issues/46 //�
 	private String qna_title;
 	private String qna_content;
 	private Date qna_date;
+	private String qna_dateS; // 작성자 이명진
 	private String qna_sign;
 	private String qna_answer;
 	
@@ -25,6 +26,17 @@ public class QnAVO { /* https://github.com/Ryanmufasa/awesomePlace/issues/46 //�
 		this.qna_sign = qna_sign;
 		this.qna_answer = qna_answer;
 		
+	}
+	
+	public QnAVO(int qna_num, String mem_id, String qna_title, String qna_content, String qna_dateS, 
+			String qna_sign, String qna_answer) { // QnAList, Content 호출용 //작성자 이명진
+		this.qna_num = qna_num;
+		this.mem_id = mem_id;
+		this.qna_title = qna_title;
+		this.qna_dateS = qna_dateS;
+		this.qna_content = qna_content;
+		this.qna_sign = qna_sign;
+		this.qna_answer = qna_answer;
 	}
 
 	public int getQna_num() {
@@ -89,6 +101,14 @@ public class QnAVO { /* https://github.com/Ryanmufasa/awesomePlace/issues/46 //�
 
 	public void setQna_answer(String qna_answer) {
 		this.qna_answer = qna_answer;
+	}
+	
+	public String getQna_dateS() {
+		return qna_dateS;
+	}
+	
+	public void setQna_dateS(String qna_dateS) {
+		this.qna_dateS = qna_dateS;
 	}
 	
 	

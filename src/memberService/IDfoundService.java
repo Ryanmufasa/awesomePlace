@@ -1,7 +1,6 @@
 package memberService; /*https://github.com/Ryanmufasa/awesomePlace/issues/8  //작성자: 양준모 */
 
 import java.io.IOException;   
-import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +12,7 @@ import service.ServiceInterface;
 public class IDfoundService implements ServiceInterface{
 	
 	@Override
-	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException {
+	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		request.setCharacterEncoding("UTF-8");
 		

@@ -14,7 +14,7 @@ import service.ServiceInterface;
 public class PWupdateService implements ServiceInterface{
 	
 	@Override
-	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException {
+	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException {
 	
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
@@ -27,7 +27,7 @@ public class PWupdateService implements ServiceInterface{
 	
 	MemberDAO dao = new MemberDAO();
 	
-	dao.PWupdate(mem_id, mem_pw);
+//	dao.PWupdate(mem_id, mem_pw);
 	
 	boolean check = dao.PWupdate(mem_id, mem_pw);
 

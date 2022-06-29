@@ -1,11 +1,10 @@
-<%@page import="admin.QnAPaging"%>
 <%@page import="member.MemberDAO"%>
+<%@page import="admin.QnaPaging"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="member.MemberVO"%>
 <%@ page import="admin.QnAVO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -109,7 +108,7 @@ td.textOverDefault {
 <body>
 
 <%
-	member.MemberDAO dao = new member.MemberDAO();
+	MemberDAO dao = new MemberDAO();
 
 	String pageNum = request.getParameter("page");
 	int current_page = 1;
@@ -117,9 +116,9 @@ td.textOverDefault {
 		current_page = Integer.parseInt(pageNum);
 	}
 	
-	QnAPaging admin = new QnAPaging();
+	QnaPaging admin = new QnaPaging();
 	
-	int dataCount = 256;
+	int dataCount = dao.getCount();
 	int rows = 4;
 	int total_page = admin.pageCount(rows, dataCount);
 	if(current_page > total_page) {
@@ -128,6 +127,7 @@ td.textOverDefault {
 	
 	String list_url = "qna1.do";
 	String paging = admin.paging(current_page, total_page, list_url);
+
 %>
 
 <div align="center">
