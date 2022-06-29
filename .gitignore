@@ -31,3 +31,5 @@ WebContent/META-INF/MANIFEST.MF
 .settings/org.eclipse.wst.common.component
 WebContent/WEB-INF/context.xml
 WebContent/WEB-INF/web.xml
+src/member/memberDBConn.java
+src/member/memberDBConn.java

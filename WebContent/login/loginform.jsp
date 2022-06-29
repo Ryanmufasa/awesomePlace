@@ -48,7 +48,7 @@
                     <td>
                         아이디&nbsp;&nbsp;
                     </td>
-                    <td onmouseover="this.style.backgroundColor='#9c9898FF'" onmouseout="this.style.backgroundColor=''">
+                    <td>
                     	<input type="text" name="mem_id" style="width:205px;height:30px;" placeholder="아이디" required>
                     </td>
                 </tr>
@@ -60,7 +60,7 @@
                     <td>
                         비밀번호&nbsp;&nbsp;
                     </td>
-                    <td onmouseover="this.style.backgroundColor='#9c9898FF'" onmouseout="this.style.backgroundColor=''">
+                    <td>
                     	<input autocomplete="false" type="password" name="mem_pw" style="width:205px;height:30px;" placeholder="비밀번호" required>
                     </td>
                 </tr>

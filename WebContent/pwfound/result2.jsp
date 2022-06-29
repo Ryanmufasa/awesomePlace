@@ -9,15 +9,14 @@
 </head>
 <body>
 
-<c:if test="${selectResult == 1}">
+<c:if test="${!check }">
 	<script>
-		alert("회원정보가 일치합니다.")
-		location.href = "${pageContext.request.contextPath }/pwfound/PWupdate.jsp";
+		location.href = "${pageContext.request.contextPath }/pwfound/result1.jsp";
 	</script>
 </c:if>
-<c:if test="${selectResult == 0}">
+<c:if test="${check }">
 	<script>
-		alert("회원 정보가 일치하지 않습니다.")
+		alert("실패하였습니다. 다시 시도하여 주십시오.")
 		location.href = history.back();
 	</script>
 </c:if>
