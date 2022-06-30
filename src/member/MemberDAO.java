@@ -118,7 +118,6 @@ public class MemberDAO{
 		}finally {
 			try {
 				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -271,7 +270,6 @@ public class MemberDAO{
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mem_id);
 			pstmt.executeUpdate();
-
 			if(pstmt.executeUpdate() != 0) {
 				check = true;
 			}
@@ -279,8 +277,7 @@ public class MemberDAO{
 			System.out.println(e);
 		}finally{
 			try {
-				if(rs != null) rs.close();
-				if(con != null) con.close();
+				if(pstmt != null) pstmt.close();
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -343,6 +340,40 @@ public class MemberDAO{
 		}
 		return cnt;
 	}
+	
+	
+//https://github.com/Ryanmufasa/awesomePlace/issues/36 -- 작성자 정다영
+	// 회원이 호스트 등록시 mem_hostCnt 칼럼 값 수정
+	public boolean updateHostCnt(int mem_hostCnt, int mem_num) {
+		boolean check = false;
+		
+		String sql = "update member set mem_hostCnt = ? where mem_num = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, mem_hostCnt);
+			pstmt.setInt(2, mem_num);
+			if(pstmt.executeUpdate() != 0) {
+				check = true;
+				System.out.println("member 테이블 mem_hostCnt 값 추가 ");
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("member 테이블 mem_hostCnt 값 변경 실패");
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return check;
+	}
+	
+	
+	
+	
 	
 	//마이페이지 접속시 비밀번호 재확인 
 	public int MyPagePWck(String mem_pw, String mem_id) {
