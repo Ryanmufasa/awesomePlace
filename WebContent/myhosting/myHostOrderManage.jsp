@@ -23,14 +23,14 @@
 		<c:when test="${orderInfoList != null }">
 			<c:forEach items="${orderInfoList }" var="oi">
 			<tr>
-				<td>${oi.order_num }</td>
-				<td>${oi.mem_num }</td>
-				<td>${oi.order_date }</td>
+				<td>${oi.oi_num }</td>
+				<td>${oi.oi_mem_id }</td>
+				<td>${oi.oi_date }</td>
 				<td>${oi.checkIn_date }</td>
 				<td>${oi.checkOut_date }</td>
-				<td>${oi.guest_cnt }</td>
+				<td>${oi.oi_guest_cnt }</td>
 				<td>${oi.pay_amt }</td>
-				<td>${oi.order_sign }</td>
+				<td>${oi.oi_sign }</td>
 			</tr>
 			</c:forEach>
 		</c:when>

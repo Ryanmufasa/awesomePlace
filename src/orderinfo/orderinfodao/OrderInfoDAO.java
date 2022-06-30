@@ -32,7 +32,7 @@ public class OrderInfoDAO {
 		
 		ArrayList<OrderInfoVO> orderli = new ArrayList<OrderInfoVO>();
 		
-		String sql = "select * from orderinfo by order_num desc";
+		String sql = "select * from orderinfo by oi_num desc";
 		
 		OrderInfoVO vo = null;
 		
@@ -72,15 +72,21 @@ public class OrderInfoDAO {
 		
 		try {
 			vo = new OrderInfoVO();
-			vo.setOrder_num(rs.getInt("order_num"));
-			vo.setHost_num(rs.getInt("host_num"));
-			vo.setMem_num(rs.getInt("mem_num"));
-			vo.setGuest_cnt(rs.getInt("guest_cnt"));
-			vo.setOrder_date(rs.getDate("order_date"));
+			vo.setOi_num(rs.getInt("oi_num"));
+			vo.setOi_guest_cnt(rs.getInt("oi_guest_cnt"));
 			vo.setCheckIn_date(rs.getDate("checkIn_date"));
 			vo.setCheckOut_date(rs.getDate("checkOut_date"));
+			vo.setPay_date(rs.getDate("pay_date"));
 			vo.setPay_amt(rs.getInt("pay_amt"));
-			vo.setOrder_sign(rs.getString("order_sign"));
+			vo.setOi_sign(rs.getString("oi_sign"));
+			
+			vo.setOi_host_num(rs.getInt("oi_host_num"));
+			vo.setOi_host_name(rs.getString("oi_host_name"));
+			vo.setOi_host_post_num(rs.getString("oi_host_post_num"));
+			vo.setOi_host_tel(rs.getString("oi_host_tel"));
+			
+			vo.setOi_mem_id(rs.getString("oi_mem_id"));
+			vo.setOi_mem_tel(rs.getString("oi_mem_tel"));
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -94,16 +100,23 @@ public class OrderInfoDAO {
 	public boolean memberOrder(OrderInfoVO vo) {
 		boolean check = false;
 		
-		String sql = "insert into orderinfo values(orderinfo_seq.nextval, ?,?,?,"
-				+ "sysdate,?,?,?,'unknown'";
+		String sql = "insert into orderinfo values(orderinfo_seq.nextval, "
+				+ "?,?,?,sysdate,?,'wait',"
+				+ "?,?,?,?,?,?,?";
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, vo.getHost_num());
-			ps.setInt(2, vo.getMem_num());
-			ps.setInt(3, vo.getGuest_cnt());
-			ps.setDate(4, (Date) vo.getCheckIn_date());
-			ps.setDate(5, (Date) vo.getCheckOut_date());
-			ps.setInt(6, vo.getPay_amt());
+			ps.setInt(1, vo.getOi_guest_cnt());
+			ps.setDate(2, (Date) vo.getCheckIn_date());
+			ps.setDate(3,  (Date) vo.getCheckOut_date());
+			ps.setInt(4, vo.getPay_amt());
+			
+			ps.setInt(5, vo.getOi_host_num());
+			ps.setString(6, vo.getOi_host_name());
+			ps.setString(7, vo.getOi_host_addr());
+			ps.setString(8, vo.getOi_host_post_num());
+			ps.setString(9, vo.getOi_host_tel());
+			ps.setString(10, vo.getOi_mem_id());
+			ps.setString(11, vo.getOi_mem_tel());
 			if(ps.executeUpdate() != 0) {
 				check = true;
 				System.out.println("예약 신청 완료");
@@ -128,7 +141,7 @@ public class OrderInfoDAO {
 		
 		OrderInfoVO vo = null;
 		
-		String sql ="select * from orderinfo where host_num=?";
+		String sql ="select * from orderinfo where oi_host_num=?";
 		
 		try {
 			ps= con.prepareStatement(sql);

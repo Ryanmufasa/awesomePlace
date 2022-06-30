@@ -35,7 +35,9 @@
 			<td>
 				<input type="tel" name="host_tel" id="host_tel" required maxlength='13'
 					onkeyup = "this.value=this.value.replace(/[^0-9]/g,'')"
-					placeholder = "-를 제외한 전화번호 또는 휴대폰 번호 입력 ">
+					placeholder = "-를 제외한 전화번호 또는 휴대폰 번호 입력 "
+					value="${login.mem_tel }"
+					>
 			</td>
 		</tr>
 		<tr>
@@ -47,10 +49,6 @@
 				
 			</td>
 		</tr>
-		<!-- <tr>
-			<td>방 이름</td>
-			<td><input type="text" name="room_name" placeholder="ex) 201호 " required></td>
-		</tr> -->
 		<tr>
 			<td>방 개수 </td>
 			<td>
@@ -93,10 +91,6 @@
 				<p><textarea name="host_content" cols="50" rows="10" required placeholder="호스트에 대한 설명을 입력해주세요"></textarea></p>
 			</td>
 		</tr>
-		<!-- <tr>
-			<td>사진 첨부</td>
-			<td><input type="file" name="file[]" multiple></td>
-		</tr> -->
 	</table>
 	<br>
 	<button type="button" onclick="check(addHostForm)">등록신청</button>
