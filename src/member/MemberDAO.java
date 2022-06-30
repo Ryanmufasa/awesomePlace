@@ -355,7 +355,7 @@ public class MemberDAO{
 			pstmt.setInt(2, mem_num);
 			if(pstmt.executeUpdate() != 0) {
 				check = true;
-				System.out.println("member 테이블 mem_hostCnt 값 추가 ");
+				System.out.println("member 테이블 mem_hostCnt 값 변경 완료 ");
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();

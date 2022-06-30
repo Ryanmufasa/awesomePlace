@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import hostService.AddNewHostService;
+import hostService.DeleteMyHostService;
 import hostService.GetHostInfoService;
 import hostService.GetMyHostListService;
 import hostService.HostOrderService;
@@ -21,11 +22,11 @@ import adminService.AdminService;
 
 import memberLoginService.IDfoundService;
 import memberLoginService.PWfoundService;
-import memberLoginService.LoginService;
 
 import memberJoinService.EmailCheckService;
 import memberJoinService.IdCheckService;
 import memberJoinService.JoinService;
+
 import memberService.LoginServiceDY;
 import memberService.LogoutServiceDY;
 import memberService.MyPagePWService;
@@ -157,22 +158,33 @@ public class APController extends HttpServlet {
 				break;
 				
 			case "/addNewHostForm.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/36 -- 작성자 정다영
+				// 새 호스트 등록 버튼 클릭시 Form 입력 페이지로 이동
 				page = new NextPage("/awesomePlace/myhosting/addNewHostForm.jsp", true);
 				break;
 				
 			case "/addNewCheck.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/36 -- 작성자 정다영
-				serv = new AddNewHostService();
+				// 새 호스트 정보 입력후 등록하기 했을 때  
+				serv = new AddNewHostService();  // 파일 첨부 기능 제외되었으므로 변경 가능성 있음. 
 				page = new NextPage("/myhosting/result.jsp", false);
 				break;
 
 			case "/myHostList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 -- 작성자 정다영
+				// 내 호스트 관리 또는 마이 호스팅 페이지에서 호스트 목록 눌렀을때 로그인 중인 회원의 호스트 목록 출력
+				// 내 호스트 관리 버튼은 myboard.jsp 에 있는것으로 임시 입니다. 네비게이션바로 적용으로 수경 예정..
 				serv = new GetMyHostListService();
 				page = new NextPage("/myhosting/myHostList.jsp", false);
 				break;
 				
 			case "/myHostOrderManage.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
-				serv = new ManageMyHostOrderService();
-				page = new NextPage("/myhosting/myHostOrderManage.jsp", false);
+				// 회원의 호스트 목록중에서 예약 관리 버튼을 눌렀을때 
+				serv = new ManageMyHostOrderService(); // 해당 호스트의 예약 목록을 가져옵니다 
+				page = new NextPage("/myhosting/myHostOrderManage.jsp", false); 
+				break;
+				
+			case "/deleteMyHost.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				// 관리자 승인이 false 인 호스트에 한해 회원이 삭제 가능. 
+				serv = new DeleteMyHostService();
+				page = new NextPage("/myhosting/result.jsp", false);
 				break;
 				
 	// 관리자  ===============================================================		

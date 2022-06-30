@@ -32,16 +32,15 @@ public class GetMyHostListService implements ServiceInterface {
 		String msg = null;
 		
 		if(myHostList != null) {
-			msg = "호스트 정보를 불러옵니다.";
+			System.out.println("호스트 정보를 불러옵니다.");
 			check = true;
-			session.setAttribute("myHostList", myHostList);
-			//request.setAttribute("myHostlost", myHostList);
+			//session.setAttribute("myHostList", myHostList);
+			request.setAttribute("myHostList", myHostList);
 		}else {
-			msg = "등록된 호스트 정보가 업습니다";
+			System.out.println("등록된 호스트 정보가 업습니다");
 		}
 		
 		request.setAttribute("check", check);
-		request.setAttribute("msg", msg);
 		
 	
 	}
