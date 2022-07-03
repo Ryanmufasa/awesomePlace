@@ -43,6 +43,8 @@ public class MemberDAO{
 					vo.setMem_pw(rs.getString("mem_pw"));
 					vo.setMem_tel(rs.getString("mem_tel"));
 					vo.setMem_email(rs.getString("mem_email"));
+					vo.setMem_hostcnt(rs.getString("mem_hostcnt"));
+					vo.setMem_sign(rs.getString("mem_sign"));
 					memlist.add(vo);
 				}
 			}catch(SQLException e) {
@@ -61,7 +63,7 @@ public class MemberDAO{
 	
 	
 
-	//회원1명 불러올때
+	//회원 id로 불러올때
 	public MemberVO getMember (String memid) {
 		MemberVO mb=new MemberVO();
 		String sql = "select * from member where mem_id = ?";
@@ -101,50 +103,6 @@ try {
 	
 	
 
-//	public MemberVO getMember (String memid) {
-//		MemberVO mb=new MemberVO();
-//		String sql = "select * from member where mem_id = ?";
-//try {
-//	
-//
-//		pstmt = con.prepareStatement(sql);
-//		pstmt.setString(1, memid);
-//		rs = pstmt.executeQuery();
-//
-//
-//		if(rs.next()) {
-//			
-//		memid = rs.getString("id");
-//		String mem_name = rs.getString("name");
-//		String mem_id = rs.getString("id");
-//		String mem_pw = rs.getString("pw");
-//		String mem_tel = rs.getString("tel");
-//		String mem_email = rs.getString("email");
-//		
-//		request.setAttribute("name", mem_name);
-//		request.setAttribute("id", mem_id);
-//		request.setAttribute("pw", mem_pw);
-//		request.setAttribute("tel", mem_tel);
-//		request.setAttribute("email", mem_email);
-//		
-//		request.getRequestDispatcher("mp_meminfo.jsp").forward(request, response);
-//		}else {
-//			response.sendRedirect("MyPage.jsp");
-//		}
-//		}catch(SQLException e){
-//			e.printStackTrace();
-//		}finally{
-//
-//			try {
-//				if(rs != null) rs.close();
-//				if(pstmt != null) pstmt.close();
-//			}catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	
-//	}
-
 	
 	
 	
@@ -153,7 +111,7 @@ try {
 	//private static DataSource ds;
 	public boolean join(MemberVO vo) {
 		boolean check=false;
-		String sql="insert into member "+" values(seq_member.nextval(),?,?,?,?,?)";
+		String sql="insert into member "+" values(seq_member.nextval,?,?,?,?,?,'Y',0)";
 		try {
 			//			con=ds.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -162,8 +120,11 @@ try {
 			pstmt.setString(3, vo.getMem_pw());
 			pstmt.setString(4, vo.getMem_tel());
 			pstmt.setString(5, vo.getMem_email());
+			pstmt.setString(6, vo.getMem_sign());
+			pstmt.setString(6, vo.getMem_hostcnt());
 			if(pstmt.executeUpdate() != 0) {
 				check = true;  
+				char mem_sign = 'Y';
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -181,29 +142,38 @@ try {
 
 
 	//로그인 확인
-	public MemberVO loginck (String mem_id1, String mem_pw2){
-		MemberVO vo=null;
-		boolean check=false;
+public MemberVO loginck (MemberVO vo1) {
+		
+		MemberVO vo = null;
 		String sql="select * from member where mem_id=? and mem_pw=?";
-		try{
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, mem_id1);
-		pstmt.setString(2, mem_pw2);
-		rs=pstmt.executeQuery();
-	
-			if(rs.next()) { 
-					System.out.println("로그인 성공");
-					check = true;
-				} else {
-					System.out.println("로그인 실패");
-				}
-		}catch(SQLException e){
-			System.out.println(e);
-		}finally{
 
+		try{
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, vo1.getMem_id()); 
+			pstmt.setString(2, vo1.getMem_pw());
+			rs = pstmt.executeQuery();
+			if(rs.next()) { 
+				vo = new MemberVO();
+				vo.setMem_num(rs.getInt("mem_num"));
+				vo.setMem_id(rs.getString("mem_id"));
+				vo.setMem_name(rs.getString("mem_name"));
+				vo.setMem_pw(rs.getString("mem_pw"));
+				vo.setMem_tel(rs.getString("mem_tel"));
+				vo.setMem_email(rs.getString("mem_email"));
+				vo.setMem_hostcnt(rs.getString("mem_hostcnt"));
+				vo.setMem_sign(rs.getString("mem_sign"));
+				
+				System.out.println("로그인 성공");
+			} else {
+				System.out.println("로그인 실패"); // 다를 경우 실패 리턴
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
 			try {
 				if(rs != null) rs.close();
 				if(pstmt != null) pstmt.close();
+				//if(con != null) con.close();
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -279,23 +249,25 @@ try {
 
 
 	//회원 수정
-	public int update(String memPw, String memTel, String memEmail, String memId) {
-		int result = 0;
-		String sql ="update member set mem_pw=?, mem_tel=?, mem_email=?" + " where mem_id=?";
+	public int update(MemberVO mb) {
+		int result=0;
+		String sql ="update member set mem_pw=?, mem_tel=?, mem_email=? where mem_id=?";
 
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, memPw);
-			pstmt.setString(2, memTel);
-			pstmt.setString(3, memEmail);
-			pstmt.setString(4, memId);
+			pstmt.setString(1, mb.getMem_pw());
+			pstmt.setString(2, mb.getMem_tel());
+			pstmt.setString(3, mb.getMem_email());
+			pstmt.setString(4, mb.getMem_id());
 			pstmt.executeUpdate();
 			
 			if(pstmt.executeUpdate() > 0) {
 				result = 1;
+			}else{
+				result = 0;
 			}
-
-		
+			
+			
 		}catch(SQLException e){
 
 		}finally{
@@ -314,19 +286,19 @@ try {
 
 
 	//회원 탈퇴	
-	public boolean delete(String mem_id) throws SQLException {
+	public boolean delete(MemberVO vo) {
 		boolean check=false;
 		String sql = "delete from member where mem_id=?;";
 
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mem_id);
-			pstmt.executeUpdate();
-
+			pstmt.setString(1, vo.getMem_id());
+			
 			if(pstmt.executeUpdate() != 0) {
 				check = true;
 			}
-		}catch(Exception e){
+		}catch(SQLException e){
+			e.printStackTrace();
 			System.out.println(e);
 		}finally{
 
@@ -489,6 +461,10 @@ try {
 			}
 			return result;
 		}
+
+
+
+	
 }
 
 
