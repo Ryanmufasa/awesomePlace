@@ -22,6 +22,7 @@ $(function(){
 		$(this).val(wea);
 	});
 	
+	
 });
 
 // 우편번호 검색시 // 다음 우편번호 서비스 api 
@@ -161,3 +162,4 @@ function check(f){
 	
 	
 }
+

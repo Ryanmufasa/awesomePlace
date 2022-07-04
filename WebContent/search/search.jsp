@@ -10,9 +10,10 @@
 <div align="center"  class="mainDiv">
 <h2>검색결과 </h2>
 <hr>
+<div style="display:inline-flex;">
 	<c:forEach var="host" items="${hostli }" varStatus="status">
-		<div class="box">
-		<button class="boxing" id="A" onclick="location.href='/awesomePlace/search/moreinfo.do?host_name=${host.host_name }&host_num=${host.host_num}'">
+		<!-- <section class="box"> -->
+		<button class="box" id="A" onclick="location.href='/awesomePlace/search/moreinfo.do?host_name=${host.host_name }&host_num=${host.host_num}'">
 			<h2>${host.host_name }</h2>
 			<c:set var="room" value="${host.room_type }"/>
 				<c:if test="${fn:contains( room, 'A')}"><c:out value="집 전체"/></c:if>
@@ -21,14 +22,15 @@
 			방 개수 ${host.room_cnt } 개<br>
 			숙박 가능 인원 ${host.guest_cnt } 명<br> 
 			평일 <fmt:formatNumber type="currency" value="${host.weekday_amt }"/>~<br>
-			공휴일 <fmt:formatNumber type="currency" value="${host.weekend_amt }"/>~<br>
+			공휴일 <fmt:formatNumber type="currency" value="${host.weekend_amt }"/>~
 			<%-- <input type="hidden" name="host_num" value="${host.host_num }"> --%>
 		</button>
-		</div>
+		<!-- </section> -->
 	</c:forEach>
 	<c:if test="${hostli == null}">
 		<p>검색 결과가 없습니다!</p>
 	</c:if>
+</div>
 </div>
 
 <%@ include file="/layout/SearchFooter.jsp" %>

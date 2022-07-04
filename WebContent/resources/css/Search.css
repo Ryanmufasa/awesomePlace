@@ -5,9 +5,15 @@
   width: 250px;
   height: 200px;
   padding:0;
-  margin: 5%;
+  margin: 1%;
   display:inline-block;
-  background-color:#FFFFAA
+  background-color:#FFFFAA;
+  border: 1px solid black;
+}
+
+.box:hover{
+	box-shadow : 3px 3px 10px;
+	cursor : pointer;
 }
 .boxing:hover{
 	box-shadow : 3px 3px 10px;
@@ -15,7 +21,6 @@
 }
 
 .boxing{
-	border: 1px solid black;
 	cursor:pointer;
 	width:250px;
 	height:200px;

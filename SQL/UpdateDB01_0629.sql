@@ -114,4 +114,16 @@ alter table qna modify qna_sign default 'Wait';
 
 desc qna;
 
+
+--- 찜 테이블 추가 
+
+
+create table jjim(
+mem_num number not null,
+    constraint jjim_mem_num_fk foreign key (mem_num) references member,
+host_num number not null,
+    constraint jjim_host_num_fk foreign key (host_num) references host
+);
+
+
 commit;

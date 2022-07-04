@@ -11,6 +11,7 @@
 }
 
 </style>
+<!-- 기존 호스트 정보 입력 방식  -->
 <!-- UI 임시 디자인 -->
 <div class="mainDiv-child" align="center">
 <fieldset>
