@@ -2,7 +2,6 @@
 package orderinfo.orderinfodao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -74,8 +73,8 @@ public class OrderInfoDAO {
 			vo = new OrderInfoVO();
 			vo.setOi_num(rs.getInt("oi_num"));
 			vo.setOi_guest_cnt(rs.getInt("oi_guest_cnt"));
-			vo.setCheckIn_date(rs.getDate("checkIn_date"));
-			vo.setCheckOut_date(rs.getDate("checkOut_date"));
+			vo.setCheckIn_date(new java.util.Date(rs.getDate("checkIn_date").getTime()));
+			vo.setCheckOut_date(new java.util.Date(rs.getDate("checkOut_date").getTime()));
 			vo.setPay_date(rs.getDate("pay_date"));
 			vo.setPay_amt(rs.getInt("pay_amt"));
 			vo.setOi_sign(rs.getString("oi_sign"));
@@ -102,12 +101,12 @@ public class OrderInfoDAO {
 		
 		String sql = "insert into orderinfo values(orderinfo_seq.nextval, "
 				+ "?,?,?,sysdate,?,'wait',"
-				+ "?,?,?,?,?,?,?";
+				+ "?,?,?,?,?,?,?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, vo.getOi_guest_cnt());
-			ps.setDate(2, (Date) vo.getCheckIn_date());
-			ps.setDate(3,  (Date) vo.getCheckOut_date());
+			ps.setDate(2, new java.sql.Date(vo.getCheckIn_date().getTime()));
+			ps.setDate(3, new java.sql.Date(vo.getCheckOut_date().getTime()));
 			ps.setInt(4, vo.getPay_amt());
 			
 			ps.setInt(5, vo.getOi_host_num());
@@ -134,8 +133,8 @@ public class OrderInfoDAO {
 	}
 	
 	
-	// 예약 정보 조회시
-	public ArrayList<OrderInfoVO> selectOrder(int host_num) {
+	// 호스트의 예약 정보 리스트 조회시
+	public ArrayList<OrderInfoVO> selectOrder(int oi_host_num) {
 		
 		ArrayList<OrderInfoVO> oili = new ArrayList<OrderInfoVO>();
 		
@@ -145,7 +144,7 @@ public class OrderInfoDAO {
 		
 		try {
 			ps= con.prepareStatement(sql);
-			ps.setInt(1, host_num);
+			ps.setInt(1, oi_host_num);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				vo = getInfo(rs);
@@ -172,6 +171,87 @@ public class OrderInfoDAO {
 		return oili;
 	}
 	
+	// 예약 정보 상세보기
+	public OrderInfoVO getOrder(int oi_num) {
+		
+		OrderInfoVO vo = null;
+		
+		String sql = "select * from orderinfo where oi_num=?";
+		
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, oi_num);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				vo = getInfo(rs);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return vo;
+		
+	}
+	
+	// 예약 승인 - 호스트 
+	public int confirmOrder(int oi_num) {
+		
+		int a = 0;
+		
+		String sql = "update orderinfo set oi_sign='confirm' where oi_num=?";
+		
+		try {
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, oi_num);
+			if(ps.executeUpdate() != 0) {
+				a = 1;
+				return a;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return a;
+		
+	}
+	
+	// 예약 승인 취소 - 호스트 
+	public int cancleOrder(int oi_num) {
+		
+		int a = 0;
+		String sql = "update orderinfo set oi_sign='cancle' where oi_num=?";
+		
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, oi_num);
+			if(ps.executeUpdate() != 0) {
+				a = 1;
+				return a;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return a;
+	}
 	
 	
 

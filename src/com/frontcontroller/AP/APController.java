@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import hostService.AddNewHostService;
+import hostService.AddNewHostTypePService;
+import hostService.CancleOrderService;
+import hostService.ConfirmOrderService;
 import hostService.DeleteMyHostService;
 import hostService.GetHostInfoService;
 import hostService.GetMyHostListService;
@@ -31,7 +34,7 @@ import memberService.LoginServiceDY;
 import memberService.LogoutServiceDY;
 import memberService.MyPagePWService;
 import memberService.PWupdateService;
-
+import orderinfoService.GetMoreOrderInfoService;
 import service.NextPage;
 import service.ServiceInterface;
 
@@ -147,8 +150,9 @@ public class APController extends HttpServlet {
 				page = new NextPage("/search/hostInfo.jsp", false);
 				break;
 				
-			case "/hostOrder.do" :
-				serv = new HostOrderService();
+			case "/hostOrder.do" : // https://github.com/Ryanmufasa/awesomePlace/issues/57 -- 작성자 정다영 
+				// 마이호스팅 부분 테스트를 위한 임시 예약 처리 서비스 
+				serv = new HostOrderService(); 
 				page = new NextPage("/search/hostOrder.jsp", false);
 				break;
 				
@@ -157,6 +161,32 @@ public class APController extends HttpServlet {
 				page = new NextPage("/awesomePlace/myhosting/myboard.jsp", true);
 				break;
 				
+			//=-------- 테스트 
+				
+				// 새로 호스트 등록하기 클릭시 호스트 타입 체크로 넘어감
+			case "/addNewHostTypeCheck.do" :
+				page = new NextPage("/awesomePlace/addHost/addNewHostTypeCheck.jsp", true);
+				break;
+				
+				//호스트 유형에 따른 입력 폼 페이지 이동  
+			case "/addNewHostTypeA.do":
+				page = new NextPage("/awesomePlace/addHost/addNewHostFormTypeA.jsp", true);
+				break;
+			case "/addNewHostTypeP.do":
+				page = new NextPage("/awesomePlace/addHost/addNewHostFormTypeP.jsp", true);
+				break;
+			case "/addNewHostTypeS.do":
+				page = new NextPage("/awesomePlace/addHost/addNewHostFormTypeS.jsp", true);
+				break;
+				
+			case "/addNewPCheck.do":
+				serv = new AddNewHostTypePService();
+				page = new NextPage("/myhosting/result.jsp", false);
+				break;
+				
+				
+			//----- 테스트 
+			
 			case "/addNewHostForm.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/36 -- 작성자 정다영
 				// 새 호스트 등록 버튼 클릭시 Form 입력 페이지로 이동
 				page = new NextPage("/awesomePlace/myhosting/addNewHostForm.jsp", true);
@@ -187,6 +217,24 @@ public class APController extends HttpServlet {
 				page = new NextPage("/myhosting/result.jsp", false);
 				break;
 				
+			case "/getOrderInfoMore.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				// 예약 정보에서 상세 정보보기를 클릭 했을 때
+				serv = new GetMoreOrderInfoService();
+				page = new NextPage("/myhosting/orderInfoPopup.jsp", false);
+				break;
+				
+			case "/confirmOrder.do" : // https://github.com/Ryanmufasa/awesomePlace/issues/57 -- 작성자 정다영 
+				// 예약 승인하는경우 
+				serv = new ConfirmOrderService();
+				page = new NextPage("/myhosting/confirm.jsp", false);
+				break;
+				
+			case "/cancleOrder.do" :// https://github.com/Ryanmufasa/awesomePlace/issues/57 -- 작성자 정다영 
+				// 예약 승인 요청을 취소하는 경우. 
+				serv = new CancleOrderService();
+				page = new NextPage("/myhosting/cancle.jsp", false);
+				break;
+			
 	// 관리자  ===============================================================		
 			case "/admin.do" :
 				serv = new AdminService();

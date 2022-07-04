@@ -29,7 +29,7 @@ public class ManageMyHostOrderService implements ServiceInterface {
 			request.setAttribute("orderInfoList", orderli);
 
 		
-		
+		// /myhosting/myHostOrderManage.jsp
 	}
 
 }

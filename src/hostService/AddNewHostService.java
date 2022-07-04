@@ -34,8 +34,8 @@ public class AddNewHostService implements ServiceInterface {
 		System.out.println("host_name : " + host_name);
 		
 		String host_addr = request.getParameter("host_addr1")
-				+ request.getParameter("host_addr2")
-				+ request.getParameter("host_addr3");
+				+" "+ request.getParameter("host_addr2")
+				+" "+ request.getParameter("host_addr3");
 		System.out.println("host_addr : " + host_addr);
 		
 		String host_post_num =request.getParameter("host_post_num");

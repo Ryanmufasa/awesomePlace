@@ -2,27 +2,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file ="/layout/Header.jsp" %>
-<style>
-.box{
-  width: 200px;
-  height: 100px;
-  border: 1px solid black;
-  margin: auto;
-  transition: all 0.5s;
-  transition-delay: 0.2s;
-}
-.box:hover{
-  box-shadow: 5px 5px 20px;
-}
+<link href="${pageContext.request.contextPath }/resources/css/myHostList.css?v=<%=System.currentTimeMillis() %>" 
+rel="stylesheet">
 
-</style>
 <div class="mainDiv-child">
 
 <div align="center">
 <c:if test="${check }"><%-- 등록된 호스트 정보가 있는 경우 --%>
 	
 	<c:forEach var="host" items="${myHostList }" >
-		<!-- <form action="" method="post" name="hostList" id="hostListForm"> -->
+		<%-- <form action="" method="post" name="hostList" id="hostListForm"> --%>
 		<%-- <input type="hidden" name="host_num" value="${host.host_num }"> --%>
 		<section class="box">
 			${host.host_name }<br>
@@ -39,7 +28,7 @@
 					<button type="button" onclick='deleteck("${host.host_num}")'>호스트 삭제</button>
 				</c:if>
 		</section>
-		<!-- </form> -->
+		<%--</form> --%>  
 	</c:forEach>
 
 </c:if>
@@ -68,9 +57,9 @@ function signck(){
 	alert('관리자 승인 후에 예약 관리가 가능합니다!');
 }
 function deleteck(f){
-	//alert(f);
+	alert(f);
 	var f = f;
-	//var lo = "/awesomePlace/myhosting/deleteMyHost.do?host_num="+f;
+	var lo = "/awesomePlace/myhosting/deleteMyHost.do?host_num="+f;
 	alert(lo);
 	if(confirm('아직 관리자 승인 전입니다! 해당 호스트를 삭제하시겠습니까?') == true){	
 		if(confirm('현재 호스트 삭제시 삭제된 데이터는 복구되지 않습니다. 정말 삭제하시겠습니까?') == true){
