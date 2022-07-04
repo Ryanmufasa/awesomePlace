@@ -1,4 +1,4 @@
-// https://github.com/Ryanmufasa/awesomePlace/issues/24 -- 작성자 정다영
+//https://github.com/Ryanmufasa/awesomePlace/issues/41 = 작성자 고유주
 package orderinfo;
 
 import java.sql.Connection;
@@ -6,86 +6,93 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import awesomePlace.dbConn.DBConn;
 import orderinfo.OrderinfoVO;
 
 public class OrderinfoDAO { 
-	
+
 	private Connection con = new DBConn().getConnection();
 	private PreparedStatement pstmt;
 	private ResultSet rs;
-	
+
 	private static OrderinfoDAO instance;
-	
+
 	public static OrderinfoDAO getInstance() {
 		if(instance == null) {
 			instance = new OrderinfoDAO();
 		}
 		return instance;
 	}
-	
-	
-//목록 불러오기
-public ArrayList<OrderinfoVO> getAllreser(){
-		
+
+
+	//전체 목록 불러오기
+	// 조회 select / 삽입 insert / 삭제 delete / 수정 update
+	public ArrayList<OrderinfoVO> getAllreser(String oi_mem_id){
 		ArrayList<OrderinfoVO> reser = new ArrayList<OrderinfoVO>();
-		
-		String sql = "select * from orderinfo order by order_num desc";
+		String sql = "select * from orderinfo where oi_mem_id=?";
 		OrderinfoVO vo = null;
-		
 		try {
+
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, oi_mem_id);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				vo = new OrderinfoVO();
-				vo.setOrder_num(rs.getInt("order_num"));
-				vo.setHost_num(rs.getInt("host_num"));
-				vo.setHost_name(rs.getString("host_name"));
-				vo.setMem_num(rs.getInt("mem_num"));
-				vo.setMem_name(rs.getString("mem_name"));
-				vo.setGuest_cnt(rs.getInt("guest_cnt"));
-				vo.setOrder_date(rs.getDate("order_date"));
+				vo.setOi_num(rs.getInt("oi_num"));
+				vo.setOi_guest_cnt(rs.getInt("oi_guest_cnt"));
+				vo.setCheckin_date(rs.getDate("checkin_date"));
+				vo.setCheckout_date(rs.getDate("checkout_date"));
+				vo.setPay_date(rs.getDate("pay_date"));
 				vo.setPay_amt(rs.getInt("pay_amt"));
-				vo.setOrder_sign(rs.getString("order_sign"));
+				vo.setOi_sign(rs.getString("oi_sign"));
+				vo.setOi_host_num(rs.getInt("oi_host_num"));
+				vo.setOi_host_name(rs.getString("oi_host_name"));
+				vo.setOi_host_addr(rs.getString("oi_host_addr"));
+				vo.setOi_host_post_num(rs.getString("oi_host_post_num"));
+				vo.setOi_host_tel(rs.getString("oi_host_tel"));
+				vo.setOi_mem_id(rs.getString("oi_mem_id"));
+				vo.setOi_mem_tel(rs.getString("oi_mem_tel"));
 				reser.add(vo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
+		}		
 		if(reser.isEmpty()) {
 			reser = null;
 			System.out.println("예약내역 없음");
 		}else {
 			reser.trimToSize();
 		}
-		
+
 		return reser;
-	}
-	
+	} 
 
 
-	//회원 예약내역 불러오기
-	public OrderinfoVO getreser(int memnum) {
+
+	//마이페이지에서 자세히 예약내역 불러오기
+	public OrderinfoVO getreser(int oi_num) {
 		OrderinfoVO od = new OrderinfoVO();
-		String sql = "select * from order where mem_num = ?";
-	
+		String sql = "select * from orderinfo where oi_num = ?";
+
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, memnum);
+			pstmt.setInt(1, oi_num);
 			rs = pstmt.executeQuery();
-			
+
 			if(rs.next()) {
-				od.setOrder_num(rs.getInt("ordernum"));
-				od.setHost_num(rs.getInt("host_num"));
-				od.setHost_name(rs.getString("host_name"));
-				od.setMem_num(rs.getInt("mem_num"));
-				od.setMem_name(rs.getString("mem_name"));
-				od.setGuest_cnt(rs.getInt("guest_cnt"));
-				od.setOrder_date(rs.getDate("order_date"));
+				od.setOi_num(rs.getInt("oi_num"));
+				od.setOi_host_name(rs.getString("oi_host_name"));
+				od.setOi_host_addr(rs.getString("oi_host_addr"));
+				od.setOi_host_tel(rs.getString("oi_host_tel"));
+				od.setOi_guest_cnt(rs.getInt("oi_guest_cnt"));
+				od.setCheckin_date(rs.getDate("checkin_date"));
+				od.setCheckout_date(rs.getDate("checkout_date"));
 				od.setPay_amt(rs.getInt("pay_amt"));
-				od.setOrder_sign(rs.getString("order_sign"));
+				od.setPay_date(rs.getDate("pay_date"));
+				od.setOi_sign(rs.getString("oi_sign"));
+
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -99,31 +106,28 @@ public ArrayList<OrderinfoVO> getAllreser(){
 		}
 		return od;
 	}
-	
-	
-	//예약내역 삭제
+
+
+
+
+
+	//마이페이지 예약내역 삭제
 	public boolean deletereser (OrderinfoVO vo) {
 		boolean reser = false;
-		String sql = "delete orderinfo where mem_num=?";
-		
+		String sql = "delete orderinfo where oi_mem_id=?";
+
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, vo.getMem_num());
+			pstmt.setString(1, vo.getOi_mem_id());
 			if(pstmt.executeUpdate() !=0) {
 				reser = true;
 			}
-			
+
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return reser;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+
 }
