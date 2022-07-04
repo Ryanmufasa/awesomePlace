@@ -1,3 +1,4 @@
+//https://github.com/Ryanmufasa/awesomePlace/issues/15 = 작성자 고유주
 package member;
 
 public class MemberVO {
@@ -8,12 +9,37 @@ public class MemberVO {
 	private String mem_pw;
 	private String mem_tel;
 	private String mem_email;
+	private String mem_sign;
+	private String mem_hostcnt;
 	
 	
+	public String getMem_sign() {
+		return mem_sign;
+	}
+
+	public void setMem_sign(String mem_sign) {
+		this.mem_sign = mem_sign;
+	}
+
+	public String getMem_hostcnt() {
+		return mem_hostcnt;
+	}
+
+	public void setMem_hostcnt(String mem_hostcnt) {
+		this.mem_hostcnt = mem_hostcnt;
+	}
+
 	public MemberVO() {}
 	
+	public MemberVO(String mem_id, String mem_pw, String mem_tel, String mem_email) {
+		super();
+		this.mem_id = mem_id;
+		this.mem_pw = mem_pw;
+		this.mem_tel = mem_tel;
+		this.mem_email = mem_email;
+	}
 	
-	public MemberVO(int mem_num, String mem_name, String mem_id, String mem_pw, String mem_tel, String mem_email) {
+	public MemberVO(int mem_num, String mem_name, String mem_id, String mem_pw, String mem_tel, String mem_email, String mem_sign, String mem_hostcnt) {
 		super();
 		this.mem_num=mem_num;
 		this.mem_name=mem_name;
@@ -21,6 +47,8 @@ public class MemberVO {
 		this.mem_pw=mem_pw;
 		this.mem_tel=mem_tel;
 		this.mem_email=mem_email;
+		this.mem_sign=mem_sign;
+		this.mem_hostcnt=mem_hostcnt;
 	}
 	
 	public MemberVO(String mem_name, String mem_id, String mem_pw, String mem_tel, String mem_email) {
