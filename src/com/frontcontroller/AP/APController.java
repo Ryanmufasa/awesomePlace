@@ -2,6 +2,8 @@
 package com.frontcontroller.AP;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +21,10 @@ import memberService.IdCheckService;
 import memberService.JoinService;
 import memberService.LoginService;
 import memberService.MyPagePWService;
+import memberService.MypageOrderinfoClickService;
+import memberService.MypagememinfoService;
+import memberService.MypagememUpdaService;
+import memberService.MypageorderinfoService;
 import memberService.PWfoundService;
 import memberService.PWupdateService;
 import service.NextPage;
@@ -144,10 +150,41 @@ public class APController extends HttpServlet {
 				serv = new AdminQnAListService();
 				page = new NextPage("/admin/QnAList.jsp", false); 
 				break;
+				
+			//마이페이지 정보수정 	
+			case "/mpmeminfo.do" : //작성자 = 고유주
+				serv = new MypagememinfoService();
+				page = new NextPage("/mypage/mp_meminfo.jsp", false);
+				break;
+
+			case "/meminfoclear.do" : //작성자 = 고유주
+				serv = new MypagememUpdaService();
+				page = new NextPage("/mypage/mp_memInfoUpdate.jsp", false);
+				break;
+	
+				
+			//마이페이지 예약내역 
+				case "/mpreserinfo.do" : //작성자 = 고유주
+				serv = new MypageOrderinfoClickService();
+				page = new NextPage("/mypage/mp_reserinfo.jsp", false);
+				break;
+			
+				case "/mpreserinfofirst.do" : //작성자 = 고유주
+					serv = new MypageorderinfoService();
+					page = new NextPage("/mypage/mp_reserInfoFirst.jsp", false);
+					break;
+				
+				
+				
     	}
     	
     	if(serv != null) {
-    		serv.execute(request, response);
+    		try {
+				serv.execute(request, response);
+			} catch (ClassNotFoundException | IOException | SQLException | ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	}
     	
     	if(page.isRedirect()) {
