@@ -1,10 +1,9 @@
-/** https://github.com/Ryanmufasa/awesomePlace/issues/33 -- 작성자 정다영
+/**
  * 
  */
-
-$(function(){
+	// 테스트 페이지 addNewHostFormP
 	
-	document.getElementById("room_cnt_2").style.visibility="hidden";
+$(function(){
 	
 	$('#host_tel').on("keyup", function(){
 		var tel = $(this).val();
@@ -22,9 +21,10 @@ $(function(){
 		$(this).val(wea);
 	});
 	
+
+	
 	
 });
-
 // 우편번호 검색시 // 다음 우편번호 서비스 api 
 function sample6_execDaumPostcode(){
 	new daum.Postcode({
@@ -125,9 +125,8 @@ function autoHypenTel(tel){
 	
 }
 
-
-//등록신청 버튼 클릭시 
-function check(f){
+//등록신청 버튼 클릭시 - 테스트 폼
+/*function checkHost(f){
 	
 	if(f.host_name.value == ""){
 		f.host_name.focus();
@@ -139,14 +138,6 @@ function check(f){
 		f.host_addr2.focus();
 	}else if(f.host_tel.value == ""){
 		f.host_tel.focus();
-	}else if(f.room_type.value == ""){
-		alert('방 종류를 선택해주세요!');
-	}else if(f.room_cnt_1.value == " "){
-		alert("방 개수를 입력을 확인해주세요!");
-	}else if(f.room_cnt_1.value == 0){
-		if(f.room_cnt_2 == ""){
-			alert("방 개수를 입력을 확인해주세요!");
-		}
 	}else if(f.guest_cnt.value == ""){
 		f.guest_cnt.focus();
 	}else if(f.weekday_amt.value == ""){
@@ -159,7 +150,29 @@ function check(f){
 
 		f.submit();
 	}
+}*/
+
+// 객실 추가 버튼 클릭시 - 테스트 폼 addNewHostFormP.jsp
+function addRow(){
 	
+	
+	const table = document.getElementById('addRow');
+	
+	const newRow = table.insertRow();
+	
+/*	const newCell0 = newRow.insertCell(0);
+	const newCell1 = newRow.insertCell(1);
+	const newCell2 = newRow.insertCell(2);	
+	const newCell3 = newRow.insertCell(3);*/
+	
+		
+	const newCell0 = newRow.insertCell();
+	newCell0.innerHTML = '<input type="text" name="room_name" placeholder="ex)101호, 커플방, 가족방" required>';
+	const newCell1 = newRow.insertCell();
+	newCell1.innerHTML = "<input type=text name=guest_cnt min=1 onkeyup=this.value=this.value.replace(/[^0-9]/g,'') required> 명 ";
+	const newCell2 = newRow.insertCell();
+	newCell2.innerHTML = "<input type=text id=weekday_amt name=week_day_amt onkeyup=this.value=this.value.replace(/[^0-9]/g,'') required> 원 ";
+	const newCell3 = newRow.insertCell();
+	newCell3.innerHTML = "<input type=text id=weekend_amt name=week_end_amt onkeyup=this.value=this.value.replace(/[^0-9]/g,'') required> 원 ";
 	
 }
-

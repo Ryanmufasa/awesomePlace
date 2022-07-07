@@ -1,5 +1,5 @@
 //https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영
-package memberService;
+package memberJoinService;
 
 import java.io.IOException;
 

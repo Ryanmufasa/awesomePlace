@@ -28,6 +28,9 @@ background-color : #333;
 color : #fff;
 }
 </style>
+
+</head>
+<body>
 <ul>
 <li><a href="#">정보수정</a></li>
 <li><a href="#">찜목록</a></li>
@@ -35,9 +38,6 @@ color : #fff;
 <li><a href="#">마이호스팅</a></li>
 <li><a href="#">내 문의 확인</a></li>
 </ul>
-
-</head>
-<body>
 <form action="" method="post">
 <div id="hostadd" style="text-align : center;">
 <h2><b>등록된 호스트하우스가 없습니다ㅠㅠ<br>
