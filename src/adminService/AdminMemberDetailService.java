@@ -10,7 +10,7 @@ import member.MemberDAO;
 import member.MemberVO;
 import service.ServiceInterface;
 
-public class AdminMemberInfoService implements ServiceInterface {
+public class AdminMemberDetailService implements ServiceInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -23,7 +23,7 @@ public class AdminMemberInfoService implements ServiceInterface {
 			idx = Integer.parseInt(temp);
 		}
 		System.out.println(idx);
-		MemberVO memInfo = dao.getMember(idx);
+		MemberVO memInfo = dao.getMemberDetail(idx);
 		
 		request.setAttribute("memInfo", memInfo);
 	}

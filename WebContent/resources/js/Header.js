@@ -123,21 +123,35 @@
 			
 			
 			var mainBottom = $("#counter").offset().top; //메인 div 높이 반응형설정
-			$(".mainDiv, .mainDiv-image, .nav").css("height",mainBottom-140);
-			$(".navLine").css("height",mainBottom-140);
+			$(".mainDiv, .navLine, .nav").css("height",mainBottom-140);
 			
 			
 		});
 		
-		$(window).on("scroll", function (){ //네비게이션바가 스크롤을 따라다니도록 설정
+		$(window).on("scroll", function (){//네비게이션바가 스크롤을 따라다니도록 설정
+			sizeE();
+		});
+		
+		$(window).on("resize", function (){//네비게이션바가 리사이즈시에도 따라다니도록 설정
+			sizeE();
+		});
+		function sizeE() {
 			var ySC = $(window).scrollTop();
+			var DWid = $(".imageP").width();
 			var mainDivTop = $(".mainDiv").offset().top;
 			if(mainDivTop<=ySC){
-				$(".upperNav").css("position", "fixed");
+				$(".upperNav").css({"position":"fixed",
+											"width":DWid,
+											"margin":"0px",
+										});
 			}else{
-				$(".upperNav").css("position", "absolute");
+				$(".upperNav").css({"position":"absolute",
+											"width":"100%",
+											"margin":"auto"
+										});
 			}
-		});
+		}
+		
 
 	// 목적지, 로그인여부(세션 아이디 존재여부), 마이페이지 비밀번호 재확인 여부 를 받아 각 상황에 맞게 페이지 분배하는 함수
 	function flip() { //select 옵션에 따른 입력창 노출여부 함수

@@ -9,11 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import HnNService.MainPageService;
+import adminService.AdminHostDetailService;
+import adminService.AdminHostSwitchSignService;
 import adminService.AdminHostingListService;
+import adminService.AdminMemberDeleteService;
 import adminService.AdminMemberHostListService;
-import adminService.AdminMemberInfoService;
+import adminService.AdminMemberDetailService;
 import adminService.AdminMemberListService;
-import adminService.AdminMemberSwitchAvailableService;
+import adminService.AdminMemberSwitchSignService;
 import adminService.AdminOutService;
 import adminService.AdminQnAAnswerFormService;
 import adminService.AdminQnAListService;
@@ -163,21 +166,33 @@ public class APController extends HttpServlet {
 				serv = new AdminMemberListService();
 				page = new NextPage("/admin/memberList.jsp", false); 
 				break;
-			case "/memberInfo.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
-				serv = new AdminMemberInfoService();
-				page = new NextPage("/admin/memberInfo.jsp", false); 
+			case "/memberDetail.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberDetailService();
+				page = new NextPage("/admin/memberDetail.jsp", false); 
+				break;
+			case "/memberDelete.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberDeleteService();
+				page = new NextPage("/admin/memberDetail.jsp", false); 
 				break;
 			case "/memberHostList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
 				serv = new AdminMemberHostListService();
 				page = new NextPage("/admin/memberHostList.jsp", false); 
 				break;
-			case "/switchAvailable.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
-				serv = new AdminMemberSwitchAvailableService();
+			case "/switchSign.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberSwitchSignService();
 				page = new NextPage("memberList.do", false); 
 				break;
 			case "/hostingList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/50 작성자: 이명진
 				serv = new AdminHostingListService();
 				page = new NextPage("/admin/hostingList.jsp", false); 
+				break;
+			case "/hostDetail.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/50 작성자: 이명진
+				serv = new AdminHostDetailService();
+				page = new NextPage("/admin/hostDetail.jsp", false); 
+				break;
+			case "/switchHostSign.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminHostSwitchSignService();
+				page = new NextPage("/admin/hostDetail.jsp", false); 
 				break;
 			case "/siteMap.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/51 작성자: 이명진
 				page = new NextPage("/admin/siteMap.jsp", true); 

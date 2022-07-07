@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import member.MemberDAO;
 import service.ServiceInterface;
 
-public class AdminMemberSwitchAvailableService implements ServiceInterface {
+public class AdminMemberSwitchSignService implements ServiceInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -22,7 +22,7 @@ public class AdminMemberSwitchAvailableService implements ServiceInterface {
 		if(temp!=null) {
 			idx = Integer.parseInt(temp);
 		}
-		boolean result = dao.memSwitchAvailable(idx,flag);
+		boolean result = dao.memSwitchSign(idx,flag);
 		String res=null;
 		
 		if(result) 

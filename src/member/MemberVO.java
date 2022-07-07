@@ -8,23 +8,30 @@ public class MemberVO {
 	private String mem_pw;
 	private String mem_tel;
 	private String mem_email;
-	private String mem_available;
+	private String mem_sign;
 	private int mem_hostingcnt;
 	
 	
 	public MemberVO() {}
 	
-	
-	public MemberVO(int mem_num, String mem_name, String mem_id, String mem_pw, String mem_tel, 
-			String mem_email, String mem_available, int mem_hostingcnt) {
-		super();
+	public MemberVO(int mem_num, String mem_name, String mem_id, String mem_pw, String mem_tel, String mem_email, String mem_sign, int mem_hostingcnt) { 
 		this.mem_num=mem_num;
 		this.mem_name=mem_name;
 		this.mem_id=mem_id;
 		this.mem_pw=mem_pw;
 		this.mem_tel=mem_tel;
 		this.mem_email=mem_email;
-		this.mem_available=mem_available;
+		this.mem_sign=mem_sign;
+		this.mem_hostingcnt=mem_hostingcnt;
+	}
+	
+	public MemberVO(int mem_num, String mem_name, String mem_id,String mem_sign, int mem_hostingcnt) { 
+		//https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+		// 멤버 전체호출을 위한 생성자
+		this.mem_num=mem_num;
+		this.mem_name=mem_name;
+		this.mem_id=mem_id;
+		this.mem_sign=mem_sign;
 		this.mem_hostingcnt=mem_hostingcnt;
 	}
 
@@ -89,11 +96,11 @@ public class MemberVO {
 	public void setMem_email(String mem_email) {
 		this.mem_email = mem_email;
 	}
-	public String getMem_available() {
-		return mem_available;
+	public String getmem_sign() {
+		return mem_sign;
 	}
-	public void setMem_available(String mem_available) {
-		this.mem_available = mem_available;
+	public void setmem_sign(String mem_sign) {
+		this.mem_sign = mem_sign;
 	}
 	public int getMem_hostingcnt() {
 		return mem_hostingcnt;
