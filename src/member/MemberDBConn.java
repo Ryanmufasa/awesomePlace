@@ -17,30 +17,10 @@ public class MemberDBConn {
     public MemberDBConn() throws ClassNotFoundException, SQLException {
 
         Class.forName("oracle.jdbc.driver.OracleDriver");
-        con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.1.140:1521:xe", "awesomeplace",
+        con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "awesomeplace",
             "awesomeplace");
 
     }
 }
  
 	  
-/*
-	  String url = "jdbc:oracle:thin:@192.168.1.140:1521:xe";
-	  String user = "hr", pw = "hr";
-
-	  Connection con = null;
-	  PreparedStatement pstmt = null;
-	  ResultSet rs = null;
-
-	  public Connection getConnection() {
-		  return con;
-	  }
-
-	  public memberDBConn() throws ClassNotFoundException, SQLException {
-		  Class.forName("oracle.jdbc.driver.OracleDriver");
-		  con = DriverManager.getConnection(url, user, pw);
-*/
-
-
-
-//192.168.1.140

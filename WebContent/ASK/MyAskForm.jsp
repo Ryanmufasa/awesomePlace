@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title> <!-- https://github.com/Ryanmufasa/awesomePlace/issues/40  작성자: 양준모-->
-
+								<!-- 문의글 등록을 위한 페이지 입니다. -->
 <style>
 
 table, td, th {

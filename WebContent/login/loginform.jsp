@@ -24,12 +24,6 @@
     
 </style>
 
-<!-- <script>
-    function gologinCheck() {
-        location.href = "login.do"
-    }
-</script> -->
-
 </head>
 
 <body>
@@ -40,7 +34,8 @@
 
     <div id="login1" align="center">
 
-        <form action="${pageContext.request.contextPath }/login/login.do" method="post">
+        <form action="${pageContext.request.contextPath }/login/login.do" method="post" name="loginform">
+        <input type="hidden" name="from" value="">
 
             <table>
 
@@ -67,8 +62,7 @@
 
             </table> <br>
 
-            <!-- <button class="submit" style="width:130px;height:40px;background-color:#5e5e5e;color:white;border:none;cursor:pointer;">로그인</button> -->
-            <input type="submit" value="로그인" style="width:130px;height:40px;background-color:#5e5e5e;color:white;border:none;cursor:pointer;">
+            <button class="submit" style="width:130px;height:40px;background-color:#5e5e5e;color:white;border:none;cursor:pointer;">로그인</button>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="button" value="회원가입" onclick="location.href='${pageContext.request.contextPath }/join/joinForm.jsp'" style="width:130px;height:40px;background-color:#5e5e5e;color:white;border:none;cursor:pointer;"> <br><br>
             &nbsp;&nbsp;
@@ -83,11 +77,8 @@
     
     <br><br><br><br><br><br><br><br>
     
-    <hr>
-    
 <%@ include file="/Footer.jsp" %> 
 
 </body>
 
 </html>
-

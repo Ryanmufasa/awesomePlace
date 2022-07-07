@@ -23,11 +23,14 @@ import hostService.SearchService;
 import memberService.EmailCheckService;
 import memberService.IDfoundService;
 import memberService.IdCheckService;
+import memberService.JJimShowService;
 import memberService.JoinService;
 import memberService.LoginService;
 import memberService.MyPagePWService;
 import memberService.PWfoundService;
 import memberService.PWupdateService;
+import memberService.QnAService;
+import memberService.QnAShowService;
 import service.NextPage;
 import service.ServiceInterface;
 
@@ -116,6 +119,32 @@ public class APController extends HttpServlet {
 				serv = new MyPagePWService();
 				page = new NextPage("/mypage/result.jsp", false);
 				break;
+			
+			// 문의글 쓰기  // 작성자: 양준모
+			case "/MyAskForm.do":
+			page = new NextPage("/awesomePlace/ASK/MyAskForm.jsp", true);
+			break;
+	    case "/askqna.do":
+	    	serv = new QnAService();
+	    	page = new NextPage("/ASK/result.jsp", false);
+	    	break;
+	    	
+	    	// 문의글 보는 페이지 // 작성자: 양준모
+	    	case "/qna.do":
+	    		page = new NextPage("/awesomePlace/qna.jsp", true);
+	    		break;
+	    	case "/qna1.do":
+	    		serv = new QnAShowService();
+	    		page = new NextPage("MyAskCheck.jsp", false);
+	    		break;
+	    	
+	    	case "/jjimlist.do": // https://github.com/Ryanmufasa/awesomePlace/issues/53 작성자: 양준모
+	    		page = new NextPage("/awesomePlace/jjimshow.jsp", true);
+	    		break;
+	    	case "/jjimlist1.do": // https://github.com/Ryanmufasa/awesomePlace/issues/53 작성자: 양준모
+	    		serv = new JJimShowService();
+	    		page = new NextPage("Myjjim.jsp", false);
+	    		break;
 				
 			case "/idCheck.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
 				 serv = new IdCheckService();

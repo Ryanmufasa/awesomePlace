@@ -1,3 +1,4 @@
+<%@page import="member.MemberVO"%>
 <%@page import="admin.QnAPaging"%>
 <%@page import="member.MemberDAO"%>
 <%@page import="java.sql.SQLException"%>
@@ -107,28 +108,7 @@ td.textOverDefault {
 </head>
 <body>
 
-<%
-	MemberDAO dao = new MemberDAO();
-
-	String pageNum = request.getParameter("page");
-	int current_page = 1;
-	if(pageNum != null) {
-		current_page = Integer.parseInt(pageNum);
-	}
-	
-	QnAPaging admin = new QnAPaging();
-	
-	int dataCount = dao.getCount();
-	int rows = 4;
-	int total_page = admin.pageCount(rows, dataCount);
-	if(current_page > total_page) {
-		current_page = total_page;
-	}
-	
-	String list_url = "qna1.do";
-	String paging = admin.paging(current_page, total_page, list_url);
-
-%>
+<% String paging = (String) session.getAttribute("paging"); %>
 
 <div align="center">
 
@@ -145,7 +125,7 @@ td.textOverDefault {
 			</th>
 			<th style="height:30px;background-color:#9c9c9c;color:white;font-weight:normal;">
 				답변여부
-			</th>
+			</th>    
 		</tr>
 <c:forEach var="qvo" items="${list }">
 		<tr>

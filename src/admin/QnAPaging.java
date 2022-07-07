@@ -1,4 +1,5 @@
 package admin; /* https://github.com/Ryanmufasa/awesomePlace/issues/46  //작성자: 양준모 */
+				// 자신의 문의글 보기 페이지에서 사용될 페이징 자바 입니다.
 
 public class QnAPaging {
 	
@@ -17,6 +18,8 @@ public class QnAPaging {
 		int numPerBlock = 5;
 		int currentPageSetup;
 		int n, page;
+		int firstPage = current_page - ((current_page-1)%5);
+		int lastPage = firstPage + 4;
 		
 		if(current_page < 1 || total_page < 1) {
 			return "";
@@ -34,7 +37,7 @@ public class QnAPaging {
 		
 		sb.append("<div class='paginate'>");
 		
-		n = current_page - numPerBlock;
+		n = firstPage  -1;
 		if(total_page > numPerBlock && currentPageSetup > 0) {
 			sb.append("<a href='"+list_url+"page=1'>«</a>");
 			sb.append("<a href='"+list_url+"page="+n+"'>‹</a>");
@@ -49,7 +52,7 @@ public class QnAPaging {
 			}
 			page++;
 		}
-		n = current_page + numPerBlock;
+		n = lastPage + 1;
 		if(n > total_page) n = total_page;
 		if(total_page - currentPageSetup > numPerBlock) {
 			sb.append("<a href='"+list_url+"page="+n+"'>›</a>");
@@ -58,6 +61,7 @@ public class QnAPaging {
 		sb.append("</div>");
 		
 		return sb.toString();
+		
 	}
 
 }
