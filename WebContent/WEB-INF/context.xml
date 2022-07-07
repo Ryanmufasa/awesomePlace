@@ -5,7 +5,7 @@
 					auth="Container"
 					type="javax.sql.DataSource" 
 					driverClassName="oracle.jdbc.OracleDriver"
-					url="jdbc:oracle:thin:@locahost:1521:xe" 
+					url="jdbc:oracle:thin:@localhost:1521:xe" 
 					username="awesomeplace"
 					password="awesomeplace" 
 					maxTotal="10" 

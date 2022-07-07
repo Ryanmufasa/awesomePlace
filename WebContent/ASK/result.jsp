@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title> <!-- https://github.com/Ryanmufasa/awesomePlace/issues/40  작성자: 양준모-->
-</head>
+</head>				
 <body>
 
 <c:if test="${check == 1}">

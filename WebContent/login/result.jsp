@@ -9,16 +9,22 @@
 </head>
 <body>
 
+<%
+	String from = (String) session.getAttribute("URL");
+	System.out.println(from);
+%>
+
 <c:if test="${selectResult != null }">
 	<script>
 		alert("로그인 완료.")
-		location.href = "${pageContext.request.contextPath }/Main.jsp";
+		location.href= "<%=from %>" 
 	</script>
+
 </c:if>
 <c:if test="${selectResult == null}">
 	<script>
 		alert("로그인 정보가 일치하지 않습니다.")
-		location.href = "loginform.jsp";
+		location.href = "${pageContext.request.contextPath }/login/loginform.do";
 	</script>
 </c:if>
 

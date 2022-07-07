@@ -1,19 +1,18 @@
-package memberService; //https://github.com/Ryanmufasa/awesomePlace/issues/46  //작성자: 양준모
+package memberService;
 
-import java.io.UnsupportedEncodingException;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.io.UnsupportedEncodingException;  //https://github.com/Ryanmufasa/awesomePlace/issues/53 // 작성자: 양준모
+import java.util.ArrayList;					  // 마이페이지에서 찜목록 불러오는 서비스입니다.
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import admin.QnAVO;
+import admin.hostVO;
 import member.MemberDAO;
 import member.MemberVO;
 import service.ServiceInterface;
 
-public class QnaShowService implements ServiceInterface {
+public class JJimShowService implements ServiceInterface {
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException  {
@@ -24,14 +23,16 @@ public class QnaShowService implements ServiceInterface {
 		
 		MemberVO vo = (MemberVO) session.getAttribute("mem");
 		
-		String mem_id = vo.getMem_id();
+		int mem_num = vo.getMem_num();
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		
-		ArrayList<QnAVO> list = null;
+		ArrayList<hostVO> hlist = null;
 		
-		list = dao.qnalist(mem_id);
-		request.setAttribute("list", list);
+		hlist = dao.jjimList(mem_num);
+		request.setAttribute("hlist", hlist);
+		
+		
 	}
 
 }

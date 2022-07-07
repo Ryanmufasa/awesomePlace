@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.*;
 
 import admin.QnAVO;
+import admin.hostVO;
 import awesomePlace.dbConn.DBConn;
 import hashtag.HashtagVO;
 import host.hostvo.HostVO;
@@ -211,7 +212,45 @@ public class MemberDAO{
 		}
 		return mem_pw;
 	}
-
+	
+	
+	//찜목록  https://github.com/Ryanmufasa/awesomePlace/issues/53 //작성자: 양준모
+	public ArrayList<hostVO> jjimList(int mem_num) {
+		ArrayList<hostVO> harray = new ArrayList<hostVO>();
+		String sql = "SELECT * FROM host WHERE host_num IN (select host_num from JJIM where mem_num = ?)";
+				
+		try {
+			pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, mem_num);
+		rs = pstmt.executeQuery();
+		
+		while(rs.next()) {			
+				int host_num = rs.getInt("host_num");
+				String host_name = rs.getString("host_name");
+				String host_addr = rs.getString("host_addr");
+				String host_post_num = rs.getString("host_post_num");
+				String host_tel = rs.getString("host_tel");
+				String room_type = rs.getString("room_type");
+				int room_cnt = rs.getInt("room_cnt");
+				int guest_cnt = rs.getInt("guest_cnt");
+				int weekday_amt = rs.getInt("weekday_amt");
+				int weekend_amt = rs.getInt("weekend_amt");
+				String host_content = rs.getString("host_content");
+				Date host_date = rs.getDate("host_date");
+				String sign = rs.getString("sign");
+				int hmem_num = rs.getInt("mem_num");
+				String mem_id = rs.getString("mem_id");
+				
+				hostVO ho = new hostVO(host_num, host_name, host_addr, host_post_num, host_tel, room_type, room_cnt, guest_cnt, weekday_amt, weekend_amt, host_content, host_date, sign, hmem_num, mem_id);
+				
+				harray.add(ho);
+			} 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return harray;
+	}
 
 
 	//회원 수정
@@ -330,7 +369,7 @@ public class MemberDAO{
 		return cnt;
 	}
 	
-	//마이페이지 접속시 비밀번호 재확인 
+	//마이페이지 접속시 비밀번호 재확인 https://github.com/Ryanmufasa/awesomePlace/issues/13  //작성자: 양준모
 		public int MyPagePWck(String mem_pw, String mem_id) {
 			
 			int result = 0 ;
@@ -361,7 +400,6 @@ public class MemberDAO{
 			MemberVO vo = null;
 			
 			try {
-			con = new MemberDBConn().getConnection();
 				pstmt = con.prepareStatement("SELECT * FROM member WHERE mem_id = ? AND mem_pw = ?");
 				pstmt.setString(1, mem_id);
 				pstmt.setString(2, mem_pw);
@@ -377,7 +415,7 @@ public class MemberDAO{
 						vo.setMem_email(rs.getString("mem_email"));
 						
 					} 
-			}catch (SQLException | ClassNotFoundException e) {
+			}catch (SQLException e) {
 				e.printStackTrace();
 			}
 			return vo;
@@ -416,13 +454,23 @@ public class MemberDAO{
 		}
 		
 		//문의글 목록 불러오기 //https://github.com/Ryanmufasa/awesomePlace/issues/46 작성자: 양준모 
-		public ArrayList<QnAVO> qnalist(String mem_id) {
+		public ArrayList<QnAVO> qnalist(String mem_id, int startRow) {
 				ArrayList<QnAVO> qarray = new ArrayList<QnAVO>();
-				String sql = "SELECT * FROM QNA WHERE mem_id = ? ORDER BY qna_num DESC";
+				String sql = "SELECT *\r\n"
+						+ "  FROM (\r\n"
+						+ "        SELECT ROW_NUMBER() OVER (ORDER BY qna_num DESC) NUM\r\n"
+						+ "             , A.*\r\n"
+						+ "          FROM QNA A\r\n"
+						+ "          WHERE mem_id = ?\r\n"
+						+ "        ORDER BY qna_num DESC\r\n"
+						+ "        ) \r\n"
+						+ " WHERE NUM BETWEEN ? AND ?+3";
 						
 				try {
 					pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, mem_id);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, startRow);
 				rs = pstmt.executeQuery();
 				
 				while(rs.next()) {			
@@ -445,6 +493,28 @@ public class MemberDAO{
 				}
 				return qarray;
 			}
+		
+		
+		//문의목록 게시글 수 확인 //작성자: 양준모
+		public int getTotal(String mem_id) {
+			int result = 0;
+			String sql = "select count(*) as total from QNA where mem_id = ?";
+			
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, mem_id);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					result = rs.getInt("total");
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}		
+			return result;
+		}
+		
 		
 		//비밀번호 찾기 (비밀번호 수정) //https://github.com/Ryanmufasa/awesomePlace/issues/10 작성자: 양준모
 		 public boolean PWupdate(String mem_id, String mem_pw) {

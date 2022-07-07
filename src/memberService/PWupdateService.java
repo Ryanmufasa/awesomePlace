@@ -1,5 +1,5 @@
 package memberService;  //https://github.com/Ryanmufasa/awesomePlace/issues/10  //작성자: 양준모
-
+						// 로그인 페이지에서 비밀번호찾기시 회원의 비밀번호를 수정할 수 있도록 하는 서비스 입니다.
 import java.io.IOException;
 import java.sql.SQLException;
 

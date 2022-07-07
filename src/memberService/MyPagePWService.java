@@ -1,4 +1,5 @@
 package memberService; /*https://github.com/Ryanmufasa/awesomePlace/issues/30  //작성자: 양준모 */
+						// 마이페이지 접속시 회원에게 비밀번호를 재확인 할 때 사용하는 서비스 입니다.
 import java.io.IOException;
 import java.sql.SQLException;
 

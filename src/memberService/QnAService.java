@@ -1,4 +1,5 @@
 package memberService;  //https://github.com/Ryanmufasa/awesomePlace/issues/10  //작성자: 양준모
+						// 문의글 등록을 위한 서비스 입니다.
 
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
@@ -12,7 +13,7 @@ import member.MemberDAO;
 import member.MemberVO;
 import service.ServiceInterface;
 
-public class QnaService implements ServiceInterface { // 작성자: 양준모
+public class QnAService implements ServiceInterface { // 작성자: 양준모
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException  {
