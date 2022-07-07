@@ -31,6 +31,18 @@ public class GetHostInfoService implements ServiceInterface {
 		}else {
 			System.out.println("호스트 정보 불러오기 실패");
 		}
+		
+		// 아래는 작업중으로 테스트는 가능합니다 
+		String checkIn = request.getParameter("checkIn");
+		String checkOut = request.getParameter("checkOut");
+		String guestCnt = request.getParameter("guestCnt");
+		System.out.println(checkIn);
+		System.out.println(checkOut);
+		System.out.println(guestCnt);
+		
+		request.setAttribute("guestCnt", guestCnt);
+		request.setAttribute("checkIn", checkIn);
+		request.setAttribute("checkOut", checkOut);
 
 
 	}
