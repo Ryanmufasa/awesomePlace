@@ -15,15 +15,10 @@ public class SearchService implements ServiceInterface {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
-//		DateFormat date = new SimpleDateFormat("yyyy-MM-dd"); 
-//		SimpleDateFormat toStr = new SimpleDateFormat("yyyy-MM-dd"); 
-//		Date checkIn = null;
-//		Date checkOut = null;
-		
 		String search = null;
 		String checkIn = null;
 		String checkOut = null;
-		int guestCnt = 1; // 최소 1명은 숙박해야 하므로...
+		int guestCnt = 2; // default 숙박 검색 인원 2명 
 		
 		
 		try {
@@ -31,25 +26,16 @@ public class SearchService implements ServiceInterface {
 			search = request.getParameter("search"); // 지역명 검색 
 			checkIn = request.getParameter("checkIn");
 			checkOut = request.getParameter("checkOut");
-			//checkIn = date.parse(request.getParameter("checkIn")); 
-			//checkOut = date.parse(request.getParameter("checkOut"));
 			guestCnt = Integer.parseInt(request.getParameter("guestCnt"));
 			
-		}catch( NullPointerException e) { //ParseException |
+		}catch( NullPointerException e) { 
 			e.printStackTrace(); 
-			// checkIn, checkOut 값을 Date 형식으로 변환 에러시 ( 입력값이 없을때 발생 -> null 로 처리)
-//			if(checkIn == null) {
-//				checkIn = null;
-//				checkOut = null;
-//			}else if(checkOut == null) {
-//				checkOut = null;
-//			}
 		}finally {
 			
 			System.out.println("----검색 내용 확인----");
 			System.out.println("search 지역 검색내용 : " + search);
-			System.out.println("체크인 날짜 : "+ checkIn ); //  +  " \t"+ toStr.format(checkIn)
-			System.out.println("체크아웃 날짜 : "+ checkOut);  //  + "\t"+ toStr.format(checkOut)
+			System.out.println("체크인 날짜 : "+ checkIn ); 
+			System.out.println("체크아웃 날짜 : "+ checkOut); 
 			System.out.println("숙박인원 : " + guestCnt + "명");
 			System.out.println("-------------------");
 		}
@@ -101,9 +87,13 @@ public class SearchService implements ServiceInterface {
 //			hostli = HostDAO.getInstance().getAllHost();
 //		}
 		
-
-		
 		request.setAttribute("hostli", hostli);
+		
+		// 검색 입력값도 같이 보낸다. 
+		request.setAttribute("search", search);
+		request.setAttribute("checkIn", checkIn);
+		request.setAttribute("checkOut", checkOut);
+		request.setAttribute("guestCnt", guestCnt);
 		
 	}
 
