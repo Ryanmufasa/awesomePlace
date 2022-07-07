@@ -10,20 +10,67 @@ $(document).ready(function(){
 	
 	$("#checkIn").attr("min",today);
 	
-	$("#checkIn").on("change", function(){ // 출발일자, 도착일자의 선택불가항목 결정
+	
+	 // 출발일자, 도착일자의 선택불가항목 결정 
+	//  ->  체크인 날짜 선택시 체크아웃 날짜 자동으로 다음날짜 설정되도록 수정 -- 정다영
+	var checkIn = document.getElementById('checkIn');
+	
+	checkIn.addEventListener('change', (event) =>{
 		var checkInDay = $("#checkIn").val();
-		$("#checkOut").attr("min",checkInDay);
-		$("#checkOut").attr("disabled",false);
+		if(checkInDay != ""){
+			
+			//alert("체크인 날짜 " + checkInDay);
+			var chIn = new Date(checkInDay);
+			//alert(chIn);
+			var chOut = new Date(chIn.setDate(chIn.getDate()+1));
+			//alert(chOut);
+			
+			year = chOut.getFullYear();
+			//alert(year);
+			month = (chOut.getMonth()+1)>9 ? chOut.getMonth()+1 : "0"+(chOut.getMonth()+1);
+			//alert(month);
+			day = chOut.getDate();
+			var checkOutDay = year + "-" + month + "-" + day;
+			
+			//alert(checkOutDay);
+			
+			$("#checkOut").attr("min",checkOutDay);
+			$('#checkOut').val(checkOutDay);
+			$("#checkOut").attr("disabled",false);
+			
+		}else{
+			$('#checkOut').val('');
+			$('#checkOut').attr('disabled', true);
+		}
+		
+		
 	});
 	
-	// 예약 화면에서 입력시
+	// hostinfo.jsp 에서 날짜 선택시 
+	//https://github.com/Ryanmufasa/awesomePlace/issues/25 -- 작성자 정다영
 	$('#checkIn1').attr('min',today); 
-	
-	$('#checkIn1').on('change',function(){
+		
+	checkIn1.addEventListener('change', (event2)=>{
 		var checkIn1 = $('#checkIn1').val();
-		$('#checkOut1').attr('min', checkIn1);
-		$('#checkOut1').attr('disabled', false);
-	});
+		
+		if(checkIn1 != ""){
+			var ci = new Date(checkIn1);
+			var co = new Date(ci.setDate(ci.getDate()+1));
+			
+			year = co.getFullYear();
+			month = (co.getMonth()+1)>9 ? co.getMonth()+1 : "0"+(co.getMonth()+1);
+			day = co.getDate();
+			var checkOut1 = year + "-" + month + "-" + day;
+			
+			$("#checkOut1").attr("min", checkOut1);
+			$('#checkOut1').val(checkOut1);
+			$('#checkOut1').attr('disabled', false);
+		}else{
+			$('#checkOut1').val('');
+			$('#checkOut1').attr('disabled', true);
+		}
+		
+	})
 
 });
 
