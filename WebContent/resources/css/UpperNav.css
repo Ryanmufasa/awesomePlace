@@ -46,6 +46,7 @@
 		display:table;
 		white-space:nowrap;
 	}
+	
 	.CD>table{
 		height:var(--upperNavH);
 		border-collapse: separate;
@@ -54,6 +55,7 @@
 		overflow:hidden;
 		white-space:nowrap;
 	}
+	
 	.CD>table>*{
 		border:none;
 	}
