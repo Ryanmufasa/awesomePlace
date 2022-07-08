@@ -69,7 +69,7 @@
 			지역명<input type="search" name="search" size="6" placeholder="모든 지역" >
 			<input type="date" min="2022-06-05" name="checkIn" id="checkIn">
 			<input type="date" min="2022-06-05" name="checkOut" id="checkOut" disabled>
-				<select id="guestCnt" onchange="flip();">
+				<select id="guestCnt" name="guestCnt" onchange="flip();">
 					<option value="1">1</option>
 					<option value="2" selected>2</option>
 					<option value="3">3</option>
