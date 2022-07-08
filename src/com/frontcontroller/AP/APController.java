@@ -80,7 +80,7 @@ public class APController extends HttpServlet {
 				page = new NextPage("/search/search.jsp", false);
 				break;
 			case "/loginform.do" : 
-				page = new NextPage("/awesomePlace/login/loginform.jsp", true);
+				page = new NextPage("./login/loginform.jsp", true);
 				break;
 			case "/login.do" : 
 				serv = new LoginService(); 
