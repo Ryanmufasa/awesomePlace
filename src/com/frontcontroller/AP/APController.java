@@ -79,7 +79,7 @@ public class APController extends HttpServlet {
 				serv = new SearchService();
 				page = new NextPage("/search/search.jsp", false);
 				break;
-			case "/loginform.do":
+			case "/loginform.do" : 
 				page = new NextPage("/awesomePlace/login/loginform.jsp", true);
 				break;
 			case "/login.do" : 
@@ -125,11 +125,11 @@ public class APController extends HttpServlet {
 			
 			// 문의글 쓰기  // 작성자: 양준모
 			case "/MyAskForm.do":
-			page = new NextPage("/awesomePlace/ASK/MyAskForm.jsp", true);
-			break;
-	    case "/askqna.do":
-	    	serv = new QnAService();
-	    	page = new NextPage("/ASK/result.jsp", false);
+				page = new NextPage("/awesomePlace/ASK/MyAskForm.jsp", true);
+				break;
+			case "/askqna.do":
+		    	serv = new QnAService();
+		    	page = new NextPage("/ASK/result.jsp", false);
 	    	break;
 	    	
 	    	// 문의글 보는 페이지 // 작성자: 양준모
