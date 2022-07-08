@@ -2,10 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%-- 태그 라이브러리 추가 --%> 
 <%@ taglib prefix = "fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix = "fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,61 +11,72 @@
 	<link href="${contextPath }/resources/css/Header.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
 	<script src="${contextPath }/resources/js/jquery-3.6.0.js?v=<%=System.currentTimeMillis() %>" ></script>
 	<script src ="${contextPath }/resources/js/Header.js?v=<%=System.currentTimeMillis() %>"></script>
-	
 	<%-- 스크립트 추가 --- 작성자 정다영  --%>
 	<script src ="${contextPath }/resources/js/Search.js?v=<%=System.currentTimeMillis() %>" ></script>
 	<script src ="${contextPath }/resources/js/LoginNout.js?v=<%=System.currentTimeMillis() %>"></script>
 	<%-- --------------------------- --%>
-	
 <meta charset="UTF-8">
 <title>즐거운 한국여행 어썸플레이스입니다.</title>
+	<script>
+		<% 
+			HttpSession ss1 = request.getSession();
+			String mem_id = (String)ss1.getAttribute("mem_id"); //memverVO 포함 세션
+			String showAdmin = (String)ss1.getAttribute("showAdmin"); // admin로그인 확인 세션
+			String doubleCheck = (String)ss1.getAttribute("doubleCheck");// 비번 더블체크 확인 세션
+			String adminPage = (String)ss1.getAttribute("adminPage");// adminPage 진입 확인 세션
+			String myPage = (String)ss1.getAttribute("myPage");// myPage진입 확인세션 확인 세션
+			String hostingPage = (String)ss1.getAttribute("hostingPage");// hostingPage 진입 확인 세션
+		%>
+			sessionStorage.setItem("mem_id", "<%=mem_id%>");
+			sessionStorage.setItem("showAdmin", "<%=showAdmin%>");
+			sessionStorage.setItem("doubleCheck", "<%=doubleCheck%>");
+			sessionStorage.setItem("adminPage", "<%=adminPage%>");
+			sessionStorage.setItem("myPage", "<%=myPage%>");
+			sessionStorage.setItem("hostingPage", "<%=hostingPage%>");
+	</script>
 </head>
 <body>
 <header> <!-- 헤더 블록 -->
-	<a href="/awesomePlace/" id="img1"><img src="${contextPath }/resources/image/temp.png" width="150" ></a>
+	<a href="#"><img id="img1" src="${contextPath }/resources/image/temp.png" width="150" ></a>
 	
 	<div id="title"> <!-- 타이틀 블록 -->
-	<a href="/awesomePlace/">the AwesomePlace</a>
+	the AwesomePlace
 	</div>
 	
 	<!-- 로그인 상태에 따라 헤더, 내비게이션 버튼 노출여부 결정 -->
 		
 			<div class="btns"> 
-
-			 
-			 <%-- Header.js 대신 임시처리 위해 적용....  --%>
- 	<c:choose> 
-		<c:when test="${login != null  }">
-			<c:choose>
-				<c:when test="${admin != null }">
-					<button onclick="location.href='/awesomePlace/#/admin.do'">관리자 페이지</button> 
-					<!--  -->
-				</c:when>
-				<c:otherwise>
-					<button  onclick="location.href='/awesomePlace/myhosting/memberMyHosting.do'">마이 호스팅</button>
-					<button  onclick="location.href='/awesomePlace/mypage/mypage.do'">마이 페이지</button>
-				</c:otherwise>
-			</c:choose>
-			<button  onclick="checkLogout();">로그아웃</button>
-		</c:when>
-		<c:otherwise>
-			<button onclick="checkLogin();">마이 호스팅</button>
-			<button  onclick="location.href='/awesomePlace/login/loginForm.do'">로그인</button> 
-			<button   onclick="location.href='/awesomePlace/join/joinForm.do'">회원가입</button>
-			<!-- <button class="btn3"><a href="/awesomePlace/join/joinForm.do">회원가입</a></button>
-			 <a href="/awesomePlace/join/joinForm.do">회원가입</a>  -->
-		</c:otherwise>
-	</c:choose>		
-			 
-			 
+			
+			 <!-- 관리자 로그인 후 버튼 -->
+			 		<!-- 로그아웃 버튼 -->
+			
+				<!-- 일반사용자 로그인 후버튼 블록 -->
+					<!-- 마이호스팅 버튼 -->
+					<button id="btnMyPage" hidden="true">
+						마이페이지</button>
+					<button id="btnLogout" hidden="true">
+						로그아웃</button>
+				
+			<!-- 일반사용자 로그인 전 버튼 블록 -->
+				<button id="btnMyHosting" hidden="true">
+					마이호스팅</button>
+				<button id="btnLogin" hidden="true">
+					로그인</button>
+				<button id="btnJoin" hidden="true">
+					회원가입</button>
+			</div>
+			
+			<div class="adBtns">
+					<button id="btnAdmin" hidden="true">
+						관리자 페이지</button>
 			</div>
 				
 	<div id="searchBar"> <!-- 검색창 블록 -->
-		<form action="/awesomePlace/search/search.do" method="post" name="searchForm">
-			어디를 갈까?  <input type="search" name="search" size="6" placeholder="모든 지역" >
-			체크인  <input type="date" min="2022-06-05" name="checkIn" id="checkIn">
-			체크아웃 <input type="date" min="2022-06-05" name="checkOut" id="checkOut" disabled>
-			숙박인원 선택 	<select id="guestCnt" name="guestCnt" onchange="flip();">
+		<form action="search.do" method="post">
+			지역명<input type="search" name="search" size="6" placeholder="모든 지역" >
+			<input type="date" min="2022-06-05" name="checkIn" id="checkIn">
+			<input type="date" min="2022-06-05" name="checkOut" id="checkOut" disabled>
+				<select id="guestCnt" onchange="flip();">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -94,4 +103,4 @@
 </header>
 	<hr>
 <div class="mainDiv">
-<%@include file ="Navigation.jsp" %> 
+<%@include file ="/layout/Navigation.jsp" %>

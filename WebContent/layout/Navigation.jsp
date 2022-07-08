@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <script src="${contextPath }/resources/js/Nav.js?v=<%=System.currentTimeMillis() %>"></script>
-<div class="nav">	<div class="navLine"></div>
+<div class="nav">	<div class="navLine" hidden="true"></div>
 
 	<div id="adminNav" hidden="true">
 		<div>

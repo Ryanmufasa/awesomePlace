@@ -21,6 +21,8 @@ public class HostVO {
 	private int mem_num; 		// member 테이블 참조 FK
 	private String mem_id;
 	
+	private String host_dateS; //호스트리스트 출력 생성자용 작성자:이명진
+	
 	// 디폴트 생성자
 	public HostVO() {}
 	
@@ -41,6 +43,28 @@ public class HostVO {
 		this.mem_num = mem_num;
 		this.mem_id=mem_id;
 		
+	}
+	
+	//호스트리스트 출력용 생성자 작성자:이명진
+	public HostVO(int host_num, String host_name, String host_addr, String host_post_num, String host_tel,
+				String room_type, int room_cnt, int guest_cnt, int weekday_amt, int weekend_amt, 
+				String host_content, String host_dateS, String sign, int mem_num, String mem_id) {
+		
+		this.host_num = host_num;
+		this.host_name = host_name;
+		this.host_addr = host_addr;
+		this.host_post_num = host_post_num;
+		this.host_tel = host_tel;
+		this.room_type = room_type;
+		this.room_cnt = room_cnt;
+		this.guest_cnt = guest_cnt;
+		this.weekday_amt = weekday_amt;
+		this.weekend_amt = weekend_amt;
+		this.host_content = host_content;
+		this.host_dateS = host_dateS;
+		this.sign = sign;
+		this.mem_num = mem_num;
+		this.mem_id = mem_id;
 	}
 	
 	// DB에 있는 호스트 정보를 가져올때 생성자 
@@ -162,4 +186,11 @@ public class HostVO {
 		this.mem_id = mem_id;
 	}
 
+	public String getHost_dateS() {
+		return host_dateS;
+	}
+
+	public void setHost_dateS(String host_dateS) {
+		this.host_dateS = host_dateS;
+	}
 }

@@ -3,7 +3,7 @@
  */
 
 function checkLogin(){
-	var login = sessionStorage.getItem('login');
+	var login = sessionStorage.getItem('mem_id');
 	
 	if(login == null){
 		alert("로그인이 필요한 항목입니다! 회원가입 또는 로그인을 해주세요! ");

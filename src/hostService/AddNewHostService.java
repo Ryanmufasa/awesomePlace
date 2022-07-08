@@ -24,7 +24,7 @@ public class AddNewHostService implements ServiceInterface {
 		
 		int mem_num = memvo.getMem_num();
 		String mem_id = memvo.getMem_id();
-		int mem_hostcnt = memvo.getMem_hostCnt();
+		int mem_hostcnt = memvo.getMem_host_Cnt();
 		System.out.println("mem_num : " + mem_num);
 		System.out.println("mem_id : " + mem_id);
 		System.out.println("mem_hostcnt : " + mem_hostcnt);

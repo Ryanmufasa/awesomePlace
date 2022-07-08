@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
-<%@include file ="/Header.jsp" %>
+<%@include file ="/layout/Header.jsp" %>
 <script src ="${contextPath }/resources/js/adminPage.js?v=<%=System.currentTimeMillis() %>"></script>
 <script>
 	<% 
@@ -41,4 +41,4 @@
 
 <span id="counter"></span> 	<!-- 메인 컨텐츠 바닥위치값 확인용 -->
 </div>
-<%@include file ="/Footer.jsp" %>
+<%@include file ="/layout/Footer.jsp" %>

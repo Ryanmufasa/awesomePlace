@@ -25,7 +25,72 @@ public class MemberDAO{
 		return instance;
 	}
 
+	//로그인 확인   // 개인 테스트 위해 수정함
+		public MemberVO loginck (MemberVO vo1) {
+			
+			MemberVO vo = null;
+			String sql="select * from member where mem_id=? and mem_pw=?";
 
+			try{
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, vo1.getMem_id()); 
+				pstmt.setString(2, vo1.getMem_pw());
+				rs = pstmt.executeQuery();
+				if(rs.next()) { 
+					vo = new MemberVO();
+					vo.setMem_num(rs.getInt("mem_num"));
+					vo.setMem_id(rs.getString("mem_id"));
+					vo.setMem_name(rs.getString("mem_name"));
+					vo.setMem_pw(rs.getString("mem_pw"));
+					vo.setMem_tel(rs.getString("mem_tel"));
+					vo.setMem_email(rs.getString("mem_email"));
+					vo.setmem_sign(rs.getString("mem_sign"));
+					vo.setMem_host_Cnt(rs.getInt("mem_hostCnt"));
+					System.out.println("로그인 성공");
+				} else {
+					System.out.println("로그인 실패"); // 다를 경우 실패 리턴
+				}
+			}catch(SQLException e){
+				e.printStackTrace();
+			}finally{
+				try {
+					if(rs != null) rs.close();
+					if(pstmt != null) pstmt.close();
+				}catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return vo;
+		}
+	
+	//https://github.com/Ryanmufasa/awesomePlace/issues/36 -- 작성자 정다영
+		// 회원이 호스트 등록시 mem_hostCnt 칼럼 값 수정
+		public boolean updateHostCnt(int mem_hostCnt, int mem_num) {
+			boolean check = false;
+			
+			String sql = "update member set mem_hostCnt = ? where mem_num = ?";
+			
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, mem_hostCnt);
+				pstmt.setInt(2, mem_num);
+				if(pstmt.executeUpdate() != 0) {
+					check = true;
+					System.out.println("member 테이블 mem_hostCnt 값 변경 완료 ");
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+				System.out.println("member 테이블 mem_hostCnt 값 변경 실패");
+			}finally {
+				try {
+					if(pstmt != null) pstmt.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			return check;
+		}
 
 	//회원 목록
 	public List<MemberVO> getMemList(){

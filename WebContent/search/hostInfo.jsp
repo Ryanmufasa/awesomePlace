@@ -73,7 +73,7 @@ src="${pageContext.request.contextPath }/resources/js/Order.js?v=<%=System.curre
 			<br>
 			
 			<c:choose>
-				<c:when test="${login != null }">
+				<c:when test="${mem_id != null }">
 					<button type="button" onclick="order(hostInfo);">예약 하기</button>
 					<button type="button" onclick="addLike(hostInfo);">찜</button>
 				</c:when>
