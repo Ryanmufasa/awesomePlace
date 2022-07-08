@@ -29,3 +29,15 @@ WebContent/META-INF/MANIFEST.MF
 .project
 .classpath
 .settings/org.eclipse.wst.common.component
+WebContent/WEB-INF/context.xml
+WebContent/WEB-INF/web.xml
+src/member/memberDBConn.java
+src/member/memberDBConn.java
+.classpath
+.classpath
+WebContent/idfound/idconfirm.jsp
+WebContent/META-INF/context.xml
+WebContent/WEB-INF/context.xml
+WebContent/WEB-INF/web.xml
+src/member/MemberDBConn.java
+WebContent/idfound/idconfirm.jsp

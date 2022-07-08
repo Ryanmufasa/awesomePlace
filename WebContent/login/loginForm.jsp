@@ -28,7 +28,7 @@
 <script>
 
 	function gologinck(){
-		location.href="loginck.do"
+		location.href="login.do"
 	}
 	
 	function goJoinForm(){
@@ -41,7 +41,7 @@
 
 <div id="login1">
 
-<form action="loginck.do" method="post">
+<form action="login.do" method="post">
 
 <table>
 
