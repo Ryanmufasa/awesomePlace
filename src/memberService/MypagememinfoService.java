@@ -20,7 +20,7 @@ public class MypagememinfoService implements ServiceInterface{
 
 
 	@Override
-	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException, ServletException {
+	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException{
 		HttpSession session = request.getSession();
 		String memid = (String)session.getAttribute("mem_id");		
 		MemberVO mb = MemberDAO.getInstance().getMember(memid);

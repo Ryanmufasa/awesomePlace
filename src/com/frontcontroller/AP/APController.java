@@ -2,31 +2,38 @@
 package com.frontcontroller.AP;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import HnNService.MainPageService;
+import adminService.AdminHostDetailService;
+import adminService.AdminHostSwitchSignService;
+import adminService.AdminHostingListService;
+import adminService.AdminMemberDeleteService;
+import adminService.AdminMemberHostListService;
+import adminService.AdminMemberDetailService;
+import adminService.AdminMemberListService;
+import adminService.AdminMemberSwitchSignService;
+import adminService.AdminOutService;
+import adminService.AdminQnAAnswerFormService;
+import adminService.AdminQnAListService;
+import adminService.AdminService;
 import hostService.AddNewHostService;
 import hostService.SearchService;
-import memberService.AdminOutService;
-import memberService.AdminQnAListService;
-import memberService.AdminService;
-import memberService.EmailCheckService;
+import memberJoinService.EmailCheckService;
+import memberJoinService.IdCheckService;
+import memberJoinService.JoinService;
 import memberService.IDfoundService;
-import memberService.IdCheckService;
-import memberService.JoinService;
+import memberService.JJimShowService;
 import memberService.LoginService;
 import memberService.MyPagePWService;
-import memberService.MypageOrderinfoClickService;
-import memberService.MypagememinfoService;
-import memberService.MypagememUpdaService;
-import memberService.MypageorderinfoService;
 import memberService.PWfoundService;
 import memberService.PWupdateService;
+import memberService.QnAService;
+import memberService.QnAShowService;
 import service.NextPage;
 import service.ServiceInterface;
 
@@ -72,8 +79,8 @@ public class APController extends HttpServlet {
 				serv = new SearchService();
 				page = new NextPage("/search/search.jsp", false);
 				break;
-			case "/loginform.do":
-				page = new NextPage("/awesomePlace/login/loginform.jsp", true);
+			case "/loginform.do" : 
+				page = new NextPage("./login/loginform.jsp", true);
 				break;
 			case "/login.do" : 
 				serv = new LoginService(); 
@@ -115,6 +122,32 @@ public class APController extends HttpServlet {
 				serv = new MyPagePWService();
 				page = new NextPage("/mypage/result.jsp", false);
 				break;
+			
+			// 문의글 쓰기  // 작성자: 양준모
+			case "/MyAskForm.do":
+				page = new NextPage("/awesomePlace/ASK/MyAskForm.jsp", true);
+				break;
+			case "/askqna.do":
+		    	serv = new QnAService();
+		    	page = new NextPage("/ASK/result.jsp", false);
+	    	break;
+	    	
+	    	// 문의글 보는 페이지 // 작성자: 양준모
+	    	case "/qna.do":
+	    		page = new NextPage("/awesomePlace/qna.jsp", true);
+	    		break;
+	    	case "/qna1.do":
+	    		serv = new QnAShowService();
+	    		page = new NextPage("MyAskCheck.jsp", false);
+	    		break;
+	    	
+	    	case "/jjimlist.do": // https://github.com/Ryanmufasa/awesomePlace/issues/53 작성자: 양준모
+	    		page = new NextPage("/awesomePlace/jjimshow.jsp", true);
+	    		break;
+	    	case "/jjimlist1.do": // https://github.com/Ryanmufasa/awesomePlace/issues/53 작성자: 양준모
+	    		serv = new JJimShowService();
+	    		page = new NextPage("Myjjim.jsp", false);
+	    		break;
 				
 			case "/idCheck.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
 				 serv = new IdCheckService();
@@ -138,53 +171,65 @@ public class APController extends HttpServlet {
 				serv = new AddNewHostService();
 				page = new NextPage("/myhosting/result.jsp", false);
 				break;
-			case "/admin.do" :
+			case "/admin.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/9 작성자: 이명진
 				serv = new AdminService();
 				page = new NextPage("/QnAList.jsp", false);
 				break;
-			case "/adminOut.do" :
+			case "/adminOut.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/9 작성자: 이명진
 				serv = new AdminOutService();
-				page = new NextPage("/Index.jsp", false);
+				page = new NextPage("/index.jsp", false);
 				break;
-			case "/QnAList.do" :
+			case "/main.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/9 작성자: 이명진
+				serv = new MainPageService();
+				page = new NextPage("/index.jsp", false);
+				break;
+			case "/QnAList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/39 작성자: 이명진
 				serv = new AdminQnAListService();
 				page = new NextPage("/admin/QnAList.jsp", false); 
 				break;
-				
-			//마이페이지 정보수정 	
-			case "/mpmeminfo.do" : //작성자 = 고유주
-				serv = new MypagememinfoService();
-				page = new NextPage("/mypage/mp_meminfo.jsp", false);
+			case "/QnAAnswerForm.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/39 작성자: 이명진
+				serv = new AdminQnAAnswerFormService();
+				page = new NextPage("/admin/QnAAnswerForm.jsp", false); 
 				break;
-
-			case "/meminfoclear.do" : //작성자 = 고유주
-				serv = new MypagememUpdaService();
-				page = new NextPage("/mypage/mp_memInfoUpdate.jsp", false);
+			case "/memberList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberListService();
+				page = new NextPage("/admin/memberList.jsp", false); 
 				break;
-	
-				
-			//마이페이지 예약내역 
-				case "/mpreserinfo.do" : //작성자 = 고유주
-				serv = new MypageOrderinfoClickService();
-				page = new NextPage("/mypage/mp_reserinfo.jsp", false);
+			case "/memberDetail.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberDetailService();
+				page = new NextPage("/admin/memberDetail.jsp", false); 
 				break;
-			
-				case "/mpreserinfofirst.do" : //작성자 = 고유주
-					serv = new MypageorderinfoService();
-					page = new NextPage("/mypage/mp_reserInfoFirst.jsp", false);
-					break;
-				
-				
-				
+			case "/memberDelete.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberDeleteService();
+				page = new NextPage("/admin/memberDetail.jsp", false); 
+				break;
+			case "/memberHostList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberHostListService();
+				page = new NextPage("/admin/memberHostList.jsp", false); 
+				break;
+			case "/switchSign.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberSwitchSignService();
+				page = new NextPage("memberList.do", false); 
+				break;
+			case "/hostingList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/50 작성자: 이명진
+				serv = new AdminHostingListService();
+				page = new NextPage("/admin/hostingList.jsp", false); 
+				break;
+			case "/hostDetail.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/50 작성자: 이명진
+				serv = new AdminHostDetailService();
+				page = new NextPage("/admin/hostDetail.jsp", false); 
+				break;
+			case "/switchHostSign.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminHostSwitchSignService();
+				page = new NextPage("/admin/hostDetail.jsp", false); 
+				break;
+			case "/siteMap.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/51 작성자: 이명진
+				page = new NextPage("/admin/siteMap.jsp", true); 
+				break;
     	}
     	
     	if(serv != null) {
-    		try {
-				serv.execute(request, response);
-			} catch (ClassNotFoundException | IOException | SQLException | ServletException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+    		serv.execute(request, response);
     	}
     	
     	if(page.isRedirect()) {

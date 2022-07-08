@@ -1,0 +1,17 @@
+/* https://github.com/Ryanmufasa/awesomePlace/issues/44  작성자 정다영
+*/
+@charset "UTF-8";
+
+.box{
+	width: 250px;
+	height: 200px;
+  	padding:0;
+  	margin: 1%;
+  	border: 1px solid black;
+  	display:inline-block;
+  	transition: all 0.5s;
+  	transition-delay: 0.2s;
+}
+.box:hover{
+  box-shadow: 5px 5px 20px;
+}

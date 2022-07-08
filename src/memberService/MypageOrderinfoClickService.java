@@ -17,7 +17,7 @@ import service.ServiceInterface;
 public class MypageOrderinfoClickService implements ServiceInterface {
 
 	@Override
-	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException, ServletException {
+	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException{
 			
 		HttpSession session = request.getSession();		
 		int oi_num=Integer.parseInt(request.getParameter("oi_num"));

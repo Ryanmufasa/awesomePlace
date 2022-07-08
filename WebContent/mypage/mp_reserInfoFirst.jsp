@@ -5,7 +5,7 @@
 <%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@page import="orderinfo.OrderinfoVO"%>
 <%@page import="memberService.MypageorderinfoService" %>
-<%@ include file="/layout/header.jsp" %>
+<%@ include file="/layout/Header.jsp" %>
 <script src="${contextPath }/js/jquery-3.6.0.js"></script>
 
 <style>

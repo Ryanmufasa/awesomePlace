@@ -23,7 +23,7 @@ public class MypageorderinfoService implements ServiceInterface{
 
 
 	@Override
-	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException, ServletException {
+	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException{
 		HttpSession session = request.getSession();		
 		MemberVO vo = (MemberVO)session.getAttribute("login");
 		String oi_mem_id = vo.getMem_id();

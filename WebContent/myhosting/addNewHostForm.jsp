@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%-- 다음 우편번호 서비스 api (카카오맵 연동 가능) --%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<%@include file ="/Header.jsp" %>
+<%@include file ="/layout/Header.jsp" %>
 <script type="text/javascript" src="${contextPath }/resources/js/addNewHostForm.js?v=<%=System.currentTimeMillis()%>"></script>
 <style>
 .addHostForm {
@@ -11,8 +11,9 @@
 }
 
 </style>
+<!-- 기존 호스트 정보 입력 방식  -->
 <!-- UI 임시 디자인 -->
-<div class="mainDiv" align="center">
+<div class="mainDiv-child" align="center">
 <fieldset>
 <form action="${contextPath }/myhosting/addNewCheck.do" method="post" name="addHostForm">
 	<table class="addHostForm">
@@ -35,21 +36,19 @@
 			<td>
 				<input type="tel" name="host_tel" id="host_tel" required maxlength='13'
 					onkeyup = "this.value=this.value.replace(/[^0-9]/g,'')"
-					placeholder = "-를 제외한 전화번호 또는 휴대폰 번호 입력 ">
+					placeholder = "-를 제외한 전화번호 또는 휴대폰 번호 입력 "
+					value="${login.mem_tel }"
+					>
 			</td>
 		</tr>
 		<tr>
 			<td>방 종류</td>
-			<td><div class="btns">
+			<td>
 					<input type="radio" name="room_type" value="A"/>집 전체(All)
 					<input type="radio" name="room_type" value="P"/>개인실(Private)
 					<input type="radio" name="room_type" value="S"/>다인실(Share)
-				</div>
+				
 			</td>
-		</tr>
-		<tr>
-			<td>방 이름</td>
-			<td><input type="text" name="room_name" placeholder="ex) 201호 " required></td>
 		</tr>
 		<tr>
 			<td>방 개수 </td>
@@ -93,10 +92,6 @@
 				<p><textarea name="host_content" cols="50" rows="10" required placeholder="호스트에 대한 설명을 입력해주세요"></textarea></p>
 			</td>
 		</tr>
-		<!-- <tr>
-			<td>사진 첨부</td>
-			<td><input type="file" name="file[]" multiple></td>
-		</tr> -->
 	</table>
 	<br>
 	<button type="button" onclick="check(addHostForm)">등록신청</button>
@@ -104,7 +99,9 @@
 
 </form>
 </fieldset>
+
+<span id="counter"></span> 	<!-- 메인 컨텐츠 바닥위치값 확인용 -->
 </div>
 
 
-<%@ include file="/Footer.jsp" %> 
+<%@ include file="/layout/Footer.jsp" %> 

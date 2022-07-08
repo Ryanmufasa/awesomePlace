@@ -1,7 +1,6 @@
-package memberService;
-
-import java.io.IOException;
-import java.sql.SQLException;
+package memberService; /*https://github.com/Ryanmufasa/awesomePlace/issues/8  //작성자: 양준모 */
+						// 로그인 화면에서 아이디 찾기에 사용되는 서비스 입니다.
+import java.io.IOException;   
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -5,20 +5,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title here</title> <!-- https://github.com/Ryanmufasa/awesomePlace/issues/5  // 양준모 -->
 </head>
 <body>
 
-<c:if test="${selectResult == 1}">
+<%
+	String from = (String) session.getAttribute("URL");
+	System.out.println(from);
+%>
+
+<c:if test="${selectResult != null }">
 	<script>
 		alert("로그인 완료.")
-		location.href = "${pageContext.request.contextPath }/Main.jsp";
+		location.href= "<%=from %>" 
 	</script>
+
 </c:if>
-<c:if test="${selectResult == 0}">
+<c:if test="${selectResult == null}">
 	<script>
 		alert("로그인 정보가 일치하지 않습니다.")
-		location.href = "loginform.jsp";
+		location.href = "${pageContext.request.contextPath }/login/loginform.do";
 	</script>
 </c:if>
 

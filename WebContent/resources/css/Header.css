@@ -60,13 +60,23 @@
 		box-sizing:content-box;
 		overflow:visible;
 	}
-	.mainDiv-image{
+	.imageP{
+		position:relative;
+		height:800px;
+		width:100%;
+		overflow:hidden;
+	}
+	.imageP>div{
 		text-align:center;
 		position:absolute;
 		top: 0;
-		right: -200%;
 		bottom: 0;
+		right: -200%;
 		left: -200%;
+		z-index:1;
+	}
+	.imageP>div>img{
+		width:100%;
 	}
 	.mainDiv-child{
 		text-align:center;
@@ -82,25 +92,16 @@
 		right:0;
 		display:block;
 		overflow:visible;
-		z-index:1;
 	}
-	.upperNav{
-		position:absolute;
-		width:calc(100% - 110px);
-		max-width:1180px;
-		min-width:530px;
-		height:70px;
-		margin-left:110px;
-		margin-right:0px;
-		top:0px;
-		display:block;
-		background-color:rgba(255,255,255,0.7);
-		z-index:3;
-	}
+	
 	#imgIdx{
 		display:block;
 		margin: 0 auto;
 		max-width:1280px;
+	}
+	#counter{
+		position:absolute;
+		margin-bottom:0px;
 	}
 /*///////////////////////////////body 부분 끝/////////////////////////////////*/		
 	
@@ -110,6 +111,7 @@
 		min-height:400px;
 		top:0px;
 		background-color:rgb(222,222,222);
+		z-index:1;
 	}
 	.navLine{
 		position:absolute;
@@ -117,6 +119,7 @@
 		min-height:390px;
 		background-color:gray;
 		left:104px;
+		z-index:1;
 	}
     #adminNav,#myPageNav,#hostingPageNav{
    		position:absolute;
@@ -157,9 +160,23 @@
 	}
 /*///////////////////////////////footer 부분 끝/////////////////////////////////*/		
 	
+	#list{
+		position:absolute;
+		top:1%;
+		left:1%;
+	}
+	
+	#QnAAnswer{
+		width:400px;
+		left:calc(50% - 200px);
+		margin:auto;
+	}
+	
+
 	
 	
 	
+/*///////////////////////////////기타 css설정 끝/////////////////////////////////*/		
 	
 /*		일정화면크기에서 정렬방식을 변경하는코드, 실제 사용하진 않는다. 	
 		@media screen and (max-width: 1000px) {

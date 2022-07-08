@@ -1,3 +1,4 @@
+// https://github.com/Ryanmufasa/awesomePlace/issues/17 -- 작성자 정다영
 package service;
 
 public class NextPage{

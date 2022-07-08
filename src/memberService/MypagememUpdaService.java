@@ -15,7 +15,7 @@ import service.ServiceInterface;
 public class MypagememUpdaService implements ServiceInterface {
 
 	@Override
-	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException, ServletException {
+	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 
 		String memPw = request.getParameter("mem_pw");	

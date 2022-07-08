@@ -2,7 +2,7 @@
 
 	jQuery(function() {
 	    var changeTerm = 5000;//ms
-	    var fadingTime = 1000;//ms
+	    var fadingTime = 500;//ms
 	 
 	    var $targetImg = $(".mainDiv-image > img");
 	    $targetImg.not(":first").hide();
