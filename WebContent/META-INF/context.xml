@@ -2,11 +2,11 @@
 <Context>
 <ResourceLink global="jdbc/oracle" name="jdbc/oracle" type="javax.sql.DataSource" />
 	<Resource
-		name ="jdbc/oraclel"
+		name ="jdbc/oracle"
 		auth = "Container"
 		type="javax.sql.DataSource"
 		driverClassName = "oracle.jdbc.OracleDriver"
-		url = "jdbc:oracle:thin:@192.168.1.140:1521:xe"
+		url = "jdbc:oracle:thin:@localhost:1521:xe"
 		username = "awesomeplace"
 		password = "awesomeplace"
 		maxTotal = "10"

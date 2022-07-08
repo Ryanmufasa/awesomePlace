@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.divInfo{
+	width:90%;
+	min-height:400px;
+	background-color:#FFFFAA
+}
+
+.divInfoL{
+	width:50%;
+	float:left;
+	min-height:300px;
+	box-sizing:border-box;
+	background-color:#FFFFCC
+}
+
+.divInfoR{
+	width:50%;
+	float:right;
+	min-height:300px;
+	box-sizing:border-box;
+	background-color:#AAFFFF
+}

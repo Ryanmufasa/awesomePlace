@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="orderinfo.OrderinfoVO"%>
-<%@ include file="/layout/header.jsp" %> 
+<%@ include file="/layout/Header.jsp" %> 
 <script src="${contextPath }/js/jquery-3.6.0.js"></script>
 
 <style>
@@ -42,4 +42,4 @@
 <button type="reset" onclick="location.href='/awesomePlace/mypage/mpreserinfofirst.do'">확인</button>
 </form>
 </div>
-<%@ include file="/layout/footer.jsp" %> 
+<%@ include file="/layout/Footer.jsp" %> 

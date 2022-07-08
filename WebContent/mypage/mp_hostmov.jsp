@@ -1,7 +1,7 @@
 <!-- https://github.com/Ryanmufasa/awesomePlace/issues/14 = 작성자 고유주 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/layout/header.jsp" %> 
+<%@ include file="/layout/Header.jsp" %> 
 </head>
 <body>
 <script src="${pageContext.request.contextPath }/resources/js/Mypage_hostmov.js"></script>
@@ -16,4 +16,4 @@
 </form>
 
 
-<%@ include file="/layout/footer.jsp" %> 
+<%@ include file="/layout/Footer.jsp" %> 

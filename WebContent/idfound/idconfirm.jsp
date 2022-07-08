@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title here</title> <!-- https://github.com/Ryanmufasa/awesomePlace/issues/8  //작성자: 양준모 -->
 
 </head>
 <body>
@@ -29,11 +29,11 @@
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			String dbUrl="jdbc:oracle:thin:@192.168.1.140:1521:xe";
+			String dbUrl="jdbc:oracle:thin:@localhost:1521:xe";
 
-			String dbUser="hr";
+			String dbUser="awesomeplace";
 
-			String dbPass="hr";
+			String dbPass="awesomeplace";
 
 			Connection con=DriverManager.getConnection(dbUrl, dbUser, dbPass);
 

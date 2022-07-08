@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title here</title> <!--  https://github.com/Ryanmufasa/awesomePlace/issues/10  //작성자: 양준모 -->
 </head>
 <body>
 

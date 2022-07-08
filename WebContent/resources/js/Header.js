@@ -2,27 +2,13 @@
 
 	//체크인, 체크아웃 인풋창의 min값 설정함수
 	$(document).ready(function(){
-		var date = new Date();
-		var year = date.getFullYear();
-		var month = (date.getMonth()+1)>9 ? date.getMonth()+1 : "0"+(date.getMonth()+1);
-		var day = date.getDate();
-		
- 		var today = year + "-" + month + "-" + day;
- 		
+
 		var ssId = sessionStorage.getItem("id");
 		var ssDoubleCheck = (sessionStorage.getItem("doubleCheck"))==null ? false : true;
 		var ssAdminPage = (sessionStorage.getItem("adminPage"))==null ? false : true;
 		var ssMyPage = (sessionStorage.getItem("myPage"))==null ? false : true;
 		var ssHostingPage = (sessionStorage.getItem("hostingPage"))==null ? false : true;
-		
-		$("#checkIn").attr("min",today);
-		
-		$("#checkIn").on("change", function(){ // 출발일자, 도착일자의 선택불가항목 결정
-			var checkInDay = $("#checkIn").val();
-			$("#checkOut").attr("min",checkInDay);
-			$("#checkOut").attr("disabled",false);
-		});
-			
+
 			if(ssId != null && ssId == "admin"){ //버튼 노출여부 결정
 				$("#btnLogin").attr("hidden", true);
 				$("#btnJoin").attr("hidden", true);
@@ -61,7 +47,7 @@
 				if(!ssAdminPage){
 					location.assign("Admin.do");
 				}else{
-					location.assign("Main.do");
+					location.assign("/awesomePlace/");
 				}
 			}));
 			$("#btnMyHosting").on("click",(function(){
@@ -73,7 +59,8 @@
 				}else if(ssId != null){
 					location.assign("doubleCheck.do");
 				}else{
-					location.assign("loginForm.do");
+					alert("로그인이 필요한 서비스 입니다");
+					location.assign("/awesomePlace/login/loginForm.do");
 				}
 			}));
 			$("#btnMyPage").on("click",(function(){
@@ -87,7 +74,7 @@
 				}
 			}));
 			$("#btnLogin").on("click",(function(){
-				location.assign("loginForm.do");
+				location.assign("/awesomePlace/login/loginForm.do");
 			}));
 			$("#btnJoin").on("click",(function(){
 				location.assign("joinForm.do");
@@ -96,7 +83,7 @@
 				if(ssAdminPage){
 					location.assign("Admin.do");
 				}else{
-					location.assign("Main.do");
+					location.assign("/awesomePlace/");
 					sessionStorage.removeItem("ssAdminPage");
 					sessionStorage.removeItem("ssMyPage");
 					sessionStorage.removeItem("ssHostingPage");
@@ -114,7 +101,7 @@
 				}else if(ssId != null){
 					$("#csCenter").attr("href", "doubleCheck.do");
 				}else{
-					$("#csCenter").attr("href", "loginForm.do");
+					$("#csCenter").attr("href", "/awesomePlace/login/loginForm.do");
 				}
 			
 			$("#csCenter").on("click",(function(){
@@ -125,7 +112,7 @@
 				}else if(ssId != null){
 					location.assign("doubleCheck.do");
 				}else{
-					location.assign("loginForm.do");
+					location.assign("/awesomePlace/login/loginForm.do");
 				}
 			}));
 			
@@ -149,30 +136,3 @@
 				$(".upperNav").css("position", "absolute");
 			}
 		});
-
-	// 목적지, 로그인여부(세션 아이디 존재여부), 마이페이지 비밀번호 재확인 여부 를 받아 각 상황에 맞게 페이지 분배하는 함수
-	function flip() { //select 옵션에 따른 입력창 노출여부 함수
-		var $guestCntIdx = $("#guestCnt option:selected").val();
-		if($guestCntIdx == "other"){
-			$("#optionInput").prop("type","text");
-				
-			$("#optionInput").keypress(function(e) { // 노출된 입력창에 숫자 외 값 입력못하게하는 함수
-				var keyRes = e.which;
-					if($("#optionInput").val().length == 0){ // 1째 자리는 1~9
-						if((48 < keyRes && keyRes < 58) || keyRes == 13) {
-						}	else{
-							e.preventDefault();
-						}
-					}else if($("#optionInput").val().length == 1){ // 2째 자리는 0~9
-						if((47 < keyRes && keyRes < 58) || keyRes == 13) {
-						}	else{
-							e.preventDefault();
-						}
-					}else if(13 != keyRes){ // 3째자리부턴 쓸 수 없음
-						e.preventDefault();
-					}
-			});
-		}else{
-			$("#optionInput").prop("type","hidden");
-		}
-	}

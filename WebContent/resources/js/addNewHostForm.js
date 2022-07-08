@@ -22,6 +22,7 @@ $(function(){
 		$(this).val(wea);
 	});
 	
+	
 });
 
 // 우편번호 검색시 // 다음 우편번호 서비스 api 
@@ -140,8 +141,6 @@ function check(f){
 		f.host_tel.focus();
 	}else if(f.room_type.value == ""){
 		alert('방 종류를 선택해주세요!');
-	}else if(f.room_name.value == ""){
-		f.room_name.focus();
 	}else if(f.room_cnt_1.value == " "){
 		alert("방 개수를 입력을 확인해주세요!");
 	}else if(f.room_cnt_1.value == 0){
@@ -163,3 +162,4 @@ function check(f){
 	
 	
 }
+
