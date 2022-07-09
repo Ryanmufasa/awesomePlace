@@ -18,9 +18,9 @@ public class MyPagePWService implements ServiceInterface{
 		
 		HttpSession session = request.getSession();
 		
-		request.setCharacterEncoding("UTF-8");
+		//request.setCharacterEncoding("UTF-8");
 		
-		MemberVO vo = (MemberVO) session.getAttribute("mem");
+		MemberVO vo = (MemberVO) session.getAttribute("mem_id");
 		
 		String mem_pw = request.getParameter("mem_pw");		
 		String mem_id = vo.getMem_id();

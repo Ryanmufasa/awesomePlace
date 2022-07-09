@@ -8,7 +8,7 @@ rel="stylesheet">
 <%@ include file="/layout/SearchHeader.jsp" %>
 <script type="text/javascript" 
 src="${pageContext.request.contextPath }/resources/js/Order.js?v=<%=System.currentTimeMillis()%>"></script>
-
+<% session.setAttribute("URL", "http://localhost:8080//awesomePlace/search/moreinfo.do?host_name=${vo.host_name }&host_num=${vo.host_num}"); %>
 
 <div align="center" class="mainDiv">
 

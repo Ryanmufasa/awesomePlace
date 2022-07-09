@@ -11,7 +11,7 @@ public class LogoutService implements ServiceInterface{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession ss1 = request.getSession();
-		ss1.removeAttribute("id");
+		ss1.removeAttribute("mem_id");
 		ss1.removeAttribute("doubleCheck");
 		ss1.removeAttribute("adminPage");
 	}

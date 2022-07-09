@@ -5,7 +5,7 @@
 <c:if test="${check }">
 	<script>
 		alert("${msg}");
-		location.href="/awesomePlace/login/loginForm.do";
+		location.href="/awesomePlace/login/loginform.do";
 	</script>
 </c:if>
 <c:if test="${!check }">

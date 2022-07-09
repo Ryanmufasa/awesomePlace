@@ -27,8 +27,9 @@
 
 <script>
 
-	function gologinck(){
-		location.href="login.do"
+	function gologinck(f){
+		//location.href="login.do"
+		f.submit();
 	}
 	
 	function goJoinForm(){
@@ -41,7 +42,7 @@
 
 <div id="login1">
 
-<form action="login.do" method="post">
+<form action="login.do" method="post" name="loginform">
 
 <table>
 
@@ -63,8 +64,7 @@
 	   
 </table> <br>
 		
-		<button class="submit" onclick="gologinck()" style="width:130px;height:40px;background-color:#5e5e5e;color:white;">로그인</button>
-		<!-- <input type="submit" value="로그인" onclick="gologinck()" style="width:130px;height:40px;background-color:#5e5e5e;color:white;"> --> 
+		<button type="button" onclick="gologinck(loginform)" style="width:130px;height:40px;background-color:#5e5e5e;color:white;">로그인</button>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="button" value="회원가입" onclick="goJoinForm()" style="width:130px;height:40px;background-color:#5e5e5e;color:white;"> <br><br>	 
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

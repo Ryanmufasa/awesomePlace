@@ -300,11 +300,17 @@ public class HostDAO {
 				
 			}else if(!checkIn.equals("") && !checkOut.equals("")) { // 체크인, 체크아웃 둘다 있으면
 				// 검색어, 체크인, 체크아웃, 숙박인원
-				sql += "and guest_cnt >= ?  order by host_num desc";
+				sql += "and guest_cnt >= ?  "
+						+ "and host_num not in(select distinct oi_host_num from orderinfo "
+						+ "where checkout_date  between to_date(?) and to_date(?) "
+						+ "and oi_sign in ('confirm','wait')) "
+						+ "order by host_num desc";
 				
 				ps = con.prepareStatement(sql);
-				ps.setString(1, keyword);
-				ps.setInt(2, guestCnt);
+				ps.setString(1, keyword); // 검색어
+				ps.setInt(2, guestCnt); // 숙박인원
+				ps.setString(3, checkIn); // 체크인일자
+				ps.setString(4, checkOut); // 체크아웃일자
 				
 			}else { // 검색어가 없는 경우에도 '%%' 으로 실행됨. 
 				// 체크인, 체크아웃 없고, guestCnt 조건만 판단

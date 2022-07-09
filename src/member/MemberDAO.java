@@ -51,8 +51,8 @@ public class MemberDAO{
 		}finally{
 
 			try {
-				if(rs != null) rs.close();
-				if(con != null) con.close();
+				if(pstmt != null) pstmt.close();
+				//if(con != null) con.close();
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -183,12 +183,15 @@ public class MemberDAO{
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}finally {
-				if(con!=null) {
-					try {
-						con.close();
-						}catch(SQLException e) {						
-					}
+				try {
+					if(rs != null) rs.close();
+					if(pstmt != null) pstmt.close();
+				}catch (SQLException e) {
+					e.printStackTrace();
 				}
+				/*
+				 * if(con!=null) { try { con.close(); }catch(SQLException e) { } }
+				 */
 			}
 			return memlist;
 		}
@@ -197,25 +200,34 @@ public class MemberDAO{
 	
 
 	//회원1명 불러올때
-	public MemberVO selectById (String id1) throws SQLException {
+	public MemberVO selectById (String id1)  {
 		MemberVO vo = null;
 		String sql = "select * from member where mem_id = ?";
-
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, id1);
-		rs = pstmt.executeQuery();
-
-
-		if(rs.next()) {
-			int mem_num=rs.getInt(1);
-			String mem_name = rs.getString(2);
-			String mem_id = rs.getString(3);
-			String mem_pw = rs.getString(4);
-			String mem_tel = rs.getString(5);
-			String mem_email = rs.getString(6);
-			vo = new MemberVO(mem_num, mem_name, mem_id, mem_pw, mem_tel, mem_email);
-		}else{
-			vo = null;}		
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id1);
+			rs = pstmt.executeQuery();
+	
+			if(rs.next()) {
+				int mem_num=rs.getInt(1);
+				String mem_name = rs.getString(2);
+				String mem_id = rs.getString(3);
+				String mem_pw = rs.getString(4);
+				String mem_tel = rs.getString(5);
+				String mem_email = rs.getString(6);
+				vo = new MemberVO(mem_num, mem_name, mem_id, mem_pw, mem_tel, mem_email);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return vo;
 	}
 
@@ -225,7 +237,7 @@ public class MemberDAO{
 	//private static DataSource ds;
 	public boolean join(MemberVO vo) {
 		boolean check=false;
-		String sql="insert into member "+" values(seq_member.nextval(),?,?,?,?,?)";
+		String sql="insert into member "+" values(seq_member.nextval,?,?,?,?,?,'Y',0)";
 		try {
 			//			con=ds.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -242,7 +254,7 @@ public class MemberDAO{
 		}finally {
 			try {
 				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
+				//if(con != null) con.close();
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -254,18 +266,21 @@ public class MemberDAO{
 
 	//로그인 확인
 	public MemberVO loginck (String mem_id1, String mem_pw2){
+		
 		MemberVO vo=null;
-		boolean check=false;
+		
+		//boolean check=false;
+		
 		String sql="select * from member where mem_id=? and mem_pw=?";
 		try{
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, mem_id1);
-		pstmt.setString(2, mem_pw2);
-		rs=pstmt.executeQuery();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mem_id1);
+			pstmt.setString(2, mem_pw2);
+			rs=pstmt.executeQuery();
 	
 			if(rs.next()) { 
 					System.out.println("로그인 성공");
-					check = true;
+					//check = true;
 				} else {
 					System.out.println("로그인 실패");
 				}
@@ -305,8 +320,9 @@ public class MemberDAO{
 			System.out.println(e);
 		}finally{
 			try {
-				if(rs != null) rs.close();
-				if(con != null) con.close();
+				if(rs !=  null) rs.close();
+				if(pstmt != null) pstmt.close();
+				//if(con != null) con.close();
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -340,7 +356,8 @@ public class MemberDAO{
 		}finally{
 			try {
 				if(rs != null) rs.close();
-				if(con != null) con.close();
+				if(pstmt != null) pstmt.close();
+				//if(con != null) con.close();
 			}catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -356,10 +373,10 @@ public class MemberDAO{
 				
 		try {
 			pstmt = con.prepareStatement(sql);
-		pstmt.setInt(1, mem_num);
-		rs = pstmt.executeQuery();
-		
-		while(rs.next()) {			
+			pstmt.setInt(1, mem_num);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {			
 				int host_num = rs.getInt("host_num");
 				String host_name = rs.getString("host_name");
 				String host_addr = rs.getString("host_addr");
@@ -379,7 +396,7 @@ public class MemberDAO{
 				hostVO ho = new hostVO(host_num, host_name, host_addr, host_post_num, host_tel, room_type, room_cnt, guest_cnt, weekday_amt, weekend_amt, host_content, host_date, sign, hmem_num, mem_id);
 				
 				harray.add(ho);
-			} 
+				} 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -15,10 +15,24 @@
 %>
 
 <c:if test="${selectResult != null }">
-	<script>
+	<c:choose>
+		<c:when test="${from == null}">
+			<script>
+			location.href="/awesomePlace/";
+			</script>
+		</c:when>
+		<c:otherwise>
+			<script>
+				alert("로그인 완료.")
+				location.href= "<%=from %>"; 
+			</script>
+		</c:otherwise>
+	</c:choose>
+
+<%-- 	<script>
 		alert("로그인 완료.")
-		location.href= "<%=from %>" 
-	</script>
+		location.href= "<%=from %>"; 
+	</script> --%>
 
 </c:if>
 <c:if test="${selectResult == null}">

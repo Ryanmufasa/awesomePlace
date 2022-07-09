@@ -16,7 +16,7 @@
 		imgList[idx] = temp;
 	}
 	%>
-	
+<% session.setAttribute("URL", "http://localhost:8080/awesomePlace/"); %>	
 <%@include file ="/layout/upperNavigation.jsp" %>
 <div class="imageP">
 	<div class="mainDiv-image">

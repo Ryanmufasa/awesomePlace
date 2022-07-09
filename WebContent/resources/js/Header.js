@@ -2,12 +2,6 @@
 
 	//체크인, 체크아웃 인풋창의 min값 설정함수
 	$(document).ready(function(){
-		var date = new Date();
-		var year = date.getFullYear();
-		var month = (date.getMonth()+1)>9 ? date.getMonth()+1 : "0"+(date.getMonth()+1);
-		var day = date.getDate();
-		
- 		var today = year + "-" + month + "-" + day;
  		
 		var ssId = (sessionStorage.getItem("mem_id")=="null") ? false : true;
 		var ssShowAdmin = (sessionStorage.getItem("showAdmin")=="null") ? false : true;
@@ -15,15 +9,7 @@
 		var ssAdminPage = (sessionStorage.getItem("adminPage")=="null") ? false : true;
 		var ssMyPage = (sessionStorage.getItem("myPage")=="null") ? false : true;
 		var ssHostingPage = (sessionStorage.getItem("hostingPage")=="null") ? false : true;
-		
-		$("#checkIn").attr("min",today);
-		
-		$("#checkIn").on("change", function(){ // 출발일자, 도착일자의 선택불가항목 결정
-			var checkInDay = $("#checkIn").val();
-			$("#checkOut").attr("min",checkInDay);
-			$("#checkOut").attr("disabled",false);
-		});
-			
+
 			if(ssId && ssShowAdmin){ //버튼 노출여부 결정
 				$("#btnLogin").attr("hidden", true);
 				$("#btnJoin").attr("hidden", true);
@@ -108,7 +94,7 @@
 				}else if(ssId != null){
 					$("#csCenter").attr("href", "doubleCheck.do");
 				}else{
-					$("#csCenter").attr("href", "loginForm.do");
+					$("#csCenter").attr("href", "loginform.do");
 				}
 			
 			$("#csCenter").on("click",(function(){
@@ -117,7 +103,7 @@
 				}else if(ssId != null){
 					location.assign("doubleCheck.do");
 				}else{
-					location.assign("loginForm.do");
+					location.assign("loginform.do");
 				}
 			}));
 			
