@@ -1,3 +1,5 @@
+<!-- https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자 : 이명진 -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -7,6 +9,21 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<c:set var="contextPath" value="${pageContext.request.contextPath }"/>
+<script src="${contextPath }/resources/js/jquery-3.6.0.js?v=<%=System.currentTimeMillis() %>" ></script>
+<script src ="${contextPath }/resources/js/adminPage.js?v=<%=System.currentTimeMillis() %>"></script>
+<script>
+	<% 
+		String res = (String)request.getAttribute("switchRes"); 
+		request.removeAttribute("switchRes");
+	%>
+	var res ="<%=res%>";
+	$(document).ready(function(){
+		if(res!="null")
+			alert("변경완료");
+	});
+	
+</script>
 </head>
 <body>
 	<table border="1" style="width:700px;, left:calc(50% - 150px); margin:auto;">
@@ -14,7 +31,7 @@
 		<c:forEach var="memHL" items="${memHostList }" varStatus="idx">
 			<tr>
 				<td>${memHL.host_num }</td>
-				<td>${memHL.host_name }</td>
+				<td><a href="#" onclick="hostDetail(${memHL.host_num}); return false;">${memHL.host_name}</a></td>
 				<td>${memHL.host_addr }</td>
 				<td>${memHL.host_tel }</td>
 				<td>${memHL.sign }</td>

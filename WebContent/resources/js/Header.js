@@ -64,23 +64,23 @@
 				}
 			}));
 			$("#btnMyHosting").on("click",(function(){
-				if(ssId && ssDoubleCheck){
+				if(ssId != null && ssDoubleCheck){
 					location.assign("myHosting.do");
-				}else if(ssId){
+				}else if(ssId != null){
 					location.assign("doubleCheck.do");
 				}else{
-					location.assign("loginForm.do");
+					location.assign("loginform.do");
 				}
 			}));
 			$("#btnMyPage").on("click",(function(){
 				if(ssDoubleCheck){
-					location.assign("myPage.do");
+					location.assign("MyPage.do");
 				}else{
 					location.assign("doubleCheck.do");
 				}
 			}));
 			$("#btnLogin").on("click",(function(){
-				location.assign("loginForm.do");
+				location.assign("loginform.do");
 			}));
 			$("#btnJoin").on("click",(function(){
 				location.assign("joinForm.do");
@@ -103,18 +103,18 @@
 				$(window).scrollTop(0);
 			}));
 			
-			if(ssId && ssDoubleCheck){ // 조건에 따른 버튼 목적지 설정
+			if(ssId != null && ssDoubleCheck){ // 조건에 따른 버튼 목적지 설정
 					$("#csCenter").attr("href", "csCenter.do");
-				}else if(ssId){
+				}else if(ssId != null){
 					$("#csCenter").attr("href", "doubleCheck.do");
 				}else{
 					$("#csCenter").attr("href", "loginForm.do");
 				}
 			
 			$("#csCenter").on("click",(function(){
-				if(ssId && ssDoubleCheck){
+				if(ssId != null && ssDoubleCheck){
 					location.assign("MyAskForm.do");
-				}else if(ssId){
+				}else if(ssId != null){
 					location.assign("doubleCheck.do");
 				}else{
 					location.assign("loginForm.do");

@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<%@ include file="/Header.jsp" %>
+<%@ include file="/layout/Header.jsp" %>
 
 <div align="center">
 

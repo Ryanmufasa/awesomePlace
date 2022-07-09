@@ -9,22 +9,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import HnNService.MainPageService;
+import adminService.AdminHostDetailService;
+import adminService.AdminHostSwitchSignService;
 import adminService.AdminHostingListService;
+import adminService.AdminMemberDeleteService;
 import adminService.AdminMemberHostListService;
-import adminService.AdminMemberInfoService;
+import adminService.AdminMemberDetailService;
 import adminService.AdminMemberListService;
-import adminService.AdminMemberSwitchAvailableService;
+import adminService.AdminMemberSwitchSignService;
 import adminService.AdminOutService;
 import adminService.AdminQnAAnswerFormService;
 import adminService.AdminQnAListService;
 import adminService.AdminService;
 import hostService.AddNewHostService;
 import hostService.SearchService;
-import memberService.EmailCheckService;
+import memberJoinService.EmailCheckService;
+import memberJoinService.IdCheckService;
+import memberJoinService.JoinService;
 import memberService.IDfoundService;
-import memberService.IdCheckService;
 import memberService.JJimShowService;
-import memberService.JoinService;
 import memberService.LoginService;
 import memberService.MyPagePWService;
 import memberService.PWfoundService;
@@ -76,7 +79,7 @@ public class APController extends HttpServlet {
 				serv = new SearchService();
 				page = new NextPage("/search/search.jsp", false);
 				break;
-			case "/loginform.do":
+			case "/loginform.do" : 
 				page = new NextPage("/awesomePlace/login/loginform.jsp", true);
 				break;
 			case "/login.do" : 
@@ -122,11 +125,11 @@ public class APController extends HttpServlet {
 			
 			// 문의글 쓰기  // 작성자: 양준모
 			case "/MyAskForm.do":
-			page = new NextPage("/awesomePlace/ASK/MyAskForm.jsp", true);
-			break;
-	    case "/askqna.do":
-	    	serv = new QnAService();
-	    	page = new NextPage("/ASK/result.jsp", false);
+				page = new NextPage("/awesomePlace/ASK/MyAskForm.jsp", true);
+				break;
+			case "/askqna.do":
+		    	serv = new QnAService();
+		    	page = new NextPage("/ASK/result.jsp", false);
 	    	break;
 	    	
 	    	// 문의글 보는 페이지 // 작성자: 양준모
@@ -192,21 +195,33 @@ public class APController extends HttpServlet {
 				serv = new AdminMemberListService();
 				page = new NextPage("/admin/memberList.jsp", false); 
 				break;
-			case "/memberInfo.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
-				serv = new AdminMemberInfoService();
-				page = new NextPage("/admin/memberInfo.jsp", false); 
+			case "/memberDetail.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberDetailService();
+				page = new NextPage("/admin/memberDetail.jsp", false); 
+				break;
+			case "/memberDelete.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberDeleteService();
+				page = new NextPage("/admin/memberDetail.jsp", false); 
 				break;
 			case "/memberHostList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
 				serv = new AdminMemberHostListService();
 				page = new NextPage("/admin/memberHostList.jsp", false); 
 				break;
-			case "/switchAvailable.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
-				serv = new AdminMemberSwitchAvailableService();
+			case "/switchSign.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminMemberSwitchSignService();
 				page = new NextPage("memberList.do", false); 
 				break;
 			case "/hostingList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/50 작성자: 이명진
 				serv = new AdminHostingListService();
 				page = new NextPage("/admin/hostingList.jsp", false); 
+				break;
+			case "/hostDetail.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/50 작성자: 이명진
+				serv = new AdminHostDetailService();
+				page = new NextPage("/admin/hostDetail.jsp", false); 
+				break;
+			case "/switchHostSign.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자: 이명진
+				serv = new AdminHostSwitchSignService();
+				page = new NextPage("/admin/hostDetail.jsp", false); 
 				break;
 			case "/siteMap.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/51 작성자: 이명진
 				page = new NextPage("/admin/siteMap.jsp", true); 

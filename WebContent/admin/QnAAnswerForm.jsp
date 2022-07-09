@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
-<%@include file ="/Header.jsp" %>
+<%@include file ="/layout/Header.jsp" %>
 
 <%	String res = (String)request.getAttribute("QnARes");%>
 <script>
@@ -40,4 +40,4 @@
 
 <span id="counter"></span> 	<!-- 메인 컨텐츠 바닥위치값 확인용 -->
 </div>
-<%@include file ="/Footer.jsp" %>
+<%@include file ="/layout/Footer.jsp" %>
