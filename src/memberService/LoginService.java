@@ -17,8 +17,8 @@ public class LoginService implements ServiceInterface{
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		
-		String mem_id = request.getParameter("mem_id");
-		String mem_pw = request.getParameter("mem_pw");
+		String mem_id = request.getParameter("id");
+		String mem_pw = request.getParameter("pw");
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		
