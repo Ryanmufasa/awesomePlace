@@ -14,14 +14,16 @@
    %>
 	<div class="upperNav">
 		<div class="LD">
-			<button id="LScroll">&lt;</button>
+			<button class="btn" id="LScroll">&lt;</button>
 		</div>
 				<div class="CD">
+					<table class="CDtable"><tr>
 						<c:forEach var="tagList" items="${tagList}">
-							<button id="tags">#${tagList.tag_name }</button>
+							<td id="td"><button class="btn" id="tags">#${tagList.tag_name }</button></td>
 						</c:forEach>
+					</tr></table>
 				</div>
 		<div class="RD">
-			<button id="RScroll">&gt;</button>
+			<button class="btn" id="RScroll">&gt;</button>
 		</div>
 	</div>
