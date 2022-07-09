@@ -30,6 +30,10 @@ import memberService.IDfoundService;
 import memberService.JJimShowService;
 import memberService.LoginService;
 import memberService.MyPagePWService;
+import memberService.MypageOrderinfoClickService;
+import memberService.MypagememUpdaService;
+import memberService.MypagememinfoService;
+import memberService.MypageorderinfoService;
 import memberService.PWfoundService;
 import memberService.PWupdateService;
 import memberService.QnAService;
@@ -80,9 +84,10 @@ public class APController extends HttpServlet {
 				page = new NextPage("/search/search.jsp", false);
 				break;
 			case "/loginform.do" : 
-				page = new NextPage("./login/loginform.jsp", true);
+				page = new NextPage("/awesomePlace/login/loginform.jsp", true);
 				break;
 			case "/login.do" : 
+				System.out.println("들어옴");
 				serv = new LoginService(); 
 				page = new NextPage("/login/result.jsp", false);
 				break;
@@ -226,6 +231,28 @@ public class APController extends HttpServlet {
 			case "/siteMap.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/51 작성자: 이명진
 				page = new NextPage("/admin/siteMap.jsp", true); 
 				break;
+				
+				//마이페이지 정보수정 	
+			case "/mpmeminfo.do" : //작성자 = 고유주
+				serv = new MypagememinfoService();
+				page = new NextPage("/mypage/mp_meminfo.jsp", false);
+				break;
+
+			case "/meminfoclear.do" : //작성자 = 고유주
+				serv = new MypagememUpdaService();
+				page = new NextPage("/mypage/mp_memInfoUpdate.jsp", false);
+				break;
+	
+			//마이페이지 예약내역 
+				case "/mpreserinfo.do" : //작성자 = 고유주
+				serv = new MypageOrderinfoClickService();
+				page = new NextPage("/mypage/mp_reserinfo.jsp", false);
+				break;
+			
+				case "/mpreserinfofirst.do" : //작성자 = 고유주
+					serv = new MypageorderinfoService();
+					page = new NextPage("/mypage/mp_reserInfoFirst.jsp", false);
+					break;
     	}
     	
     	if(serv != null) {
