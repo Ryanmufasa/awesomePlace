@@ -22,7 +22,7 @@ public class MyPagePWService implements ServiceInterface{
 		
 		MemberVO vo = (MemberVO) session.getAttribute("mem");
 		
-		String mem_pw = request.getParameter("mem_pw");		
+		String mem_pw = request.getParameter("mem_pw");
 		String mem_id = vo.getMem_id();
 		
 		MemberDAO dao = MemberDAO.getInstance();
@@ -31,7 +31,10 @@ public class MyPagePWService implements ServiceInterface{
 		
 		if(selectResult == 1) {
 			System.out.println("일치");
-			
+			session.setAttribute("doubleCheck", "true");
+			session.setAttribute("myPage", "true");
+			System.out.println(session.getAttribute("doubleCheck")==null);
+			System.out.println(session.getAttribute("myPage")==null);
 		} 
 		
 		request.setAttribute("selectResult", selectResult);

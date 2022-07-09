@@ -18,7 +18,7 @@
 
 	<h1>마이페이지 조회 시 비밀번호 재확인이 필요합니다.</h1> <br><br><br><br>
 	
-	<form action="${pageContext.request.contextPath }/mypage/mypagePW.do">
+	<form action="${pageContext.request.contextPath }/mypage/mypagePW.do" method="post">
 	
 	<table>
 	

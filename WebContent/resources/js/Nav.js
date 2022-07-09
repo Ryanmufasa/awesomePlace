@@ -5,6 +5,8 @@
 		var ssHostingPage = (sessionStorage.getItem("hostingPage")=="null") ? false : true;
 
 $("document").ready(function(){
+			alert("마이페이지 : " + ssMyPage);
+		
 			if(!ssAdminPage && !ssMyPage && !ssHostingPage){ // 내비게이션 노출여부 결정
 				$(".nav").attr("hidden", "true");
 				$(".navLine").attr("hidden", "true");

@@ -1278,6 +1278,121 @@ public class MemberDAO{
 			}
 			return idxList;
 		}
+
+		//https://github.com/Ryanmufasa/awesomePlace/issues/28 작성자: 이명진
+		public ArrayList<HostVO> tagSearch(int idx) {
+			
+			String tempIdx = tagSearchHostList(idx);
+			
+			String sql = "SELECT * FROM host WHERE host_num IN (?)";
+			
+			ArrayList<HostVO> hostList = new ArrayList<HostVO>();
+			try {
+			
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, tempIdx);
+				rs=pstmt.executeQuery();
+				
+				int host_num;
+				String host_name;
+				String host_addr;
+				String host_post_num;
+				String host_tel;
+				String room_type;
+				int room_cnt;
+				int guest_cnt;
+				int weekday_amt;
+				int weekend_amt;
+				String host_content;
+				String host_date;
+				String sign;
+				int mem_num;
+				String mem_id;
+				
+				while(rs.next()) {
+					host_num = Integer.parseInt(rs.getString("host_num"));
+					host_name = rs.getString("host_name");
+					host_addr = rs.getString("host_addr");
+					host_post_num = rs.getString("host_post_num");
+					host_tel = rs.getString("host_tel");
+					room_type = rs.getString("room_type");
+					room_cnt = Integer.parseInt(rs.getString("room_cnt"));
+					guest_cnt = Integer.parseInt(rs.getString("guest_cnt"));
+					weekday_amt = Integer.parseInt(rs.getString("weekday_amt"));
+					weekend_amt = Integer.parseInt(rs.getString("weekend_amt"));
+					host_content = rs.getString("host_content");
+					String temp = rs.getString("host_date");
+					sign = rs.getString("sign");
+					mem_num = Integer.parseInt(rs.getString("mem_num"));
+					mem_id = rs.getString("mem_id");
+					
+					host_date = temp.substring(0, 10);
+					
+					HostVO hostInfo = new HostVO(host_num, host_name, host_addr, host_post_num, host_tel,
+							room_type, room_cnt, guest_cnt, weekday_amt, weekend_amt, host_content,
+							host_date, sign, mem_num, mem_id);
+					
+					hostList.add(hostInfo);
+				}
+			} catch (SQLException e) {
+				try {
+					if(pstmt != null) {
+						pstmt.close();
+					}else if(con!=null)
+						con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+			return hostList;
+		}
+
+		//https://github.com/Ryanmufasa/awesomePlace/issues/28 작성자: 이명진
+		private String tagSearchHostList(int idx) {
+			
+			String sql = "SELECT * FROM hnh WHERE tag_num=?";
+			String res = null;
+			try {
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, idx);
+				rs=pstmt.executeQuery();
+				
+				int hNum;
+				
+				
+				ArrayList<Integer> hostNum = new ArrayList<Integer>();
+				
+				while(rs.next()) {
+					hNum = Integer.parseInt(rs.getString("host_num"));
+					
+					hostNum.add(hNum);
+				}
+				
+				if(hostNum.size()!=1) {
+					for(int i=0 ; i<hostNum.size() ; i++) {
+						res += hostNum.get(i);
+						for(int j=0 ; j<hostNum.size()-1;j++) {
+							res += "','";
+						}
+					}
+				}
+				
+			} catch (SQLException e) {
+				try {
+					if(pstmt != null) {
+						pstmt.close();
+					}else if(con!=null)
+						con.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+			return res;
+	
+		}
+		
+		
 		
 }
 

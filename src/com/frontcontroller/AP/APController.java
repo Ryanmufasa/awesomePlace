@@ -26,6 +26,7 @@ import hostService.SearchService;
 import memberJoinService.EmailCheckService;
 import memberJoinService.IdCheckService;
 import memberJoinService.JoinService;
+import memberLoginService.LogoutService;
 import memberService.IDfoundService;
 import memberService.JJimShowService;
 import memberService.LoginService;
@@ -36,6 +37,7 @@ import memberService.QnAService;
 import memberService.QnAShowService;
 import service.NextPage;
 import service.ServiceInterface;
+import service.TagSearchService;
 
 @WebServlet("*.do")
 public class APController extends HttpServlet {
@@ -83,10 +85,15 @@ public class APController extends HttpServlet {
 				page = new NextPage("/awesomePlace/login/loginform.jsp", true);
 				break;
 			case "/login.do" : 
-				serv = new LoginService(); 
-				page = new NextPage("/login/result.jsp", false);
+				serv = new LoginService();
+				page = new NextPage("login/result2.jsp", false);
+				System.out.println(page.getNextPath());
+				System.out.println("이거안해?");
 				break;
-			
+			case "/logout.do" : 
+				serv = new LogoutService(); 
+				page = new NextPage("/index.jsp", false);
+				break;
 			// 아이디 찾기 작성자:양준모
 			case "/IDfoundform.do":
 				page = new NextPage("/awesomePlace/idfound/IDfoundform.jsp", true);
@@ -113,7 +120,6 @@ public class APController extends HttpServlet {
 				serv = new PWupdateService();
 				page = new NextPage("/pwfound/result1.jsp", false);
 				break;
-			
 			// 마이페이지 접속시 로그인 재확인 작성자:양준모
 			case "/MyPage.do":
 				page = new NextPage("/awesomePlace/mypage/MyPage.jsp", true);
@@ -226,12 +232,16 @@ public class APController extends HttpServlet {
 			case "/siteMap.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/51 작성자: 이명진
 				page = new NextPage("/admin/siteMap.jsp", true); 
 				break;
+			case "/tagSearch.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/28 작성자: 이명진
+				serv = new TagSearchService();
+				page = new NextPage("/search/search.jsp", false);
+				break;
     	}
     	
     	if(serv != null) {
     		serv.execute(request, response);
     	}
-    	
+    	System.out.println(page.getNextPath());
     	if(page.isRedirect()) {
     		response.sendRedirect(page.getNextPath());
     	}else {

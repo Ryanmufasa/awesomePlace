@@ -1,6 +1,8 @@
 @charset "UTF-8";
 	:root {
 		--upperNavH:50px;
+		--hoverColor:#3232FF;
+		--hoverBackColor:#79FFCE;
 	}
 	.upperNav{
 		text-align:center;
@@ -25,28 +27,48 @@
 		color:rgba(0,0,0,0.7);
 		cursor:pointer;
 		position:relative;
+		transition:all 0.8s;
+		overflow:hidden;
 	}
 	
 	.btn:focus{
 		outline: none;
 	}
 	
-	.btn::before{
+	.btn::before,
+	.btn::after {
 		content:"";
 		position:absolute;
 		height:100%;
-		width:100%;
+		width:3px;
 		top:0px;
+		background-color:var(--hoverColor);
+		transition: all 0.8s;
+	}
+	
+	.btn::before{
 		left:0px;
-		background-color:rgba(255,255,255);
+		transform: translateY(-100%);
+	}
+	.btn::after{
+		right:0px;
+		transform: translateY(100%);
 	}
 	
 	.btn:hover{
-		
+		background-color:var(--hoverBackColor);
+		color:var(--hoverColor);
+		font-size:30px;
+	}
+	
+	.btn:hover::before,
+	.btn:hover::after {
+		transform: translateY(0%);
 	}
 	
 	.btn:active{
-		
+		filter: invert(100%);
+		transition: none;
 	}
 	
 	.LD{

@@ -4,9 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/layout/Header.jsp" %> 
 <%@page import="member.MemberVO"%>
-<script src="${contextPath }/js/jquery-3.6.0.js"></script>
 <div id="info" align="center">
-
 
 
 <h2><b>정보 수정</b></h2>

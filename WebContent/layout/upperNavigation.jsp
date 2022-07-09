@@ -19,7 +19,8 @@
 				<div class="CD">
 					<table class="CDtable"><tr>
 						<c:forEach var="tagList" items="${tagList}">
-							<td id="td"><button class="btn" id="tags">#${tagList.tag_name }</button></td>
+							<td id="td"><button class="btn" id="tags" onclick="tagSearch(${tagList.tag_num})">
+							#${tagList.tag_name }</button></td>
 						</c:forEach>
 					</tr></table>
 				</div>

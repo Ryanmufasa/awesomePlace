@@ -27,9 +27,6 @@
 
 <script>
 
-	function gologinck(){
-		location.href="login.do"
-	}
 	
 	function goJoinForm(){
 		location.href="/awesomePlace/join/joinForm.do"
@@ -49,7 +46,7 @@
 			<td>
 				아이디&nbsp;&nbsp;
 			</td>
-			<td><input type="text" name="id" style="width:205px;height:30px;" placeholder="아이디" required></td>
+			<td><input type="text" name="mem_id" style="width:205px;height:30px;" placeholder="아이디" required></td>
 		</tr>
 		
 		<tr><td></td>
@@ -58,12 +55,12 @@
 	    	<td>
 	    		비밀번호&nbsp;&nbsp;
 	    	</td>
-	    	<td><input autocomplete="false" type="password" name="pw" id="key" style="width:205px;height:30px;" placeholder="비밀번호" required></td>
+	    	<td><input autocomplete="false" type="password" name="mem_pw" id="key" style="width:205px;height:30px;" placeholder="비밀번호" required></td>
 	    </tr>
 	   
 </table> <br>
 		
-		<button class="submit" onclick="gologinck()" style="width:130px;height:40px;background-color:#5e5e5e;color:white;">로그인</button>
+		<button class="submit" style="width:130px;height:40px;background-color:#5e5e5e;color:white;">로그인</button>
 		<!-- <input type="submit" value="로그인" onclick="gologinck()" style="width:130px;height:40px;background-color:#5e5e5e;color:white;"> --> 
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="button" value="회원가입" onclick="goJoinForm()" style="width:130px;height:40px;background-color:#5e5e5e;color:white;"> <br><br>	 

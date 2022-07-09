@@ -144,3 +144,8 @@
 			$("#optionInput").prop("type","hidden");
 		}
 	}
+	
+	function tagSearch(idx){
+		var url = "tagSearch.do?idx="+idx;
+		location.href=url;
+	}
