@@ -149,3 +149,14 @@
 		var url = "tagSearch.do?idx="+idx;
 		location.href=url;
 	}
+	
+	function LScroll(){
+		$(".CD").animate({
+			scrollLeft: "-=250px"
+		}, 300);
+	}
+	function RScroll(){
+		$(".CD").animate({
+			scrollLeft: "+=250px"
+		}, 300);
+	}

@@ -14,7 +14,7 @@
    %>
 	<div class="upperNav">
 		<div class="LD">
-			<button class="btn" id="LScroll">&lt;</button>
+			<button class="btn" id="LScroll" onclick="LScroll()">&lt;</button>
 		</div>
 				<div class="CD">
 					<table class="CDtable"><tr>
@@ -25,6 +25,6 @@
 					</tr></table>
 				</div>
 		<div class="RD">
-			<button class="btn" id="RScroll">&gt;</button>
+			<button class="btn" id="RScroll" onclick="RScroll()">&gt;</button>
 		</div>
 	</div>

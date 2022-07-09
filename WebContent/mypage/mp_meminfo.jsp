@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/layout/Header.jsp" %> 
 <%@page import="member.MemberVO"%>
+<div class="mainDiv-child">
 <div id="info" align="center">
 
 
@@ -26,7 +27,7 @@
 <tr>
 <br><br><br>
 <td><button type="button" onclick="memUpdate()">확인</button></td>
-<td><button type="reset" onclick="location.href='/awesomePlace/mypage/mpmeminfo.do'">취소</button></td>
+<td><button type="reset" onclick="location.href='/awesomePlace/mypage/mp_meminfo.do'">취소</button></td>
 </tr>
 </table>
 </div>	 
@@ -70,7 +71,7 @@ alert(result);
 	
 	}
 </script>  
-
+</div>
 
 
 

@@ -1282,15 +1282,24 @@ public class MemberDAO{
 		//https://github.com/Ryanmufasa/awesomePlace/issues/28 작성자: 이명진
 		public ArrayList<HostVO> tagSearch(int idx) {
 			
-			String tempIdx = tagSearchHostList(idx);
+			ArrayList<String> hostNumArr = tagSearchHostList(idx);
 			
-			String sql = "SELECT * FROM host WHERE host_num IN (?)";
-			
+			String sql = "SELECT * FROM host WHERE host_num IN (";
+			for(int i=1 ; i<=hostNumArr.size() ; i++) {
+				sql += "?";
+				if(i<hostNumArr.size()) {
+					sql += ",";
+				}
+			}
+			sql += ")";
+			System.out.println("sql : " + sql);
 			ArrayList<HostVO> hostList = new ArrayList<HostVO>();
 			try {
 			
 				pstmt=con.prepareStatement(sql);
-				pstmt.setString(1, tempIdx);
+				for(int i=1 ; i<=hostNumArr.size() ; i++) {
+					pstmt.setString(i, hostNumArr.get(i-1));
+				}
 				rs=pstmt.executeQuery();
 				
 				int host_num;
@@ -1349,35 +1358,24 @@ public class MemberDAO{
 		}
 
 		//https://github.com/Ryanmufasa/awesomePlace/issues/28 작성자: 이명진
-		private String tagSearchHostList(int idx) {
+		private ArrayList<String> tagSearchHostList(int idx) {
 			
 			String sql = "SELECT * FROM hnh WHERE tag_num=?";
-			String res = null;
+			String res = "";
+			ArrayList<String> hostNum = new ArrayList<String>();
 			try {
 				pstmt=con.prepareStatement(sql);
 				pstmt.setInt(1, idx);
 				rs=pstmt.executeQuery();
 				
-				int hNum;
+				String hNum=null;
 				
-				
-				ArrayList<Integer> hostNum = new ArrayList<Integer>();
 				
 				while(rs.next()) {
-					hNum = Integer.parseInt(rs.getString("host_num"));
-					
+					hNum = rs.getString("host_num");
+					System.out.println("hNum 1 : " + hNum);
 					hostNum.add(hNum);
 				}
-				
-				if(hostNum.size()!=1) {
-					for(int i=0 ; i<hostNum.size() ; i++) {
-						res += hostNum.get(i);
-						for(int j=0 ; j<hostNum.size()-1;j++) {
-							res += "','";
-						}
-					}
-				}
-				
 			} catch (SQLException e) {
 				try {
 					if(pstmt != null) {
@@ -1388,7 +1386,7 @@ public class MemberDAO{
 					e1.printStackTrace();
 				}
 			}
-			return res;
+			return hostNum;
 	
 		}
 		

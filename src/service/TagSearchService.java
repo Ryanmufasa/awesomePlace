@@ -19,6 +19,13 @@ public class TagSearchService implements ServiceInterface {
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		
 		ArrayList<HostVO> hostList = dao.tagSearch(idx);
+		
+		request.setAttribute("hostli", hostList);
+		
+		request.setAttribute("search", "");
+		request.setAttribute("checkIn", "");
+		request.setAttribute("checkOut", "");
+		request.setAttribute("guestCnt", "2");
 	}
 
 }

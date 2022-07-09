@@ -26,6 +26,9 @@
 			String adminPage = (String)ss1.getAttribute("adminPage");// adminPage 진입 확인 세션
 			String myPage = (String)ss1.getAttribute("myPage");// myPage진입 확인세션 확인 세션
 			String hostingPage = (String)ss1.getAttribute("hostingPage");// hostingPage 진입 확인 세션
+			if(mem_id == null){
+				ss1.setAttribute("URL", request.getRequestURI());
+			}
 		%>
 			sessionStorage.setItem("mem_id", "<%=mem_id%>");
 			sessionStorage.setItem("showAdmin", "<%=showAdmin%>");

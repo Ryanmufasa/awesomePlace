@@ -33,6 +33,9 @@ public class MyPagePWService implements ServiceInterface{
 			System.out.println("일치");
 			session.setAttribute("doubleCheck", "true");
 			session.setAttribute("myPage", "true");
+			session.removeAttribute("adminPage");
+			session.removeAttribute("hostingPage");
+			
 			System.out.println(session.getAttribute("doubleCheck")==null);
 			System.out.println(session.getAttribute("myPage")==null);
 		} 
