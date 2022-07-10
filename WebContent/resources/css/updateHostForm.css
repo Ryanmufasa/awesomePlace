@@ -1,0 +1,32 @@
+/*https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영 
+*/
+@charset "UTF-8";
+
+.host{
+	cursor:pointer;
+	width:auto;
+	height:auto;
+	border:3px solid #dedede;
+	margin-right:20px;
+	margin-bottom:20px;
+	transition:transform 1s;
+	text-align:left;
+}
+
+.info1{
+	background:skyblud;
+	display:none;
+}
+.info2{
+	background:beige;
+	display:none;
+}
+.info3{
+	background:orange;
+	display:none;
+}
+.info4{
+	background:pink;
+	display:none;
+}
+
