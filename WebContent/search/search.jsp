@@ -27,6 +27,9 @@
 		<c:if test="${guestCnt >= 2 }">
 			숙박 인원 : ${guestCnt } 명 으로 검색한 결과 입니다
 		</c:if>
+		<c:if test="${tag_name}">
+			${tag_name } 로 검색한 결과입니다.
+		</c:if>
  </h2>
 <hr>
 <div style="display:inline-flex;">

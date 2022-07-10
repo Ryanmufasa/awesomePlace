@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import HnNService.GetHashTagService;
 import HnNService.MainPageService;
+import HnNService.SearchByHashtagService;
 import adminService.AdminHostDetailService;
 import adminService.AdminHostSwitchSignService;
 import adminService.AdminHostingListService;
@@ -22,7 +24,10 @@ import adminService.AdminOutService;
 import adminService.AdminQnAAnswerFormService;
 import adminService.AdminQnAListService;
 import adminService.AdminService;
-
+import hostInfoUpdateService.UpdateHostInfo1Service;
+import hostInfoUpdateService.UpdateHostInfo2Service;
+import hostInfoUpdateService.UpdateHostInfo3Service;
+import hostInfoUpdateService.UpdateHostInfo4Service;
 import hostService.AddNewHostService;
 import hostService.CancleOrderService;
 import hostService.ConfirmOrderService;
@@ -34,6 +39,7 @@ import hostService.HostPwCheckService;
 import hostService.ManageMyHostOrderService;
 import hostService.SearchService;
 import hostService.StopHostingService;
+import hostService.UpdateHostInfoFormService;
 import memberJoinService.EmailCheckService;
 import memberJoinService.IdCheckService;
 import memberJoinService.JoinService;
@@ -196,7 +202,7 @@ public class APController extends HttpServlet {
 	    	// 문의글 보는 페이지 // 작성자: 양준모
 	    	case "/qna1.do":
 	    		serv = new QnAShowService();
-	    		page = new NextPage("MyAskCheck.jsp", false);
+	    		page = new NextPage("/mypage/MyAskCheck.jsp", false);
 	    		break;
 
 	    	case "/jjimlist1.do": // https://github.com/Ryanmufasa/awesomePlace/issues/53 작성자: 양준모
@@ -245,10 +251,19 @@ public class APController extends HttpServlet {
 				page = new NextPage("/search/hostOrder.jsp", false);
 				break;	
 				
+			case "/hashtagList.do": //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영 
+				serv = new GetHashTagService();
+				page = new NextPage("/search/hashtagList.jsp",false);
+				break;
+				
+			case "/searchByHashtag.do": //https://github.com/Ryanmufasa/awesomePlace/issues/25 작성자 정다영
+				serv = new SearchByHashtagService();
+				page = new NextPage("/search/search.jsp",false);
+				break;
 				
 				
-				
-	// 마이 호스팅 ================================================================			
+	// 마이 호스팅 ================================================================	
+				//https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
 			case "/myHosting.do" : // 마이호스팅 버튼 클릭시 
 				if(InhostingPage != null) { // 호스팅 버튼 접속 이력 있다면 
 					if(InmyPage != null) { // 마이페이지 비밀번호 체크 세션 있으면 
@@ -264,7 +279,7 @@ public class APController extends HttpServlet {
 				}
 				break;
 				
-			case "/pwCheck.do" :
+			case "/pwCheck.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
 				serv = new HostPwCheckService();
 				page = new NextPage("/myhosting/pwch.jsp", false);
 				break;
@@ -312,16 +327,37 @@ public class APController extends HttpServlet {
 				page = new NextPage("/myhosting/cancle.jsp", false);
 				break;	
 			
-				
-			
-			// 호스트 관리 창으로 이동 -- 작성자 정다영
-			case "/memberHostMng.do":
+			// 호스트 관리 창으로 이동 
+			case "/memberHostMng.do": //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
 				serv = new GetMyHostListService();
 				page = new NextPage("/myhosting/updateList.jsp", false);
 				break;
 				
+			case "/updateHostInfoForm.do"://https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				serv = new UpdateHostInfoFormService();
+				page = new NextPage("/myhosting/updateHostInfoForm.jsp", false);
+				break;
 			
-			
+			// 호스트 정보 수정
+			case "/updateInfo1.do": //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				serv = new UpdateHostInfo1Service();
+				page = new NextPage("/myhosting/updateHostInfoResult.jsp", false);
+				break;
+				
+			case "/updateInfo2.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				serv = new UpdateHostInfo2Service();
+				page = new NextPage("/myhosting/updateHostInfoResult.jsp", false);
+				break;
+				
+			case "/updateInfo3.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				serv = new UpdateHostInfo3Service();
+				page = new NextPage("/myhosting/updateHostInfoResult.jsp", false);
+				break;
+				
+			case "/updateInfo4.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				serv = new UpdateHostInfo4Service();
+				page = new NextPage("/myhosting/updateHostInfoResult.jsp", false);
+				break;
 				
 				
 			// 새 호스트 등록	
