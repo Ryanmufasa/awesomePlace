@@ -29,12 +29,13 @@ public class LoginService implements ServiceInterface{
 		MemberVO selectResult = MemberDAO.getInstance().selectID(mem_id, mem_pw);
 		
 		if(selectResult != null) {
-			session.setAttribute("mem_id", selectResult); // selectResult값이 null이 아니면 mem이름에 로그인한 회원의 모든 정보를 넣는다.	
+			session.setAttribute("mem_id", selectResult); 
 		
 		} 
 
 		if ("admin".equals(mem_id)) {
-			session.setAttribute("showAdmin", true); // 로그인하 사용자의 아이디가 admin이면 showAdmin이름에 true값을 넣는다.
+			String admin = "admin";
+			session.setAttribute("showAdmin", admin); 
 			
 		}
 		

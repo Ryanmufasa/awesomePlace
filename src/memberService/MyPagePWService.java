@@ -1,7 +1,6 @@
 package memberService; /*https://github.com/Ryanmufasa/awesomePlace/issues/30  //작성자: 양준모 */
 						// 마이페이지 접속시 회원에게 비밀번호를 재확인 할 때 사용하는 서비스 입니다.
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +17,6 @@ public class MyPagePWService implements ServiceInterface{
 		
 		HttpSession session = request.getSession();
 		
-		//request.setCharacterEncoding("UTF-8");
-		
 		MemberVO vo = (MemberVO) session.getAttribute("mem_id");
 		
 		String mem_pw = request.getParameter("mem_pw");		
@@ -29,9 +26,11 @@ public class MyPagePWService implements ServiceInterface{
 		
 		int selectResult = dao.MyPagePWck(mem_pw, mem_id);
 		
-		if(selectResult == 1) {
+		if(selectResult == 1) { // 비밀번호 확인되면 
 			System.out.println("일치");
-			
+			session.setAttribute("myPage", "true"); // 세션을 저장 
+			session.setAttribute("InmyPage", "true"); // 마이페이지 비밀번호 체크 세션 추가
+
 		} 
 		
 		request.setAttribute("selectResult", selectResult);
@@ -39,3 +38,13 @@ public class MyPagePWService implements ServiceInterface{
 	}
 
 }
+
+
+// 호스팅페이지 체크 세션이 있으면 
+//String InhostingPage = (String)session.getAttribute("InhostingPage");
+//String hostingPage = (String)session.getAttribute("hostingPage");
+//if(InhostingPage != null) {
+//	session.setAttribute("InhostingPage", "true");
+	//session.removeAttribute(hostingPage);
+	// 호스팅페이지 세션 삭제하고 임시 세션 생성 
+//}

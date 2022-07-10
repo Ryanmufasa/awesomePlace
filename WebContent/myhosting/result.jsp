@@ -14,7 +14,7 @@
 	<c:if test="${!empty ck }"><%-- 등록서비스에서는 공백아님--%>
 		<script>
 			alert("${msg}");
-			location.href="/awesomePlace/myhosting/memberMyHosting.do";
+			location.href="/awesomePlace/myhosting/myHostList.do";
 			// 마이호스팅 창으로 이동
 		</script>
 	</c:if>

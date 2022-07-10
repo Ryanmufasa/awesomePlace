@@ -2,9 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <script src="${contextPath }/resources/js/Nav.js?v=<%=System.currentTimeMillis() %>"></script>
-<div class="nav">	<div class="navLine" hidden="true"></div>
+<div class="nav">	<div class="navLine" ></div>
 
-	<div id="adminNav" hidden="true">
+	<div id="adminNav">
 		<div>
 			<a href="QnAList.do">문의목록</a>
 		</div>
@@ -16,33 +16,33 @@
 		</div>
 	</div>
 	
-	<div id="myPageNav" hidden="true">
+	<div id="myPageNav" >
 		<div>
-			<a href="memberUpdate.do">정보수정</a>
+			<a href="mpmeminfo.do">정보수정</a>
 		</div>
 		<div>
-			<a href="memberLikeList.do">찜 목록</a>
+			<a href="jjimlist1.do">찜 목록</a>
 		</div>
 		<div>
-			<a href="memberResList.do">예약 내역</a>
+			<a href="mpreserinfofirst.do" >예약 내역</a>
 		</div>
 		<div>
-			<a href="memberMyHosting.do">마이호스팅</a>
+			<a href="myHosting.do">마이호스팅</a>
 		</div>
 		<div>
-			<a href="memberQnAList.do">내 문의 확인</a>
+			<a href="qna1.do">내 문의 확인</a>
 		</div>
 	</div>
 	
-	<div id="hostingPageNav" hidden="true">
+	<div id="hostingPageNav">
 		<div>
-			<a href="memberHostList.do">호스트 목록</a>
+			<a href="myHostList.do">호스트 목록</a>
 		</div>
 		<div>
 			<a href="memberHostMng.do">호스트 관리</a>
 		</div>
 		<div>
-			<a href="memberHostUpdate.do">호스트 등록</a>
+			<a href="addNewHostForm.do">호스트 등록</a>
 		</div>
 	</div>
 	

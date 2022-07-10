@@ -63,6 +63,13 @@ public class HostDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		if(hostli.isEmpty()) {
@@ -109,6 +116,13 @@ public class HostDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		if(hostli.isEmpty()) {
@@ -153,6 +167,13 @@ public class HostDAO {
 				
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally{
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return vo;

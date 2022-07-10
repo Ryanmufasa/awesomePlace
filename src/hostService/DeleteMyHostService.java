@@ -24,7 +24,7 @@ public class DeleteMyHostService implements ServiceInterface {
 		
 		
 		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("login");
+		MemberVO mvo = (MemberVO)session.getAttribute("mem_id");
 		int mem_hostcnt = mvo.getMem_host_Cnt();
 		int mem_num = mvo.getMem_num();
 		System.out.println("현재 회원 호스트 개수 mem_hostcnt : " + mem_hostcnt);

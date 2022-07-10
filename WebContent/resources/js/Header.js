@@ -5,7 +5,6 @@
  		
 		var ssId = (sessionStorage.getItem("mem_id")=="null") ? false : true;
 		var ssShowAdmin = (sessionStorage.getItem("showAdmin")=="null") ? false : true;
-		var ssDoubleCheck = (sessionStorage.getItem("doubleCheck")=="null") ? false : true;
 		var ssAdminPage = (sessionStorage.getItem("adminPage")=="null") ? false : true;
 		var ssMyPage = (sessionStorage.getItem("myPage")=="null") ? false : true;
 		var ssHostingPage = (sessionStorage.getItem("hostingPage")=="null") ? false : true;
@@ -42,28 +41,22 @@
 			$("#btnLogout").on("click",(function(){
 				location.assign("logout.do");
 			}));
-			$("#btnAdminIn").on("click",(function(){
-				if(!ssAdminPage){
+			$("#btnAdmin").on("click",(function(){
+				if(ssShowAdmin){
 					location.assign("admin.do");
 				}else{
 					location.assign("main.do");
 				}
 			}));
 			$("#btnMyHosting").on("click",(function(){
-				if(ssId != null && ssDoubleCheck){
+				if(ssId){
 					location.assign("myHosting.do");
-				}else if(ssId != null){
-					location.assign("doubleCheck.do");
 				}else{
 					location.assign("loginform.do");
 				}
 			}));
 			$("#btnMyPage").on("click",(function(){
-				if(ssDoubleCheck){
-					location.assign("MyPage.do");
-				}else{
-					location.assign("doubleCheck.do");
-				}
+				location.assign("MyPage.do");
 			}));
 			$("#btnLogin").on("click",(function(){
 				location.assign("loginform.do");
@@ -89,19 +82,17 @@
 				$(window).scrollTop(0);
 			}));
 			
-			if(ssId != null && ssDoubleCheck){ // 조건에 따른 버튼 목적지 설정
+			/*if(ssId != null && ssDoubleCheck){ // 조건에 따른 버튼 목적지 설정
 					$("#csCenter").attr("href", "csCenter.do");
 				}else if(ssId != null){
 					$("#csCenter").attr("href", "doubleCheck.do");
 				}else{
 					$("#csCenter").attr("href", "loginform.do");
-				}
+				}*/
 			
 			$("#csCenter").on("click",(function(){
-				if(ssId != null && ssDoubleCheck){
+				if(ssId){
 					location.assign("MyAskForm.do");
-				}else if(ssId != null){
-					location.assign("doubleCheck.do");
 				}else{
 					location.assign("loginform.do");
 				}
@@ -123,6 +114,11 @@
 			}else{
 				$(".upperNav").css("position", "absolute");
 			}
+		});
+		
+		$(window).on("resize", function(){
+			var upperW = $(".mainDiv").width();
+			$(".upperNav").css("width", upperW);
 		});
 
 	// 목적지, 로그인여부(세션 아이디 존재여부), 마이페이지 비밀번호 재확인 여부 를 받아 각 상황에 맞게 페이지 분배하는 함수

@@ -5,7 +5,7 @@
 rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/HostInfo.css?v=<%=System.currentTimeMillis() %>" 
 rel="stylesheet">
-<%@ include file="/layout/SearchHeader.jsp" %>
+<%@ include file="/layout/Header.jsp" %>
 <script type="text/javascript" 
 src="${pageContext.request.contextPath }/resources/js/Order.js?v=<%=System.currentTimeMillis()%>"></script>
 <% session.setAttribute("URL", "http://localhost:8080//awesomePlace/search/moreinfo.do?host_name=${vo.host_name }&host_num=${vo.host_num}"); %>
@@ -50,15 +50,15 @@ src="${pageContext.request.contextPath }/resources/js/Order.js?v=<%=System.curre
 		<div class="divInfoR">
 			<h3>예약</h3>
 			예약 인원 
-			<input type="text" name="guest_cnt" max="${vo.guest_cnt }">
+			<input type="text" name="guest_cnt" value="${guestCnt }" >
 			<br>
 			
 			<%-- <input type="hidden" name="host" value="${vo }"> --%>
 			<input type="hidden" name="host_num" value="${vo.host_num }">
-			체크인 <input type="date" min="2022-06-05" name="checkIn1" id="checkIn1">
+			체크인 <input type="date" min="2022-06-05" name="checkIn1" id="checkIn1" value="${checkIn }">
 			<span id="start_date"></span><span id="st"> 부터 ~ </span> <br>
 			
-			체크아웃 <input type="date" min="2022-06-05" name="checkOut1" id="checkOut1" disabled>
+			체크아웃 <input type="date" min="2022-06-05" name="checkOut1" id="checkOut1" disabled value="${checkOut }">
 			<span id="end_date"></span><span id="nd"> 까지</span><br>
 			<span id="total_date"></span><span id="tt"></span><br>
 			<input type="hidden" id="tDate" value="">
@@ -88,5 +88,7 @@ src="${pageContext.request.contextPath }/resources/js/Order.js?v=<%=System.curre
 	
 <hr>
 <button type="button" onclick="history.back()">뒤로가기</button>
+<span id="msg"></span>
 </div>
-<%@ include file="/layout/SearchFooter.jsp" %>
+
+<%@ include file="/layout/Footer.jsp" %>
