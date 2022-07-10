@@ -21,23 +21,32 @@ import adminService.AdminOutService;
 import adminService.AdminQnAAnswerFormService;
 import adminService.AdminQnAListService;
 import adminService.AdminService;
+
 import hostService.AddNewHostService;
+import hostService.CancleOrderService;
+import hostService.ConfirmOrderService;
+import hostService.DeleteMyHostService;
+import hostService.GetHostInfoService;
+import hostService.GetMyHostListService;
+import hostService.HostOrderService;
+import hostService.ManageMyHostOrderService;
 import hostService.SearchService;
+
 import memberJoinService.EmailCheckService;
 import memberJoinService.IdCheckService;
 import memberJoinService.JoinService;
+
+import memberLoginService.LoginService;
+import memberLoginService.LogoutService;
+
 import memberService.IDfoundService;
 import memberService.JJimShowService;
-import memberService.LoginService;
 import memberService.MyPagePWService;
-import memberService.MypageOrderinfoClickService;
-import memberService.MypagememUpdaService;
-import memberService.MypagememinfoService;
-import memberService.MypageorderinfoService;
 import memberService.PWfoundService;
 import memberService.PWupdateService;
 import memberService.QnAService;
 import memberService.QnAShowService;
+import orderinfoService.GetMoreOrderInfoService;
 import service.NextPage;
 import service.ServiceInterface;
 
@@ -72,24 +81,42 @@ public class APController extends HttpServlet {
     	//System.out.println("path2 : " + path2);
     	    	
     	switch(path) {
+	 // 회원가입   ===============================================================
 	    	case "/joinForm.do":  // https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
 	    		page = new NextPage("/awesomePlace/join/joinForm.jsp", true);
 	    		break;
+	    		
+			case "/idCheck.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
+				 serv = new IdCheckService();
+				 page = new NextPage("/join/idCheck.jsp",false);
+				 break;
+			
+			case "/emailCheck.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
+				serv = new EmailCheckService();
+				page = new NextPage("/join/emailCheck.jsp", false);
+				break;	
+				
 			case "/join.do" :  //  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
 				serv = new JoinService(); 
 				page = new NextPage("/join/result.jsp", false);
 				break;
-			case "/search.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/25 -- 작성자 정다영
-				serv = new SearchService();
-				page = new NextPage("/search/search.jsp", false);
-				break;
+				
+	
+				
+				
+				
+	// 로그인  ===============================================================
 			case "/loginform.do" : 
 				page = new NextPage("/awesomePlace/login/loginform.jsp", true);
 				break;
 			case "/login.do" : 
-				System.out.println("들어옴");
 				serv = new LoginService(); 
 				page = new NextPage("/login/result.jsp", false);
+				break;
+				
+			case "/logout.do" : 
+				serv = new LogoutService();
+				page = new NextPage("/awesomePlace/", true);
 				break;
 			
 			// 아이디 찾기 작성자:양준모
@@ -119,6 +146,11 @@ public class APController extends HttpServlet {
 				page = new NextPage("/pwfound/result1.jsp", false);
 				break;
 			
+				
+				
+				
+				
+	// 마이페이지  ===============================================================
 			// 마이페이지 접속시 로그인 재확인 작성자:양준모
 			case "/MyPage.do":
 				page = new NextPage("/awesomePlace/mypage/MyPage.jsp", true);
@@ -154,20 +186,38 @@ public class APController extends HttpServlet {
 	    		page = new NextPage("Myjjim.jsp", false);
 	    		break;
 				
-			case "/idCheck.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
-				 serv = new IdCheckService();
-				 page = new NextPage("/join/idCheck.jsp",false);
-				 break;
-			
-			case "/emailCheck.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
-				serv = new EmailCheckService();
-				page = new NextPage("/join/emailCheck.jsp", false);
+	    		
+	    		
+	    		
+	    		
+	// 검색   ===============================================================			
+				
+			case "/search.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/25 -- 작성자 정다영
+				serv = new SearchService();
+				page = new NextPage("/search/search.jsp", false);
 				break;
-			
+				
+			case "/moreinfo.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/43 -- 작성자 정다영
+				serv = new GetHostInfoService();
+				page = new NextPage("/search/hostInfo.jsp", false);
+				break;
+				
+			case "/hostOrder.do" : // https://github.com/Ryanmufasa/awesomePlace/issues/57 -- 작성자 정다영 
+				// 마이호스팅 부분 테스트를 위한 임시 예약 처리 서비스 
+				serv = new HostOrderService(); 
+				page = new NextPage("/search/hostOrder.jsp", false);
+				break;	
+				
+				
+				
+				
+	// 마이 호스팅 ================================================================			
 			case "/myhosting.do" : // 테스트를 위한 임시 작성 
 				page = new NextPage("/awesomePlace/myhosting/myboard.jsp", true);
 				break;
-				
+			case "/memberMyHosting.do" : // 테스트를 위한 임시 작성 
+				page = new NextPage("/awesomePlace/myhosting/myboard.jsp", true);
+				break;	
 			case "/addNewHostForm.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/36 -- 작성자 정다영
 				page = new NextPage("/awesomePlace/myhosting/addNewHostForm.jsp", true);
 				break;
@@ -176,6 +226,51 @@ public class APController extends HttpServlet {
 				serv = new AddNewHostService();
 				page = new NextPage("/myhosting/result.jsp", false);
 				break;
+				
+			case "/myHostList.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 -- 작성자 정다영
+				// 내 호스트 관리 또는 마이 호스팅 페이지에서 호스트 목록 눌렀을때 로그인 중인 회원의 호스트 목록 출력
+				// 내 호스트 관리 버튼은 myboard.jsp 에 있는것으로 임시 입니다. 네비게이션바로 적용으로 수경 예정..
+				serv = new GetMyHostListService();
+				page = new NextPage("/myhosting/myHostList.jsp", false);
+				break;
+				
+			case "/myHostOrderManage.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				// 회원의 호스트 목록중에서 예약 관리 버튼을 눌렀을때 
+				serv = new ManageMyHostOrderService(); // 해당 호스트의 예약 목록을 가져옵니다 
+				page = new NextPage("/myhosting/myHostOrderManage.jsp", false); 
+				break;
+				
+			case "/deleteMyHost.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				// 관리자 승인이 false 인 호스트에 한해 회원이 삭제 가능. 
+				serv = new DeleteMyHostService();
+				page = new NextPage("/myhosting/result.jsp", false);
+				break;
+				
+			case "/getOrderInfoMore.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				// 예약 정보에서 상세 정보보기를 클릭 했을 때
+				serv = new GetMoreOrderInfoService();
+				page = new NextPage("/myhosting/orderInfoPopup.jsp", false);
+				break;
+				
+			case "/confirmOrder.do" : // https://github.com/Ryanmufasa/awesomePlace/issues/57 -- 작성자 정다영 
+				// 예약 승인하는경우 
+				serv = new ConfirmOrderService();
+				page = new NextPage("/myhosting/confirm.jsp", false);
+				break;
+				
+			case "/cancleOrder.do" :// https://github.com/Ryanmufasa/awesomePlace/issues/57 -- 작성자 정다영 
+				// 예약 승인 요청을 취소하는 경우. 
+				serv = new CancleOrderService();
+				page = new NextPage("/myhosting/cancle.jsp", false);
+				break;	
+				
+				
+				
+				
+				
+				
+				
+	// 관리자  ===============================================================				
 			case "/admin.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/9 작성자: 이명진
 				serv = new AdminService();
 				page = new NextPage("/QnAList.jsp", false);
@@ -231,28 +326,6 @@ public class APController extends HttpServlet {
 			case "/siteMap.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/51 작성자: 이명진
 				page = new NextPage("/admin/siteMap.jsp", true); 
 				break;
-				
-				//마이페이지 정보수정 	
-			case "/mpmeminfo.do" : //작성자 = 고유주
-				serv = new MypagememinfoService();
-				page = new NextPage("/mypage/mp_meminfo.jsp", false);
-				break;
-
-			case "/meminfoclear.do" : //작성자 = 고유주
-				serv = new MypagememUpdaService();
-				page = new NextPage("/mypage/mp_memInfoUpdate.jsp", false);
-				break;
-	
-			//마이페이지 예약내역 
-				case "/mpreserinfo.do" : //작성자 = 고유주
-				serv = new MypageOrderinfoClickService();
-				page = new NextPage("/mypage/mp_reserinfo.jsp", false);
-				break;
-			
-				case "/mpreserinfofirst.do" : //작성자 = 고유주
-					serv = new MypageorderinfoService();
-					page = new NextPage("/mypage/mp_reserInfoFirst.jsp", false);
-					break;
     	}
     	
     	if(serv != null) {
