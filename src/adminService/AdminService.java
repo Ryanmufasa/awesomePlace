@@ -12,7 +12,12 @@ public class AdminService implements ServiceInterface {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession ss1 = request.getSession();
-		ss1.setAttribute("adminPage", true);
+		
+		String idx = (String)ss1.getAttribute("adminPage");
+		
+			ss1.setAttribute("adminPage", "true");
+			ss1.removeAttribute("myPage");
+			ss1.removeAttribute("hostingPage");
 	}
 
 }

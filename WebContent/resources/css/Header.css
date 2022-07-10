@@ -1,5 +1,23 @@
 /*  https://github.com/Ryanmufasa/awesomePlace/issues/9 | 작성자 이명진 */
 @charset "UTF-8";
+	:root {
+		--hrColor:#6EE0FF;
+	}
+	a {
+		text-decoration:none;
+		font-weight:bold;
+		font-size:15px;
+		color:#0000FF;
+	}
+	a:hover{
+		text-decoration:underline;
+	}
+	a:active{
+		color:#6A5ACD;
+	}
+	button{
+		
+	}
 	header{
 		position:relative;
 		height:140px;
@@ -41,8 +59,9 @@
 	hr{
 		position:relative;
 		width:90%;
-		height:1px;
-		background-color:gray;
+		height:2px;
+		border:0px;
+		background-color:var(--hrColor);
 		max-width:1280px;
 		min-width:640px;
 	}
@@ -64,9 +83,11 @@
 	}
 	.imageP{
 		position:relative;
+		background-color:white;
 		height:800px;
 		width:100%;
 		overflow:hidden;
+		z-index:2;
 	}
 	.imageP>div{
 		text-align:center;
@@ -118,8 +139,8 @@
 	.navLine{
 		position:absolute;
 		width:2px;
-		min-height:390px;
-		background-color:gray;
+		min-height:400px;
+		background-color:var(--hrColor);
 		left:104px;
 		z-index:1;
 	}

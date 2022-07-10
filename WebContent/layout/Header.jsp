@@ -62,8 +62,7 @@
 			</div>
 			
 			<div class="adBtns">
-					<button id="btnAdmin" hidden="true">
-						관리자 페이지</button>
+					<button id="btnAdmin" hidden="true"></button>
 			</div>
 				
 	<div id="searchBar"> <!-- 검색창 블록 -->

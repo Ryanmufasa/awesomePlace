@@ -31,10 +31,15 @@ public class MyPagePWService implements ServiceInterface{
 		
 		if(selectResult == 1) {
 			System.out.println("일치");
+			System.out.println(1);
 			session.setAttribute("doubleCheck", "true");
+			System.out.println(2);
 			session.setAttribute("myPage", "true");
+			System.out.println(3);
 			session.removeAttribute("adminPage");
+			System.out.println(4);
 			session.removeAttribute("hostingPage");
+			System.out.println(5);
 			
 			System.out.println(session.getAttribute("doubleCheck")==null);
 			System.out.println(session.getAttribute("myPage")==null);

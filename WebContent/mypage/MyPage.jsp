@@ -1,17 +1,6 @@
+<title>Insert title here</title>  <!-- https://github.com/Ryanmufasa/awesomePlace/issues/13  //작성자: 양준모 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>  <!-- https://github.com/Ryanmufasa/awesomePlace/issues/13  //작성자: 양준모 -->
-
-<script src="${contextPath }/js/jquery-3.3.1.js"></script>
-<script src="${contextPath }/js/Main.js"></script>
-
-</head>
-<body>
-
 <%@ include file="/layout/Header.jsp" %>
 
 <div align="center">
@@ -39,7 +28,5 @@
 	</form>
 	
 </div>
-
-    
-</body>
-</html>
+<span id="counter"></span>
+<%@ include file="/layout/Footer.jsp" %>

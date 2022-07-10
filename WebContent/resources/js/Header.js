@@ -17,7 +17,7 @@
 				$("#btnAdmin").attr("hidden", false);
 				if(!ssAdminPage){
 					$("#btnAdmin").text("관리자페이지");
-				}else{
+				}else if(ssAdminPage){
 					$("#btnAdmin").text("사용자페이지");
 				}
 			}else if(ssId){
@@ -40,16 +40,16 @@
 			$("#btnLogout").on("click",(function(){
 				location.assign("logout.do");
 			}));
-			$("#btnAdminIn").on("click",(function(){
+			$("#btnAdmin").on("click",(function(){
 				if(!ssAdminPage){
-					location.assign("admin.do");
+					location.assign("adminIn.do");
 				}else{
-					location.assign("main.do");
+					location.assign("adminOut.do");
 				}
 			}));
 			$("#btnMyHosting").on("click",(function(){
 				if(ssId){
-					location.assign("myHosting.do");
+					location.assign("myhosting.do");
 				}else{
 					location.assign("loginform.do");
 				}

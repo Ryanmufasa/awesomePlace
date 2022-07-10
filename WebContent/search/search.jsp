@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link href="${pageContext.request.contextPath }/resources/css/Search.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
-<%@ include file="/layout/SearchHeader.jsp" %>
+<%@ include file="/layout/Header.jsp" %>
 <fmt:setLocale value="ko_KR"/>
 
 <div align="center"  class="mainDiv">
@@ -54,4 +54,4 @@
 </div>
 </div>
 
-<%@ include file="/layout/SearchFooter.jsp" %>
+<%@ include file="/layout/Footer.jsp" %>

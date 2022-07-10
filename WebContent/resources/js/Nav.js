@@ -30,7 +30,15 @@ $("document").ready(function(){
 				$("#myPageNav").attr("hidden", true);
 				$("#hostingPageNav").attr("hidden", false);
 			}
+				hash();
 });
+
+function hash(){
+			if(!window.location.hash){
+				window.location = window.location + "#loaded";
+				window.location.reload();
+			}
+}
 
 $(window).on("scroll", function (){ //네비게이션바가 스크롤을 따라다니도록 설정
 			var ySC = $(window).scrollTop();

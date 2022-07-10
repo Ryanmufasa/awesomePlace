@@ -1,7 +1,7 @@
 <%-- https://github.com/Ryanmufasa/awesomePlace/issues/7 -- 작성자 정다영 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/layout/SearchHeader.jsp" %> 
+<%@ include file="/layout/Header.jsp" %> 
 <link type="text/css" rel="stylesheet" href="${contextPath }/resources/css/joinForm.css?v=<%=System.currentTimeMillis()%>">
 <script type="text/javascript" src="${contextPath }/resources/js/joinForm.js?v=<%=System.currentTimeMillis()%>"></script>
 

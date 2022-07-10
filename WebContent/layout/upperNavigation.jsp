@@ -1,5 +1,5 @@
 <!-- https://github.com/Ryanmufasa/awesomePlace/issues/28 작성자: 이명진 -->
-<%@page import="java.awt.print.Printable"%>
+<%-- <%@page import="java.awt.print.Printable"%> --%>
 <%@page import="hashtag.HashtagVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="member.MemberDAO"%>

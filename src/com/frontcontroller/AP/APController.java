@@ -26,10 +26,10 @@ import hostService.SearchService;
 import memberJoinService.EmailCheckService;
 import memberJoinService.IdCheckService;
 import memberJoinService.JoinService;
+import memberLoginService.LoginService;
 import memberLoginService.LogoutService;
 import memberService.IDfoundService;
 import memberService.JJimShowService;
-import memberService.LoginService;
 import memberService.MyPagePWService;
 import memberService.PWfoundService;
 import memberService.PWupdateService;
@@ -178,9 +178,9 @@ public class APController extends HttpServlet {
 			serv = new AddNewHostService();
 			page = new NextPage("/myhosting/result.jsp", false);
 			break;
-		case "/admin.do": // https://github.com/Ryanmufasa/awesomePlace/issues/9 작성자: 이명진
+		case "/adminIn.do": // https://github.com/Ryanmufasa/awesomePlace/issues/9 작성자: 이명진
 			serv = new AdminService();
-			page = new NextPage("/QnAList.jsp", false);
+			page = new NextPage("/admin/QnAList.jsp", false);
 			break;
 		case "/adminOut.do": // https://github.com/Ryanmufasa/awesomePlace/issues/9 작성자: 이명진
 			serv = new AdminOutService();
