@@ -1,3 +1,4 @@
+//https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
 package hostService;
 
 import java.io.IOException;
@@ -44,7 +45,7 @@ public class DeleteMyHostService implements ServiceInterface {
 			//boolean ch = MemberDAO.getInstance().updateHostCnt(mem_hostcnt, mem_num);
 			//if(ch) {
 				msg = "호스트가 삭제되었습니다.";
-				ck = "";
+				ck = "삭제 성공";
 			//}
 		}else {
 			msg ="삭제 실패! 다시 시도해주세요!";

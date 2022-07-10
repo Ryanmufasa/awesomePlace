@@ -16,7 +16,7 @@ rel="stylesheet">
 			${host.host_name }<br>
 			${host.host_date}<br>
 			${host.sign }<br>
-			<button type="button" onclick="#">정보 수정하기</button>
+			<button type="button" onclick="location.href='/awesomePlace/myhosting/'">정보 수정하기</button>
 			<c:set var="sign" value="${host.sign }"/>
 				<c:if test="${fn:contains(sign,'true')}">
 					<button type="button" onclick="location.href='/awesomePlace/myhosting/myHostOrderManage.do?host_num=${host.host_num}'">예약 관리</button> 
@@ -46,7 +46,7 @@ rel="stylesheet">
 function warning(f){
 	var f1 = f;
 	alert(f1);
-	var lo1 = ""+f1;
+	var lo1 = "/awesomePlace/myhosting/stopHosting.do?host_num="+f1;
 	if(confirm("정말 호스팅을 중지하시겠습니까?") == true){
 		location.href=lo1;
 	}

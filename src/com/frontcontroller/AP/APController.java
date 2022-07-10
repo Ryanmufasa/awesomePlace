@@ -33,7 +33,7 @@ import hostService.HostOrderService;
 import hostService.HostPwCheckService;
 import hostService.ManageMyHostOrderService;
 import hostService.SearchService;
-
+import hostService.StopHostingService;
 import memberJoinService.EmailCheckService;
 import memberJoinService.IdCheckService;
 import memberJoinService.JoinService;
@@ -287,6 +287,13 @@ public class APController extends HttpServlet {
 				page = new NextPage("/myhosting/result.jsp", false);
 				break;
 				
+			case "/stopHosting.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				// 호스트 중지  
+				serv = new StopHostingService();
+				page = new NextPage("/myhosting/result.jsp", false);
+				break;
+			
+				
 			case "/getOrderInfoMore.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
 				// 예약 정보에서 상세 정보보기를 클릭 했을 때
 				serv = new GetMoreOrderInfoService();
@@ -307,11 +314,14 @@ public class APController extends HttpServlet {
 			
 				
 			
-			// 호스트 관리 창으로 이동 
+			// 호스트 관리 창으로 이동 -- 작성자 정다영
 			case "/memberHostMng.do":
 				serv = new GetMyHostListService();
 				page = new NextPage("/myhosting/updateList.jsp", false);
 				break;
+				
+			
+			
 				
 				
 			// 새 호스트 등록	

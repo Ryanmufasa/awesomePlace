@@ -1,4 +1,5 @@
-// 개인 작업을 위한 작성  -- 작성자 정다영
+// https://github.com/Ryanmufasa/awesomePlace/issues/57 , 
+// https://github.com/Ryanmufasa/awesomePlace/issues/44  작성자 정다영
 package orderinfo.orderinfodao;
 
 import java.sql.Connection;
@@ -254,5 +255,35 @@ public class OrderInfoDAO {
 	}
 	
 	
+	// 호스트 중지시 예약 내역 존재 유무 확인
+	public boolean findOrder(int oi_host_num) {
+		
+		String sql = "select * from orderinfo "
+				+ "where oi_host_num =? "
+				+ "and checkin_date >= sysdate "
+				+ "and checkout_date >= sysdate "
+				+ "and oi_sign in('confirm','wait')";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, oi_host_num);
+			rs = ps.executeQuery();
+			if(rs.next()) { // 하나라도 있으면 중지 못함. 
+				System.out.println("남은 예약 일정이 존재");
+				return true;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return false;
+		
+	}
 
 }

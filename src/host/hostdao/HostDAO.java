@@ -493,6 +493,33 @@ public class HostDAO {
 		
 		return check;
 	}
+	
+	// 회원이 호스팅 중인 호스트 중지 
+	public boolean stopHost(HostVO vo) {
+		boolean check = false;
+		
+		String sql = "update host set sign='false' where host_num=?";
+		
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, vo.getHost_num());
+			if(ps.executeUpdate()!=0) {
+				check = true;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("호스트 중지");
+			
+		}finally {
+			try {
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return check;
+	}
 
 
 }
