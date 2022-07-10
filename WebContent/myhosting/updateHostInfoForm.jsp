@@ -11,11 +11,12 @@
 		location.href="history.back()";
 	</script>
 </c:if>
-<section>
+<section id="host1">
 <h2>호스트 정보 수정</h2>
 	<article class="host">
 		<div class="infomenu"><h3>호스트 기본정보 변경하기</h3>
 		<form class="info1" action="${contextPath }/myhosting/updateInfo1.do" method="post">
+		<input type="hidden" id="host_num" name="host_num" value="${vo.host_num }">
 			<table>
 				<tr>
 					<td>호스트 이름</td>
@@ -51,6 +52,7 @@
 	<article class="host">
 		<div class="infomenu"><h3>호스트 종류 변경하기</h3>
 		<form class="info2" action="${contextPath }/myhosting/updateInfo2.do" method="post">
+		<%-- <input type="hidden" name="host_num" value="${vo.host_num }"> --%>
 		<table>
 			<tr>
 				<td>방 종류</td>
@@ -72,13 +74,14 @@
 						<input type="radio" name="room_type" value="S" checked/>다인실(Share)
 					</c:otherwise>
 				</c:choose>
+				<input type="hidden" id="checkedType" name="checkedType" value="${vo.room_type }"> 
 				</td>
 			</tr>
 			<tr>
 				<td>방 개수 </td>
-				<td><span id="db_romm_cnt">${vo.room_cnt } 개</span> <button type="button" id="room_cnt">변경하기</button> 
+				<td><span id="db_room_cnt">${vo.room_cnt } 개</span> <button type="button" id="room_cnt">변경하기</button> 
 					<!-- 변경하기 선택시 보이기  -->
-					<select name="room_cnt_1" id="room_cnt_1" onchange="changeRoomCnt()">
+					<select name="room_cnt_1" id="room_cnt_1">
 						<option value=" ">선택해주세요</option>
 						<option value="0">직접입력</option>
 						<option value="1">1</option>
@@ -88,25 +91,28 @@
 						<option value="5">5</option>
 					</select>
 					<span id="room_cnt_2">
-					<input type="text" name="room_cnt_2" placeholder="6"> 개
+					<input type="text" name="room_cnt_2" placeholder="6" value="${vo.room_cnt }"> 개
 					<!-- 직접 입력 선택시 보이기 -->
 					</span>
+					<input type="hidden" id="roomCnt" name="roomCnt" value="${vo.room_cnt }">
 				</td>
 			</tr>
 			<tr>
 				<td>숙박 가능 인원</td>
 				<td>
-					<input type="text" value="${vo.guest_cnt }" name="guest_cnt" min="1" onkeyup = "this.value=this.value.replace(/[^0-9]/g,'')" required> 명
+					<input type="text" value="${vo.guest_cnt }"  id="guest_cnt" name="guest_cnt" min="1" onkeyup = "this.value=this.value.replace(/[^0-9]/g,'')" required> 명
+					<input type="hidden" id="guestCnt" value="${vo.guest_cnt }">
 				</td>
 			</tr>
 		</table>
-		<button id="info2btn">수정하기</button>
+		<button type="button" id="info2btn">수정하기</button>
 		</form>
 		</div>
 	</article>
 	<article  class="host">
 		<div class="infomenu"><h3>호스트 예약 가격 변경하기</h3>
 		<form class="info3" action="${contextPath }/myhosting/updateInfo3.do" method="post">
+		<input type="hidden" name="host_num" value="${vo.host_num }">
 			<table>
 				<tr>
 					<td>평일 가격</td>
@@ -121,13 +127,14 @@
 					</td>
 				</tr>
 			</table>
-			<button id="info3btn">수정하기</button>
+			<button type="button" id="info3btn">수정하기</button>
 		</form>
 		</div>
 	</article>
 	<article  class="host">
 		<div class="infomenu"><h3>호스트 키워드 관리</h3>
 		<form class="info4" action="${contextPath }/myhosting/updateInfo4.do" method="post">
+		<input type="hidden" name="host_num" value="${vo.host_num }">
 		<c:if test="${!empty taglist}">
 			<c:forEach var="tag" items="${taglist }">
 				<span>${tag.tag_name }</span>
@@ -136,14 +143,14 @@
 		<c:if test="${empty taglist}">
 			<p> 호스트 키워드가 없습니다! 키워드를 입력해보세요! </p>
 		</c:if>
-		<button type="button" id="addTag">키워드 추가하기</button>
-		<button id="info4btn">수정완료</button>
+		<br>
+		<button type="button" id="addTag">키워드 추가하기</button><br>
+		<button type="button" id="info4btn">수정완료</button>
 		</form>
 		</div>
 	</article>
 </section>
-
-<span id="counter"></span>
+<span id="counter"></span> 
 </div>
 
 <%@ include file="/layout/Footer.jsp" %> 

@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import awesomePlace.dbConn.DBConn;
-
+import hashtag.HashtagVO;
 import host.hostvo.HostVO;
 
 public class HostDAO {
@@ -434,10 +434,65 @@ public class HostDAO {
 		return check;
 	}
 	
+	// 호스트 기본 정보 수정시
+	public int updateinfo1(HostVO vo) {
+		int result = 0;
+		String sql = "update host set host_name=?, host_tel=?, host_content=? "
+				+ "where host_num=?";
+		try{
+			ps = con.prepareStatement(sql);
+			ps.setString(1, vo.getHost_name());
+			ps.setString(2, vo.getHost_tel());
+			ps.setString(3, vo.getHost_content());
+			ps.setInt(4, vo.getHost_num());
+			if(ps.executeUpdate() != 0) {
+				result = 1;
+			}
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+	
+	// 호스트 종류 변경 시
+	public int updateinfo2(HostVO vo) {
+		int result = 0;
+		String sql = "update host set room_type=?, room_cnt=?, guest_cnt=? "
+				+ "where host_num=?";
+		try{
+			ps = con.prepareStatement(sql);
+			ps.setString(1, vo.getRoom_type());
+			ps.setInt(2, vo.getRoom_cnt());
+			ps.setInt(3, vo.getGuest_cnt());
+			ps.setInt(4, vo.getHost_num());
+			if(ps.executeUpdate() != 0) {
+				result = 1;
+			}
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(ps != null) ps.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
 	
 	// 호스트 가격정보만 수정시 
-	public boolean updateAmt(HostVO vo) {
-		boolean check=false;
+	public int updateAmt(HostVO vo) {
+		int result = 0;
 		
 		String sql ="update host set weekday_amt=?, weekend_amt=? "
 				+ "where host_num=?";
@@ -448,7 +503,7 @@ public class HostDAO {
 			ps.setInt(2, vo.getWeekend_amt());
 			ps.setInt(3, vo.getHost_num());
 			if(ps.executeUpdate() != 0) {
-				check = true;
+				result = 1;
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -461,7 +516,7 @@ public class HostDAO {
 			}
 		}
 
-		return check;
+		return result;
 	}
 	
 	// 호스트 등록 삭제 
@@ -521,5 +576,5 @@ public class HostDAO {
 		return check;
 	}
 
-
+	
 }

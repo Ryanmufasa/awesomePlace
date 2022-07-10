@@ -11,5 +11,9 @@
  			<a id="csCenter">온라인 고객센터</a>
  		</div>
  	</footer>
+ 	
+ <!-- 스크립트 추가   작성자 정다영  -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/MyHosting.js?v=<%=System.currentTimeMillis() %>"></script>
+<!-- ----------------------- -->
 </body>
 </html>

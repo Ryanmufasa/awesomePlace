@@ -5,7 +5,7 @@
 .host{
 	cursor:pointer;
 	width:auto;
-	height:auto;
+	height:inherited;
 	border:3px solid #dedede;
 	margin-right:20px;
 	margin-bottom:20px;
@@ -13,20 +13,28 @@
 	text-align:left;
 }
 
+#host1{
+	height:700;
+}
+
 .info1{
-	background:skyblud;
+	background:azure;
+	 height:310px; 
 	display:none;
 }
 .info2{
 	background:beige;
+	height:120px; 
 	display:none;
 }
 .info3{
 	background:orange;
+	/* height:90px; */
 	display:none;
 }
 .info4{
 	background:pink;
+	height:100px;
 	display:none;
 }
 

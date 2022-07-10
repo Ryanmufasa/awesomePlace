@@ -23,13 +23,11 @@ public class ManageMyHostOrderService implements ServiceInterface {
 		
 		HostVO hostvo = HostDAO.getInstance().selectHost(host_num);
 		ArrayList<OrderInfoVO> orderli = OrderInfoDAO.getInstance().selectOrder(host_num);
-		
 
 			request.setAttribute("host", hostvo);
 			request.setAttribute("orderInfoList", orderli);
 
 		
-		// /myhosting/myHostOrderManage.jsp
 	}
 
 }

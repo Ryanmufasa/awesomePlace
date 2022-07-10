@@ -59,6 +59,7 @@
 		display:block;
 		box-sizing:content-box;
 		overflow:visible;
+		z-index:2;
 	}
 	.imageP{
 		position:relative;
@@ -81,7 +82,7 @@
 	.mainDiv-child{
 		text-align:center;
 		position:absolute;
-		background-color:silver;
+		background-color:white;
 		width:calc(100% - 110px);
 		min-height:400px;
 		max-width:1180px;

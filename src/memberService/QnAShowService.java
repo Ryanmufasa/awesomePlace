@@ -23,7 +23,7 @@ public class QnAShowService implements ServiceInterface {
 		
 		HttpSession session = request.getSession();
 
-		MemberVO vo = (MemberVO) session.getAttribute("mem");
+		MemberVO vo = (MemberVO) session.getAttribute("mem_id");
 		MemberDAO dao = MemberDAO.getInstance();
 
 		String mem_id = vo.getMem_id();
