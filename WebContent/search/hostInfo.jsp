@@ -35,12 +35,12 @@ session.setAttribute("URL", "http://localhost:8080//awesomePlace/search/moreinfo
 			<textarea cols="50" rows="10" style="resize:none;"readonly>${vo.host_content } </textarea>
 			<br><br>
 			<table>
-				<tr><td>위치 정보</td></tr>
+				<tr><td>주소</td></tr>
 				<tr><td>${vo.host_post_num}</td></tr>
 				<tr><td>${vo.host_addr }</td></tr>
 			</table>
 			<br>
-			<div id="map" style="width:300px;height:300px;"></div>
+			<!-- <div id="map" style="width:300px;height:300px;"></div> -->
 			<%-- 위치 정보<br>
 			${vo.host_post_num}<br>
 			${vo.host_addr }<br>
@@ -51,12 +51,15 @@ session.setAttribute("URL", "http://localhost:8080//awesomePlace/search/moreinfo
 	<form action="/awesomePlace/search/hostOrder.do" method="post" name="hostInfo">
 		<div class="divInfoR">
 			<h3>예약</h3>
-			<p>현재 조회중인 숙소는 </p>
+			<p>현재 조회중인 숙소는  </p>
+			<c:if test="${!empty tag_name }">
+			<p>#${tag_name } (으)로 유명해요! </p>
+			</c:if>
 			<c:if test="${!empty checkIn }">
 			<p>${checkIn } 부터 ${checkOut } 일자까지 </p>
 			</c:if>
 			<c:if test="${!empty guestCnt }">
-			<p>${guestCnt }명 예약 가능한 숙소입니다.</p>
+			<p>${guestCnt }명 예약 가능한 숙소입니다!</p>
 			</c:if>
 			<p> 체크인, 체크아웃 날짜를 입력해보세요!</p>
 

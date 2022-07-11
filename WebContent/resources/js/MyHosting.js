@@ -39,7 +39,7 @@ function checkPw(){
 					$('#repw').focus();
 				}
 			},error : function(request,error){
-				alter('code : ' + request.status + "\n" 
+				alert('code : ' + request.status + "\n" 
 					+ "message : " + request.responseText +
 					"\n" + "error : " + error);
 			}
