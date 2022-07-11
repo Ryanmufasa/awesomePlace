@@ -3,7 +3,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/sql" %>
-<%@page import="orderinfo.OrderinfoVO"%>
 <%@page import="memberService.MypageorderinfoService" %>
 <%@ include file="/layout/Header.jsp" %>
 <script src="${contextPath }/js/jquery-3.6.0.js"></script>
@@ -30,11 +29,14 @@
 <br><br>
 <c:if test="${check }">
 <table border="1">
-<tr><td>예약번호</td><td>호스트명</td></tr>
+<tr><td>예약번호</td><td>호스트명</td><td>체크인</td><td>체크아웃</td><td>결제금액</td></tr>
 <c:forEach var="reser" items="${reser}">
 <tr>
 <td><a href = "/awesomePlace/mpreserinfo.do?oi_num=${reser.oi_num}">${reser.oi_num}</a></td>
 <td>${reser.oi_host_name}</td>
+<td>${reser.checkIn_date }</td>
+<td>${reser.checkOut_date }</td>
+<td>${reser.pay_date }</td>
 </tr>
 </c:forEach> 
 </table>
@@ -48,3 +50,4 @@
 </form>
 </div>
 
+<%@ include file="/layout/Footer.jsp" %> 

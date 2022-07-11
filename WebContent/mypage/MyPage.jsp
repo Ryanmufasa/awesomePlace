@@ -40,6 +40,4 @@
 	
 </div>
 
-    
-</body>
-</html>
+<%@ include file="/layout/Footer.jsp" %> 
