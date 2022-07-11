@@ -47,7 +47,7 @@ rel="stylesheet">
 <script>
 function warning(f){
 	var f1 = f;
-	alert(f1);
+	//alert(f1);
 	var lo1 = "/awesomePlace/myhosting/stopHosting.do?host_num="+f1;
 	if(confirm("정말 호스팅을 중지하시겠습니까?") == true){
 		location.href=lo1;
@@ -57,10 +57,10 @@ function signck(){
 	alert('관리자 승인 후에 예약 관리가 가능합니다!');
 }
 function deleteck(f){
-	alert(f);
+	//alert(f);
 	var f = f;
 	var lo = "/awesomePlace/myhosting/deleteMyHost.do?host_num="+f;
-	alert(lo);
+	//alert(lo);
 	if(confirm('아직 관리자 승인 전입니다! 해당 호스트를 삭제하시겠습니까?') == true){	
 		if(confirm('현재 호스트 삭제시 삭제된 데이터는 복구되지 않습니다. 정말 삭제하시겠습니까?') == true){
 			location.href=lo;
