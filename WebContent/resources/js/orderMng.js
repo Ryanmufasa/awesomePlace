@@ -8,9 +8,9 @@ $(function(){
 	var cancle = document.getElementById('cancle');
 	
 	$('#confirm').on('click',(function(){
-		alert(confirm.value);
+		//alert(confirm.value);
 		var num = parseInt(confirm.value);
-		alert(num);
+		//alert(num);
 		
 		$.ajax({
 			async : true,
@@ -21,7 +21,7 @@ $(function(){
 			datatype:'json',
 			success : function(confirmResult){
 				//var confirmResult = parseInt(confirmResult);
-				alert(confirmResult)
+				//alert(confirmResult)
 				if(confirmResult == 1){
 					alert('예약 승인 완료');
 					$('#re').text('예약 완료 되었습니다.')
@@ -40,9 +40,9 @@ $(function(){
 	}));
 	
 	$('#cancle').on('click', (function(){
-		alert(cancle.value);
+		//alert(cancle.value);
 		var order_num = parseInt(cancle.value);
-		alert(order_num);
+		//alert(order_num);
 		
 		$.ajax({
 			async : true,
@@ -53,7 +53,7 @@ $(function(){
 			datatype :'json',
 			success : function(cancleResult){
 				//var cancleResult = parseInf(cancleResult);
-				alert(cancleResult)
+				//alert(cancleResult)
 				if(cancleResult == 1){
 					alert('예약취소 완료');
 					$('#re').text('예약 승인을 취소하였습니다.');

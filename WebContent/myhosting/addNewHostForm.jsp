@@ -41,7 +41,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td>방 종류</td>
+			<td>숙소 유형</td>
 			<td>
 					<input type="radio" name="room_type" value="A"/>집 전체(All)
 					<input type="radio" name="room_type" value="P"/>개인실(Private)

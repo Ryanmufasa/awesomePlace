@@ -55,7 +55,7 @@
 		<%-- <input type="hidden" name="host_num" value="${vo.host_num }"> --%>
 		<table>
 			<tr>
-				<td>방 종류</td>
+				<td>숙소 유형</td>
 				<td><c:set var="room" value="${vo.room_type }"/>
 				<c:choose>
 					<c:when test="${fn:contains(room, 'A') }">
@@ -110,18 +110,18 @@
 		</div>
 	</article>
 	<article  class="host">
-		<div class="infomenu"><h3>호스트 예약 가격 변경하기</h3>
+		<div class="infomenu"><h3>호스트 예약 금액 변경하기</h3>
 		<form class="info3" action="${contextPath }/myhosting/updateInfo3.do" method="post">
 		<input type="hidden" name="host_num" value="${vo.host_num }">
 			<table>
 				<tr>
-					<td>평일 가격</td>
+					<td>평일 이용 금액</td>
 					<td>
 						<input type="text" id="weekday_amt" name="weekday_amt" value="${vo.weekday_amt }" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"> 원
 					</td>
 				</tr>
 				<tr>
-					<td>공휴일가격</td>
+					<td>공휴일 이용 금액</td>
 					<td>
 						<input type="text" id="weekend_amt" name="weekend_amt"  value="${vo.weekend_amt }" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')"> 원
 					</td>
