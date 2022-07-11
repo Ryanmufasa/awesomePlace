@@ -10,12 +10,17 @@
 
 
 <h2>${msg }</h2>
-
-<a href="#">
+<c:if test="${!empty InmyPage }">
+<a href="${contextPath }/mypage/mpreserinfofirst.do">
+예약 내역 확인하기
+</a>
+</c:if>
+<c:if test="${empty InmyPage }">
+<a href="${contextPath }/mypage/MyPage.do">
 예약 내역 확인하기
 </a>
 
-
+</c:if>
 
 
 </c:if>
