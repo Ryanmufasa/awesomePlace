@@ -20,11 +20,28 @@ $(function(){
 		
 		if(info.is(':visible')){
 			info.slideUp();
+			
 		}else{
 			info.slideDown();
 			$('.mainDiv').css({'height':info.css('height')+'px'})
 		}
+		
+		
+		$(function(){
+			setTimeout(function() {
+			spanResize();
+			},300);
+		});
+		
 	})
+	
+	
+	function spanResize(){
+		var mainBottom = $("#counter").offset().top; //메인 div 높이 반응형설정
+		$(".mainDiv, .mainDiv-image, .nav").css("height",mainBottom-140);
+		$(".navLine").css("height",mainBottom-140);
+	};
+	
 	
 	/*$('article')[0].addEventListener('click', function(){
 		var f_height = $('.info1').css('height');
@@ -240,6 +257,8 @@ $(function(){
 	})
 	
 })
+
+
 
 // 토글 메뉴 구성
 function showNhide(info){

@@ -63,13 +63,59 @@ $(document).ready(function(){
 			var checkOut1 = year + "-" + month + "-" + day;
 			
 			$("#checkOut1").attr("min", checkOut1);
-			$('#checkOut1').val(checkOut1);
+			//$('#checkOut1').val(checkOut1);
 			$('#checkOut1').attr('disabled', false);
 		}else{
 			$('#checkOut1').val('');
 			$('#checkOut1').attr('disabled', true);
 		}
 		
+	})
+
+	
+	
+	var book = document.getElementById('book');
+	
+	book.addEventListener("click", (e)=>{
+		var host_num = document.getElementById('host_num').value;
+		//alert(host_num)
+		var checkIn1 = $('#checkIn1').val();
+		//alert(checkIn1)
+		var checkOut1 = $('#checkOut1').val();
+		//alert(checkOut1)
+		var guestCnt = document.getElementById('guest_cnt').value;
+		//alert(guestCnt);
+		
+		if(checkIn1 === "" || checkOut1 === ""){
+			alert('체크인, 체크아웃 날짜 입력을 확인해주세요!');
+		}else if(guestCnt === ""){
+			alert('숙박 인원을 입력해주세요!');
+			document.getElementById('guest_cnt').focus;
+		}else{
+			
+			$.ajax({
+				async : true,
+				type : 'post',
+				url : '/awesomePlace/myhosting/checkOrderOk.do',
+				cache : false,
+				data : {
+					"host_num" : host_num,
+					"checkIn1" : checkIn1,
+					"checkOut1" : checkOut1
+				},
+				datatype : 'json',
+				success : function(checkResult){
+					if(checkResult == 0){
+						alert("예약 가능합니다");
+					}else{
+						alert("예약 불가합니다.");
+					}
+				},error : function(error){
+					alert('에러 : ' + error);
+				}
+				
+			})
+		}
 	})
 
 });

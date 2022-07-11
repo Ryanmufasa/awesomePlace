@@ -22,7 +22,7 @@ public class QnAService implements ServiceInterface { // 작성자: 양준모
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		MemberVO vo = (MemberVO) session.getAttribute("mem");
+		MemberVO vo = (MemberVO) session.getAttribute("mem_id");
 
 		String mem_id = vo.getMem_id();
 		int mem_num = vo.getMem_num();

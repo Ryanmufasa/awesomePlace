@@ -41,46 +41,6 @@
 	the AwesomePlace
 	</div>
 
-<%-- 	<div class="btns">
-		<c:choose> Header.js 대신 임시처리 위해 적용.... 
-		<c:when test="${mem_id != null  }">
-			<c:choose>
-				<c:when test="${adminPage != null }">
-					<div class="adBtns">
-						<button id="btnAdmin" >관리자 페이지</button>
-					</div>
-					<button class="btn4" onclick="location.href='/awesomePlace/admin/admin.do'">관리자 페이지</button> 
-				</c:when>
-				<c:otherwise>
-					<c:if test="${hostingPage != null }">
-						<button class="btn1" onclick="location.href='/awesomePlace/myhosting/myHostList.do'">마이 호스팅</button>
-					</c:if>
-					<c:if test="${hostingPage == null }">
-						<button class="btn1" onclick="location.href='/awesomePlace/myhosting/myHosting.do'">마이 호스팅</button>
-					</c:if>
-					<c:if test="${myPage != null }">
-						<button class="btn6" onclick="location.href='/awesomePlace/mypage/meminfo.do'">마이 페이지</button>
-					</c:if>
-					<c:if test="${myPage == null }">
-						<button class="btn6" onclick="location.href='/awesomePlace/mypage/MyPage.do'">마이 페이지</button>
-					</c:if>
-					
-					
-				</c:otherwise>
-			</c:choose>
-			<button class="btn5" onclick="checkLogout()">로그아웃</button>
-			<!-- onclick="location.href='/awesomePlace/login/logout.do'" -->
-		</c:when>
-		<c:otherwise>
-			<button class="btn1" onclick="checkLogin()">마이 호스팅</button>
-			<button class="btn2" onclick="location.href='/awesomePlace/login/loginform.do'">로그인</button> 
-			<button class="btn3"  onclick="location.href='/awesomePlace/join/joinForm.do'">회원가입</button>
-			<!-- <button class="btn3"><a href="/awesomePlace/join/joinForm.do">회원가입</a></button>
-			 <a href="/awesomePlace/join/joinForm.do">회원가입</a>  -->
-		</c:otherwise>
-	</c:choose>	
-	</div>	 --%>
-
 	<div class="btns"> 
 	<button id="btnMyPage" >마이페이지</button>
 	<button id="btnLogout" onclick="checkLogout()">로그아웃</button>

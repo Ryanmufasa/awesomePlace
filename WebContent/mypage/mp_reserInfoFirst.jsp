@@ -48,3 +48,4 @@
 </form>
 </div>
 
+<%@ include file="/layout/Footer.jsp" %>

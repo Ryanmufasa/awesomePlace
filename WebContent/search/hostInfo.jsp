@@ -8,7 +8,9 @@ rel="stylesheet">
 <%@ include file="/layout/Header.jsp" %>
 <script type="text/javascript" 
 src="${pageContext.request.contextPath }/resources/js/Order.js?v=<%=System.currentTimeMillis()%>"></script>
-<% session.setAttribute("URL", "http://localhost:8080//awesomePlace/search/moreinfo.do?host_name=${vo.host_name }&host_num=${vo.host_num}"); %>
+<%-- 
+session.setAttribute("URL", "http://localhost:8080//awesomePlace/search/moreinfo.do?host_name=${vo.host_name }&host_num=${vo.host_num}");
+--%>
 
 <div align="center" class="mainDiv">
 
@@ -49,28 +51,41 @@ src="${pageContext.request.contextPath }/resources/js/Order.js?v=<%=System.curre
 	<form action="/awesomePlace/search/hostOrder.do" method="post" name="hostInfo">
 		<div class="divInfoR">
 			<h3>예약</h3>
+			<p>현재 조회중인 숙소는 </p>
+			<c:if test="${!empty checkIn }">
+			<p>${checkIn } 부터 ${checkOut } 일자까지 </p>
+			</c:if>
+			<c:if test="${!empty guestCnt }">
+			<p>${guestCnt }명 예약 가능한 숙소입니다.</p>
+			</c:if>
+			<p> 체크인, 체크아웃 날짜를 입력해보세요!</p>
+
+			
+			
 			예약 인원 
-			<input type="text" name="guest_cnt" value="${guestCnt }" >
-			<br>
+			<input type="text" id="guest_cnt" name="guest_cnt" value="${guestCnt }" >
+			<br><br>
 			
 			<%-- <input type="hidden" name="host" value="${vo }"> --%>
-			<input type="hidden" name="host_num" value="${vo.host_num }">
-			체크인 <input type="date" min="2022-06-05" name="checkIn1" id="checkIn1" value="${checkIn }">
+			<input type="hidden" id="host_num" name="host_num" value="${vo.host_num }">
+			체크인 <input type="date" min="2022-06-05" name="checkIn1" id="checkIn1" >
 			<span id="start_date"></span><span id="st"> 부터 ~ </span> <br>
-			
-			체크아웃 <input type="date" min="2022-06-05" name="checkOut1" id="checkOut1" disabled value="${checkOut }">
+			<br>
+			체크아웃 <input type="date" min="2022-06-05" name="checkOut1" id="checkOut1" disabled >
 			<span id="end_date"></span><span id="nd"> 까지</span><br>
 			<span id="total_date"></span><span id="tt"></span><br>
 			<input type="hidden" id="tDate" value="">
-
 			<br>
-			<button type="button" id="cal" value="${vo.weekday_amt },${vo.weekend_amt }">계산하기</button><br>
+			<button type="button" id="cal" value="${vo.weekday_amt },${vo.weekend_amt }">계산하기</button>
+			<span id="pay_amt"></span>
+			<br><br>
+			<button type="button" id="book">예약 가능 확인하기</button>
+			<br>
 			<!-- onclick="amtCheck('${vo.weekday_amt}, ${vo.weekend_amt }')" -->
 			<span id="pay_amt"></span>
 			<input type="hidden" id="total_pay_amt" name="pay_amt" value="">
 			<br>
 			
-			<br>
 			
 			<c:choose>
 				<c:when test="${mem_id != null }">

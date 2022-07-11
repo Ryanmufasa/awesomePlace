@@ -22,7 +22,6 @@
   }
 </style>
 <div id="reser" align="center">
-<form action="${pageContext.request.contextPath }/mypage/mpreserinfo.do" method=get>
 
 
 <h2><b>예약내역</b></h2>
@@ -39,7 +38,6 @@
 </table>
 
 <br><br>
-<button type="reset" onclick="location.href='/awesomePlace/mypage/mpreserinfofirst.do'">확인</button>
-</form>
+<button type="button" onclick="history.back()">확인</button>
 </div>
 <%@ include file="/layout/Footer.jsp" %> 

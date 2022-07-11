@@ -1,10 +1,8 @@
 <!-- https://github.com/Ryanmufasa/awesomePlace/issues/18 = 작성자 고유주 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="/layout/Header.jsp" %> 
 <%@page import="member.MemberVO"%>
-<script src="${contextPath }/js/jquery-3.6.0.js"></script>
 <div id="info" align="center">
 
 
@@ -13,7 +11,7 @@
 <form action="${pageContext.request.contextPath }/mypage/meminfoclear.do">
 <table border="1">
 <tr><th>이름</th>
-	<td colspan="2"><input type="text" name="name" required value="${mem_id.mem_name }" ${!empty mb ? "readonly" : "" }></td>
+	<td colspan="2"><input type="text" name="name" required value="${mem_id.mem_name }" ${!empty mem_id ? "readonly" : "" }></td>
 </tr>
 <tr><th>아이디</th>
 	<td colspan="2"><input type="text" name="id" required value="${mem_id.mem_id }" ${!empty mem_id ? "readonly" : "" }></td>
@@ -35,63 +33,57 @@
 
 <table>
 <tr>
-	<td><button type="button" onclick="memUpdate()">확인</button></td>
-	<td><button type="reset"  onclick="location.href='/awesomePlace/main.do'";>취소</button></td>
+	<td><button type="button" id="memUpdate">확인</button></td>
+	<td><button type="reset"  onclick="location.href='/awesomePlace/main.do'">취소</button></td>
 	<!-- onclick="location.href='/awesomePlace/mypage/mpmeminfo.do'" -->
 </tr>
 </table>
 </div>	 
 
 
-    <script>
-	function memUpdate(){
-	
-	var pw = $('#mem_pw').val();
-	var tel = $('#telinput').val();
-	var email = $('#email1').val();
-	var data = {
-					"mem_pw" : pw,
-					"mem_tel" : tel,
-					"mem_email" : email
-	} 
-	
+<script>
 
-	$.ajax({
-		async : true,
-		type : 'get',
-		url : "/awesomePlace/mypage/meminfoclear.do",
-		cache : false,
-		data : data,
-		datatype : 'json',
-		success : function(result){
-			
-//			console.log(result);
-//alert(result);
-/* 			if(result == 1) {
-				alert("수정 완료");
-			} else {
-				alert("취소");
-			}  */
-			var result = (parseInt)result;
-			alert(result);
-			if(result != 1){
-				alert('수정 에러')
-			}else{
-				alert('수정완료')
+$(function(){
+	
+	var membtn = document.getElementById('memUpdate');
+	
+	membtn.addEventListener('click', (event)=>{
+		var pw = $('#mem_pw').val(); //alert(pw);
+		var tel = $('#telinput').val(); //alert(tel);
+		var email = $('#email1').val(); //alert(email);
+		
+		
+		var data = {
+				"mem_pw" : pw,
+				"mem_tel" : tel,
+				"mem_email" : email
 			}
-			
-		},
-		error : function(e1){
-			alert('error');
-		}
+		
+		$.ajax({
+			async : true,
+			type : 'post',
+			url : "/awesomePlace/mypage/meminfoclear.do",
+			cache : false,
+			data : data,
+			datatype : 'json',
+			success : function(result){
+				var result = parseInt(result);
+				alert(result);
+				if(result != 1){
+					alert('수정 에러')
+				}else{
+					alert('수정완료')
+				}
+				
+			},
+			error : function(e1){
+				alert('error');
+			}
+		});
 	});
-	
-	}
+					
+});
 </script>  
-
-
-
-
 
 
 <%@ include file="/layout/Footer.jsp" %> 

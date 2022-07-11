@@ -271,4 +271,36 @@ public class OrderInfoDAO {
 		
 	}
 
+	
+	// 예약 가능한지 확인하기
+	public int checkOrderOk(int oi_host_num, String checkIn_date, String checkOut_date) {
+		int result = 0;
+		
+		String sql = "select * from orderinfo "
+				+ "where oi_host_num=? "
+				+ "and checkIn_date between ? and ? "
+				+ "or checkOut_date between ? and ?";
+		
+		try {
+			con = new DBConn().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, oi_host_num);
+			ps.setString(2, checkIn_date);
+			ps.setString(3, checkOut_date);
+			ps.setString(4, checkIn_date);
+			ps.setString(5, checkOut_date);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				result += 1;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			closeAll();
+		}
+		
+		return result;
+	}
+	
+	
 }

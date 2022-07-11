@@ -105,6 +105,12 @@
 			
 			
 		});
+	
+	function spanResize(){
+		var mainBottom = $("#counter").offset().top; //메인 div 높이 반응형설정
+		$(".mainDiv, .mainDiv-image, .nav").css("height",mainBottom-140);
+		$(".navLine").css("height",mainBottom-140);
+	};
 		
 		$(window).on("scroll", function (){ //네비게이션바가 스크롤을 따라다니도록 설정
 			var ySC = $(window).scrollTop();
