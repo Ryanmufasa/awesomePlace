@@ -21,8 +21,8 @@ public class MypagememUpdaService implements ServiceInterface {
 		String memPw = request.getParameter("mem_pw");	
 		String memTel = request.getParameter("mem_tel");	
 		String memEmail = request.getParameter("mem_email");	
-		//String memId = (String)session.getAttribute("mem_id");
-		String memId = (String)session.getAttribute("mem");
+		MemberVO memvo = (MemberVO)session.getAttribute("mem_id");
+		String memId = memvo.getMem_id();
 		
 		System.out.println(memPw);
 		System.out.println(memTel);
@@ -38,10 +38,8 @@ public class MypagememUpdaService implements ServiceInterface {
 		}else {
 			System.out.println("취소");
 		}
-//		System.out.println("result값 : " + result);
 		
-//		request.setAttribute("result", result);
-		session.setAttribute("result", result);	
+		request.setAttribute("result", result);
 	}
 	
 

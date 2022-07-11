@@ -68,7 +68,7 @@ $(function(){
 			datatype : 'json',
 			success : function(result){
 				var result = parseInt(result);
-				alert(result);
+				//alert(result);
 				if(result != 1){
 					alert('수정 에러')
 				}else{

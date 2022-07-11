@@ -44,7 +44,9 @@ public class OrderInfoDAO {
 				String sql = "select * from orderinfo where oi_mem_id=?";
 				OrderInfoVO vo = null;
 				try {
-
+					
+					
+					con = new DBConn().getConnection();
 					ps = con.prepareStatement(sql);
 					ps.setString(1, oi_mem_id);
 					rs = ps.executeQuery();
@@ -85,6 +87,7 @@ public class OrderInfoDAO {
 				String sql = "select * from orderinfo where oi_num = ?";
 
 				try {
+					con = new DBConn().getConnection();
 					ps = con.prepareStatement(sql);
 					ps.setInt(1, oi_num);
 					rs = ps.executeQuery();

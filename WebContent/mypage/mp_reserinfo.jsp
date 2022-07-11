@@ -1,10 +1,7 @@
 <!-- https://github.com/Ryanmufasa/awesomePlace/issues/21 = 작성자 고유주 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="orderinfo.orderinfovo.OrderInfoVO"%>
 <%@ include file="/layout/Header.jsp" %> 
-<script src="${contextPath }/js/jquery-3.6.0.js"></script>
 
 <style>
   table {
@@ -30,8 +27,8 @@
 <tr><td>호스트 주소</td><td>${od.oi_host_addr }</td></tr>
 <tr><td>호스트 연락처</td><td>${od.oi_host_tel }</td></tr>
 <tr><td>예약 인원</td><td>${od.oi_guest_cnt }</td></tr>
-<tr><td>체크인</td><td>${od.checkin_date }</td></tr>
-<tr><td>체크아웃</td><td>${od.checkout_date }</td></tr>
+<tr><td>체크인</td><td>${od.checkIn_date }</td></tr>
+<tr><td>체크아웃</td><td>${od.checkOut_date }</td></tr>
 <tr><td>지불금액</td><td>${od.pay_amt }</td></tr>
 <tr><td>결제일</td><td>${od.pay_date }</td></tr>
 <tr><td>예약승인</td><td>${od.oi_sign }</td></tr>
