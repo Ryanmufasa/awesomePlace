@@ -620,6 +620,7 @@ public class MemberDAO{
 						
 						QnAVO qvo = new QnAVO(qna_num, mem_num, qmem_id, qna_title, qna_content, qna_date, qna_sign, qna_answer);
 						
+						
 						qarray.add(qvo);
 					} 
 				} catch (SQLException e) {
@@ -757,12 +758,13 @@ public class MemberDAO{
 		public ArrayList<QnAVO> getAllQnAList() {
 			ArrayList<QnAVO> qnaList = new ArrayList<>();
 			
-			String sql = "SELECT * FROM qna";
+			String sql = "SELECT * FROM qna ORDER BY qna_sign DESC";
 			try {
 				pstmt=con.prepareStatement(sql);
 				rs=pstmt.executeQuery();
 			
 				int qna_num;
+				int mem_num;
 				String mem_id;
 				String qna_title;
 				String qna_Content;
@@ -771,14 +773,18 @@ public class MemberDAO{
 				String qna_answer;
 				while(rs.next()) {
 					qna_num = Integer.parseInt(rs.getString("qna_num"));
+					mem_num = Integer.parseInt(rs.getString("mem_num"));
 					mem_id = rs.getString("mem_id");
 					qna_title = rs.getString("qna_title");
 					qna_Content = rs.getString("qna_Content");
-					qna_date = rs.getString("qna_date");
+					String temp = rs.getString("qna_date");
 					qna_sign = rs.getString("qna_sign");
 					qna_answer = rs.getString("qna_answer");
 					
-					QnAVO qna = new QnAVO(qna_num,mem_id,qna_title,qna_Content,qna_date,qna_sign,qna_answer);
+					
+					qna_date = temp.substring(0, 10);
+					
+					QnAVO qna = new QnAVO(qna_num,mem_num,mem_id,qna_title,qna_Content,qna_date,qna_sign,qna_answer);
 					qnaList.add(qna);
 				}
 			
@@ -810,6 +816,7 @@ public class MemberDAO{
 				rs=pstmt.executeQuery();
 				
 				int qna_num;
+				int mem_num;
 				String mem_id;
 				String qna_title;
 				String qna_content;
@@ -818,14 +825,17 @@ public class MemberDAO{
 				String qna_answer;
 				while(rs.next()) {
 					qna_num = Integer.parseInt(rs.getString("qna_num"));
+					mem_num = Integer.parseInt(rs.getString("mem_num"));
 					mem_id = rs.getString("mem_id");
 					qna_title = rs.getString("qna_title");
 					qna_content = rs.getString("qna_content");
-					qna_date = rs.getString("qna_date");
+					String temp = rs.getString("qna_date");
 					qna_sign = rs.getString("qna_sign");
 					qna_answer = rs.getString("qna_answer");
 					
-					QnAVO qna = new QnAVO(qna_num,mem_id,qna_title,qna_date,qna_content,qna_sign,qna_answer);
+					qna_date = temp.substring(0, 10);
+					
+					QnAVO qna = new QnAVO(qna_num,mem_num,mem_id,qna_title,qna_content,qna_date,qna_sign,qna_answer);
 					qnaCon.add(qna);
 				}
 				}  catch (SQLException e) {
@@ -864,7 +874,7 @@ public class MemberDAO{
 		public ArrayList<MemberVO> getAllMember() { 
 			ArrayList<MemberVO> memList = new ArrayList<>();
 			
-			String sql = "SELECT * FROM member";
+			String sql = "SELECT * FROM member ORDER BY mem_sign";
 			try {
 				pstmt=con.prepareStatement(sql);
 				rs=pstmt.executeQuery();
@@ -1103,7 +1113,7 @@ public class MemberDAO{
 
 		//https://github.com/Ryanmufasa/awesomePlace/issues/50 작성자: 이명진
 		public ArrayList<HostVO> getAllHosting() {
-			String sql = "SELECT * FROM host";
+			String sql = "SELECT * FROM host ORDER BY sign";
 			ArrayList<HostVO> hostList = new ArrayList<HostVO>();
 			try {
 				pstmt=con.prepareStatement(sql);

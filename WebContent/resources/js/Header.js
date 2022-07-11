@@ -19,6 +19,7 @@
 					$("#btnAdmin").text("관리자페이지");
 				}else if(ssAdminPage){
 					$("#btnAdmin").text("사용자페이지");
+					
 				}
 			}else if(ssId){
 				$("#btnAdmin").attr("hidden", true);
@@ -89,8 +90,7 @@
 					location.assign("loginform.do");
 				}
 			}));
-			
-			
+		
 			var mainBottom = $("#counter").offset().top; //메인 div 높이 반응형설정
 			$(".mainDiv, .mainDiv-image, .nav").css("height",mainBottom-140);
 			$(".navLine").css("height",mainBottom-140);

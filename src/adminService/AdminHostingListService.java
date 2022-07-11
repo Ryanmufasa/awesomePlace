@@ -21,15 +21,17 @@ public class AdminHostingListService implements ServiceInterface {
 		ArrayList<HostVO> hostList = dao.getAllHosting();
 		
 		int rowCnt = 10;
+		int steadyRowCnt = 10;
 		int pageCnt = 10;
-		String tempRowCnt = (String)request.getParameter("rowCnt");
+		String tempRowCnt = (String)request.getParameter("steadyRowCnt");
 		
 		if(tempRowCnt != null) {
-			rowCnt = Integer.parseInt(tempRowCnt);
+			steadyRowCnt = Integer.parseInt(tempRowCnt);
 		}
 		
 		int cacIdx = (pageCnt/2);
-		int totalCnt = (int)Math.ceil(hostList.size()/(double)pageCnt);
+		int totalCnt = (int)Math.ceil(hostList.size()/(double)steadyRowCnt);
+		int totalRow = hostList.size();
 		
 		int page = 1;
 		int begin = 1;
@@ -51,14 +53,16 @@ public class AdminHostingListService implements ServiceInterface {
 		}
 		
 		if(page==end) {
-			rowCnt = (hostList.size()%rowCnt);
+			rowCnt = (hostList.size()%steadyRowCnt);
+		}else {
+			rowCnt = steadyRowCnt;
 		}
 		rowCnt--;
 		
-		int rowStart = ((page-1)*10);
-		int rowEnd = rowStart+rowCnt;
+		int rowStart = ((page-1)*steadyRowCnt);
+		int rowEnd = rowStart+(steadyRowCnt-1);
 		
-		int [] pageData = {page,begin,end,rowStart,rowEnd,totalCnt,rowCnt};
+		int [] pageData = {page,begin,end,rowStart,rowEnd,totalCnt,rowCnt,steadyRowCnt,totalRow};
 		
 		request.setAttribute("pageData", pageData);
 		

@@ -11,24 +11,32 @@ $("document").ready(function(){
 				$("#adminNav").attr("hidden", true);
 				$("#myPageNav").attr("hidden", true);
 				$("#hostingPageNav").attr("hidden", true);
+				$("hr").css("background-color","#6EE0FF");
+				$(".navLine").css("background-color","#6EE0FF");
 			}else if(ssAdminPage){
 				$(".nav").attr("hidden", false);
 				$(".navLine").attr("hidden", false);
 				$("#adminNav").attr("hidden", false);
 				$("#myPageNav").attr("hidden", true);
 				$("#hostingPageNav").attr("hidden", true);
+				$("hr").css("background-color","#6A5ACD");
+				$(".navLine").css("background-color","#6A5ACD");
 			}else if(ssMyPage){
 				$(".nav").attr("hidden", false);
 				$(".navLine").attr("hidden", false);
 				$("#adminNav").attr("hidden", true);
 				$("#myPageNav").attr("hidden", false);
 				$("#hostingPageNav").attr("hidden", true);
+				$("hr").css("background-color","#FF8200");
+				$(".navLine").css("background-color","#FF8200");
 			}else if(ssHostingPage){
 				$(".nav").attr("hidden", false);
 				$(".navLine").attr("hidden", false);
 				$("#adminNav").attr("hidden", true);
 				$("#myPageNav").attr("hidden", true);
 				$("#hostingPageNav").attr("hidden", false);
+				$("hr").css("background-color","#84FB84");
+				$(".navLine").css("background-color","#84FB84");
 			}
 				hash();
 });

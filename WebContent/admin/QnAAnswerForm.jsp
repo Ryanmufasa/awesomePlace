@@ -6,33 +6,37 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <%@include file ="/layout/Header.jsp" %>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath }"/>
+<link href="${contextPath }/resources/css/Header.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
+<link href="${contextPath }/resources/css/adminPage.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
 <%	String res = (String)request.getAttribute("QnARes");%>
 <script>
 	var res = "<%=res%>";
 	if(res!="null")
 		alert(res);
 </script>
-
 <div class="mainDiv-child">
 <button id="list">목록으로</button>
 <form method="post" action="QnAAnswerForm.do">
 	<c:forEach var="QnACon" items="${QnACon }">
 			<table border="1" id="QnAAnswer">
 				<tr><th>문의번호</th><th>문의자</th><th>등록일자</th></tr>
-				<tr><td>${QnACon.qna_num }</td><td>${QnACon.mem_id }</td><td>${QnACon.qna_date }</td></tr>
+				<tr><td>${QnACon.qna_num }</td><td>${QnACon.mem_id }</td><td>${QnACon.qna_dateS }</td></tr>
 				<tr><td>제목</td><td colspan="2">${QnACon.qna_title }</td></tr>
 				<tr><td colspan="3">${QnACon.qna_content}</td></tr>
 			</table>
 			<input type="hidden" name="qnaNum" value="${QnACon.qna_num }">
+			<br>
+			<div align="center">
 		<c:if test="${QnACon.qna_sign eq 'Wait'}">	
-			<textarea name="answer" rows="20" cols="40"></textarea><br>
+			<textarea id="TA" name="answer" rows="20" cols="60"></textarea><br>
 			<input type="submit" value="답변완료"><input type="reset" value="취소">
 		</c:if>
 		<c:if test="${QnACon.qna_sign ne 'Wait'}">	
-			<textarea name="answer" rows="20" cols="40" >${QnACon.qna_answer }</textarea><br>
-			<input type="submit" value="답변수정">
+			<textarea id="TA" name="answer" rows="20" cols="60">${QnACon.qna_answer }</textarea><br>
+			<input id="ipBtn" type="submit" value="답변수정">
 		</c:if>
+			</div>
 	</c:forEach>
 </form>
 

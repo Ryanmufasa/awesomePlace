@@ -28,9 +28,10 @@ public class QnAVO { /* https://github.com/Ryanmufasa/awesomePlace/issues/46 //�
 		
 	}
 	
-	public QnAVO(int qna_num, String mem_id, String qna_title, String qna_content, String qna_dateS, 
+	public QnAVO(int qna_num, int mem_num, String mem_id, String qna_title, String qna_content, String qna_dateS, 
 			String qna_sign, String qna_answer) { // QnAList, Content 호출용 //작성자 이명진
 		this.qna_num = qna_num;
+		this.mem_num = mem_num;
 		this.mem_id = mem_id;
 		this.qna_title = qna_title;
 		this.qna_dateS = qna_dateS;

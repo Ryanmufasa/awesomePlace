@@ -10,6 +10,8 @@
 <meta charset="UTF-8">
 <title></title>
 <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
+<link href="${contextPath }/resources/css/Header.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
+<link href="${contextPath }/resources/css/adminPage.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
 <script src="${contextPath }/resources/js/jquery-3.6.0.js?v=<%=System.currentTimeMillis() %>" ></script>
 <script src ="${contextPath }/resources/js/adminPage.js?v=<%=System.currentTimeMillis() %>"></script>
 <script>
@@ -26,6 +28,7 @@
 </script>
 </head>
 <body>
+<h1 align="center">${memHostList[0].mem_num }번 회원의 호스팅 목록</h1>
 	<table border="1" style="width:700px;, left:calc(50% - 150px); margin:auto;">
 		<tr><th>호스트번호</th><th>호스트명</th><th>호스트주소</th><th>전화번호</th><th>활성화여부</th></tr>
 		<c:forEach var="memHL" items="${memHostList }" varStatus="idx">
@@ -38,6 +41,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<br>
 	<button style="position:absolute; left:calc(50% - 20px);" onclick="window.close();">닫기</button>
 </body>
 </html>

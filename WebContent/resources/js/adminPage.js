@@ -8,27 +8,27 @@ $(window).on("resize", function(){
 	pagingResize();
 });
 
-function scopeColor(idx){
-	if(idx == 10){
+function scopeColor(steadyRowCnt){
+	if(steadyRowCnt == 10){
 		$("#scope10").css("background-color","#6A5ACD" );
 		$("#scope10").css("color","white" );
-	}else if(idx == 20){
+	}else if(steadyRowCnt == 20){
 		$("#scope20").css("background-color","#6A5ACD" );
 		$("#scope20").css("color","white" );
-	}else if(idx == 50){
-		$("#scope30").css("background-color","#6A5ACD" );
-		$("#scope30").css("color","white" );
+	}else if(steadyRowCnt == 50){
+		$("#scope50").css("background-color","#6A5ACD" );
+		$("#scope50").css("color","white" );
 	}
 }
 
-function scopeClickMem(idx, rowCnt){
-	location.assign("memberList.do?pageIdx="+idx+"&rowCnt="+rowCnt);
+function scopeClickMem(idx, steadyRowCnt){
+	location.assign("memberList.do?pageIdx="+idx+"&steadyRowCnt="+steadyRowCnt);
 }
-function scopeClickHost(idx, rowCnt){
-	location.assign("memberList.do?pageIdx="+idx+"&rowCnt="+rowCnt);
+function scopeClickHost(idx, steadyRowCnt){
+	location.assign("hostingList.do?pageIdx="+idx+"&steadyRowCnt="+steadyRowCnt);
 }
-function scopeClickQnA(idx, rowCnt){
-	location.assign("memberList.do?pageIdx="+idx+"&rowCnt="+rowCnt);
+function scopeClickQnA(idx, steadyRowCnt){
+	location.assign("QnAList.do?pageIdx="+idx+"&steadyRowCnt="+steadyRowCnt);
 }
 
 function pagingResize(){
@@ -41,7 +41,7 @@ function pagingResize(){
 function memDetail(idx) { // 멤버 상세정보페이지로 진입하는 컨트롤러로 연결
 		var url = "memberDetail.do?idx="+idx;
 		var name = "memDetail";
-		var opt = "left=calc(50% - 175px), top=calc(50% - 150px), width = 350px, height = 300px, margin:auto";
+		var opt = "left=calc(50% - 175px), top=calc(50% - 150px), width = 450px, height = 450px, margin:auto";
 		
 		window.open(url, name, opt);
 	}

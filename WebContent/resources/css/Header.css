@@ -18,7 +18,7 @@
 	a:active{
 		color:#6A5ACD;
 	}
-	button{
+	button,#ipBtn{
 		border:1px;
 		border-style:solid;
 		border-color:var(--btnColor);
@@ -27,6 +27,11 @@
 		color:var(--btnFontColor);
 		cursor: pointer;
 		padding:5px;
+	}
+	button:hover,
+	#ipBtn:hover{
+		background-color:var(--btnFontColor);
+		color:white;
 	}
 	header{
 		position:relative;
@@ -113,7 +118,7 @@
 	}
 	.mainDiv-child{
 		position:absolute;
-		background-color:silver;
+		background-color:white;
 		width:calc(100% - 110px);
 		min-height:400px;
 		max-width:1180px;
@@ -146,7 +151,7 @@
 		width:100px;
 		min-height:400px;
 		top:0px;
-		background-color:rgb(222,222,222);
+		background-color:white;
 		z-index:1;
 	}
 	.navLine{

@@ -4,6 +4,53 @@
 	--aTagColor:#282828;
 }
 
+table{
+	border-collapse:collapse;
+	border:none;
+}
+th, td{
+	padding:6px;
+	border-left:none;
+	text-align:center;
+	border-bottom: 2px solid #6A5ACD;
+}
+
+#TA{
+	border: 2px solid #6A5ACD;
+	border-radius:3px;
+	font-size:16px;
+	background:#D5C2EE;
+	transition:all 1s;
+}
+#TA:focus{
+	background:white;
+}
+
+#queueConfirm{
+	border-color:#0000FF;
+	background-color:white;
+	color:#0000FF;
+}
+#queueConfirm:hover{
+	background-color:#0000FF;
+	color:white;
+}
+
+#exitConfirm{
+	border-color:#CD1039;
+	background-color:white;
+	color:#CD1039;
+}
+#exitConfirm:hover{
+	background-color:#CD1039;
+	color:white;
+}
+
+td:hover,
+th:hover{
+	background-color:#D5C2EE;
+}
+
 .btnGroup{
 	position:absolute;
 	top:20px;
@@ -17,6 +64,10 @@
 	background-color:white;
 	border-color:#6A5ACD;
 	color:#6A5ACD;
+}
+.scopeBtn:hover{
+	background-color:#D5C2EE;
+	color:white;
 }
 #scope10{
 	border-top-left-radius:30%;
@@ -48,3 +99,5 @@
 	font-size:25px;
 	color:var(--aTagColor);
 }
+
+
