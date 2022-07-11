@@ -28,6 +28,7 @@ import hostInfoUpdateService.UpdateHostInfo1Service;
 import hostInfoUpdateService.UpdateHostInfo2Service;
 import hostInfoUpdateService.UpdateHostInfo3Service;
 import hostInfoUpdateService.UpdateHostInfo4Service;
+import hostInfoUpdateService.UpdateHostInfo5Service;
 import hostService.AddNewHostService;
 import hostService.CancleOrderService;
 import hostService.ConfirmOrderService;
@@ -340,25 +341,34 @@ public class APController extends HttpServlet {
 			
 			// 호스트 정보 수정
 			case "/updateInfo1.do": //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				// 기본정보 
 				serv = new UpdateHostInfo1Service();
 				page = new NextPage("/myhosting/updateHostInfoResult.jsp", false);
 				break;
 				
 			case "/updateInfo2.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				// 호스트 종류
 				serv = new UpdateHostInfo2Service();
 				page = new NextPage("/myhosting/updateHostInfoResult.jsp", false);
 				break;
 				
 			case "/updateInfo3.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				// 금액 변경
 				serv = new UpdateHostInfo3Service();
 				page = new NextPage("/myhosting/updateHostInfoResult.jsp", false);
 				break;
 				
 			case "/updateInfo4.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				// 호스트에 태그 추가 
 				serv = new UpdateHostInfo4Service();
 				page = new NextPage("/myhosting/updateHostInfoResult.jsp", false);
 				break;
 				
+			case "/updateInfo5.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
+				// 호스트에 키워드 삭제
+				serv = new UpdateHostInfo5Service();
+				page = new NextPage("/myhosting/updateHostInfoResult.jsp", false);
+				break;
 				
 			// 새 호스트 등록	
 			case "/addNewHostForm.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/36 -- 작성자 정다영

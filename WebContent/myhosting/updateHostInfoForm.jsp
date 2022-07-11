@@ -137,15 +137,13 @@
 		<input type="hidden" name="host_num" value="${vo.host_num }">
 		<c:if test="${!empty taglist}">
 			<c:forEach var="tag" items="${taglist }">
-				<span>${tag.tag_name }</span>
+				<span>#${tag.tag_name }   </span>
 			</c:forEach>
 		</c:if>
 		<c:if test="${empty taglist}">
 			<p> 호스트 키워드가 없습니다! 키워드를 입력해보세요! </p>
 		</c:if>
-		<br>
-		<button type="button" id="addTag">키워드 추가하기</button><br>
-		<button type="button" id="info4btn">수정완료</button>
+		<button type="button" id="addTag">키워드 관리하기</button>
 		</form>
 		</div>
 	</article>

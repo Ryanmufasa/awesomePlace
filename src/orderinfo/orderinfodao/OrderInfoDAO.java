@@ -13,7 +13,7 @@ import orderinfo.orderinfovo.OrderInfoVO;
 
 public class OrderInfoDAO {
 	
-	private Connection con = new DBConn().getConnection();
+	private Connection con;
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
@@ -27,6 +27,16 @@ public class OrderInfoDAO {
 	}
 	
 	
+	private void closeAll() {
+		try {
+			if(rs != null) rs.close();
+			if(ps != null) ps.close();
+			if(con != null) con.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// 전체 예약 내역 조회 - 관리자용
 	public ArrayList<OrderInfoVO> getOrderInfoList(){
 		
@@ -37,6 +47,7 @@ public class OrderInfoDAO {
 		OrderInfoVO vo = null;
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -47,12 +58,7 @@ public class OrderInfoDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		
 		if(orderli.isEmpty()) {
@@ -104,6 +110,7 @@ public class OrderInfoDAO {
 				+ "?,?,?,sysdate,?,'wait',"
 				+ "?,?,?,?,?,?,?)";
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, vo.getOi_guest_cnt());
 			ps.setDate(2, new java.sql.Date(vo.getCheckIn_date().getTime()));
@@ -124,11 +131,7 @@ public class OrderInfoDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		return check;
 	}
@@ -144,6 +147,7 @@ public class OrderInfoDAO {
 		String sql ="select * from orderinfo where oi_host_num=?";
 		
 		try {
+			con = new DBConn().getConnection();
 			ps= con.prepareStatement(sql);
 			ps.setInt(1, oi_host_num);
 			rs = ps.executeQuery();
@@ -154,12 +158,7 @@ public class OrderInfoDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		
 		if(oili.isEmpty()) {
@@ -180,6 +179,7 @@ public class OrderInfoDAO {
 		String sql = "select * from orderinfo where oi_num=?";
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, oi_num);
 			rs = ps.executeQuery();
@@ -189,12 +189,7 @@ public class OrderInfoDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		
 		return vo;
@@ -209,6 +204,7 @@ public class OrderInfoDAO {
 		String sql = "update orderinfo set oi_sign='confirm' where oi_num=?";
 		
 		try {
+			con = new DBConn().getConnection();
 			ps=con.prepareStatement(sql);
 			ps.setInt(1, oi_num);
 			if(ps.executeUpdate() != 0) {
@@ -218,11 +214,7 @@ public class OrderInfoDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		
 		return a;
@@ -236,6 +228,7 @@ public class OrderInfoDAO {
 		String sql = "update orderinfo set oi_sign='cancle' where oi_num=?";
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, oi_num);
 			if(ps.executeUpdate() != 0) {
@@ -245,11 +238,7 @@ public class OrderInfoDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		return a;
 	}
@@ -264,6 +253,7 @@ public class OrderInfoDAO {
 				+ "and checkout_date >= sysdate "
 				+ "and oi_sign in('confirm','wait')";
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, oi_host_num);
 			rs = ps.executeQuery();
@@ -274,12 +264,7 @@ public class OrderInfoDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		
 		return false;

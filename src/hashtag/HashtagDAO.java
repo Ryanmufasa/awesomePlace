@@ -26,6 +26,16 @@ public class HashtagDAO {
 		return instance;
 	}
 	
+	private void closeAll() {
+		try {
+			if(rs != null) rs.close();
+			if(ps != null) ps.close();
+			if(con != null) con.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// 전체목록 가져오기
 	public ArrayList<HashtagVO> getAllTags(){
 		
@@ -36,6 +46,7 @@ public class HashtagDAO {
 		HashtagVO htvo = null;
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -48,12 +59,7 @@ public class HashtagDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		
 		if(tagli.isEmpty()) {
@@ -74,6 +80,7 @@ public class HashtagDAO {
 		String sql = "insert into hashtag values(hashtag_seq.nextVal, ?)";
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, tag_name);
 			if(ps.executeUpdate() != 0 ) {
@@ -82,11 +89,7 @@ public class HashtagDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		return result;
 	}
@@ -99,6 +102,7 @@ public class HashtagDAO {
 		String sql = "select n.host_num from hnh n, hashtag t "
 				+ "where n.tag_num = t.tag_num and t.tag_name=?";
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, tag_name);
 			rs = ps.executeQuery();
@@ -110,12 +114,7 @@ public class HashtagDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		if(hostNumList.isEmpty()) {
 			hostNumList = null;
@@ -138,6 +137,7 @@ public class HashtagDAO {
 		HostVO vo = null;
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, tag_name);
 			rs = ps.executeQuery();
@@ -166,12 +166,7 @@ public class HashtagDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		
 		if(hostli.isEmpty()) {
@@ -198,6 +193,7 @@ public class HashtagDAO {
 				+ "and h.host_num = ?";
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, host_num);
 			rs = ps.executeQuery();
@@ -209,12 +205,7 @@ public class HashtagDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		
 		
@@ -228,4 +219,56 @@ public class HashtagDAO {
 		
 	}
 
+	
+	// 호스트에 해시태그 키워드 정보 추가하기
+	public int addTags(int tag_num, int host_num) {
+		int result = 0;
+		String sql = "insert into hnh values(?,?)";
+		
+		try {
+			con = new DBConn().getConnection();
+			ps=con.prepareStatement(sql);
+			ps.setInt(1,tag_num);
+			ps.setInt(2, host_num);
+			if(ps.executeUpdate() != 0 ) {
+				result = 1;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			closeAll();
+		}
+		
+		return result;
+	}
+	
+	
+	// 호스트의 해시태그 키워드 정보 삭제하기
+	public int delTags(int tag_num, int host_num) {
+		
+		int result = 0;
+		String sql = "delete from hnh where tag_num=? and host_num=?";
+		
+		try {
+			con = new DBConn().getConnection();
+			ps=con.prepareStatement(sql);
+			ps.setInt(1,tag_num);
+			ps.setInt(2, host_num);
+			if(ps.executeUpdate() != 0 ) {
+				result = 1;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(ps != null) ps.close();
+				if(con != null) con.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+	
 }

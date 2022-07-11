@@ -21,10 +21,10 @@ public class GetHashTagService implements ServiceInterface {
 		ArrayList<HashtagVO> tagli = HashtagDAO.getInstance().getAllTags();
 		
 		if(tagli != null) {
-			System.out.println("해시태그 목록 불러오기");
-			request.setAttribute("tagli", tagli);
+			System.out.println("해시태그 목록 불러오기 성공");
 		}
 		
+		request.setAttribute("tagli", tagli);
 		request.setAttribute("host_num", host_num);
 	}
 

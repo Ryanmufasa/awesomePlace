@@ -1,4 +1,5 @@
-// 개인 작업을 위한 작성  -- 작성자 정다영
+// https://github.com/Ryanmufasa/awesomePlace/issues/57 , 
+// https://github.com/Ryanmufasa/awesomePlace/issues/44  작성자 정다영
 package orderinfo.orderinfovo;
 
 import java.util.Date;

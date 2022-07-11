@@ -184,7 +184,7 @@ $(function(){
 		
 		var weekday_amt = weekday_amt1.replace(",", "");
 		var weekend_amt = weekend_amt1.replace(",", '');
-		alert(weekday_amt + "   " + weekend_amt);
+		//alert(weekday_amt + "   " + weekend_amt);
 		
 		$.ajax({
 			async : true,
@@ -212,7 +212,8 @@ $(function(){
 	})
 	
 	$('#addTag').on('click',function(){
-		var host_num = $('.host_num').value;
+		var host_num = document.getElementById('host_num').value;
+		//alert(host_num);
 		
 		var width = 500;
 		var height = 500;
@@ -228,6 +229,7 @@ $(function(){
 					+ ', scrollbars=yes, status=yes, resizable=yes, titlebar = yes';
 	
 		var url = "/awesomePlace/search/hashtagList.do?host_num="+host_num;
+		//alert(url);
 		
 		window.open(url,'hashtagList',windowSet);
 	})

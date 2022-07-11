@@ -17,13 +17,15 @@ rel="stylesheet">
 			${host.host_date}<br>
 			${host.sign }<br>
 			<button type="button" onclick="location.href='/awesomePlace/myhosting/updateHostInfoForm.do?host_num=${host.host_num}'">정보 수정하기</button>
+			<br>
 			<c:set var="sign" value="${host.sign }"/>
 				<c:if test="${fn:contains(sign,'true')}">
 					<button type="button" onclick="location.href='/awesomePlace/myhosting/myHostOrderManage.do?host_num=${host.host_num}'">예약 관리</button> 
+					<br>
 					<button type="button" onclick='warning("${host.host_num}")'>호스팅 중지</button>
 				</c:if>
 				<c:if test="${fn:contains(sign,'false') }">
-					<button type="button" onclick="signck()">예약 관리</button>
+					<button type="button" onclick="signck()">예약 관리</button><br>
 					<button type="button" onclick='deleteck("${host.host_num}")'>호스트 삭제</button>
 				</c:if>
 		</section>
@@ -34,7 +36,7 @@ rel="stylesheet">
 
 
 <p>등록된 호스트 정보가 없습니다.</p>
-
+<br>
 <button type="button" onclick="location.href='/awesomePlace/myhosting/addNewHostForm.do'">호스팅 시작하기</button>
 
 
