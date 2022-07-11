@@ -19,7 +19,7 @@ public class JJimHeartService implements ServiceInterface{
 		
 		HttpSession session = request.getSession();
 		MemberDAO dao = MemberDAO.getInstance();
-		MemberVO vo = (MemberVO) session.getAttribute("mem");
+		MemberVO vo = (MemberVO) session.getAttribute("mem_id");
 		
 		int host_num = 0;
 		

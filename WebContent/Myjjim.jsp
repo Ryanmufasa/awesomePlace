@@ -49,7 +49,7 @@
 
 	<c:forEach var="ho" items="${hlist }">
 		<div class="box" id="wrapper">
-		<button id="jjimheart" onclick="heart();"><a href="${pageContext.request.contextPath }/jjimheart.do?host_num=${ho.getHost_num() }"><img id="imgheart" src="${pageContext.request.contextPath }/image/JJimHeart/colorHeart.png"></a></buttton>
+		<button id="jjimheart"><a href="${pageContext.request.contextPath }/jjimheart.do?host_num=${ho.getHost_num() }"><img id="imgheart" src="${pageContext.request.contextPath }/image/JJimHeart/colorHeart.png"></a></buttton>
 		<button class="boxing" id="A" onclick="location.href='/awesomePlace/search/moreinfo.do?host_name=${host.host_name }&host_num=${host.host_num}'">
 			<h2>${ho.getHost_name() } </h2>
 			방 개수 ${ho.getRoom_cnt() } 개<br>

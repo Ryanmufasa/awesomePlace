@@ -49,6 +49,7 @@ import memberLoginService.LoginService;
 import memberLoginService.LogoutService;
 
 import memberService.IDfoundService;
+import memberService.JJimHeartService;
 import memberService.JJimShowService;
 import memberService.MyPagePWService;
 import memberService.MypageOrderinfoClickService;
@@ -211,6 +212,11 @@ public class APController extends HttpServlet {
 	    	case "/jjimlist1.do": // https://github.com/Ryanmufasa/awesomePlace/issues/53 작성자: 양준모
 	    		serv = new JJimShowService();
 	    		page = new NextPage("Myjjim.jsp", false);
+	    		break;
+	    		
+	    	case "/jjimheart.do": // https://github.com/Ryanmufasa/awesomePlace/issues/53 작성자: 양준모
+	    		serv = new JJimHeartService();
+	    		page = new NextPage("/jjimlist1.do", false);
 	    		break;
 				
 	    	//마이페이지 비밀번호 확인 후 메인 

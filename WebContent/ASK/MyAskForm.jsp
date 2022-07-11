@@ -72,7 +72,7 @@ body{
 %>
 <div class="mainDiv-child">
 	<br><br>
-		<h2>고객문의 페이지입니다.</h2>
+		<h2 align="center">고객문의 페이지입니다.</h2>
 	<br><br>
 <div align="center">
 	<form action="${pageContext.request.contextPath }/ASK/askqna.do" method="post">
@@ -96,7 +96,7 @@ body{
 				문의자
 			</th>
 			<td style="border-top: none; border-left: none;border-right: none;">
-				<% MemberVO vo = (MemberVO) session.getAttribute("mem");  %>
+				<% MemberVO vo = (MemberVO) session.getAttribute("mem_id");  %>
 				&nbsp;&nbsp;&nbsp;<%=vo.getMem_id() %> 님
 			</td>
 		</tr>
@@ -125,7 +125,7 @@ body{
 		
 		<input type="submit" value="문의등록" id="askadd" style="width:130px;height:40px;background-color:#9ddb8f;color:white;border:none;cursor:pointer;">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="reset" value="취소" id="exit" onclick="history.back()" style="width:130px;height:40px;background-color:#d7db8f;color:white;border:none;cursor:pointer;"> 
+        <input type="reset" value="취소" id="exit" onclick="history.go(-2)" style="width:130px;height:40px;background-color:#d7db8f;color:white;border:none;cursor:pointer;"> 
 	
 	</form>
 </div>

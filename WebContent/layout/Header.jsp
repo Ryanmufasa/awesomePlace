@@ -21,7 +21,7 @@
 	<script>
 		<% 
 			HttpSession ss1 = request.getSession();
-			String mem_id = (String)ss1.getAttribute("mem_id"); //memverVO 포함 세션
+			String mem_id = (String)ss1.getAttribute("mem"); //memverVO 포함 세션
 			String showAdmin = (String)ss1.getAttribute("showAdmin"); // admin로그인 확인 세션
 			String adminPage = (String)ss1.getAttribute("adminPage");// adminPage 진입 확인 세션
 			String myPage = (String)ss1.getAttribute("myPage");// myPage진입 확인세션 확인 세션
