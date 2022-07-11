@@ -10,7 +10,7 @@
     #pwfound1 {
         position: absolute;
         left: 49%;
-        top: 50%;
+        top: 52%;
         transform: translate(-50%, -50%);
     }
     
@@ -33,8 +33,8 @@
 
 <body>
 
-	<br><br><br>
-	<h1 style="text-align:center;">비밀번호 찾기</h1> <br><br><br><br><br>
+	<br>
+	<h1 style="text-align:center;">비밀번호 찾기</h1> <br><br><br>
 	
     <div id="pwfound1">
         

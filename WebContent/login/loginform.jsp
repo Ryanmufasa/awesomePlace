@@ -8,6 +8,7 @@
 
 <script src="${contextPath }/js/jquery-3.3.1.js"></script>
 <script src="${contextPath }/js/Main.js"></script>
+<script src="${contextPath }/resources/js/Main.js?v=<%=System.currentTimeMillis() %>"></script>	
 
 <style>
     #login1 {
@@ -43,7 +44,7 @@
 
 <body>
 
-<%@ include file="/Header.jsp" %> 
+	<%@include file ="/layout/Header.jsp" %>
 
 	<br><br><br><br><br><br><br><br><br><br>
 
@@ -94,7 +95,7 @@
     
     <br><br><br><br><br><br><br><br>
     
-<%@ include file="/Footer.jsp" %> 
+    <%@include file ="/layout/Footer.jsp" %>
 
 </body>
 

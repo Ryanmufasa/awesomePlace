@@ -11,6 +11,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title> <!-- https://github.com/Ryanmufasa/awesomePlace/issues/40  작성자: 양준모-->
 								<!-- 문의글 등록을 위한 페이지 입니다. -->
+<script src="${contextPath }/resources/js/Main.js?v=<%=System.currentTimeMillis() %>"></script>								
+
 <style>
 
 table, td, th {
@@ -38,6 +40,10 @@ input {
   width: auto;
 }
 
+#askadd, #exit {
+	border-radius: 14px;
+}
+
 </style>
 
 <style type="text/css">
@@ -52,6 +58,8 @@ body{
 </head>
 <body>
 
+<%@include file ="/layout/Header.jsp" %>
+
 <c:set var="now" value="<%=new java.util.Date() %>"/> <!-- 오늘 요일 출력 --> 
 <fmt:formatDate value="${now}" pattern="E" var="today" />
 
@@ -62,7 +70,10 @@ body{
 
 
 %>
-
+<div class="mainDiv-child">
+	<br><br>
+		<h2>고객문의 페이지입니다.</h2>
+	<br><br>
 <div align="center">
 	<form action="${pageContext.request.contextPath }/ASK/askqna.do" method="post">
 
@@ -112,12 +123,16 @@ body{
 		</tr>
 	</table> <br>
 		
-		<input type="submit" value="문의등록" style="width:130px;height:40px;background-color:#3498db;color:white;border:none;cursor:pointer;">
+		<input type="submit" value="문의등록" id="askadd" style="width:130px;height:40px;background-color:#9ddb8f;color:white;border:none;cursor:pointer;">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="reset" value="취소" onclick="history.back()" style="width:130px;height:40px;background-color:#3498db;color:white;border:none;cursor:pointer;"> 
+        <input type="reset" value="취소" id="exit" onclick="history.back()" style="width:130px;height:40px;background-color:#d7db8f;color:white;border:none;cursor:pointer;"> 
 	
 	</form>
 </div>
+<span id="counter"></span>
+</div>
+
+<%@include file ="/layout/Footer.jsp" %>
 
 </body>
 </html>

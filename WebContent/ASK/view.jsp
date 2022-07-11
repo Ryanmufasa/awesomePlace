@@ -41,11 +41,11 @@ input {
   width: auto;
 }
 
-button {
+#button12345 {
   position: absolute;
-  left: 300px;
+  left: 150px;
   right: 50px;
-  top: 0px;
+  top: 15px;
   width: 70px;
   height: 70px;
   border: 0;
@@ -53,7 +53,7 @@ button {
   background-color: rgba( 255, 255, 255, 0);
 }
 
-img { 
+#imgback { 
   width : 100%;
   height: 100%; 
 }
@@ -80,10 +80,15 @@ body{
 	
 	QnAVO qo = new MemberDAO().viewqna(qna_num);
 %>
+<%@include file ="/layout/Header.jsp" %>
 
-<button onclick="history.back()" style="cursor:pointer;"><img src="${pageContext.request.contextPath }/image/qna/back.png"></button>
+<div class="mainDiv-child">
+
+<button id="button12345" onclick="history.back()" style="cursor:pointer;"><img id="imgback" src="${pageContext.request.contextPath }/image/qna/back.png"></button>
 
 <div align="center">
+
+	<br><h2><%=qo.getQna_date() %> 작성된 문의글 입니다.</h2><br>
 
 	<table style="border-collapse:collapse;">
 		<tr>
@@ -127,6 +132,9 @@ body{
 	</table> 
 	
 </div>
+	<span id="counter"></span>
+</div>
+<%@include file ="/layout/Footer.jsp" %> 
 
 
 </body>

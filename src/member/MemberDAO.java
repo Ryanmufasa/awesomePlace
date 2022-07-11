@@ -386,6 +386,54 @@ public class MemberDAO{
 		}
 		return harray;
 	}
+	
+	public int jjimheart(int mem_num, int host_num) { //찜목록  https://github.com/Ryanmufasa/awesomePlace/issues/53 //작성자: 양준모
+		
+		int result = 0;
+		
+		try {
+			pstmt = con.prepareStatement("DELETE FROM JJIM WHERE mem_num = ? AND host_num = ?");
+			pstmt.setInt(1, mem_num);
+			pstmt.setInt(2, host_num);
+			pstmt.executeUpdate();
+			
+
+			if(pstmt.executeUpdate() != 0) {
+					result = 1;
+				} else {
+					result = -1;
+			}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return result;
+	}
+	
+	
+	public int AskPWck(String mem_pw, String mem_id) {
+		
+		int result = 0 ;
+		
+			try {
+				pstmt = con.prepareStatement("SELECT mem_pw, mem_id FROM member WHERE mem_id = ?");
+			pstmt.setString(1, mem_id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				
+				if (mem_pw.equals(rs.getString("mem_pw"))) {
+					result = 1;
+					
+				} else
+					result = -1;
+			}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return result;
+	}
 
 
 	//회원 수정

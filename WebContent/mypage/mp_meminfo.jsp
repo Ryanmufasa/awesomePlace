@@ -5,9 +5,11 @@
 <%@ include file="/layout/Header.jsp" %> 
 <%@page import="member.MemberVO"%>
 <script src="${contextPath }/js/jquery-3.6.0.js"></script>
-<div id="info" align="center">
 
+<%@ include file="/layout/Header.jsp" %>
+<%@ include file="/layout/Navigation.jsp" %> 
 
+<div id="info" align="center" class="mainDiv-child">
 
 <h2><b>정보 수정</b></h2>
 <form action="${pageContext.request.contextPath }/mypage/mpmeminfo.do">
@@ -72,10 +74,6 @@ alert(result);
 	
 	}
 </script>  
-
-
-
-
 
 
 <%@ include file="/layout/Footer.jsp" %> 

@@ -34,7 +34,7 @@
 <body>
 
 	<br><br><br>
-	<h1 style="text-align:center;">아이디 찾기</h1> <br><br><br>
+	<h1 style="text-align:center;">아이디 찾기</h1> <br><br>
 
     <div id="idfound1">
         

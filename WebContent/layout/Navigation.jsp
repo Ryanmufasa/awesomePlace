@@ -21,16 +21,16 @@
 			<a href="memberUpdate.do">정보수정</a>
 		</div>
 		<div>
-			<a href="memberLikeList.do">찜 목록</a>
+			<a href="${pageContext.request.contextPath }/jjimlist1.do">찜 목록</a>
 		</div>
 		<div>
-			<a href="memberResList.do">예약 내역</a>
+			<a href="mpreserinfofirst.do">예약 내역</a>
 		</div>
 		<div>
 			<a href="memberMyHosting.do">마이호스팅</a>
 		</div>
 		<div>
-			<a href="memberQnAList.do">내 문의 확인</a>
+			<a href="${pageContext.request.contextPath }/qna1.do">내 문의 확인</a>
 		</div>
 	</div>
 	

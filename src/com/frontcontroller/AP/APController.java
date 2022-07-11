@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import HnNService.MainPageService;
 import adminService.AdminHostDetailService;
@@ -26,7 +27,10 @@ import hostService.SearchService;
 import memberJoinService.EmailCheckService;
 import memberJoinService.IdCheckService;
 import memberJoinService.JoinService;
+import memberLoginService.LogoutService;
+import memberService.AskPagePwCheck;
 import memberService.IDfoundService;
+import memberService.JJimHeartService;
 import memberService.JJimShowService;
 import memberService.LoginService;
 import memberService.MyPagePWService;
@@ -64,9 +68,11 @@ public class APController extends HttpServlet {
     	String path = requestURL.substring(start);
     	System.out.println("path : " + path);
     	
+    	HttpSession session = request.getSession();
+    	
     	//String path2 = request.getRequestURL().substring(request.getContextPath().length());
     	//System.out.println("path2 : " + path2);
-    	    	
+    	
     	switch(path) {
 	    	case "/joinForm.do":  // https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 
 	    		page = new NextPage("/awesomePlace/join/joinForm.jsp", true);
@@ -85,6 +91,10 @@ public class APController extends HttpServlet {
 			case "/login.do" : 
 				serv = new LoginService(); 
 				page = new NextPage("/login/result.jsp", false);
+				break;
+			case "/logout.do" : 
+				serv = new LogoutService(); 
+				page = new NextPage("/index.jsp", false);
 				break;
 			
 			// 아이디 찾기 작성자:양준모
@@ -125,11 +135,20 @@ public class APController extends HttpServlet {
 			
 			// 문의글 쓰기  // 작성자: 양준모
 			case "/MyAskForm.do":
+				session.setAttribute("myPage", "true");
 				page = new NextPage("/awesomePlace/ASK/MyAskForm.jsp", true);
 				break;
 			case "/askqna.do":
 		    	serv = new QnAService();
 		    	page = new NextPage("/ASK/result.jsp", false);
+	    	break;
+	    	
+			case "/AskPwCheck.do": // 온라인 문의 작성시 비밀번호 재확인 // 작성자: 양준모
+				page = new NextPage("/awesomePlace/ASK/AskPwCheck.jsp", true);
+				break;
+			case "/askpagePW.do":
+		    	serv = new AskPagePwCheck();
+		    	page = new NextPage("/ASK/PWresult.jsp", false);
 	    	break;
 	    	
 	    	// 문의글 보는 페이지 // 작성자: 양준모
@@ -138,7 +157,7 @@ public class APController extends HttpServlet {
 	    		break;
 	    	case "/qna1.do":
 	    		serv = new QnAShowService();
-	    		page = new NextPage("MyAskCheck.jsp", false);
+	    		page = new NextPage("/MyAskCheck.jsp", false);
 	    		break;
 	    	
 	    	case "/jjimlist.do": // https://github.com/Ryanmufasa/awesomePlace/issues/53 작성자: 양준모
@@ -147,6 +166,11 @@ public class APController extends HttpServlet {
 	    	case "/jjimlist1.do": // https://github.com/Ryanmufasa/awesomePlace/issues/53 작성자: 양준모
 	    		serv = new JJimShowService();
 	    		page = new NextPage("Myjjim.jsp", false);
+	    		break;
+	    		
+	    	case "/jjimheart.do": // https://github.com/Ryanmufasa/awesomePlace/issues/53 작성자: 양준모
+	    		serv = new JJimHeartService();
+	    		page = new NextPage("/jjimlist1.do", false);
 	    		break;
 				
 			case "/idCheck.do" : //  https://github.com/Ryanmufasa/awesomePlace/issues/22 -- 작성자 정다영 

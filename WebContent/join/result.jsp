@@ -6,6 +6,7 @@
 	<script>
 		alert("${msg}");
 		location.href="/awesomePlace/login/loginForm.do";
+		<% session.setAttribute("URL", "http://localhost:6571/awesomePlace/"); %>
 	</script>
 </c:if>
 <c:if test="${!check }">
