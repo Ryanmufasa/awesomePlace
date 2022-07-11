@@ -35,4 +35,6 @@
 			<span id="counter" style="top:773px;"></span> 	<!-- 메인 컨텐츠 바닥위치값 확인용 -->
 </div>
 
+<% session.setAttribute("URL", "http://localhost:6571/awesomePlace/"); %>
+
 <%@include file ="/layout/Footer.jsp" %>

@@ -6,29 +6,29 @@
 
 $("document").ready(function(){
 			if(!ssAdminPage && !ssMyPage && !ssHostingPage){ // 내비게이션 노출여부 결정
-				$(".nav").attr("hidden", "true");
-				$(".navLine").attr("hidden", "true");
-				$("#adminNav").attr("hidden", "true");
-				$("#myPageNav").attr("hidden", "true");
-				$("#hostingPageNav").attr("hidden", "true");
+				$(".nav").attr("hidden", true);
+				$(".navLine").attr("hidden", true);
+				$("#adminNav").attr("hidden", true);
+				$("#myPageNav").attr("hidden", true);
+				$("#hostingPageNav").attr("hidden", true);
 			}else if(ssAdminPage){
-				$(".nav").attr("hidden", "false");
-				$(".navLine").attr("hidden", "false");
-				$("#adminNav").attr("hidden", "false");
-				$("#myPageNav").attr("hidden", "true");
-				$("#hostingPageNav").attr("hidden", "true");
+				$(".nav").attr("hidden", false);
+				$(".navLine").attr("hidden", false);
+				$("#adminNav").attr("hidden", false);
+				$("#myPageNav").attr("hidden", true);
+				$("#hostingPageNav").attr("hidden", true);
 			}else if(ssMyPage){
-				$(".nav").attr("hidden", "false");
-				$(".navLine").attr("hidden", "false");
-				$("#adminNav").attr("hidden", "true");
-				$("#myPageNav").attr("hidden", "false");
-				$("#hostingPageNav").attr("hidden", "true");
+				$(".nav").attr("hidden", false);
+				$(".navLine").attr("hidden", false);
+				$("#adminNav").attr("hidden", true);
+				$("#myPageNav").attr("hidden", false);
+				$("#hostingPageNav").attr("hidden", true);
 			}else if(ssHostingPage){
-				$(".nav").attr("hidden", "false");
-				$(".navLine").attr("hidden", "false");
-				$("#adminNav").attr("hidden", "true");
-				$("#myPageNav").attr("hidden", "true");
-				$("#hostingPageNav").attr("hidden", "false");
+				$(".nav").attr("hidden", false);
+				$(".navLine").attr("hidden", false);
+				$("#adminNav").attr("hidden", true);
+				$("#myPageNav").attr("hidden", true);
+				$("#hostingPageNav").attr("hidden", false);
 			}
 });
 

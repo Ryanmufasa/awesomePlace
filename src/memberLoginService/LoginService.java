@@ -31,7 +31,7 @@ public class LoginService implements ServiceInterface{
 		} 
 
 		if ("admin".equals(mem_id)) {
-			session.setAttribute("showAdmin", true); // 로그인하 사용자의 아이디가 admin이면 showAdmin이름에 true값을 넣는다.
+			session.setAttribute("showAdmin", "true"); // 로그인하 사용자의 아이디가 admin이면 showAdmin이름에 true값을 넣는다.
 			
 		}
 		

@@ -16,9 +16,9 @@
 
 <div align="center">
 
-	<h1>마이페이지 조회 시 비밀번호 재확인이 필요합니다.</h1> <br><br><br><br>
+	<h1>비밀번호 재확인이 필요합니다.</h1> <br><br><br><br>
 	
-	<form action="${pageContext.request.contextPath }/mypage/mypagePW.do" method="post">
+	<form action="${pageContext.request.contextPath }/ASK/askpagePW.do" method="post">
 	
 	<table>
 	
@@ -39,8 +39,6 @@
 	</form>
 	
 </div>
-
-<%@ include file="/layout/Footer.jsp" %> 
 
     
 </body>
