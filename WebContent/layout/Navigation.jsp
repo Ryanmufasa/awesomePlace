@@ -1,7 +1,7 @@
 <!-- https://github.com/Ryanmufasa/awesomePlace/issues/27 작성자: 이명진 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <script src="${contextPath }/resources/js/Nav.js?v=<%=System.currentTimeMillis() %>"></script>
+<%--     <script src="${contextPath }/resources/js/Nav.js?v=<%=System.currentTimeMillis() %>"></script> --%>
 <div class="nav">	<div class="navLine" hidden="true"></div>
 
 	<div id="adminNav" hidden="true">
@@ -16,7 +16,7 @@
 		</div>
 	</div>
 	
-	<div id="myPageNav" >
+	<div id="myPageNav" hidden="true">
       <div>
          <a href="mpmeminfo.do">정보수정</a>
       </div>
@@ -30,11 +30,11 @@
          <a href="myHosting.do">마이호스팅</a>
       </div>
       <div>
-         <a href="qna1.do">내 문의 확인</a>
+         <a href="qna.do">내 문의 확인</a>
       </div>
    </div>
    
-   <div id="hostingPageNav">
+   <div id="hostingPageNav" hidden="true">
       <div>
          <a href="myHostList.do">호스트 목록</a>
       </div>
@@ -46,3 +46,4 @@
       </div>
    </div>
 </div>
+

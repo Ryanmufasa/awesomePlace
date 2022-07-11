@@ -1,9 +1,47 @@
 // https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자 : 이명진
 
+$(document).ready(function(){
+	pagingResize();
+});
+
+$(window).on("resize", function(){
+	pagingResize();
+});
+
+function scopeColor(steadyRowCnt){
+	if(steadyRowCnt == 10){
+		$("#scope10").css("background-color","#6A5ACD" );
+		$("#scope10").css("color","white" );
+	}else if(steadyRowCnt == 20){
+		$("#scope20").css("background-color","#6A5ACD" );
+		$("#scope20").css("color","white" );
+	}else if(steadyRowCnt == 50){
+		$("#scope50").css("background-color","#6A5ACD" );
+		$("#scope50").css("color","white" );
+	}
+}
+
+function scopeClickMem(idx, steadyRowCnt){
+	location.assign("memberList.do?pageIdx="+idx+"&steadyRowCnt="+steadyRowCnt);
+}
+function scopeClickHost(idx, steadyRowCnt){
+	location.assign("hostingList.do?pageIdx="+idx+"&steadyRowCnt="+steadyRowCnt);
+}
+function scopeClickQnA(idx, steadyRowCnt){
+	location.assign("QnAList.do?pageIdx="+idx+"&steadyRowCnt="+steadyRowCnt);
+}
+
+function pagingResize(){
+	var pagingWidth = ($(".paging").width())/2;
+	var mainWidth = ($(".mainDiv-child").width())/2;
+	var resWidth = mainWidth - pagingWidth;
+	$(".paging").css("left", resWidth);
+};
+
 function memDetail(idx) { // 멤버 상세정보페이지로 진입하는 컨트롤러로 연결
 		var url = "memberDetail.do?idx="+idx;
 		var name = "memDetail";
-		var opt = "left=calc(50% - 175px), top=calc(50% - 150px), width = 350px, height = 300px, margin:auto";
+		var opt = "left=calc(50% - 175px), top=calc(50% - 150px), width = 450px, height = 450px, margin:auto";
 		
 		window.open(url, name, opt);
 	}
@@ -35,6 +73,7 @@ function switchSign(idx, flag) { // sign 상태 변경 후 멤버 상세정보�
 //				error: (log)=>{alert("실패"+log)}
 //			})
 }
+
 
 function memberDelete(idx){
 	var url = "memberDelete.do?idx="+idx;
@@ -70,6 +109,10 @@ function switchHostSign(idx, flag) { // sign 상태 변경 후 호스트 상세�
 function openerReload(){ // 팝업창 닫을때 부모창 새로고침
 	window.opener.location.reload();
 	window.close();
+}
+
+function memListPaging(idx){
+	memberList.do
 }
 
 ////////////////////////////////////// 호스트리스트 관련 함수 끝 /////////////////////////////////////////

@@ -14,7 +14,8 @@ public class MemberVO {
 	
 	public MemberVO() {}
 	
-	public MemberVO(int mem_num, String mem_name, String mem_id, String mem_pw, String mem_tel, String mem_email, String mem_sign, int mem_host_Cnt) { 
+	public MemberVO(int mem_num, String mem_name, String mem_id, String mem_pw, 
+					String mem_tel, String mem_email, String mem_sign, int mem_host_Cnt) { 
 		this.mem_num=mem_num;
 		this.mem_name=mem_name;
 		this.mem_id=mem_id;

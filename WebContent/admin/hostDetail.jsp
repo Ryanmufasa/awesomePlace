@@ -10,6 +10,8 @@
 <meta charset="UTF-8">
 <title></title>
 <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
+<link href="${contextPath }/resources/css/Header.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
+<link href="${contextPath }/resources/css/adminPage.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
 <script src="${contextPath }/resources/js/jquery-3.6.0.js?v=<%=System.currentTimeMillis() %>" ></script>
 <script src ="${contextPath }/resources/js/adminPage.js?v=<%=System.currentTimeMillis() %>"></script>
 <script>
@@ -26,6 +28,7 @@
 </script>
 </head>
 <body>
+	<h1 align="center">${hostDetail.host_name} 상세정보</h1>
 	<table border="1" style="width:400px;, left:calc(50% - 150px); margin:auto;">
 		<tr><th>No.${hostDetail.host_num}</th><th>${hostDetail.host_name}</th></tr>
 		<tr><th>등록자</th>
@@ -45,13 +48,14 @@
 		<tr><th>호스트 활성화</th><td>${hostDetail.sign}</td></tr>
 		<tr><th>활성화 전환</th>
 			<td>
-				<button onclick="switchHostSign(${hostDetail.host_num},'${hostDetail.sign }');">
+				<button id="queueConfirm" onclick="switchHostSign(${hostDetail.host_num},'${hostDetail.sign }');">
 						<c:if test="${hostDetail.sign eq 'true' }">호스트 비활성화</c:if>
 						<c:if test="${hostDetail.sign eq 'false' }">호스트 활성화</c:if>
 				</button>
 			</td>
 		</tr>
 	</table>
+	<br>
 	<button style="position:absolute; left:calc(50% - 20px);" onclick="openerReload();">닫기</button>
 </body>
 </html>

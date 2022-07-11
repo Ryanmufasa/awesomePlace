@@ -7,7 +7,6 @@
 		var ssAdminPage = (sessionStorage.getItem("adminPage")=="null") ? false : true;
 		var ssMyPage = (sessionStorage.getItem("myPage")=="null") ? false : true;
 		var ssHostingPage = (sessionStorage.getItem("hostingPage")=="null") ? false : true;
-		var askDoubleCheck = (sessionStorage.getItem("askDoubleCheck")=="null") ? false : true;
 			
 			if(ssId && ssShowAdmin){ //버튼 노출여부 결정
 				$("#btnLogin").attr("hidden", true);
@@ -18,8 +17,9 @@
 				$("#btnAdmin").attr("hidden", false);
 				if(!ssAdminPage){
 					$("#btnAdmin").text("관리자페이지");
-				}else{
+				}else if(ssAdminPage){
 					$("#btnAdmin").text("사용자페이지");
+					
 				}
 			}else if(ssId){
 				$("#btnAdmin").attr("hidden", true);
@@ -41,27 +41,22 @@
 			$("#btnLogout").on("click",(function(){
 				location.assign("logout.do");
 			}));
-			$("#btnAdminIn").on("click",(function(){
+			$("#btnAdmin").on("click",(function(){
 				if(!ssAdminPage){
-					location.assign("admin.do");
+					location.assign("adminIn.do");
 				}else{
-					location.assign("main.do");
+					location.assign("adminOut.do");
 				}
 			}));
 			$("#btnMyHosting").on("click",(function(){
 				if(ssId){
-					location.assign("myHosting.do");
+					location.assign("myhosting.do");
 				}else{
 					location.assign("loginform.do");
 				}
 			}));
 			$("#btnMyPage").on("click",(function(){
-				if(ssId){
 					location.assign("MyPage.do");
-				}else {
-					location.assign("loginform.do");
-				}
-					
 			}));
 			$("#btnLogin").on("click",(function(){
 				location.assign("loginform.do");
@@ -71,7 +66,7 @@
 			}));
 			$("#img1").on("click",(function(){
 				if(ssAdminPage){
-					location.assign("admin.do");
+					location.assign("adminIn.do");
 				}else{
 					location.assign("main.do");
 				}
@@ -89,17 +84,13 @@
 			
 			
 			$("#csCenter").on("click",(function(){
-				if(ssId && askDoubleCheck) {
+				if(ssId){
 					location.assign("MyAskForm.do");
-				}else if(ssId) {
-					location.assign("AskPwCheck.do");
-				}else {
-					alert("로그인이 필요한 서비스입니다.");
+				}else{
 					location.assign("loginform.do");
 				}
 			}));
-			
-			
+		
 			var mainBottom = $("#counter").offset().top; //메인 div 높이 반응형설정
 			$(".mainDiv, .mainDiv-image, .nav").css("height",mainBottom-140);
 			$(".navLine").css("height",mainBottom-140);
@@ -152,4 +143,20 @@
 		}else{
 			$("#optionInput").prop("type","hidden");
 		}
+	}
+	
+	function tagSearch(idx){
+		var url = "tagSearch.do?idx="+idx;
+		location.href=url;
+	}
+	
+	function LScroll(){
+		$(".CD").animate({
+			scrollLeft: "-=250px"
+		}, 300);
+	}
+	function RScroll(){
+		$(".CD").animate({
+			scrollLeft: "+=250px"
+		}, 300);
 	}

@@ -13,6 +13,7 @@ public class AdminOutService implements ServiceInterface{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession ss1 = request.getSession();
 		ss1.removeAttribute("adminPage");
+		
 	}
 
 }

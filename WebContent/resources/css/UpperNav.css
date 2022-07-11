@@ -1,6 +1,9 @@
+/* https://github.com/Ryanmufasa/awesomePlace/issues/28 작성자: 이명진 */
 @charset "UTF-8";
 	:root {
 		--upperNavH:50px;
+		--hoverColor:#3232FF;
+		--hoverBackColor:#79FFCE;
 	}
 	.upperNav{
 		text-align:center;
@@ -11,14 +14,62 @@
 		height:var(--upperNavH);
 		top:0px;
 		display:block;
-		background-color:rgba(125,125,125,0.7);
+		background-color:rgba(125,125,125,0.0);
 		margin:auto;
 		z-index:3;
 	}
 	
-	.upperNav>div>button,#tags{
-		background-color:rgba(255,255,255,0.7);
+	.btn{
+		font-size:20px;
+		font-weight:bold;
+		letter-spacing:2px;
+		border:0px;
+		background-color:rgba(255,255,255,0.5);
 		color:rgba(0,0,0,0.7);
+		cursor:pointer;
+		position:relative;
+		transition:all 0.8s;
+		overflow:hidden;
+	}
+	
+	.btn:focus{
+		outline: none;
+	}
+	
+	.btn::before,
+	.btn::after {
+		content:"";
+		position:absolute;
+		height:100%;
+		width:3px;
+		top:0px;
+		background-color:var(--hoverColor);
+		transition: all 0.8s;
+	}
+	
+	.btn::before{
+		left:0px;
+		transform: translateY(-100%);
+	}
+	.btn::after{
+		right:0px;
+		transform: translateY(100%);
+	}
+	
+	.btn:hover{
+		background-color:var(--hoverBackColor);
+		color:var(--hoverColor);
+		font-size:30px;
+	}
+	
+	.btn:hover::before,
+	.btn:hover::after {
+		transform: translateY(0%);
+	}
+	
+	.btn:active{
+		filter: invert(100%);
+		transition: none;
 	}
 	
 	.LD{
@@ -39,34 +90,33 @@
 	.CD{
 		position:absolute;
 		float:left;
-		width:calc(100% - 80px);
 		height:var(--upperNavH);
+		width:calc(100% - 80px);
 		left:40px;
-		overflow:hidden;
-		display:table;
+		overflow:scroll;
 		white-space:nowrap;
 	}
 	
 	.CD>table{
 		height:var(--upperNavH);
+		width:auto;
 		border-collapse: separate;
 		border-spacing: 0;
 		border:none;
 		overflow:hidden;
 		white-space:nowrap;
+		table-layout:fixed;
 	}
 	
-	.CD>table>*{
-		border:none;
+	#td{
+		padding:0px;
 	}
 	
-	
-/* 	.CD::-webkit-scrollbar{  */
-/* 		display:none; */
-/* 	} */
+	.CD::-webkit-scrollbar{ 
+		display:none;
+	}
 	
 	#tags{
-		position:static;
 		float:left;
 		height:var(--upperNavH);
 	}

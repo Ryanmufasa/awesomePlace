@@ -1,5 +1,5 @@
 <!-- https://github.com/Ryanmufasa/awesomePlace/issues/28 작성자: 이명진 -->
-<%@page import="java.awt.print.Printable"%>
+<%-- <%@page import="java.awt.print.Printable"%> --%>
 <%@page import="hashtag.HashtagVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="member.MemberDAO"%>
@@ -14,16 +14,17 @@
    %>
 	<div class="upperNav">
 		<div class="LD">
-			<button id="LScroll">&lt;</button>
+			<button class="btn" id="LScroll" onclick="LScroll()">&lt;</button>
 		</div>
 				<div class="CD">
-						<c:forEach var="tagList" items="${tagList}" varStatus="status">
-							<button id="tags" value="${tagList.tag_name }">#${tagList.tag_name }</button>
+					<table class="CDtable"><tr>
+						<c:forEach var="tagList" items="${tagList}">
+							<td id="td"><button class="btn" id="tags" onclick="tagSearch(${tagList.tag_num})">
+							#${tagList.tag_name }</button></td>
 						</c:forEach>
+					</tr></table>
 				</div>
 		<div class="RD">
-			<button id="RScroll">&gt;</button>
+			<button class="btn" id="RScroll" onclick="RScroll()">&gt;</button>
 		</div>
 	</div>
-
-	

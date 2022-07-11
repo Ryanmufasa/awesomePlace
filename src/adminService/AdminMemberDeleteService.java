@@ -22,7 +22,14 @@ public class AdminMemberDeleteService implements ServiceInterface {
 			idx = Integer.parseInt(temp);
 		}
 		System.out.println(idx);
-		boolean memDelRes = dao.getMemberDelete(idx);
+		boolean result = dao.getMemberDelete(idx);
+		String memDelRes;
+		
+		if(result) {
+			memDelRes = "true";
+		}else {
+			memDelRes = "false";
+		}
 		
 		request.setAttribute("memDelRes", memDelRes);
 	}

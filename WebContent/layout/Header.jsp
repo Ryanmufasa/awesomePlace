@@ -1,5 +1,4 @@
 <!-- https://github.com/Ryanmufasa/awesomePlace/issues/9 | 작성자 이명진 -->
-<%@page import="member.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -12,6 +11,7 @@
 	<link href="${contextPath }/resources/css/Header.css?v=<%=System.currentTimeMillis() %>" rel="stylesheet">
 	<script src="${contextPath }/resources/js/jquery-3.6.0.js?v=<%=System.currentTimeMillis() %>" ></script>
 	<script src ="${contextPath }/resources/js/Header.js?v=<%=System.currentTimeMillis() %>"></script>
+	<script src="${contextPath }/resources/js/Nav.js?v=<%=System.currentTimeMillis() %>"></script>
 	<%-- 스크립트 추가 --- 작성자 정다영  --%>
 	<script src ="${contextPath }/resources/js/Search.js?v=<%=System.currentTimeMillis() %>" ></script>
 	<script src ="${contextPath }/resources/js/LoginNout.js?v=<%=System.currentTimeMillis() %>"></script>
@@ -21,19 +21,20 @@
 	<script>
 		<% 
 			HttpSession ss1 = request.getSession();
-			MemberVO mem_id = (MemberVO)ss1.getAttribute("mem_id"); //memverVO 포함 세션
+			String mem_id = (String)ss1.getAttribute("mem_id"); //memverVO 포함 세션
 			String showAdmin = (String)ss1.getAttribute("showAdmin"); // admin로그인 확인 세션
 			String adminPage = (String)ss1.getAttribute("adminPage");// adminPage 진입 확인 세션
 			String myPage = (String)ss1.getAttribute("myPage");// myPage진입 확인세션 확인 세션
 			String hostingPage = (String)ss1.getAttribute("hostingPage");// hostingPage 진입 확인 세션
-			String askDoubleCheck = (String)ss1.getAttribute("doubleCheck");
+			if(mem_id == null){
+				ss1.setAttribute("URL", request.getRequestURI());
+			}
 		%>
 			sessionStorage.setItem("mem_id", "<%=mem_id%>");
 			sessionStorage.setItem("showAdmin", "<%=showAdmin%>");
 			sessionStorage.setItem("adminPage", "<%=adminPage%>");
 			sessionStorage.setItem("myPage", "<%=myPage%>");
 			sessionStorage.setItem("hostingPage", "<%=hostingPage%>");
-			sessionStorage.setItem("askDoubleCheck", "<%=askDoubleCheck%>");
 	</script>
 </head>
 <body>
@@ -61,8 +62,7 @@
 			</div>
 			
 			<div class="adBtns">
-					<button id="btnAdmin" hidden="true">
-						관리자 페이지</button>
+					<button id="btnAdmin" hidden="true"></button>
 			</div>
 				
 	<div id="searchBar"> <!-- 검색창 블록 -->
