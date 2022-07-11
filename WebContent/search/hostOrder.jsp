@@ -29,11 +29,9 @@
 <
 <h2>${msg }</h2>
 
-<a href="/awesomePlace/">
-홈으로
-</a>
-
-
+<button type="button" onclick="location.href='main.do'">메인 화면으로</button>
+<br>
+<button type="button" onclick="location.href='history.back()'">뒤로가기</button>
 
 </c:if>
 
