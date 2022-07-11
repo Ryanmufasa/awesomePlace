@@ -20,7 +20,7 @@ public class AddNewHostService implements ServiceInterface {
 		
 		// 현재 로그인 세션에 저장된 계정 정보 가져오기
 		HttpSession session = request.getSession();
-		MemberVO memvo = (MemberVO)session.getAttribute("login");
+		MemberVO memvo = (MemberVO)session.getAttribute("mem_id");
 		
 		int mem_num = memvo.getMem_num();
 		String mem_id = memvo.getMem_id();

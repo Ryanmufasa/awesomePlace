@@ -2,12 +2,12 @@
 <%--임시 페이지  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file ="/layout/SearchHeader.jsp" %>    
+<%@ include file ="/layout/Header.jsp" %>    
+<div align="center" class="mainDiv">
 
 <c:if test="${check }">
 
 
-<div align="center" class="mainDiv">
 
 <h2>${msg }</h2>
 
@@ -16,13 +16,12 @@
 </a>
 
 
-</div>
+
 
 </c:if>
 <c:if test="${!check }">
 
-<div align="center" class="mainDiv">
-
+<
 <h2>${msg }</h2>
 
 <a href="/awesomePlace/">
@@ -30,9 +29,9 @@
 </a>
 
 
-</div>
 
 </c:if>
 
+</div>
 
-<%@ include file="/layout/SearchFooter.jsp" %>
+<%@ include file="/layout/Footer.jsp" %>

@@ -1,4 +1,5 @@
-// 개인 작업을 위한 작성  -- 작성자 정다영
+// https://github.com/Ryanmufasa/awesomePlace/issues/57 , 
+// https://github.com/Ryanmufasa/awesomePlace/issues/44  작성자 정다영
 package orderinfo.orderinfovo;
 
 import java.util.Date;
@@ -60,28 +61,6 @@ public class OrderInfoVO {
 		this.oi_mem_id = oi_mem_id;
 		this.oi_mem_tel = oi_mem_tel;
 	}
-	
-
-	
-	//마이페이지에서 예약내역 작성자 = 고유주
-	public OrderInfoVO(int oi_num, int oi_guest_cnt, Date checkIn_date, Date checkOut_date, Date pay_date, int pay_amt,
-			String oi_sign, String oi_host_name, String oi_host_addr, String oi_host_tel) {
-		super();
-		this.oi_num = oi_num;
-		this.oi_guest_cnt = oi_guest_cnt;
-		this.checkIn_date = checkIn_date;
-		this.checkOut_date = checkOut_date;
-		this.pay_date = pay_date;
-		this.pay_amt = pay_amt;
-		this.oi_sign = oi_sign;
-		this.oi_host_name = oi_host_name;
-		this.oi_host_addr = oi_host_addr;
-		this.oi_host_tel = oi_host_tel;
-	}
-	
-	
-	
-	
 
 	public int getOi_num() {
 		return oi_num;

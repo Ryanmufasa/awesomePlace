@@ -17,11 +17,13 @@
 			<button id="LScroll">&lt;</button>
 		</div>
 				<div class="CD">
-						<c:forEach var="tagList" items="${tagList}">
-							<button id="tags">#${tagList.tag_name }</button>
+						<c:forEach var="tagList" items="${tagList}" varStatus="status">
+							<button id="tags" value="${tagList.tag_name }">#${tagList.tag_name }</button>
 						</c:forEach>
 				</div>
 		<div class="RD">
 			<button id="RScroll">&gt;</button>
 		</div>
 	</div>
+
+	

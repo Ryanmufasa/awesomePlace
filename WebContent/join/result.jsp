@@ -5,8 +5,7 @@
 <c:if test="${check }">
 	<script>
 		alert("${msg}");
-		location.href="/awesomePlace/login/loginForm.do";
-		<% session.setAttribute("URL", "http://localhost:6571/awesomePlace/"); %>
+		location.href="/awesomePlace/login/loginform.do";
 	</script>
 </c:if>
 <c:if test="${!check }">

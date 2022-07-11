@@ -12,7 +12,6 @@
 
 </style>
 <!-- 기존 호스트 정보 입력 방식  -->
-<!-- UI 임시 디자인 -->
 <div class="mainDiv-child" align="center">
 <fieldset>
 <form action="${contextPath }/myhosting/addNewCheck.do" method="post" name="addHostForm">
@@ -37,7 +36,7 @@
 				<input type="tel" name="host_tel" id="host_tel" required maxlength='13'
 					onkeyup = "this.value=this.value.replace(/[^0-9]/g,'')"
 					placeholder = "-를 제외한 전화번호 또는 휴대폰 번호 입력 "
-					value="${login.mem_tel }"
+					value="${mem_id.mem_tel }"
 					>
 			</td>
 		</tr>

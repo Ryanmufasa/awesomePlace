@@ -41,7 +41,13 @@
 		</c:otherwise>
 		</c:choose>
 	</table>
+	<br><br><br>
+	<button onclick="history.back()">뒤로가기</button>
+	
+	
+	
 	</div>
+	
 	<span id="counter"></span>
 </div>
 
@@ -73,7 +79,5 @@ function getInfo(oi_num){
 	window.open(url, 'orderInfoPop', windowSet);
 	
 }
-
-
 </script>
 <%@ include file="/layout/Footer.jsp" %> 

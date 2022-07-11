@@ -1,10 +1,16 @@
 //https://github.com/Ryanmufasa/awesomePlace/issues/27 작성자: 이명진
 
-		var ssAdminPage = (sessionStorage.getItem("adminPage")=="null") ? false : true;
-		var ssMyPage = (sessionStorage.getItem("myPage")=="null") ? false : true;
-		var ssHostingPage = (sessionStorage.getItem("hostingPage")=="null") ? false : true;
+		var ssAdminPage; 
+		var ssMyPage;
+		var ssHostingPage; 
 
 $("document").ready(function(){
+	
+	ssAdminPage = (sessionStorage.getItem("adminPage")=="null") ? false : true;
+	ssMyPage  = (sessionStorage.getItem("myPage")=="null") ? false : true;
+	ssHostingPage = (sessionStorage.getItem("hostingPage")=="null") ? false : true;
+	
+	
 			if(!ssAdminPage && !ssMyPage && !ssHostingPage){ // 내비게이션 노출여부 결정
 				$(".nav").attr("hidden", true);
 				$(".navLine").attr("hidden", true);

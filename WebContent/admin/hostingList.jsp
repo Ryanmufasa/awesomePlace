@@ -1,9 +1,8 @@
 <!-- https://github.com/Ryanmufasa/awesomePlace/issues/50 작성자: 이명진 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
 <%@include file ="/layout/Header.jsp" %>
-<script src ="${contextPath }/resources/js/adminPage.js?v=<%=System.currentTimeMillis() %>"></script>
+<script src ="${contextPath }/resources/js/adminPage.js?v=<%=System.currentTimeMillis() %>"></script> 
+
 <div class="mainDiv-child">
 <table border="1">
 	<tr><th>하우스 이름</th><th>회원 아이디</th><th>등록일자</th><th>활성화여부</th></tr>

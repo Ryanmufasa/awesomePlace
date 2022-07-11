@@ -9,12 +9,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import awesomePlace.dbConn.DBConn;
-
+import hashtag.HashtagVO;
 import host.hostvo.HostVO;
 
 public class HostDAO {
 	
-	private Connection con = new DBConn().getConnection();
+	private Connection con;
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
@@ -29,6 +29,16 @@ public class HostDAO {
 		return instance;
 	}
 	
+	private void closeAll() {
+		try {
+			if(rs != null) rs.close();
+			if(ps != null) ps.close();
+			if(con != null) con.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	// 전체 호스트 목록 가져오기 - 관리자만
 	public ArrayList<HostVO> getAllHost(){
@@ -39,6 +49,7 @@ public class HostDAO {
 		HostVO vo = null;
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -63,6 +74,8 @@ public class HostDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			closeAll();
 		}
 
 		if(hostli.isEmpty()) {
@@ -85,6 +98,7 @@ public class HostDAO {
 		HostVO vo = null;
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -109,6 +123,8 @@ public class HostDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			closeAll();
 		}
 		
 		if(hostli.isEmpty()) {
@@ -129,6 +145,7 @@ public class HostDAO {
 		HostVO vo = null;
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, host_num);
 			rs = ps.executeQuery();
@@ -153,6 +170,8 @@ public class HostDAO {
 				
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally{
+			closeAll();
 		}
 		
 		return vo;
@@ -167,6 +186,7 @@ public class HostDAO {
 		HostVO vo = null;
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, mem_num);
 			rs = ps.executeQuery();
@@ -193,12 +213,7 @@ public class HostDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		
 		if(hostli.isEmpty()) {
@@ -217,6 +232,7 @@ public class HostDAO {
 		boolean check =false;
 		String sql = "select * from host where mem_num=?";
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, mem_num);
 			rs = ps.executeQuery();
@@ -246,6 +262,7 @@ public class HostDAO {
 				+ "?, sysdate, 'false',?,?)";
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, vo.getHost_name());
 			ps.setString(2, vo.getHost_addr());
@@ -289,7 +306,7 @@ public class HostDAO {
 		String sql = "select * from host where sign='true' and host_addr like ? ";
 		
 		try { 
-			
+			con = new DBConn().getConnection();
 			if(!checkIn.equals("") && checkOut.equals("") ) { // 체크인 날짜만 있으면
 				// 검색어, 체크인날짜, 숙박인원 
 				sql += "and guest_cnt >= ?  order by host_num desc";
@@ -300,11 +317,17 @@ public class HostDAO {
 				
 			}else if(!checkIn.equals("") && !checkOut.equals("")) { // 체크인, 체크아웃 둘다 있으면
 				// 검색어, 체크인, 체크아웃, 숙박인원
-				sql += "and guest_cnt >= ?  order by host_num desc";
+				sql += "and guest_cnt >= ?  "
+						+ "and host_num not in(select distinct oi_host_num from orderinfo "
+						+ "where checkout_date  between to_date(?) and to_date(?) "
+						+ "and oi_sign in ('confirm','wait')) "
+						+ "order by host_num desc";
 				
 				ps = con.prepareStatement(sql);
-				ps.setString(1, keyword);
-				ps.setInt(2, guestCnt);
+				ps.setString(1, keyword); // 검색어
+				ps.setInt(2, guestCnt); // 숙박인원
+				ps.setString(3, checkIn); // 체크인일자
+				ps.setString(4, checkOut); // 체크아웃일자
 				
 			}else { // 검색어가 없는 경우에도 '%%' 으로 실행됨. 
 				// 체크인, 체크아웃 없고, guestCnt 조건만 판단
@@ -339,12 +362,7 @@ public class HostDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		
 		if(hostli.isEmpty()) {
@@ -373,7 +391,7 @@ public class HostDAO {
 				+ "host_content=? where host_num=?";
 		
 		try {
-			
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, vo.getHost_name());
@@ -407,21 +425,71 @@ public class HostDAO {
 		return check;
 	}
 	
+	// 호스트 기본 정보 수정시
+	public int updateinfo1(HostVO vo) {
+		int result = 0;
+		String sql = "update host set host_name=?, host_tel=?, host_content=? "
+				+ "where host_num=?";
+		try{
+			con = new DBConn().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, vo.getHost_name());
+			ps.setString(2, vo.getHost_tel());
+			ps.setString(3, vo.getHost_content());
+			ps.setInt(4, vo.getHost_num());
+			if(ps.executeUpdate() != 0) {
+				result = 1;
+			}
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			closeAll();
+		}
+		
+		return result;
+	}
+	
+	// 호스트 종류 변경 시
+	public int updateinfo2(HostVO vo) {
+		int result = 0;
+		String sql = "update host set room_type=?, room_cnt=?, guest_cnt=? "
+				+ "where host_num=?";
+		try{
+			con = new DBConn().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, vo.getRoom_type());
+			ps.setInt(2, vo.getRoom_cnt());
+			ps.setInt(3, vo.getGuest_cnt());
+			ps.setInt(4, vo.getHost_num());
+			if(ps.executeUpdate() != 0) {
+				result = 1;
+			}
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			closeAll();
+		}
+		
+		return result;
+	}
 	
 	// 호스트 가격정보만 수정시 
-	public boolean updateAmt(HostVO vo) {
-		boolean check=false;
+	public int updateAmt(HostVO vo) {
+		int result = 0;
 		
 		String sql ="update host set weekday_amt=?, weekend_amt=? "
 				+ "where host_num=?";
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, vo.getWeekday_amt());
 			ps.setInt(2, vo.getWeekend_amt());
 			ps.setInt(3, vo.getHost_num());
 			if(ps.executeUpdate() != 0) {
-				check = true;
+				result = 1;
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -434,7 +502,7 @@ public class HostDAO {
 			}
 		}
 
-		return check;
+		return result;
 	}
 	
 	// 호스트 등록 삭제 
@@ -447,6 +515,7 @@ public class HostDAO {
 		String sql ="delete host where host_num=?";
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, vo.getHost_num());
 			if(ps.executeUpdate()!=0) {
@@ -466,6 +535,30 @@ public class HostDAO {
 		
 		return check;
 	}
+	
+	// 회원이 호스팅 중인 호스트 중지 
+	public boolean stopHost(HostVO vo) {
+		boolean check = false;
+		
+		String sql = "update host set sign='false' where host_num=?";
+		
+		try {
+			con = new DBConn().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, vo.getHost_num());
+			if(ps.executeUpdate()!=0) {
+				check = true;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("호스트 중지");
+			
+		}finally {
+			closeAll();
+		}
+		
+		return check;
+	}
 
-
+	
 }

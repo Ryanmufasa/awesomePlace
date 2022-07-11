@@ -20,7 +20,7 @@ public class GetMyHostListService implements ServiceInterface {
 		
 		HttpSession session = request.getSession();
 		
-		MemberVO loginVO = (MemberVO) session.getAttribute("login");
+		MemberVO loginVO = (MemberVO) session.getAttribute("mem_id");
 		
 		int mem_num = loginVO.getMem_num();
 		
@@ -34,7 +34,7 @@ public class GetMyHostListService implements ServiceInterface {
 		if(myHostList != null) {
 			System.out.println("호스트 정보를 불러옵니다.");
 			check = true;
-			//session.setAttribute("myHostList", myHostList);
+			//session.setAttribute("hostingPage", check);
 			request.setAttribute("myHostList", myHostList);
 		}else {
 			System.out.println("등록된 호스트 정보가 업습니다");

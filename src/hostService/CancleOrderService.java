@@ -16,15 +16,15 @@ public class CancleOrderService implements ServiceInterface {
 		int oi_num = Integer.parseInt(request.getParameter("oi_num"));
 		System.out.println("oi_num : " + oi_num);
 		
-		int a = OrderInfoDAO.getInstance().cancleOrder(oi_num);
-		
-		if(a == 1) {
+		int cancleResult = OrderInfoDAO.getInstance().cancleOrder(oi_num);
+		System.out.println(cancleResult);
+		if(cancleResult == 1) {
 			System.out.println("예약 승인 취소 완료");
 		}else {
 			System.out.println("예약 승인 실패 ");
 		}
 		
-		request.setAttribute("a", a);
+		request.setAttribute("cancleResult", cancleResult);
 		
 	}
 

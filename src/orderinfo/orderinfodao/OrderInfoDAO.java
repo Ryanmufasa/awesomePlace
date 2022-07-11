@@ -1,4 +1,5 @@
-// 개인 작업을 위한 작성  -- 작성자 정다영
+// https://github.com/Ryanmufasa/awesomePlace/issues/57 , 
+// https://github.com/Ryanmufasa/awesomePlace/issues/44  작성자 정다영
 package orderinfo.orderinfodao;
 
 import java.sql.Connection;
@@ -12,7 +13,7 @@ import orderinfo.orderinfovo.OrderInfoVO;
 
 public class OrderInfoDAO {
 	
-	private Connection con = new DBConn().getConnection();
+	private Connection con;
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
@@ -26,6 +27,16 @@ public class OrderInfoDAO {
 	}
 	
 	
+	private void closeAll() {
+		try {
+			if(rs != null) rs.close();
+			if(ps != null) ps.close();
+			if(con != null) con.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	// 전체 예약 내역 조회 - 관리자용
 	public ArrayList<OrderInfoVO> getOrderInfoList(){
 		
@@ -36,6 +47,7 @@ public class OrderInfoDAO {
 		OrderInfoVO vo = null;
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
@@ -46,12 +58,7 @@ public class OrderInfoDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		
 		if(orderli.isEmpty()) {
@@ -103,6 +110,7 @@ public class OrderInfoDAO {
 				+ "?,?,?,sysdate,?,'wait',"
 				+ "?,?,?,?,?,?,?)";
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, vo.getOi_guest_cnt());
 			ps.setDate(2, new java.sql.Date(vo.getCheckIn_date().getTime()));
@@ -123,11 +131,7 @@ public class OrderInfoDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		return check;
 	}
@@ -143,6 +147,7 @@ public class OrderInfoDAO {
 		String sql ="select * from orderinfo where oi_host_num=?";
 		
 		try {
+			con = new DBConn().getConnection();
 			ps= con.prepareStatement(sql);
 			ps.setInt(1, oi_host_num);
 			rs = ps.executeQuery();
@@ -153,12 +158,7 @@ public class OrderInfoDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		
 		if(oili.isEmpty()) {
@@ -179,6 +179,7 @@ public class OrderInfoDAO {
 		String sql = "select * from orderinfo where oi_num=?";
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, oi_num);
 			rs = ps.executeQuery();
@@ -188,12 +189,7 @@ public class OrderInfoDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(rs != null) rs.close();
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		
 		return vo;
@@ -208,6 +204,7 @@ public class OrderInfoDAO {
 		String sql = "update orderinfo set oi_sign='confirm' where oi_num=?";
 		
 		try {
+			con = new DBConn().getConnection();
 			ps=con.prepareStatement(sql);
 			ps.setInt(1, oi_num);
 			if(ps.executeUpdate() != 0) {
@@ -217,11 +214,7 @@ public class OrderInfoDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		
 		return a;
@@ -235,6 +228,7 @@ public class OrderInfoDAO {
 		String sql = "update orderinfo set oi_sign='cancle' where oi_num=?";
 		
 		try {
+			con = new DBConn().getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, oi_num);
 			if(ps.executeUpdate() != 0) {
@@ -244,118 +238,69 @@ public class OrderInfoDAO {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
-			try {
-				if(ps != null) ps.close();
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll();
 		}
 		return a;
 	}
 	
 	
-	
-	//전체 목록 불러오기 작성자 = 고유주
-		// 조회 select / 삽입 insert / 삭제 delete / 수정 update
-		public ArrayList<OrderInfoVO> getAllreser(String oi_mem_id){
-			ArrayList<OrderInfoVO> reser = new ArrayList<OrderInfoVO>();
-			String sql = "select * from orderinfo where oi_mem_id=?";
-			OrderInfoVO vo = null;
-			try {
-
-				ps = con.prepareStatement(sql);
-				ps.setString(1, oi_mem_id);
-				rs = ps.executeQuery();
-				while(rs.next()) {
-					vo = new OrderInfoVO();
-					vo.setOi_num(rs.getInt("oi_num"));
-					vo.setOi_guest_cnt(rs.getInt("oi_guest_cnt"));
-					vo.setCheckIn_date(rs.getDate("checkIn_date"));
-					vo.setCheckOut_date(rs.getDate("checkOut_date"));
-					vo.setPay_date(rs.getDate("pay_date"));
-					vo.setPay_amt(rs.getInt("pay_amt"));
-					vo.setOi_sign(rs.getString("oi_sign"));
-					vo.setOi_host_num(rs.getInt("oi_host_num"));
-					vo.setOi_host_name(rs.getString("oi_host_name"));
-					vo.setOi_host_addr(rs.getString("oi_host_addr"));
-					vo.setOi_host_post_num(rs.getString("oi_host_post_num"));
-					vo.setOi_host_tel(rs.getString("oi_host_tel"));
-					vo.setOi_mem_id(rs.getString("oi_mem_id"));
-					vo.setOi_mem_tel(rs.getString("oi_mem_tel"));
-					reser.add(vo);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}		
-			if(reser.isEmpty()) {
-				reser = null;
-				System.out.println("예약내역 없음");
-			}else {
-				reser.trimToSize();
+	// 호스트 중지시 예약 내역 존재 유무 확인
+	public boolean findOrder(int oi_host_num) {
+		
+		String sql = "select * from orderinfo "
+				+ "where oi_host_num =? "
+				+ "and checkin_date >= sysdate "
+				+ "and checkout_date >= sysdate "
+				+ "and oi_sign in('confirm','wait')";
+		try {
+			con = new DBConn().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, oi_host_num);
+			rs = ps.executeQuery();
+			if(rs.next()) { // 하나라도 있으면 중지 못함. 
+				System.out.println("남은 예약 일정이 존재");
+				return true;
 			}
-
-			return reser;
-		} 
-
-
-
-		//마이페이지에서 자세히 예약내역 불러오기 작성자 = 고유주
-		public OrderInfoVO getreser(int oi_num) {
-			OrderInfoVO od = new OrderInfoVO();
-			String sql = "select * from orderinfo where oi_num = ?";
-
-			try {
-				ps = con.prepareStatement(sql);
-				ps.setInt(1, oi_num);
-				rs = ps.executeQuery();
-
-				if(rs.next()) {
-					od.setOi_num(rs.getInt("oi_num"));
-					od.setOi_host_name(rs.getString("oi_host_name"));
-					od.setOi_host_addr(rs.getString("oi_host_addr"));
-					od.setOi_host_tel(rs.getString("oi_host_tel"));
-					od.setOi_guest_cnt(rs.getInt("oi_guest_cnt"));
-					od.setCheckIn_date(rs.getDate("checkIn_date"));
-					od.setCheckOut_date(rs.getDate("checkOut_date"));
-					od.setPay_amt(rs.getInt("pay_amt"));
-					od.setPay_date(rs.getDate("pay_date"));
-					od.setOi_sign(rs.getString("oi_sign"));
-
-				}
-			}catch(SQLException e){
-				e.printStackTrace();
-			}finally{
-				try {
-					if(rs != null) rs.close();
-					if(ps != null) ps.close();
-				}catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			return od;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			closeAll();
 		}
+		
+		return false;
+		
+	}
 
-
-
-
-
-		//마이페이지 예약내역 삭제 작성자 = 고유주
-		public boolean deletereser (OrderInfoVO vo) {
-			boolean reser = false;
-			String sql = "delete orderinfo where oi_mem_id=?";
-
-			try {
-				ps = con.prepareStatement(sql);
-				ps.setString(1, vo.getOi_mem_id());
-				if(ps.executeUpdate() !=0) {
-					reser = true;
-				}
-
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
-			return reser;
-		}
 	
-
+	// 예약 가능한지 확인하기
+	public int checkOrderOk(int oi_host_num, String checkIn_date, String checkOut_date) {
+		int result = 0;
+		
+		String sql = "select * from orderinfo "
+				+ "where oi_host_num=? "
+				+ "and checkIn_date between ? and ? "
+				+ "or checkOut_date between ? and ?";
+		
+		try {
+			con = new DBConn().getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, oi_host_num);
+			ps.setString(2, checkIn_date);
+			ps.setString(3, checkOut_date);
+			ps.setString(4, checkIn_date);
+			ps.setString(5, checkOut_date);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				result += 1;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			closeAll();
+		}
+		
+		return result;
+	}
+	
+	
 }

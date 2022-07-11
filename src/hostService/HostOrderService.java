@@ -32,7 +32,7 @@ public class HostOrderService implements ServiceInterface {
 		
 		// 현재 로그인 중인 회원 정보
 		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO) session.getAttribute("login");
+		MemberVO mvo = (MemberVO) session.getAttribute("mem_id");
 		String m_id = mvo.getMem_id();
 		String m_tel = mvo.getMem_tel();
 		System.out.println("예약하는 회원 아이디 : " + m_id  );

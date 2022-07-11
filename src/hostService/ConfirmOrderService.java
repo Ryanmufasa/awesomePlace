@@ -17,15 +17,15 @@ public class ConfirmOrderService implements ServiceInterface {
 		int oi_num = Integer.parseInt(request.getParameter("oi_num"));
 		System.out.println("oi_num : " + oi_num);
 		
-		int a = OrderInfoDAO.getInstance().confirmOrder(oi_num);
-		
-		if(a == 1) {
+		int confirmResult = OrderInfoDAO.getInstance().confirmOrder(oi_num);
+		System.out.println(confirmResult);
+		if(confirmResult == 1) {
 			System.out.println("예약 승인 완료");
 		}else {
 			System.out.println("예약 승인 실패");
 		}
 		
-		request.setAttribute("a", a); 
+		request.setAttribute("confirmResult", confirmResult); 
 	}
 
 }
