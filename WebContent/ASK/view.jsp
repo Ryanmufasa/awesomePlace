@@ -43,8 +43,7 @@ input {
 
 #button12345 {
   position: absolute;
-  left: 150px;
-  right: 50px;
+  right: 1000px;
   top: 15px;
   width: 70px;
   height: 70px;
@@ -84,7 +83,7 @@ body{
 
 <div class="mainDiv-child">
 
-<button id="button12345" onclick="history.back()" style="cursor:pointer;"><img id="imgback" src="${pageContext.request.contextPath }/image/qna/back.png"></button>
+<button id="button12345" onclick="history.go(-2)" style="cursor:pointer;"><img id="imgback" src="${pageContext.request.contextPath }/image/qna/back.png"></button>
 
 <div align="center">
 

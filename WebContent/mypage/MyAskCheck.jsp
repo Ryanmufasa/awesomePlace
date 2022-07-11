@@ -24,13 +24,19 @@ table, td, th {
 }
 
 table {
-  border-top: 1px solid #444444;
+  border-top: none;
   border-collapse: collapse;
+  position: relative;
+  top: 50px;
 }
 
 th, td {
   border-bottom: 1px solid #444444;
   padding: 10px;
+}
+
+th {
+	border-bottom: none;
 }
   
 td { 		
@@ -39,7 +45,9 @@ td { 
   border: 1px solid #000;		
   overflow:hidden;		
   white-space : nowrap;		
-  text-overflow: ellipsis;	 
+  text-overflow: ellipsis;
+  border: none;
+  text-align: center;
 }	
 
 td.textOverDefault {		
@@ -47,8 +55,21 @@ td.textOverDefault {
   text-overflow: clip; 
 }
 
-#title {
+#title12 {
   text-decoration: none;
+}
+
+#left {
+	border-top-left-radius:14px;
+	border-bottom-left-radius:14px;
+}
+#right {
+	border-top-right-radius:14px;
+	border-bottom-right-radius:14px;
+}
+#goMoonee {
+	position: relative;
+	left: 250px;
 }
 
 </style>
@@ -109,52 +130,63 @@ td.textOverDefault {
 <body>
 
 <% String paging = (String) session.getAttribute("paging"); %>
-
+<%@include file ="/layout/Header.jsp" %>
+<div class="mainDiv-child">
 <div align="center">
 
 	<table>
 		<tr>
-			<th style="height:30px;background-color:#9c9c9c;color:white;font-weight:normal;">
+			<th id="left" style="height:30px;background-color:#9ddb8f;color:white;font-weight:normal;">
 				문의자
 			</th>
-			<th style="height:30px;width:1200px;background-color:#9c9c9c;color:white;font-weight:normal;"> 
+			<th style="height:30px;width:1200px;background-color:#9ddb8f;color:white;font-weight:normal;"> 
 				제목
 			</th>
-			<th style="height:30px;background-color:#9c9c9c;color:white;font-weight:normal;">
+			<th style="height:30px;background-color:#9ddb8f;color:white;font-weight:normal;">
 				등록일자
 			</th>
-			<th style="height:30px;background-color:#9c9c9c;color:white;font-weight:normal;">
+			<th id="left" style="height:30px;background-color:#9ddb8f;color:white;font-weight:normal;">
 				답변여부
 			</th>    
 		</tr>
 <c:forEach var="qvo" items="${list }">
 		<tr>
-			<td align="center" style="border-top: none;border-left: none;border-right: none;">
+			<td>
 				${qvo.getMem_id() }
 			</td>
-			<td align="center" style="border-top: none;border-left: none;border-right: none;">
-				<a id="title" href="${pageContext.request.contextPath }/ASK/view.jsp?qna_num=${qvo.getQna_num() }">${qvo.getQna_title() }</a>
+			<td>
+				<a id="title12" href="${pageContext.request.contextPath }/ASK/view.jsp?qna_num=${qvo.getQna_num() }">${qvo.getQna_title() }</a>
 			</td>
-			<td align="center" style="border-top: none;border-left: none;border-right: none;">
+			<td>
 				${qvo.getQna_date() }
 			</td>
-			<td align="center" style="border-top: none;border-left: none;border-right: none;">
+			<td >
 				${qvo.getQna_sign() }
 			</td>
 		</tr> 
 </c:forEach>
 
 	</table> 
+<c:if test="${empty list}">
+	<br><br><br><br><br><br>			
+	<h1>문의하신 목록이 없습니다.</h1>
+
+
+</c:if>
 </div> <br>
 
 <div style="padding-top: 20px;">
 		<%= paging %>
 </div> <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="${pageContext.request.contextPath }/ASK/MyAskForm.do">문의하러 가기</a>
 
+
+<div align="left" id="goMoonee">
+<a href="${pageContext.request.contextPath }/ASK/MyAskForm.do">문의하러 가기</a>
+</div>
+
+
+</div>
+
+<%@include file ="/layout/Footer.jsp" %>
 </body>
 </html>

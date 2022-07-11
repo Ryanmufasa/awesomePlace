@@ -21,7 +21,7 @@ session.setAttribute("URL", "http://localhost:8080//awesomePlace/search/moreinfo
 <hr>
 	<div class="divInfo">
 		<div class="divInfoL">
-			<h3>숙소 유형</h3>
+			<h3>숙소 정보</h3>
 			<c:set var="room" value="${vo.room_type }"/>
 				<c:if test="${fn:contains(room, 'A')}"><c:out value="집 전체"/></c:if>
 				<c:if test="${fn:contains( room, 'P')}"><c:out value="개인실"/></c:if>
@@ -50,7 +50,7 @@ session.setAttribute("URL", "http://localhost:8080//awesomePlace/search/moreinfo
 		</div>
 	<form action="/awesomePlace/search/hostOrder.do" method="post" name="hostInfo">
 		<div class="divInfoR">
-			<h3>예약</h3>
+			<h3>예약 안내</h3>
 			<p>현재 조회중인 숙소는  </p>
 			<c:if test="${!empty tag_name }">
 			<p>#${tag_name } (으)로 유명해요! </p>

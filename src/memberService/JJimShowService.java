@@ -21,7 +21,7 @@ public class JJimShowService implements ServiceInterface {
 		
 		HttpSession session = request.getSession();
 		
-		MemberVO vo = (MemberVO) session.getAttribute("mem");
+		MemberVO vo = (MemberVO) session.getAttribute("mem_id");
 		
 		int mem_num = vo.getMem_num();
 		

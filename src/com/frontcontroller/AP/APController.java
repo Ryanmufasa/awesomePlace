@@ -49,6 +49,7 @@ import memberLoginService.LoginService;
 import memberLoginService.LogoutService;
 
 import memberService.IDfoundService;
+import memberService.JJimHeartService;
 import memberService.JJimShowService;
 import memberService.MyPagePWService;
 import memberService.MypageOrderinfoClickService;
@@ -212,6 +213,11 @@ public class APController extends HttpServlet {
 	    		serv = new JJimShowService();
 	    		page = new NextPage("Myjjim.jsp", false);
 	    		break;
+	    		
+	    	case "/jjimheart.do": // https://github.com/Ryanmufasa/awesomePlace/issues/53 작성자: 양준모
+	    		serv = new JJimHeartService();
+	    		page = new NextPage("/jjimlist1.do", false);
+	    		break;
 				
 	    	//마이페이지 비밀번호 확인 후 메인 
 			case "/mpmeminfo.do" : //작성자 = 고유주
@@ -234,6 +240,8 @@ public class APController extends HttpServlet {
 				serv = new MypageorderinfoService();
 				page = new NextPage("/mypage/mp_reserInfoFirst.jsp", false);
 				break;	
+				
+				
 	    		
 	    		
 	// 검색   ===============================================================			
@@ -249,7 +257,7 @@ public class APController extends HttpServlet {
 				break;
 				
 			case "/hostOrder.do" : // https://github.com/Ryanmufasa/awesomePlace/issues/57 -- 작성자 정다영 
-				// 마이호스팅 부분 테스트를 위한 임시 예약 처리 서비스 
+				// 마이호스팅 예약 신청 서비스 
 				serv = new HostOrderService(); 
 				page = new NextPage("/search/hostOrder.jsp", false);
 				break;	

@@ -320,7 +320,7 @@ function order(f){
 			//alert('ㅇㅇ');
 			if(confirm('체크인 일자 : ' + cinV +'\n' + '체크아웃 일자 : ' + coutV + '\n' 
 					+ '예약 일수 : ' + dateV + ' 박 '+(dateV+1)+'일') == true ){ // + '금액 : '+ amt + '원'
-				alert('예약 신청화면으로 이동');
+				//alert('예약 신청화면으로 이동');
 				f.submit();
 			}
 		}
@@ -332,7 +332,7 @@ function order(f){
 function addLike(f){
 	
 	alert('찜에 추가');
-	f.attr('action', '#').submit();
+	f.attr('action', '/awesomePlace/mypage/mpreserinfofirst.do').submit();
 	
 }
 
