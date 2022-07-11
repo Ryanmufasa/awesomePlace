@@ -54,8 +54,8 @@ function memHostList(idx) { // 멤버가 보유하고있는 호스트목록 확�
 		window.open(url, name, opt);
 }
 
-function switchSign(idx, flag) { // sign 상태 변경 후 멤버 상세정보페이지로 재진입하는 컨트롤러로 연결
-		var url = "switchSign.do?idx="+idx+"&flag="+flag;
+function switchSign(idx, flag, pageIdx, steadyRowCnt) { // sign 상태 변경 후 멤버 상세정보페이지로 재진입하는 컨트롤러로 연결
+		var url = "switchSign.do?idx="+idx+"&flag="+flag+"&pageIdx"+pageIdx+"steadyRowCnt"+steadyRowCnt;
 		if(flag == "Y"){
 			var queue = window.confirm("회원 비활성화를 진행하십니까?");
 			if(queue)

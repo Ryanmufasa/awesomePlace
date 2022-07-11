@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/sql" %>
-<%@page import="orderinfo.OrderinfoVO"%>
+<%@page import="orderinfo.orderinfovo.OrderInfoVO"%>
 <%@page import="memberService.MypageorderinfoService" %>
 <%@ include file="/layout/Header.jsp" %>
 <script src="${contextPath }/js/jquery-3.6.0.js"></script>

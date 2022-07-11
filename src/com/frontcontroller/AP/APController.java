@@ -63,6 +63,7 @@ import orderinfoService.CheckOrderOkService;
 import orderinfoService.GetMoreOrderInfoService;
 import service.NextPage;
 import service.ServiceInterface;
+import service.TagSearchService;
 
 @WebServlet("*.do")
 public class APController extends HttpServlet {
@@ -388,9 +389,9 @@ public class APController extends HttpServlet {
 				
 				
 	// 관리자  ===============================================================				
-			case "/admin.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/9 작성자: 이명진
+			case "/adminIn.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/9 작성자: 이명진
 				serv = new AdminService();
-				page = new NextPage("/admin/QnAList.jsp", false);
+				page = new NextPage("/admin/QnAList.do", false);
 				break;
 			case "/adminOut.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/9 작성자: 이명진
 				serv = new AdminOutService();
@@ -442,6 +443,10 @@ public class APController extends HttpServlet {
 				break;
 			case "/siteMap.do" : //https://github.com/Ryanmufasa/awesomePlace/issues/51 작성자: 이명진
 				page = new NextPage("/admin/siteMap.jsp", true); 
+				break;
+			case "/tagSearch.do": // https://github.com/Ryanmufasa/awesomePlace/issues/28 작성자: 이명진
+				serv = new TagSearchService();
+				page = new NextPage("/search/search.jsp", false);
 				break;
     	}
     	

@@ -33,7 +33,7 @@
 				<c:if test="${memList.mem_host_Cnt > 0}">
 					<button onclick="memHostList(${memList.mem_num});">호스트 목록 : ${memList.mem_host_Cnt}개</button>
 				</c:if>
-				<button id="queueConfirm" onclick="switchSign(${memList.mem_num},'${memList.mem_sign}');">
+				<button id="queueConfirm" onclick="switchSign(${memList.mem_num},'${memList.mem_sign}',${pageData[0]},${pageData[7]});">
 					<c:if test="${memList.mem_sign eq 'Y' }">회원 비활성화</c:if>
 					<c:if test="${memList.mem_sign eq 'N' }">회원 활성화</c:if>
 				</button>

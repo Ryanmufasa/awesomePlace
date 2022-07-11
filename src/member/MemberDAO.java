@@ -625,13 +625,6 @@ public class MemberDAO{
 					} 
 			}catch (SQLException e) {
 				e.printStackTrace();
-			}finally {
-				try {
-					if(rs != null) rs.close();
-					if(pstmt != null) pstmt.close();
-				}catch(SQLException e) {
-					e.printStackTrace();
-				}
 			}
 			return vo;
 		}
