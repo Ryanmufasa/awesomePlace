@@ -21,7 +21,8 @@ public class MypagememUpdaService implements ServiceInterface {
 		String memPw = request.getParameter("mem_pw");	
 		String memTel = request.getParameter("mem_tel");	
 		String memEmail = request.getParameter("mem_email");	
-		String memId = (String)session.getAttribute("mem_id");
+		//String memId = (String)session.getAttribute("mem_id");
+		String memId = (String)session.getAttribute("mem");
 		
 		System.out.println(memPw);
 		System.out.println(memTel);

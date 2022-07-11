@@ -1,6 +1,7 @@
 <!-- https://github.com/Ryanmufasa/awesomePlace/issues/9 | 작성자 이명진 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="member.MemberVO" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix = "fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix = "fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -21,7 +22,7 @@
 	<script>
 		<% 
 			HttpSession ss1 = request.getSession();
-			String mem_id = (String)ss1.getAttribute("mem_id"); //memverVO 포함 세션
+			MemberVO mem_id = (MemberVO)ss1.getAttribute("mem_id"); //memverVO 포함 세션
 			String showAdmin = (String)ss1.getAttribute("showAdmin"); // admin로그인 확인 세션
 			String adminPage = (String)ss1.getAttribute("adminPage");// adminPage 진입 확인 세션
 			String myPage = (String)ss1.getAttribute("myPage");// myPage진입 확인세션 확인 세션
@@ -50,10 +51,10 @@
 			<div class="btns"> 
 					<button id="btnMyPage" hidden="true">
 						마이페이지</button>
-					<button id="btnLogout" hidden="true">
+					<button id="btnLogout" hidden="true" onclick="checkLogout()">
 						로그아웃</button>
 				
-				<button id="btnMyHosting" hidden="true">
+				<button id="btnMyHosting" hidden="true" onclick="checkLogin()">
 					마이호스팅</button>
 				<button id="btnLogin" hidden="true">
 					로그인</button>

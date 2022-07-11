@@ -16,16 +16,23 @@ public class TagSearchService implements ServiceInterface {
 		request.setCharacterEncoding("UTF-8");
 		MemberDAO dao = MemberDAO.getInstance();
 		
-		int idx = Integer.parseInt(request.getParameter("idx"));
+		//int idx = Integer.parseInt(request.getParameter("idx"));
+		
+		int idx = Integer.parseInt(request.getParameter("num"));
+		String name = request.getParameter("name");
+		System.out.println("tag_name : " + name);
 		
 		ArrayList<HostVO> hostList = dao.tagSearch(idx);
 		
+		
+		
 		request.setAttribute("hostli", hostList);
+		request.setAttribute("tag_name", name);
 		
 		request.setAttribute("search", "");
 		request.setAttribute("checkIn", "");
 		request.setAttribute("checkOut", "");
-		request.setAttribute("guestCnt", "2");
+		request.setAttribute("guestCnt", "");
 	}
 
 }

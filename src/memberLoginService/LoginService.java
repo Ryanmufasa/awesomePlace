@@ -27,8 +27,8 @@ public class LoginService implements ServiceInterface{
 		MemberVO selectResult = dao.selectID(mem_id, mem_pw);
 		
 		if(selectResult != null) {
-			session.setAttribute("mem", selectResult); // selectResult값이 null이 아니면 mem이름에 로그인한 회원의 모든 정보를 넣는다.	
-			session.setAttribute("mem_id", mem_id);
+			session.setAttribute("mem_id", selectResult); // selectResult값이 null이 아니면 mem이름에 로그인한 회원의 모든 정보를 넣는다.	
+			session.setAttribute("mem", mem_id);
 		} 
 
 		if ("admin".equals(mem_id)) {

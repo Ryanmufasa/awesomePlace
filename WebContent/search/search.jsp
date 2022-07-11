@@ -29,15 +29,15 @@
 		</c:if>
 		<c:if test="${empty guestCnt }">
 		</c:if>
-		<c:if test="${tag_name}">
-			${tag_name } 로 검색한 결과입니다.
+		<c:if test="${!empty tag_name}">
+			#${tag_name } 로 검색한 결과입니다.
 		</c:if>
  </h2>
 <hr>
 <div style="display:inline-flex;">
 	<c:forEach var="host" items="${hostli }" varStatus="status">
 		<button class="box" id="A" 
-		onclick="location.href='/awesomePlace/search/moreinfo.do?host_name=${host.host_name }&host_num=${host.host_num}&checkIn=${checkIn}&checkOut=${checkOut }&guestCnt=${guestCnt }'">
+		onclick="location.href='/awesomePlace/search/moreinfo.do?host_name=${host.host_name }&host_num=${host.host_num}&checkIn=${checkIn}&checkOut=${checkOut }&guestCnt=${guestCnt }&tag_name=${tag_name }'">
 
 			<h2>${host.host_name }</h2>
 			<c:set var="room" value="${host.room_type }"/>

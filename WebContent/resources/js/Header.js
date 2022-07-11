@@ -48,13 +48,13 @@
 					location.assign("adminOut.do");
 				}
 			}));
-			$("#btnMyHosting").on("click",(function(){
+			/*$("#btnMyHosting").on("click",(function(){
 				if(ssId){
-					location.assign("myhosting.do");
+					location.assign("myHosting.do");
 				}else{
 					location.assign("loginform.do");
 				}
-			}));
+			}));*/
 			$("#btnMyPage").on("click",(function(){
 					location.assign("MyPage.do");
 			}));
@@ -74,8 +74,7 @@
 			$("#list").on("click",(function (){
 				location.assign("QnAList.do");
 			}));
-			
-			
+
 			/* 아래는 footer 버튼*/
 			
 			$("#toTop").on("click",(function(){
@@ -145,10 +144,15 @@
 		}
 	}
 	
-	function tagSearch(idx){
-		var url = "tagSearch.do?idx="+idx;
-		location.href=url;
+	
+	function tagSearch(num,name){
+		// alert(num)
+		// alert(name)
+	var url = "tagSearch.do?num="+num+"&name="+name;
+	//var url = "tagSearch.do?idx="+idx;
+	location.href=url;
 	}
+
 	
 	function LScroll(){
 		$(".CD").animate({

@@ -36,13 +36,17 @@ public class GetHostInfoService implements ServiceInterface {
 		String checkIn = request.getParameter("checkIn");
 		String checkOut = request.getParameter("checkOut");
 		String guestCnt = request.getParameter("guestCnt");
+		String tag_name = request.getParameter("tag_name");
+		
 		System.out.println(checkIn);
 		System.out.println(checkOut);
 		System.out.println(guestCnt);
+		System.out.println(tag_name);
 		
 		request.setAttribute("guestCnt", guestCnt);
 		request.setAttribute("checkIn", checkIn);
 		request.setAttribute("checkOut", checkOut);
+		request.setAttribute("tag_name", tag_name);
 
 
 	}

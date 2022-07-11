@@ -105,6 +105,7 @@ $(document).ready(function(){
 				},
 				datatype : 'json',
 				success : function(checkResult){
+					//alert(checkResult);
 					if(checkResult == 0){
 						alert("예약 가능합니다");
 					}else{
