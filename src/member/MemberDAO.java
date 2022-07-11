@@ -1414,7 +1414,7 @@ public class MemberDAO{
 					sql += ",";
 				}
 			}
-			sql += ")";
+			sql += ") and sign='true'";
 			System.out.println("sql : " + sql);
 			ArrayList<HostVO> hostList = new ArrayList<HostVO>();
 			try {

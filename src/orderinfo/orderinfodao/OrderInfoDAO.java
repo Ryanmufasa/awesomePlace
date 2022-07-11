@@ -357,8 +357,8 @@ public class OrderInfoDAO {
 		
 		String sql = "select * from orderinfo "
 				+ "where oi_host_num=? "
-				+ "and checkIn_date between ? and ? "
-				+ "or checkOut_date between ? and ?";
+				+ "and checkOut_date between ? and ? "
+				+ "and oi_sign='cancle";
 		
 		try {
 			con = new DBConn().getConnection();
