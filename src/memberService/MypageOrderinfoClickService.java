@@ -10,8 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import member.MemberDAO;
 import member.MemberVO;
-import orderinfo.OrderinfoDAO;
-import orderinfo.OrderinfoVO;
+import orderinfo.orderinfodao.OrderInfoDAO;
+import orderinfo.orderinfovo.OrderInfoVO;
 import service.ServiceInterface;
 
 public class MypageOrderinfoClickService implements ServiceInterface {
@@ -21,7 +21,7 @@ public class MypageOrderinfoClickService implements ServiceInterface {
 			
 		HttpSession session = request.getSession();		
 		int oi_num=Integer.parseInt(request.getParameter("oi_num"));
-		OrderinfoVO od = OrderinfoDAO.getInstance().getreser(oi_num);
+		OrderInfoVO od = OrderInfoDAO.getInstance().getreser(oi_num);
 		request.setAttribute("od", od);	
 	
 		

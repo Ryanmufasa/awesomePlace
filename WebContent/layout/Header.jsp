@@ -1,4 +1,5 @@
 <!-- https://github.com/Ryanmufasa/awesomePlace/issues/9 | 작성자 이명진 -->
+<%@page import="member.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -20,7 +21,7 @@
 	<script>
 		<% 
 			HttpSession ss1 = request.getSession();
-			String mem_id = (String)ss1.getAttribute("mem_id"); //memverVO 포함 세션
+			MemberVO mem_id = (MemberVO)ss1.getAttribute("mem_id"); //memverVO 포함 세션
 			String showAdmin = (String)ss1.getAttribute("showAdmin"); // admin로그인 확인 세션
 			String doubleCheck = (String)ss1.getAttribute("doubleCheck");// 비번 더블체크 확인 세션
 			String adminPage = (String)ss1.getAttribute("adminPage");// adminPage 진입 확인 세션
@@ -69,9 +70,9 @@
 			지역명<input type="search" name="search" size="6" placeholder="모든 지역" >
 			<input type="date" min="2022-06-05" name="checkIn" id="checkIn">
 			<input type="date" min="2022-06-05" name="checkOut" id="checkOut" disabled>
-				<select id="guestCnt" onchange="flip();">
+				<select id="guestCnt" name="guestCnt" onchange="flip();">
 					<option value="1">1</option>
-					<option value="2">2</option>
+					<option value="2" selected>2</option>
 					<option value="3">3</option>
 					<option value="4">4</option>
 					<option value="5">5</option>

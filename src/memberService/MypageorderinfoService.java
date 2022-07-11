@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import member.MemberDAO;
 import member.MemberVO;
-import orderinfo.OrderinfoDAO;
-import orderinfo.OrderinfoVO;
+import orderinfo.orderinfodao.OrderInfoDAO;
+import orderinfo.orderinfovo.OrderInfoVO;
 import service.ServiceInterface;
 
 public class MypageorderinfoService implements ServiceInterface{
@@ -25,10 +25,10 @@ public class MypageorderinfoService implements ServiceInterface{
 	@Override
 	public void execute (HttpServletRequest request, HttpServletResponse response) throws IOException{
 		HttpSession session = request.getSession();		
-		MemberVO vo = (MemberVO)session.getAttribute("login");
+		MemberVO vo = (MemberVO)session.getAttribute("mem_id");
 		String oi_mem_id = vo.getMem_id();
-		ArrayList<OrderinfoVO> reser = null;
-		reser = OrderinfoDAO.getInstance().getAllreser(oi_mem_id);
+		ArrayList<OrderInfoVO> reser = null;
+		reser = OrderInfoDAO.getInstance().getAllreser(oi_mem_id);
 		
 		
 		boolean check = false;

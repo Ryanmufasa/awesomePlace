@@ -16,35 +16,33 @@
 		</div>
 	</div>
 	
-	<div id="myPageNav" hidden="true">
-		<div>
-			<a href="memberUpdate.do">정보수정</a>
-		</div>
-		<div>
-			<a href="memberLikeList.do">찜 목록</a>
-		</div>
-		<div>
-			<a href="memberResList.do">예약 내역</a>
-		</div>
-		<div>
-			<a href="memberMyHosting.do">마이호스팅</a>
-		</div>
-		<div>
-			<a href="memberQnAList.do">내 문의 확인</a>
-		</div>
-	</div>
-	
-	<div id="hostingPageNav" hidden="true">
-		<div>
-			<a href="memberHostList.do">호스트 목록</a>
-		</div>
-		<div>
-			<a href="memberHostMng.do">호스트 관리</a>
-		</div>
-		<div>
-			<a href="memberHostUpdate.do">호스트 등록</a>
-		</div>
-	</div>
-	
+	<div id="myPageNav" >
+      <div>
+         <a href="mpmeminfo.do">정보수정</a>
+      </div>
+      <div>
+         <a href="jjimlist1.do">찜 목록</a>
+      </div>
+      <div>
+         <a href="mpreserinfofirst.do" >예약 내역</a>
+      </div>
+      <div>
+         <a href="myHosting.do">마이호스팅</a>
+      </div>
+      <div>
+         <a href="qna1.do">내 문의 확인</a>
+      </div>
+   </div>
+   
+   <div id="hostingPageNav">
+      <div>
+         <a href="myHostList.do">호스트 목록</a>
+      </div>
+      <div>
+         <a href="memberHostMng.do">호스트 관리</a>
+      </div>
+      <div>
+         <a href="addNewHostForm.do">호스트 등록</a>
+      </div>
+   </div>
 </div>
-

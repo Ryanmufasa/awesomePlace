@@ -18,11 +18,10 @@ public class MyPagePWService implements ServiceInterface{
 		
 		HttpSession session = request.getSession();
 		
-		request.setCharacterEncoding("UTF-8");
+	
+		MemberVO vo = (MemberVO) session.getAttribute("mem_id");
 		
-		MemberVO vo = (MemberVO) session.getAttribute("mem");
-		
-		String mem_pw = request.getParameter("mem_pw");		
+		String mem_pw = request.getParameter("mem_pw");
 		String mem_id = vo.getMem_id();
 		
 		MemberDAO dao = MemberDAO.getInstance();
@@ -31,6 +30,8 @@ public class MyPagePWService implements ServiceInterface{
 		
 		if(selectResult == 1) {
 			System.out.println("일치");
+			session.setAttribute("myPage", "true");
+			session.setAttribute("InmyPage", "true");
 			
 		} 
 		
