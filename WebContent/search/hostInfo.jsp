@@ -5,7 +5,7 @@
 rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/HostInfo.css?v=<%=System.currentTimeMillis() %>" 
 rel="stylesheet">
-<%@ include file="/layout/SearchHeader.jsp" %>
+<%@ include file="/layout/Header.jsp" %>
 <script type="text/javascript" 
 src="${pageContext.request.contextPath }/resources/js/Order.js?v=<%=System.currentTimeMillis()%>"></script>
 
@@ -89,4 +89,4 @@ src="${pageContext.request.contextPath }/resources/js/Order.js?v=<%=System.curre
 <hr>
 <button type="button" onclick="history.back()">뒤로가기</button>
 </div>
-<%@ include file="/layout/SearchFooter.jsp" %>
+<%@ include file="/layout/Footer.jsp" %>

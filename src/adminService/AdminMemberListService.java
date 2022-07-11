@@ -20,6 +20,48 @@ public class AdminMemberListService implements ServiceInterface {
 		
 		ArrayList<MemberVO> memList = dao.getAllMember();
 		
+		int rowCnt = 10;
+		int pageCnt = 10;
+		String tempRowCnt = (String)request.getParameter("rowCnt");
+		
+		if(tempRowCnt != null) {
+			rowCnt = Integer.parseInt(tempRowCnt);
+		}
+		
+		int cacIdx = (pageCnt/2);
+		int totalCnt = (int)Math.ceil(memList.size()/(double)pageCnt);
+		
+		int page = 1;
+		int begin = 1;
+		int end = totalCnt;
+		
+		String tempNum = (String)request.getParameter("pageIdx");
+		if(tempNum != null) {
+			page = Integer.parseInt(tempNum);
+		}
+		
+		if(page>cacIdx) {
+			begin = (page - cacIdx - 1);
+			if(begin==0)
+				begin++;
+		}
+		
+		if((totalCnt-page)>cacIdx) {
+			end = (page + cacIdx);
+		}
+		
+		if(page==end) {
+			rowCnt = (memList.size()%rowCnt);
+		}
+		rowCnt--;
+		
+		int rowStart = ((page-1)*10);
+		int rowEnd = rowStart+rowCnt;
+		
+		int [] pageData = {page,begin,end,rowStart,rowEnd,totalCnt,rowCnt};
+		
+		request.setAttribute("pageData", pageData);
+		
 		request.setAttribute("memList", memList);
 	}
 

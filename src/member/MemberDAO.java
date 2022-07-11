@@ -873,16 +873,18 @@ public class MemberDAO{
 				String mem_name;
 				String mem_id;
 				String mem_sign;
-				int mem_hostingcnt;
+				int mem_host_Cnt;
 				
 				while(rs.next()) {
 					mem_num = Integer.parseInt(rs.getString("mem_num"));
 					mem_name = rs.getString("mem_name");
 					mem_id = rs.getString("mem_id");
 					mem_sign = rs.getString("mem_sign");
-					mem_hostingcnt = Integer.parseInt(rs.getString("mem_hostingcnt"));
+					mem_host_Cnt = Integer.parseInt(rs.getString("mem_hostingcnt"));
 					
-					MemberVO mem = new MemberVO(mem_num,mem_name,mem_id,mem_sign,mem_hostingcnt);
+					MemberVO mem = new MemberVO(mem_num,mem_name,mem_id,mem_sign,mem_host_Cnt);
+					
+					if(!mem_id.equals("admin"))
 					memList.add(mem);
 				}
 			
@@ -918,7 +920,7 @@ public class MemberDAO{
 				String mem_tel;
 				String mem_email;
 				String mem_sign;
-				int mem_hostingcnt;
+				int mem_host_Cnt;
 				
 				if(rs.next()) {
 					mem_num = Integer.parseInt(rs.getString("mem_num"));
@@ -928,9 +930,9 @@ public class MemberDAO{
 					mem_tel = rs.getString("mem_tel");
 					mem_email = rs.getString("mem_email");
 					mem_sign = rs.getString("mem_sign");
-					mem_hostingcnt = Integer.parseInt(rs.getString("mem_hostingcnt"));
+					mem_host_Cnt = Integer.parseInt(rs.getString("mem_hostingcnt"));
 					
-					memInfo = new MemberVO(mem_num,mem_name,mem_id,mem_pw,mem_tel,mem_email,mem_sign,mem_hostingcnt);
+					memInfo = new MemberVO(mem_num,mem_name,mem_id,mem_pw,mem_tel,mem_email,mem_sign,mem_host_Cnt);
 				}
 			} catch (SQLException e) {
 				try {

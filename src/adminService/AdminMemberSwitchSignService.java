@@ -23,14 +23,6 @@ public class AdminMemberSwitchSignService implements ServiceInterface {
 			idx = Integer.parseInt(temp);
 		}
 		boolean result = dao.memSwitchSign(idx,flag);
-		String res=null;
-		
-		if(result) 
-			res = "T";
-		else
-			res = "F";
-		
-		request.setAttribute("switchRes", res);
 	}
 
 }

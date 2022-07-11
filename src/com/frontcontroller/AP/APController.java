@@ -180,7 +180,7 @@ public class APController extends HttpServlet {
 			break;
 		case "/adminIn.do": // https://github.com/Ryanmufasa/awesomePlace/issues/9 작성자: 이명진
 			serv = new AdminService();
-			page = new NextPage("/admin/QnAList.jsp", false);
+			page = new NextPage("/admin/QnAList.do", false);
 			break;
 		case "/adminOut.do": // https://github.com/Ryanmufasa/awesomePlace/issues/9 작성자: 이명진
 			serv = new AdminOutService();

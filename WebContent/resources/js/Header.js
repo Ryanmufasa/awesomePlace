@@ -65,7 +65,7 @@
 			}));
 			$("#img1").on("click",(function(){
 				if(ssAdminPage){
-					location.assign("admin.do");
+					location.assign("adminIn.do");
 				}else{
 					location.assign("main.do");
 				}
@@ -86,7 +86,7 @@
 				if(ssId){
 					location.assign("MyAskForm.do");
 				}else{
-					location.assign("loginForm.do");
+					location.assign("loginform.do");
 				}
 			}));
 			

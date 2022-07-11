@@ -2,6 +2,9 @@
 @charset "UTF-8";
 	:root {
 		--hrColor:#6EE0FF;
+		--btnColor:#37C3C3;
+		--btnFontColor:#37C3C3;
+		--minWidth:740px;
 	}
 	a {
 		text-decoration:none;
@@ -16,13 +19,20 @@
 		color:#6A5ACD;
 	}
 	button{
-		
+		border:1px;
+		border-style:solid;
+		border-color:var(--btnColor);
+		background-color:white;	
+		font-weight:bold;
+		color:var(--btnFontColor);
+		cursor: pointer;
+		padding:5px;
 	}
 	header{
 		position:relative;
 		height:140px;
 		max-width:1280px;
-		min-width:640px;
+		min-width:var(--minWidth);
 		width:90%;
 		margin:auto;
 		display:block;
@@ -63,7 +73,7 @@
 		border:0px;
 		background-color:var(--hrColor);
 		max-width:1280px;
-		min-width:640px;
+		min-width:var(--minWidth);
 	}
 /*///////////////////////////////header 부분 끝/////////////////////////////////*/	
 	
@@ -74,7 +84,7 @@
 		background-color:white;
 		min-height:400px;
 		max-width:1280px;
-		min-width:640px;
+		min-width:var(--minWidth);
 		margin:auto;
 		display:block;
 		box-sizing:content-box;
@@ -102,19 +112,22 @@
 		width:100%;
 	}
 	.mainDiv-child{
-		text-align:center;
 		position:absolute;
 		background-color:silver;
 		width:calc(100% - 110px);
 		min-height:400px;
 		max-width:1180px;
-		min-width:530px;
+		min-width:calc(var(--minWidth) - 110px);
 		margin-left:110px;
 		top: 0;
 		bottom:0;
 		right:0;
 		display:block;
 		overflow:visible;
+	}
+	
+	.mainDiv-child>*{
+		margin:auto;
 	}
 	
 	#imgIdx{
@@ -173,7 +186,7 @@
 	footer{
 		position:relative;
 		max-width:1280px;
-		min-width:640px;
+		min-width:var(--minWidth);
 		width:90%;
 		margin:auto;
 		display:block;

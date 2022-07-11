@@ -1,5 +1,43 @@
 // https://github.com/Ryanmufasa/awesomePlace/issues/47 작성자 : 이명진
 
+$(document).ready(function(){
+	pagingResize();
+});
+
+$(window).on("resize", function(){
+	pagingResize();
+});
+
+function scopeColor(idx){
+	if(idx == 10){
+		$("#scope10").css("background-color","#6A5ACD" );
+		$("#scope10").css("color","white" );
+	}else if(idx == 20){
+		$("#scope20").css("background-color","#6A5ACD" );
+		$("#scope20").css("color","white" );
+	}else if(idx == 50){
+		$("#scope30").css("background-color","#6A5ACD" );
+		$("#scope30").css("color","white" );
+	}
+}
+
+function scopeClickMem(idx, rowCnt){
+	location.assign("memberList.do?pageIdx="+idx+"&rowCnt="+rowCnt);
+}
+function scopeClickHost(idx, rowCnt){
+	location.assign("memberList.do?pageIdx="+idx+"&rowCnt="+rowCnt);
+}
+function scopeClickQnA(idx, rowCnt){
+	location.assign("memberList.do?pageIdx="+idx+"&rowCnt="+rowCnt);
+}
+
+function pagingResize(){
+	var pagingWidth = ($(".paging").width())/2;
+	var mainWidth = ($(".mainDiv-child").width())/2;
+	var resWidth = mainWidth - pagingWidth;
+	$(".paging").css("left", resWidth);
+};
+
 function memDetail(idx) { // 멤버 상세정보페이지로 진입하는 컨트롤러로 연결
 		var url = "memberDetail.do?idx="+idx;
 		var name = "memDetail";
@@ -36,6 +74,7 @@ function switchSign(idx, flag) { // sign 상태 변경 후 멤버 상세정보�
 //			})
 }
 
+
 function memberDelete(idx){
 	var url = "memberDelete.do?idx="+idx;
 	var queue = window.confirm("회원정보가 영구히 삭제됩니다. 진행하시겠습니까?");
@@ -70,6 +109,10 @@ function switchHostSign(idx, flag) { // sign 상태 변경 후 호스트 상세�
 function openerReload(){ // 팝업창 닫을때 부모창 새로고침
 	window.opener.location.reload();
 	window.close();
+}
+
+function memListPaging(idx){
+	memberList.do
 }
 
 ////////////////////////////////////// 호스트리스트 관련 함수 끝 /////////////////////////////////////////
