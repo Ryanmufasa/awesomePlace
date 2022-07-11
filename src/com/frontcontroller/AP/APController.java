@@ -59,6 +59,7 @@ import memberService.PWfoundService;
 import memberService.PWupdateService;
 import memberService.QnAService;
 import memberService.QnAShowService;
+import orderinfoService.CheckOrderOkService;
 import orderinfoService.GetMoreOrderInfoService;
 import service.NextPage;
 import service.ServiceInterface;
@@ -260,6 +261,11 @@ public class APController extends HttpServlet {
 			case "/searchByHashtag.do": //https://github.com/Ryanmufasa/awesomePlace/issues/25 작성자 정다영
 				serv = new SearchByHashtagService();
 				page = new NextPage("/search/search.jsp",false);
+				break;
+				
+			case "/checkOrderOk.do" :
+				serv = new CheckOrderOkService();
+				page = new NextPage("/search/checkResult.jsp", false);
 				break;
 				
 				
