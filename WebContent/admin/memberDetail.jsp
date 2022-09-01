@@ -23,7 +23,7 @@
 	var res ="<%=res%>";
 	$(document).ready(function(){
 		if(res=="true"){
-			opener.parent.location.reload();
+			opener.parent.location.href = "memberList.do";
 			window.close();
 		}
 	});

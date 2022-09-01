@@ -1,13 +1,8 @@
+<!-- https://github.com/Ryanmufasa/awesomePlace/issues/5  // 양준모 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html> 
-<html>
-<head>
-<meta charset="UTF-8">
-<title>AwesomePlace 로그인</title>  <!-- https://github.com/Ryanmufasa/awesomePlace/issues/5  // 양준모 -->
+<title>AwesomePlace 로그인</title>  
 
-<script src="${contextPath }/js/jquery-3.3.1.js"></script>
-<script src="${contextPath }/js/Main.js"></script>
 <script src="${contextPath }/resources/js/Main.js?v=<%=System.currentTimeMillis() %>"></script>	
 
 <style>
@@ -39,10 +34,6 @@
 	}
 	
 </style>
-
-</head>
-
-<body>
 
 	<%@include file ="/layout/Header.jsp" %>
 
@@ -91,12 +82,7 @@
 
         </form>
 
+    <span id="counter" style="top:773px;"></span>
     </div>
     
-    <br><br><br><br><br><br><br><br>
-    
     <%@include file ="/layout/Footer.jsp" %>
-
-</body>
-
-</html>

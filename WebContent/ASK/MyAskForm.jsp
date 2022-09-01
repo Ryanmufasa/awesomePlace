@@ -96,7 +96,7 @@ body{
 				문의자
 			</th>
 			<td style="border-top: none; border-left: none;border-right: none;">
-				<% MemberVO vo = (MemberVO) session.getAttribute("mem");  %>
+				<% MemberVO vo = (MemberVO) session.getAttribute("mem_id");  %>
 				&nbsp;&nbsp;&nbsp;<%=vo.getMem_id() %> 님
 			</td>
 		</tr>

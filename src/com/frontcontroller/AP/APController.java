@@ -173,20 +173,7 @@ public class APController extends HttpServlet {
 				
 	// 마이페이지  ===============================================================
 			// 마이페이지 접속시 로그인 재확인 작성자:양준모
-			case "/MyPage.do":
-				if(InmyPage != null) { // 마이페이지 비밀번호 체크 세션 있음 
-					if(InhostingPage != null) { // 호스팅 비밀번호 체크 세션도 있으면 
-						session.removeAttribute("hostingPage");
-					}
-					session.setAttribute("myPage","true");
-					page = new NextPage("awesomePlace/mypage/mpmeminfo.do", true);
-				}else { // 세션이 없다면 비밀번호 화면으로 이동 
-					if(InhostingPage != null) { // 마이호스팅 비밀번호 체크 세션이 있으면
-						session.removeAttribute("hostingPage");
-					}
-					page = new NextPage("/awesomePlace/mypage/MyPage.jsp", true);
-				}
-				break;
+			
 				
 			case "/mypagePW.do":
 				serv = new MyPagePWService();
@@ -269,10 +256,23 @@ public class APController extends HttpServlet {
 				page = new NextPage("/search/checkResult.jsp", false);
 				break;
 				
-				
+			case "/MyPage.do":
+				if(InmyPage != null) { // 마이페이지 비밀번호 체크 세션 있음 
+					if(InhostingPage != null) { // 호스팅 비밀번호 체크 세션도 있으면 
+						session.removeAttribute("hostingPage");
+					}
+					session.setAttribute("myPage","true");
+					page = new NextPage("awesomePlace/mypage/mpmeminfo.do", true);
+				}else { // 세션이 없다면 비밀번호 화면으로 이동 
+					if(InhostingPage != null) { // 마이호스팅 비밀번호 체크 세션이 있으면
+						session.removeAttribute("hostingPage");
+					}
+					page = new NextPage("/awesomePlace/mypage/MyPage.jsp", true);
+				}
+				break;	
 	// 마이 호스팅 ================================================================	
 				//https://github.com/Ryanmufasa/awesomePlace/issues/42 작성자 정다영
-			case "/myHosting.do" : // 마이호스팅 버튼 클릭시 
+			case "/myhosting.do" : // 마이호스팅 버튼 클릭시 
 				if(InhostingPage != null) { // 호스팅 버튼 접속 이력 있다면 
 					if(InmyPage != null) { // 마이페이지 비밀번호 체크 세션 있으면 
 						session.removeAttribute("myPage");

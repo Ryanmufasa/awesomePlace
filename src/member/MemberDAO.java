@@ -634,7 +634,7 @@ public class MemberDAO{
 			//insert into QNA values(qna_seq.nextval, :1 , :2 , :3 , :4 , sysdate, :5 , :6 )
 			//insert into QNA values(qna_seq.nextval, ?, ?, ?, ?, sysdate, ?, ?)
 			int check = 0;
-			String sql = "insert into QNA values(qna_seq.nextval, ?, ?, ?, ?, sysdate, ?, ?,?)";
+			String sql = "insert into QNA values(qna_seq.nextval, ?, ?, ?, ?, sysdate, ?, ?)";
 			
 			try {
 				pstmt = con.prepareStatement(sql);
@@ -644,7 +644,6 @@ public class MemberDAO{
 				pstmt.setString(4, qvo.getQna_content());
 				pstmt.setString(5, "Wait");
 				pstmt.setString(6, "");
-				pstmt.setString(7, null);
 				if(pstmt.executeUpdate() != 0) {
 					check = 1;
 					return check;				

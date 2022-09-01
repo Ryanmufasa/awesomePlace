@@ -12,7 +12,7 @@
 	});
 </script>
 <div class="mainDiv-child">
-<c:if test="${pageData[8] >= 9}">
+<c:if test="${pageData[8] > 10}">
 <div class="btnGroup">
 	<button class="scopeBtn" id="scope10" onclick="scopeClickHost(${pageData[0]}, 10)">10</button>
 	<button class="scopeBtn" id="scope20" onclick="scopeClickHost(${pageData[0]}, 20)">20</button>
@@ -52,7 +52,7 @@
 				</c:if>
 			</c:forEach>
 		<c:if test="${pageData[0] ne pageData[2]}">
-			<span><a id="aTag" href="hostingList.do?pageIdx=${pageData[2] }&steadyRowCnt=${pageData[7]}">&gt;</a></span>
+			<span><a id="aTag" href="hostingList.do?pageIdx=${pageData[0]+1 }&steadyRowCnt=${pageData[7]}">&gt;</a></span>
 			<span><a id="aTag" href="hostingList.do?pageIdx=${pageData[5] }&steadyRowCnt=${pageData[7]}">&gt;&gt;</a></span>
 		</c:if>
 	</div>
